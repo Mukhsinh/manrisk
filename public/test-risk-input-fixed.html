@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Risk Input - Fixed</title>
+    <link rel="stylesheet" href="/css/risk-input.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .test-header {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .test-status {
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+        .test-status.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .test-status.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .test-status.info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <div class="test-header">
+            <h1><i class="fas fa-vial"></i> Test Risk Input - Perbaikan</h1>
+            <p>Testing form visibility dan notifikasi</p>
+        </div>
+
+        <div id="test-status" class="test-status info">
+            <i class="fas fa-info-circle"></i> Memuat modul...
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <button class="btn btn-tambah-risiko" id="btn-tambah-risiko">
+                <i class="fas fa-plus"></i>
+                Tambah Risiko
+            </button>
+            <button class="btn btn-secondary" onclick="testNotification('success')">
+                <i class="fas fa-check"></i>
+                Test Notifikasi Sukses
+            </button>
+            <button class="btn btn-secondary" onclick="testNotification('error')">
+                <i class="fas fa-times"></i>
+                Test Notifikasi Error
+            </button>
+            <button class="btn btn-secondary" onclick="testFormToggle()">
+                <i class="fas fa-eye"></i>
+                Toggle Form
+            </button>
+        </div>
+
+        <!-- Risk Table -->
+        <div class="card">
+            <div class="card-header">
+                <h3><i class="fas fa-table"></i> Daftar Risiko</h3>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>Kode Risiko</th>
+                                <th>Jenis</th>
+                                <th>Unit Kerja</th>
+                                <th>Kategori</th>
+                                <th>Pemilik Risiko</th>
+                                <th>Status</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="risk-input-tbody">
+                            <tr>
+                                <td colspan="8" class="text-center">
+                                    <i class="fas fa-spinner fa-spin"></i> Memuat data...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Risk Input Form Section (Hidden by default) -->
+        <div id="risk-input-form-section" class="card" style="display: none;">
+            <div class="card-header">
+                <h3><i class="fas fa-edit"></i> Form Input Risiko</h3>
+            </div>
+            <div class="card-body">
+                <form id="risk-input-form">
+                    <div class="form-section">
+                        <h4>Informasi Risiko</h4>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="nama-unit-kerja">Unit Kerja <span class="required">*</span></label>
+                                <select id="nama-unit-kerja" class="form-control" required>
+                                    <option value="">Pilih Unit Kerja</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="kategori-risiko">Kategori Risiko <span class="required">*</span></label>
+                                <select id="kategori-risiko" class="form-control" required>
+                                    <option value="">Pilih Kategori</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="kode-risiko">Kode Risiko</label>
+                                <input type="text" id="kode-risiko" class="form-control" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="no-risiko">No. Risiko</label>
+                                <input type="number" id="no-risiko" class="form-control" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h4>Deskripsi Risiko</h4>
+                        <div class="form-group">
+                            <label for="sasaran">Sasaran <span class="required">*</span></label>
+                            <textarea id="sasaran" class="form-control" rows="3" required></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Simpan Data Risiko
+                        </button>
+                        <button type="button" class="btn btn-secondary" id="reset-form-btn">
+                            <i class="fas fa-redo"></i> Reset Form
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="/js/config.js"></script>
+    <script src="/js/services/authService.js"></script>
+    <script src="/js/services/apiService.js"></script>
+    <script src="/js/risk-input.js"></script>
+    <script>
+        function showStatus(message, type = 'info') {
+            const statusEl = document.getElementById('test-status');
+            statusEl.className = `test-status ${type}`;
+            statusEl.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i> ${message}`;
+        }
+
+        function testNotification(type) {
+            if (window.RiskInputModule && window.RiskInputModule.showNotification) {
+                // Access internal function through module
+                const message = type === 'success' 
+                    ? 'Data risiko berhasil disimpan!' 
+                    : 'Gagal menyimpan data risiko!';
+                
+                // Create notification manually since showNotification is not exported
+                const notification = document.createElement('div');
+                notification.className = `risk-notification risk-notification-${type}`;
+                notification.innerHTML = `
+                    <div class="risk-notification-content">
+                        <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+                        <span>${message}</span>
+                    </div>
+                    <button class="risk-notification-close" onclick="this.parentElement.remove()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                `;
+                
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    if (notification.parentElement) {
+                        notification.classList.add('risk-notification-fade-out');
+                        setTimeout(() => notification.remove(), 300);
+                    }
+                }, 5000);
+            }
+        }
+
+        function testFormToggle() {
+            const formSection = document.getElementById('risk-input-form-section');
+            if (formSection.style.display === 'none') {
+                formSection.style.display = 'block';
+                showStatus('Form ditampilkan', 'success');
+            } else {
+                formSection.style.display = 'none';
+                showStatus('Form disembunyikan', 'info');
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', async () => {
+            showStatus('Memuat Risk Input Module...', 'info');
+            
+            try {
+                // Setup button event
+                const btnTambah = document.getElementById('btn-tambah-risiko');
+                if (btnTambah) {
+                    btnTambah.addEventListener('click', () => {
+                        const formSection = document.getElementById('risk-input-form-section');
+                        formSection.style.display = 'block';
+                        formSection.scrollIntoView({ behavior: 'smooth' });
+                        showStatus('Form input risiko ditampilkan', 'success');
+                    });
+                }
+
+                // Try to load module
+                if (window.RiskInputModule) {
+                    showStatus('Risk Input Module tersedia, mencoba memuat data...', 'info');
+                    
+                    // Mock apiCall if not available
+                    if (!window.apiCall && !window.app) {
+                        window.apiCall = async (url) => {
+                            console.log('Mock API call:', url);
+                            return [];
+                        };
+                    }
+                    
+                    await window.RiskInputModule.load();
+                    showStatus('Risk Input Module berhasil dimuat!', 'success');
+                } else {
+                    showStatus('Risk Input Module tidak tersedia', 'error');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showStatus('Error: ' + error.message, 'error');
+            }
+        });
+    </script>
+</body>
+</html>

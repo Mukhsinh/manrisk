@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Koneksi Supabase</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: #fafafa;
+        }
+        .test-section h3 {
+            margin-top: 0;
+            color: #444;
+        }
+        .status {
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-weight: 500;
+        }
+        .status.loading {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .status.warning {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+        .info-box {
+            background: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .error-details {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            overflow-x: auto;
+        }
+        button {
+            background: #2196F3;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px 10px 0;
+        }
+        button:hover {
+            background: #1976D2;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .solution-box {
+            background: #fff9e6;
+            border-left: 4px solid #ff9800;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .solution-box h4 {
+            margin-top: 0;
+            color: #e65100;
+        }
+        .solution-box ol {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        .solution-box li {
+            margin: 8px 0;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Diagnostic Koneksi Supabase</h1>
+        <p class="subtitle">Tool ini membantu mendiagnosis masalah koneksi ke server Supabase</p>
+
+        <div class="info-box">
+            <strong>ℹ️ Informasi:</strong><br>
+            Jika login gagal dengan pesan "Koneksi internet bermasalah" padahal internet lancar,
+            kemungkinan besar masalahnya adalah DNS tidak dapat resolve domain Supabase atau firewall memblokir akses.
+        </div>
+
+        <button onclick="runAllTests()">🚀 Jalankan Semua Test</button>
+        <button onclick="location.reload()">🔄 Reset</button>
+
+        <!-- Test 1: DNS Resolution -->
+        <div class="test-section">
+            <h3>1️⃣ Test DNS Resolution</h3>
+            <p>Mengecek apakah domain Supabase dapat di-resolve oleh DNS</p>
+            <div id="dns-status" class="status loading">⏳ Menunggu test...</div>
+            <div id="dns-details"></div>
+        </div>
+
+        <!-- Test 2: Network Connectivity -->
+        <div class="test-section">
+            <h3>2️⃣ Test Network Connectivity</h3>
+            <p>Mengecek apakah dapat terhubung ke server Supabase</p>
+            <div id="network-status" class="status loading">⏳ Menunggu test...</div>
+            <div id="network-details"></div>
+        </div>
+
+        <!-- Test 3: Supabase Client -->
+        <div class="test-section">
+            <h3>3️⃣ Test Supabase Client</h3>
+            <p>Mengecek apakah Supabase client dapat diinisialisasi</p>
+            <div id="client-status" class="status loading">⏳ Menunggu test...</div>
+            <div id="client-details"></div>
+        </div>
+
+        <!-- Test 4: Auth Endpoint -->
+        <div class="test-section">
+            <h3>4️⃣ Test Auth Endpoint</h3>
+            <p>Mengecek apakah endpoint authentication dapat diakses</p>
+            <div id="auth-status" class="status loading">⏳ Menunggu test...</div>
+            <div id="auth-details"></div>
+        </div>
+
+        <!-- Solutions -->
+        <div id="solutions" style="display: none;">
+            <div class="solution-box">
+                <h4>🔧 Solusi untuk Masalah Koneksi</h4>
+                <ol>
+                    <li>
+                        <strong>Ganti DNS ke Google DNS:</strong>
+                        <ul>
+                            <li>Windows: Control Panel → Network and Internet → Network Connections → Properties → IPv4 → Use DNS: <code>8.8.8.8</code> dan <code>8.8.4.4</code></li>
+                            <li>Atau gunakan Cloudflare DNS: <code>1.1.1.1</code> dan <code>1.0.0.1</code></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Matikan Firewall/Antivirus sementara:</strong>
+                        <ul>
+                            <li>Windows Defender Firewall → Turn off (temporary)</li>
+                            <li>Atau tambahkan exception untuk domain <code>*.supabase.co</code></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Flush DNS Cache:</strong>
+                        <ul>
+                            <li>Buka Command Prompt (CMD) as Administrator</li>
+                            <li>Jalankan: <code>ipconfig /flushdns</code></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Cek Proxy Settings:</strong>
+                        <ul>
+                            <li>Windows Settings → Network & Internet → Proxy</li>
+                            <li>Pastikan "Automatically detect settings" ON</li>
+                            <li>Atau matikan proxy jika tidak digunakan</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Restart Network Adapter:</strong>
+                        <ul>
+                            <li>Control Panel → Network Connections</li>
+                            <li>Disable lalu Enable kembali network adapter</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Cek dengan Browser Lain:</strong>
+                        <ul>
+                            <li>Coba buka aplikasi di browser lain (Chrome, Firefox, Edge)</li>
+                            <li>Jika berhasil, clear cache browser yang bermasalah</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const SUPABASE_URL = 'https://cdivlsbtjuufqbzelbbj.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNkaXZsc2J0anV1ZnFiemVsYmJqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMzNDQxNjAsImV4cCI6MjA3ODkyMDE2MH0.b6u2B_orpDWpynjHnPQDGxMRLJv5wj2SGsXNyJRZ4w0';
+
+        async function runAllTests() {
+            console.log('🚀 Starting diagnostic tests...');
+            
+            await testDNS();
+            await testNetwork();
+            await testSupabaseClient();
+            await testAuthEndpoint();
+            
+            // Show solutions if any test failed
+            const hasErrors = document.querySelectorAll('.status.error').length > 0;
+            if (hasErrors) {
+                document.getElementById('solutions').style.display = 'block';
+            }
+        }
+
+        async function testDNS() {
+            const statusEl = document.getElementById('dns-status');
+            const detailsEl = document.getElementById('dns-details');
+            
+            statusEl.className = 'status loading';
+            statusEl.textContent = '⏳ Testing DNS resolution...';
+            
+            try {
+                // Try to resolve the domain using fetch
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 5000);
+                
+                const response = await fetch(SUPABASE_URL + '/rest/v1/', {
+                    method: 'HEAD',
+                    signal: controller.signal
+                });
+                
+                clearTimeout(timeoutId);
+                
+                statusEl.className = 'status success';
+                statusEl.textContent = '✅ DNS Resolution: SUCCESS';
+                detailsEl.innerHTML = `
+                    <div class="info-box">
+                        <strong>Domain dapat di-resolve dengan baik</strong><br>
+                        URL: ${SUPABASE_URL}<br>
+                        Status: ${response.status}
+                    </div>
+                `;
+            } catch (error) {
+                statusEl.className = 'status error';
+                statusEl.textContent = '❌ DNS Resolution: FAILED';
+                
+                let errorMsg = error.message;
+                let diagnosis = '';
+                
+                if (error.name === 'AbortError') {
+                    diagnosis = 'Timeout - DNS tidak dapat resolve domain dalam 5 detik';
+                } else if (errorMsg.includes('Failed to fetch')) {
+                    diagnosis = 'DNS tidak dapat resolve domain Supabase';
+                } else if (errorMsg.includes('ERR_NAME_NOT_RESOLVED')) {
+                    diagnosis = 'DNS tidak dapat menemukan IP address untuk domain';
+                }
+                
+                detailsEl.innerHTML = `
+                    <div class="error-details">
+                        <strong>Error:</strong> ${errorMsg}<br>
+                        <strong>Diagnosis:</strong> ${diagnosis}<br>
+                        <strong>Kemungkinan Penyebab:</strong>
+                        <ul>
+                            <li>DNS server tidak dapat resolve domain *.supabase.co</li>
+                            <li>Firewall memblokir DNS queries</li>
+                            <li>ISP memblokir akses ke Supabase</li>
+                        </ul>
+                    </div>
+                `;
+            }
+        }
+
+        async function testNetwork() {
+            const statusEl = document.getElementById('network-status');
+            const detailsEl = document.getElementById('network-details');
+            
+            statusEl.className = 'status loading';
+            statusEl.textContent = '⏳ Testing network connectivity...';
+            
+            try {
+                const startTime = Date.now();
+                const response = await fetch(SUPABASE_URL + '/rest/v1/', {
+                    method: 'GET',
+                    headers: {
+                        'apikey': SUPABASE_ANON_KEY
+                    }
+                });
+                const endTime = Date.now();
+                const latency = endTime - startTime;
+                
+                statusEl.className = 'status success';
+                statusEl.textContent = '✅ Network Connectivity: SUCCESS';
+                detailsEl.innerHTML = `
+                    <div class="info-box">
+                        <strong>Koneksi ke server berhasil</strong><br>
+                        Status: ${response.status} ${response.statusText}<br>
+                        Latency: ${latency}ms<br>
+                        ${latency > 1000 ? '<span style="color: orange;">⚠️ Latency tinggi, koneksi lambat</span>' : ''}
+                    </div>
+                `;
+            } catch (error) {
+                statusEl.className = 'status error';
+                statusEl.textContent = '❌ Network Connectivity: FAILED';
+                detailsEl.innerHTML = `
+                    <div class="error-details">
+                        <strong>Error:</strong> ${error.message}<br>
+                        <strong>Kemungkinan Penyebab:</strong>
+                        <ul>
+                            <li>Firewall memblokir koneksi ke Supabase</li>
+                            <li>Proxy settings bermasalah</li>
+                            <li>Network adapter bermasalah</li>
+                        </ul>
+                    </div>
+                `;
+            }
+        }
+
+        async function testSupabaseClient() {
+            const statusEl = document.getElementById('client-status');
+            const detailsEl = document.getElementById('client-details');
+            
+            statusEl.className = 'status loading';
+            statusEl.textContent = '⏳ Testing Supabase client initialization...';
+            
+            try {
+                if (!window.supabase) {
+                    throw new Error('Supabase library not loaded');
+                }
+                
+                const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+                
+                if (!client) {
+                    throw new Error('Failed to create Supabase client');
+                }
+                
+                statusEl.className = 'status success';
+                statusEl.textContent = '✅ Supabase Client: SUCCESS';
+                detailsEl.innerHTML = `
+                    <div class="info-box">
+                        <strong>Supabase client berhasil diinisialisasi</strong><br>
+                        Library Version: ${window.supabase.version || 'Unknown'}<br>
+                        Client Ready: Yes
+                    </div>
+                `;
+            } catch (error) {
+                statusEl.className = 'status error';
+                statusEl.textContent = '❌ Supabase Client: FAILED';
+                detailsEl.innerHTML = `
+                    <div class="error-details">
+                        <strong>Error:</strong> ${error.message}<br>
+                        <strong>Kemungkinan Penyebab:</strong>
+                        <ul>
+                            <li>Supabase library gagal dimuat dari CDN</li>
+                            <li>Browser memblokir script dari CDN</li>
+                            <li>Konfigurasi URL atau API key salah</li>
+                        </ul>
+                    </div>
+                `;
+            }
+        }
+
+        async function testAuthEndpoint() {
+            const statusEl = document.getElementById('auth-status');
+            const detailsEl = document.getElementById('auth-details');
+            
+            statusEl.className = 'status loading';
+            statusEl.textContent = '⏳ Testing auth endpoint...';
+            
+            try {
+                const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+                
+                // Try to get session (should return null but endpoint should be accessible)
+                const { data, error } = await client.auth.getSession();
+                
+                if (error && error.message.includes('Failed to fetch')) {
+                    throw error;
+                }
+                
+                statusEl.className = 'status success';
+                statusEl.textContent = '✅ Auth Endpoint: SUCCESS';
+                detailsEl.innerHTML = `
+                    <div class="info-box">
+                        <strong>Auth endpoint dapat diakses</strong><br>
+                        Endpoint: ${SUPABASE_URL}/auth/v1/<br>
+                        Status: Accessible<br>
+                        Session: ${data.session ? 'Active' : 'None (normal)'}
+                    </div>
+                `;
+            } catch (error) {
+                statusEl.className = 'status error';
+                statusEl.textContent = '❌ Auth Endpoint: FAILED';
+                
+                let diagnosis = '';
+                if (error.message.includes('Failed to fetch')) {
+                    diagnosis = 'Tidak dapat mengakses auth endpoint - kemungkinan DNS atau firewall issue';
+                } else {
+                    diagnosis = error.message;
+                }
+                
+                detailsEl.innerHTML = `
+                    <div class="error-details">
+                        <strong>Error:</strong> ${error.message}<br>
+                        <strong>Diagnosis:</strong> ${diagnosis}<br>
+                        <strong>Ini adalah masalah utama yang menyebabkan login gagal!</strong>
+                    </div>
+                `;
+            }
+        }
+
+        // Auto-run tests on load
+        window.addEventListener('load', () => {
+            console.log('Page loaded, ready to run tests');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Data Risiko - PINTAR MR</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/risk-input.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <!-- Sidebar content will be loaded by app.js -->
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="page-header">
+                <div class="header-left">
+                    <button class="menu-toggle" id="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1>Input Data Risiko</h1>
+                </div>
+                <div class="header-right">
+                    <div class="user-info" id="user-info">
+                        <!-- User info will be loaded by app.js -->
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <div class="content-wrapper">
+                    <!-- Action Buttons -->
+                    <div class="action-buttons" style="margin-bottom: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
+                        <button class="btn btn-tambah-risiko" id="btn-tambah-risiko">
+                            <i class="fas fa-plus"></i>
+                            Tambah Risiko
+                        </button>
+                        <button class="btn btn-secondary" id="btn-download-template">
+                            <i class="fas fa-download"></i>
+                            Unduh Template
+                        </button>
+                        <button class="btn btn-secondary" id="btn-import-risk">
+                            <i class="fas fa-upload"></i>
+                            Import Data
+                        </button>
+                        <button class="btn btn-secondary" id="btn-download-report">
+                            <i class="fas fa-file-excel"></i>
+                            Unduh Laporan
+                        </button>
+                        <input type="file" id="risk-import-input" accept=".xlsx,.xls" style="display: none;">
+                    </div>
+
+                    <!-- Risk Table -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-table"></i> Daftar Risiko</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>Kode Risiko</th>
+                                            <th>Jenis</th>
+                                            <th>Unit Kerja</th>
+                                            <th>Kategori</th>
+                                            <th>Pemilik Risiko</th>
+                                            <th>Status</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="risk-input-tbody">
+                                        <tr>
+                                            <td colspan="8" class="text-center">
+                                                <i class="fas fa-spinner fa-spin"></i> Memuat data...
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Risk Input Form Section (Hidden by default - only shown when "Tambah Resiko" is clicked) -->
+                    <div id="risk-input-form-section" class="card" style="display: none; margin-top: 20px;">
+                        <div class="card-header">
+                            <h3><i class="fas fa-edit"></i> Form Input Risiko</h3>
+                        </div>
+                        <div class="card-body">
+                            <form id="risk-input-form">
+                                <!-- Informasi Risiko -->
+                                <div class="form-section" id="form-section-info">
+                                    <h4>Informasi Risiko</h4>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="nama-unit-kerja">Unit Kerja <span class="required">*</span></label>
+                                            <select id="nama-unit-kerja" class="form-control" required>
+                                                <option value="">Pilih Unit Kerja</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="kategori-risiko">Kategori Risiko <span class="required">*</span></label>
+                                            <select id="kategori-risiko" class="form-control" required>
+                                                <option value="">Pilih Kategori</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="kode-risiko">Kode Risiko</label>
+                                            <input type="text" id="kode-risiko" class="form-control" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="no-risiko">No. Risiko</label>
+                                            <input type="number" id="no-risiko" class="form-control" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="jenis-risiko">Jenis Risiko <span class="required">*</span></label>
+                                            <select id="jenis-risiko" class="form-control" required>
+                                                <option value="Threat">Threat (Ancaman)</option>
+                                                <option value="Opportunity">Opportunity (Peluang)</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="status-risiko">Status Risiko <span class="required">*</span></label>
+                                            <select id="status-risiko" class="form-control" required>
+                                                <option value="Active">Active</option>
+                                                <option value="Inactive">Inactive</option>
+                                                <option value="Closed">Closed</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="tanggal-registrasi">Tanggal Registrasi</label>
+                                            <input type="date" id="tanggal-registrasi" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="risk-rencana-strategis">Rencana Strategis</label>
+                                            <select id="risk-rencana-strategis" class="form-control">
+                                                <option value="">Pilih Rencana Strategis</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Deskripsi Risiko -->
+                                <div class="form-section" id="form-section-deskripsi">
+                                    <h4>Deskripsi Risiko</h4>
+                                    <div class="form-group">
+                                        <label for="sasaran">Sasaran <span class="required">*</span></label>
+                                        <textarea id="sasaran" class="form-control" rows="3" required></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="penyebab-risiko">Penyebab Risiko</label>
+                                        <textarea id="penyebab-risiko" class="form-control" rows="3"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="dampak-risiko">Dampak Risiko</label>
+                                        <textarea id="dampak-risiko" class="form-control" rows="3"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pihak-terkait">Pihak Terkait</label>
+                                        <textarea id="pihak-terkait" class="form-control" rows="2"></textarea>
+                                    </div>
+                                </div>
+
+                                <!-- Identifikasi Risiko -->
+                                <div class="form-section" id="form-section-identifikasi">
+                                    <h4>Identifikasi Risiko</h4>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="identifikasi-tanggal">Tanggal Identifikasi</label>
+                                            <input type="date" id="identifikasi-tanggal" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="identifikasi-deskripsi">Deskripsi Identifikasi</label>
+                                        <textarea id="identifikasi-deskripsi" class="form-control" rows="3"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="identifikasi-akar">Akar Penyebab</label>
+                                        <textarea id="identifikasi-akar" class="form-control" rows="3"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="identifikasi-indikator">Indikator</label>
+                                        <textarea id="identifikasi-indikator" class="form-control" rows="2"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="identifikasi-faktor">Faktor Positif</label>
+                                        <textarea id="identifikasi-faktor" class="form-control" rows="2"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="identifikasi-dampak">Deskripsi Dampak</label>
+                                        <textarea id="identifikasi-dampak" class="form-control" rows="3"></textarea>
+                                    </div>
+                                </div>
+
+                                <!-- Pemilik Risiko -->
+                                <div class="form-section" id="form-section-pemilik">
+                                    <h4>Pemilik Risiko</h4>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="pemilik-nama">Nama Pemilik Risiko</label>
+                                            <input type="text" id="pemilik-nama" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="pemilik-jabatan">Jabatan</label>
+                                            <input type="text" id="pemilik-jabatan" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="pemilik-nohp">No. HP</label>
+                                            <input type="tel" id="pemilik-nohp" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="pemilik-email">Email</label>
+                                            <input type="email" id="pemilik-email" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pemilik-strategi">Strategi Penanganan</label>
+                                        <textarea id="pemilik-strategi" class="form-control" rows="3"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pemilik-penanganan">Rencana Penanganan</label>
+                                        <textarea id="pemilik-penanganan" class="form-control" rows="3"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pemilik-biaya">Biaya Penanganan (Rp)</label>
+                                        <input type="number" id="pemilik-biaya" class="form-control" min="0">
+                                    </div>
+                                </div>
+
+                                <!-- Sasaran Strategis & Indikator -->
+                                <div class="form-section" id="form-section-sasaran">
+                                    <h4>Sasaran Strategis</h4>
+                                    <div id="sasaran-strategis-container" class="checkbox-container">
+                                        <p class="text-muted">Pilih rencana strategis untuk menampilkan sasaran strategis.</p>
+                                    </div>
+                                </div>
+
+                                <div class="form-section" id="form-section-indikator">
+                                    <h4>Indikator Kinerja Utama</h4>
+                                    <div id="indikator-kinerja-container" class="checkbox-container">
+                                        <p class="text-muted">Pilih rencana strategis untuk menampilkan indikator kinerja utama.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Analisis Inherent - Hidden until risk is saved -->
+                                <div class="form-section" id="form-section-inherent" style="display: none;">
+                                    <h4>Analisis Risiko Inherent</h4>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="inherent-probability">Probabilitas (1-5)</label>
+                                            <input type="number" id="inherent-probability" class="form-control" min="1" max="5">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inherent-impact">Dampak (1-5)</label>
+                                            <input type="number" id="inherent-impact" class="form-control" min="1" max="5">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inherent-financial">Dampak Finansial (Rp)</label>
+                                            <input type="number" id="inherent-financial" class="form-control" min="0">
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn btn-primary" id="btn-save-inherent">
+                                        <i class="fas fa-save"></i> Simpan Analisis Inherent
+                                    </button>
+                                </div>
+
+                                <!-- Analisis Residual - Hidden until risk is saved -->
+                                <div class="form-section" id="form-section-residual" style="display: none;">
+                                    <h4>Analisis Risiko Residual</h4>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="residual-probability">Probabilitas (1-5)</label>
+                                            <input type="number" id="residual-probability" class="form-control" min="1" max="5">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="residual-impact">Dampak (1-5)</label>
+                                            <input type="number" id="residual-impact" class="form-control" min="1" max="5">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="residual-financial">Dampak Finansial (Rp)</label>
+                                            <input type="number" id="residual-financial" class="form-control" min="0">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="residual-probability-percent">Persentase Probabilitas</label>
+                                            <input type="text" id="residual-probability-percent" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="residual-risk-value">Nilai Risiko</label>
+                                            <input type="number" id="residual-risk-value" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="residual-net">Nilai Risiko Bersih</label>
+                                            <input type="number" id="residual-net" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="residual-department">Departemen</label>
+                                            <input type="text" id="residual-department" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="residual-review-status">Status Review</label>
+                                            <input type="text" id="residual-review-status" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="residual-next-review">Tanggal Review Berikutnya</label>
+                                            <input type="date" id="residual-next-review" class="form-control">
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn btn-primary" id="btn-save-residual">
+                                        <i class="fas fa-save"></i> Simpan Analisis Residual
+                                    </button>
+                                </div>
+
+                                <!-- Form Actions -->
+                                <div class="form-actions" style="margin-top: 20px; display: flex; gap: 10px;">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-save"></i> Simpan Data Risiko
+                                    </button>
+                                    <button type="button" class="btn btn-secondary" id="reset-form-btn">
+                                        <i class="fas fa-redo"></i> Reset Form
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="/js/config.js"></script>
+    <script src="/js/services/authService.js"></script>
+    <script src="/js/services/apiService.js"></script>
+    <script src="/js/app.js"></script>
+    <script src="/js/risk-input-form-toggle.js"></script>
+    <script src="/js/risk-input.js"></script>
+    <script>
+        // Initialize Risk Input Module when page loads
+        document.addEventListener('DOMContentLoaded', async () => {
+            console.log('Risk Input page loaded');
+            
+            // Wait for auth to be ready
+            if (window.waitForAuthReady) {
+                const authReady = await window.waitForAuthReady(5000);
+                if (authReady && window.RiskInputModule) {
+                    await window.RiskInputModule.load();
+                    console.log('Risk Input Module loaded successfully');
+                } else {
+                    console.warn('Auth not ready or RiskInputModule not available');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

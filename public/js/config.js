@@ -52,6 +52,18 @@ const SupabaseClientManager = (() => {
                     throw new Error('Invalid config: missing Supabase credentials');
                 }
                 
+                // Validate Supabase URL format
+                try {
+                    const url = new URL(config.supabaseUrl);
+                    if (!url.hostname || !url.protocol.startsWith('http')) {
+                        throw new Error('Invalid Supabase URL format');
+                    }
+                    console.log('✅ Supabase URL validated:', url.hostname);
+                } catch (urlError) {
+                    console.error('❌ Invalid Supabase URL:', config.supabaseUrl);
+                    throw new Error(`Invalid Supabase URL: ${config.supabaseUrl}. Please check your configuration.`);
+                }
+                
                 // 2. Wait for Supabase library (max 5 seconds)
                 let libWaitCount = 0;
                 while (!window.supabase && libWaitCount < 50) {

@@ -141,25 +141,41 @@ const RiskInputModule = (() => {
     const inherentBtn = getEl('btn-save-inherent');
     const residualBtn = getEl('btn-save-residual');
     const newBtn = getEl('btn-new-risk');
+    const addRiskBtn = getEl('btn-tambah-risiko');
     const templateBtn = getEl('btn-download-template');
     const importBtn = getEl('btn-import-risk');
     const reportBtn = getEl('btn-download-report');
     const importInput = getEl('risk-import-input');
 
     if (form) form.addEventListener('submit', handleRiskSubmit);
-    if (resetBtn) resetBtn.addEventListener('click', () => resetForm());
+    if (resetBtn) resetBtn.addEventListener('click', () => {
+      resetForm();
+      hideFormSection();
+    });
     if (categorySelect) categorySelect.addEventListener('change', () => generateRiskCode());
     if (planSelect) planSelect.addEventListener('change', (e) => renderStrategicDetails(e.target.value));
     if (inherentBtn) inherentBtn.addEventListener('click', handleInherentSubmit);
     if (residualBtn) residualBtn.addEventListener('click', handleResidualSubmit);
     if (newBtn) newBtn.addEventListener('click', () => {
       resetForm();
+      showFormSection();
       form?.scrollIntoView({ behavior: 'smooth' });
+    });
+    if (addRiskBtn) addRiskBtn.addEventListener('click', () => {
+      resetForm();
+      showFormSection();
+      const formSection = getEl('risk-input-form-section');
+      if (formSection) {
+        formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     });
     if (templateBtn) templateBtn.addEventListener('click', downloadTemplate);
     if (reportBtn) reportBtn.addEventListener('click', downloadReport);
     if (importBtn) importBtn.addEventListener('click', () => importInput?.click());
     if (importInput) importInput.addEventListener('change', handleImportFile);
+    
+    // PENTING: Sembunyikan form saat halaman pertama kali dimuat
+    hideFormSection();
   }
 
   async function loadRisks() {
@@ -260,17 +276,36 @@ const RiskInputModule = (() => {
 
   async function handleRiskSubmit(event) {
     event.preventDefault();
-    const payload = collectFormData();
-    const api = getApi();
-    if (state.currentId) {
-      await api(`/api/risks/${state.currentId}`, { method: 'PUT', body: payload });
-    } else {
-      const created = await api('/api/risks', { method: 'POST', body: payload });
-      state.currentId = created.id;
+    
+    try {
+      const payload = collectFormData();
+      const api = getApi();
+      
+      if (state.currentId) {
+        await api(`/api/risks/${state.currentId}`, { method: 'PUT', body: payload });
+        showNotification('Data risiko berhasil diperbarui!', 'success');
+        await loadRisks();
+        resetForm();
+        hideFormSection();
+      } else {
+        const created = await api('/api/risks', { method: 'POST', body: payload });
+        state.currentId = created.id;
+        showNotification('Data risiko berhasil disimpan! Anda sekarang dapat mengisi analisis risiko.', 'success');
+        await loadRisks();
+        
+        // Tampilkan section analisis setelah data risiko berhasil disimpan
+        showAnalysisSections();
+        
+        // Scroll ke section analisis
+        const inherentSection = document.querySelector('.form-section:has(#inherent-probability)');
+        if (inherentSection) {
+          inherentSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    } catch (error) {
+      console.error('Error saving risk:', error);
+      showNotification('Gagal menyimpan data risiko: ' + error.message, 'error');
     }
-    await loadRisks();
-    alert('Data risiko berhasil disimpan');
-    resetForm();
   }
 
   function collectFormData() {
@@ -323,7 +358,10 @@ const RiskInputModule = (() => {
   async function edit(id) {
     const risk = state.risks.find((item) => item.id === id);
     if (!risk) return;
+    
     state.currentId = id;
+    showFormSection();
+    
     const setValue = (id, value = '') => {
       const el = getEl(id);
       if (el) el.value = value || '';
@@ -390,6 +428,101 @@ const RiskInputModule = (() => {
     state.currentId = null;
     renderStrategicDetails('');
     clearAnalysisForms();
+    
+    // Sembunyikan section analisis saat reset
+    hideAnalysisSections();
+  }
+  
+  function showFormSection() {
+    const formSection = getEl('risk-input-form-section');
+    if (formSection) {
+      formSection.style.display = 'block';
+    }
+    
+    // PENTING: Sembunyikan section analisis saat form baru dibuka (mode tambah)
+    if (!state.currentId) {
+      hideAnalysisSections();
+    } else {
+      // Tampilkan section analisis saat mode edit
+      showAnalysisSections();
+    }
+  }
+  
+  function hideFormSection() {
+    const formSection = getEl('risk-input-form-section');
+    if (formSection) {
+      formSection.style.display = 'none';
+    }
+    
+    // Reset form saat disembunyikan
+    const form = getEl('risk-input-form');
+    if (form) {
+      form.reset();
+    }
+    state.currentId = null;
+    renderStrategicDetails('');
+    clearAnalysisForms();
+    hideAnalysisSections();
+  }
+  
+  function hideAnalysisSections() {
+    // PENTING: Sembunyikan section analisis inherent dan residual menggunakan ID
+    const inherentSection = getEl('form-section-inherent');
+    const residualSection = getEl('form-section-residual');
+    
+    if (inherentSection) {
+      inherentSection.style.display = 'none';
+    }
+    
+    if (residualSection) {
+      residualSection.style.display = 'none';
+    }
+  }
+  
+  function showAnalysisSections() {
+    // PENTING: Tampilkan section analisis hanya setelah data risiko disimpan
+    const inherentSection = getEl('form-section-inherent');
+    const residualSection = getEl('form-section-residual');
+    
+    if (inherentSection) {
+      inherentSection.style.display = 'block';
+    }
+    
+    if (residualSection) {
+      residualSection.style.display = 'block';
+    }
+  }
+  
+  function showNotification(message, type = 'success') {
+    // Remove existing notification if any
+    const existingNotif = document.querySelector('.risk-notification');
+    if (existingNotif) {
+      existingNotif.remove();
+    }
+    
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = `risk-notification risk-notification-${type}`;
+    notification.innerHTML = `
+      <div class="risk-notification-content">
+        <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+        <span>${message}</span>
+      </div>
+      <button class="risk-notification-close" onclick="this.parentElement.remove()">
+        <i class="fas fa-times"></i>
+      </button>
+    `;
+    
+    // Add to body
+    document.body.appendChild(notification);
+    
+    // Auto remove after 5 seconds
+    setTimeout(() => {
+      if (notification.parentElement) {
+        notification.classList.add('risk-notification-fade-out');
+        setTimeout(() => notification.remove(), 300);
+      }
+    }, 5000);
   }
 
   function clearAnalysisForms() {
@@ -411,13 +544,22 @@ const RiskInputModule = (() => {
 
   async function remove(id) {
     if (!confirm('Apakah Anda yakin ingin menghapus risiko ini?')) return;
-    const api = getApi();
-    await api(`/api/risks/${id}`, { method: 'DELETE' });
-    alert('Risiko berhasil dihapus');
-    if (state.currentId === id) {
-      resetForm();
+    
+    try {
+      const api = getApi();
+      await api(`/api/risks/${id}`, { method: 'DELETE' });
+      showNotification('Risiko berhasil dihapus!', 'success');
+      
+      if (state.currentId === id) {
+        resetForm();
+        hideFormSection();
+      }
+      
+      await loadRisks();
+    } catch (error) {
+      console.error('Error deleting risk:', error);
+      showNotification('Gagal menghapus risiko: ' + error.message, 'error');
     }
-    await loadRisks();
   }
 
   async function generateRiskCode() {
@@ -434,29 +576,38 @@ const RiskInputModule = (() => {
 
   async function handleInherentSubmit() {
     if (!state.currentId) {
-      alert('Simpan data risiko terlebih dahulu');
+      showNotification('Simpan data risiko terlebih dahulu', 'error');
       return;
     }
+    
     const data = {
       probability: Number(getEl('inherent-probability')?.value),
       impact: Number(getEl('inherent-impact')?.value),
       financial_impact: Number(getEl('inherent-financial')?.value) || 0
     };
+    
     if (!data.probability || !data.impact) {
-      alert('Probabilitas dan Dampak wajib diisi');
+      showNotification('Probabilitas dan Dampak wajib diisi', 'error');
       return;
     }
-    const api = getApi();
-    await api(`/api/risks/${state.currentId}/generate-profile`, { method: 'POST', body: data });
-    alert('Analisis inheren berhasil disimpan');
-    await loadRisks();
+    
+    try {
+      const api = getApi();
+      await api(`/api/risks/${state.currentId}/generate-profile`, { method: 'POST', body: data });
+      showNotification('Analisis inheren berhasil disimpan!', 'success');
+      await loadRisks();
+    } catch (error) {
+      console.error('Error saving inherent analysis:', error);
+      showNotification('Gagal menyimpan analisis inheren: ' + error.message, 'error');
+    }
   }
 
   async function handleResidualSubmit() {
     if (!state.currentId) {
-      alert('Simpan data risiko terlebih dahulu');
+      showNotification('Simpan data risiko terlebih dahulu', 'error');
       return;
     }
+    
     const payload = {
       probability: Number(getEl('residual-probability')?.value),
       impact: Number(getEl('residual-impact')?.value),
@@ -467,14 +618,21 @@ const RiskInputModule = (() => {
       review_status: getEl('residual-review-status')?.value || '',
       next_review_date: getEl('residual-next-review')?.value || null
     };
+    
     if (!payload.probability || !payload.impact) {
-      alert('Probabilitas dan Dampak residual wajib diisi');
+      showNotification('Probabilitas dan Dampak residual wajib diisi', 'error');
       return;
     }
-    const api = getApi();
-    await api(`/api/risks/${state.currentId}/residual-risk`, { method: 'POST', body: payload });
-    alert('Analisis residual berhasil disimpan');
-    await loadRisks();
+    
+    try {
+      const api = getApi();
+      await api(`/api/risks/${state.currentId}/residual-risk`, { method: 'POST', body: payload });
+      showNotification('Analisis residual berhasil disimpan!', 'success');
+      await loadRisks();
+    } catch (error) {
+      console.error('Error saving residual analysis:', error);
+      showNotification('Gagal menyimpan analisis residual: ' + error.message, 'error');
+    }
   }
 
   function downloadTemplate() {
@@ -1186,7 +1344,10 @@ const RiskInputModule = (() => {
     load,
     edit,
     remove,
-    view
+    view,
+    showFormSection,
+    hideFormSection,
+    loadRisks
   };
 })();
 

@@ -384,6 +384,10 @@
     <!-- 3. Ubah warna kop header dari gradasi ke biru solid -->
     <link rel="stylesheet" href="/css/ui-layout-fixes.css?v=1.0">
     
+    <!-- BUTTON OVERFLOW FIX - HIGHEST PRIORITY -->
+    <!-- Memastikan semua tombol tidak overflow dan mudah dibaca -->
+    <link rel="stylesheet" href="/css/button-overflow-fix.css?v=1.0">
+    
     <!-- CRITICAL: Rencana Strategis Freeze Fix CSS - DISABLED (causing UI freeze) -->
     <!-- <link rel="stylesheet" href="/css/rencana-strategis-freeze-fix.css"> -->
 </head>
@@ -1621,6 +1625,9 @@
     <!-- Prevents automatic redirect to /dashboard on page refresh -->
     <script src="/js/route-preserve-fix.js?v=2.0"></script>
     
+    <!-- BUTTON OVERFLOW HANDLER - Menangani overflow pada tombol secara otomatis -->
+    <script src="/js/button-overflow-handler.js?v=1.0"></script>
+    
     <script src="/js/app.js"></script>
     
     <!-- Sidebar Dropdown Fix - CRITICAL for navigation submenus -->
@@ -1659,6 +1666,11 @@
     <script src="/js/pengaturan.js"></script>
     <link rel="stylesheet" href="/css/pengaturan-fix.css">
     <script src="/js/risk-input.js"></script>
+    <!-- Risk Input Enhancement -->
+    <link rel="stylesheet" href="/css/risk-input-notification.css">
+    <script src="/js/risk-input-form-toggle.js"></script>
+    <script src="/js/risk-input-notification-patch.js"></script>
+    <!-- End Risk Input Enhancement -->
     <script src="/js/risk-profile.js"></script>
     <script src="/js/residual-risk.js"></script>
     <script src="/js/residual-risk-review-warning.js"></script>
@@ -1701,6 +1713,9 @@
     <script src="/js/page-initialization-system-enhanced.js"></script>
     <script src="/js/navigation-override-enhanced.js"></script>
     <script src="js/remove-purple-colors.js"></script>
+    
+    <!-- BUTTON OVERFLOW HANDLER - Menangani overflow pada tombol secara dinamis -->
+    <script src="/js/button-overflow-handler.js"></script>
     
     <!-- AGGRESSIVE RS Selection List Removal CSS - DISABLED (replaced by rs-page-isolation.css) -->
     <!-- <link rel="stylesheet" href="/css/hide-rs-selection-aggressive.css"> -->

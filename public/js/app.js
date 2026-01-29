@@ -1018,20 +1018,76 @@ async function handleLogin(e) {
         
         // Perform login directly with Supabase
         console.log('[AUTH] LOGIN - Attempting signInWithPassword...');
-        const { data, error } = await client.auth.signInWithPassword({
-            email: email.trim().toLowerCase(),
-            password
-        });
+        
+        let data, error;
+        try {
+            const result = await client.auth.signInWithPassword({
+                email: email.trim().toLowerCase(),
+                password
+            });
+            data = result.data;
+            error = result.error;
+        } catch (fetchError) {
+            // Handle network/fetch errors specifically
+            console.error('[AUTH] LOGIN - Network/Fetch error caught:', fetchError);
+            console.error('[AUTH] LOGIN - Error name:', fetchError.name);
+            console.error('[AUTH] LOGIN - Error message:', fetchError.message);
+            
+            // Check if it's a DNS/network error
+            const errorMsg = fetchError.message || fetchError.toString();
+            if (errorMsg.includes('Failed to fetch') || 
+                errorMsg.includes('NetworkError') || 
+                errorMsg.includes('ERR_NAME_NOT_RESOLVED') ||
+                errorMsg.includes('net::ERR')) {
+                
+                throw new Error(
+                    'Tidak dapat terhubung ke server Supabase.\n\n' +
+                    'Kemungkinan penyebab:\n' +
+                    '• DNS tidak dapat resolve domain Supabase\n' +
+                    '• Firewall atau antivirus memblokir akses\n' +
+                    '• Koneksi internet bermasalah\n' +
+                    '• Server Supabase sedang down\n\n' +
+                    'Solusi:\n' +
+                    '1. Coba gunakan DNS Google (8.8.8.8 dan 8.8.4.4)\n' +
+                    '2. Matikan sementara firewall/antivirus\n' +
+                    '3. Cek koneksi internet Anda\n' +
+                    '4. Hubungi administrator sistem\n\n' +
+                    'Error teknis: ' + errorMsg
+                );
+            }
+            
+            throw new Error('Gagal terhubung ke server: ' + errorMsg);
+        }
         
         if (error) {
             // Map common errors to user-friendly messages
             const msg = error.message.toLowerCase();
+            const errorString = error.toString().toLowerCase();
+            
+            console.error('[AUTH] LOGIN ERROR:', error);
+            console.error('[AUTH] LOGIN ERROR MESSAGE:', error.message);
+            console.error('[AUTH] LOGIN ERROR STRING:', errorString);
+            
             if (msg.includes('invalid login') || msg.includes('invalid_credentials')) {
                 throw new Error('Email atau password salah.');
             } else if (msg.includes('email not confirmed')) {
                 throw new Error('Email belum dikonfirmasi. Cek inbox Anda.');
-            } else if (msg.includes('network') || msg.includes('fetch')) {
-                throw new Error('Koneksi internet bermasalah.');
+            } else if (msg.includes('failed to fetch') || errorString.includes('failed to fetch')) {
+                // This is likely a DNS/network error, not internet connection
+                throw new Error(
+                    'Tidak dapat terhubung ke server Supabase.\n\n' +
+                    'Kemungkinan penyebab:\n' +
+                    '• DNS tidak dapat resolve domain Supabase\n' +
+                    '• Firewall atau antivirus memblokir akses\n' +
+                    '• URL Supabase tidak valid\n\n' +
+                    'Solusi:\n' +
+                    '1. Coba gunakan DNS Google (8.8.8.8)\n' +
+                    '2. Matikan sementara firewall/antivirus\n' +
+                    '3. Periksa konfigurasi Supabase URL\n' +
+                    '4. Hubungi administrator sistem'
+                );
+            } else if (msg.includes('network') || msg.includes('networkerror')) {
+                throw new Error('Koneksi ke server gagal. Periksa koneksi internet atau konfigurasi server.');
             }
             throw new Error(error.message);
         }

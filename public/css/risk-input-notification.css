@@ -1,0 +1,97 @@
+/* Risk Input Notification Styles */
+.risk-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  min-width: 300px;
+  max-width: 500px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  z-index: 10000;
+  animation: slideInRight 0.3s ease-out;
+}
+
+.risk-notification-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.risk-notification-content i {
+  font-size: 20px;
+}
+
+.risk-notification-success {
+  border-left: 4px solid #28a745;
+}
+
+.risk-notification-success .risk-notification-content i {
+  color: #28a745;
+}
+
+.risk-notification-error {
+  border-left: 4px solid #dc3545;
+}
+
+.risk-notification-error .risk-notification-content i {
+  color: #dc3545;
+}
+
+.risk-notification-info {
+  border-left: 4px solid #17a2b8;
+}
+
+.risk-notification-info .risk-notification-content i {
+  color: #17a2b8;
+}
+
+.risk-notification-close {
+  background: none;
+  border: none;
+  color: #6c757d;
+  cursor: pointer;
+  padding: 4px 8px;
+  font-size: 18px;
+  transition: color 0.2s;
+}
+
+.risk-notification-close:hover {
+  color: #343a40;
+}
+
+.risk-notification-fade-out {
+  animation: slideOutRight 0.3s ease-out forwards;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+}
+
+/* Form hidden state */
+#risk-input-form.hidden {
+  display: none !important;
+}

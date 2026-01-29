@@ -1,0 +1,293 @@
+/* ===================================================
+   BUTTON OVERFLOW FIX - Perbaikan Overflow Tombol
+   =================================================== */
+
+/* Perbaikan umum untuk semua tombol */
+.btn,
+button,
+[type="button"],
+[type="submit"],
+[type="reset"],
+.button {
+    /* Prevent text overflow */
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    
+    /* Ensure proper sizing */
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    
+    /* Proper padding untuk readability */
+    padding: 0.5rem 1rem !important;
+    
+    /* Ensure text is centered and readable */
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.5rem !important;
+    
+    /* Font sizing untuk readability */
+    font-size: 0.875rem !important;
+    line-height: 1.5 !important;
+    
+    /* Prevent word breaking */
+    word-break: keep-all !important;
+    hyphens: none !important;
+}
+
+/* Tombol dengan icon */
+.btn i,
+.btn svg,
+button i,
+button svg {
+    flex-shrink: 0 !important;
+    margin-right: 0.25rem !important;
+}
+
+/* Tombol kecil */
+.btn-sm,
+.btn-small,
+button.small {
+    padding: 0.375rem 0.75rem !important;
+    font-size: 0.8125rem !important;
+}
+
+/* Tombol besar */
+.btn-lg,
+.btn-large,
+button.large {
+    padding: 0.625rem 1.25rem !important;
+    font-size: 1rem !important;
+}
+
+/* Tombol dalam group */
+.btn-group .btn,
+.btn-group button,
+.button-group .btn,
+.button-group button {
+    min-width: fit-content !important;
+    flex: 0 1 auto !important;
+}
+
+/* Tombol dalam action bar */
+.action-buttons .btn,
+.action-buttons button,
+.form-actions .btn,
+.form-actions button,
+.modal-footer .btn,
+.modal-footer button {
+    min-width: 80px !important;
+    max-width: 200px !important;
+}
+
+/* Tombol dalam header */
+.header-actions .btn,
+.header-actions button,
+.card-header .btn,
+.card-header button {
+    padding: 0.5rem 1rem !important;
+    font-size: 0.875rem !important;
+}
+
+/* Tombol dalam table */
+.table-actions .btn,
+.table-actions button,
+td .btn,
+td button {
+    padding: 0.375rem 0.75rem !important;
+    font-size: 0.8125rem !important;
+    min-width: 60px !important;
+}
+
+/* Tombol icon only */
+.btn-icon,
+button.icon-only,
+.btn[aria-label]:not(:has(span)):not(:has(text)) {
+    padding: 0.5rem !important;
+    min-width: 36px !important;
+    width: 36px !important;
+    height: 36px !important;
+    justify-content: center !important;
+}
+
+/* Tombol close modal */
+.modal-close,
+.btn-close,
+button.close {
+    width: 32px !important;
+    height: 32px !important;
+    padding: 0 !important;
+    font-size: 1.5rem !important;
+    line-height: 1 !important;
+}
+
+/* Tombol dalam dropdown */
+.dropdown-toggle,
+.btn-dropdown {
+    padding-right: 2rem !important;
+    position: relative !important;
+}
+
+.dropdown-toggle::after,
+.btn-dropdown::after {
+    position: absolute !important;
+    right: 0.75rem !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+}
+
+/* Tombol full width */
+.btn-block,
+.btn-full-width,
+button.full-width {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .btn,
+    button {
+        padding: 0.5rem 0.75rem !important;
+        font-size: 0.8125rem !important;
+    }
+    
+    .btn-sm,
+    .btn-small {
+        padding: 0.375rem 0.625rem !important;
+        font-size: 0.75rem !important;
+    }
+    
+    .action-buttons .btn,
+    .action-buttons button,
+    .form-actions .btn,
+    .form-actions button {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-bottom: 0.5rem !important;
+    }
+    
+    .btn-group,
+    .button-group {
+        flex-direction: column !important;
+        width: 100% !important;
+    }
+    
+    .btn-group .btn,
+    .btn-group button {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .btn,
+    button {
+        padding: 0.5rem !important;
+        font-size: 0.75rem !important;
+    }
+    
+    .table-actions .btn,
+    .table-actions button,
+    td .btn,
+    td button {
+        padding: 0.25rem 0.5rem !important;
+        font-size: 0.75rem !important;
+        min-width: 50px !important;
+    }
+}
+
+/* Perbaikan khusus untuk tombol di pengaturan */
+.pengaturan-page .btn,
+.pengaturan-page button {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+/* Perbaikan untuk tombol dengan teks panjang */
+.btn-long-text,
+button.long-text {
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    min-height: 38px !important;
+    height: auto !important;
+    padding: 0.5rem 1rem !important;
+}
+
+/* Tombol dalam card */
+.card-actions .btn,
+.card-actions button,
+.card-footer .btn,
+.card-footer button {
+    margin: 0.25rem !important;
+}
+
+/* Tombol dalam sidebar */
+.sidebar .btn,
+.sidebar button {
+    width: 100% !important;
+    text-align: left !important;
+    justify-content: flex-start !important;
+}
+
+/* Tombol dalam pagination */
+.pagination .btn,
+.pagination button,
+.pagination-controls .btn,
+.pagination-controls button {
+    min-width: 36px !important;
+    padding: 0.375rem 0.75rem !important;
+}
+
+/* Tombol dalam filter section */
+.filter-section .btn,
+.filter-section button,
+.rs-filter-section .btn,
+.rs-filter-section button {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    max-width: 200px !important;
+}
+
+/* Tombol dalam toolbar */
+.toolbar .btn,
+.toolbar button,
+.action-toolbar .btn,
+.action-toolbar button {
+    margin: 0 0.25rem !important;
+}
+
+/* Perbaikan untuk tombol yang terpotong */
+.btn-truncate,
+button.truncate {
+    max-width: 150px !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+/* Hover state untuk menampilkan full text */
+.btn:hover,
+button:hover {
+    overflow: visible !important;
+    white-space: normal !important;
+    z-index: 10 !important;
+    position: relative !important;
+}
+
+/* Tooltip untuk tombol dengan teks terpotong */
+.btn[title],
+button[title] {
+    cursor: help !important;
+}
+
+/* Print styles */
+@media print {
+    .btn,
+    button {
+        padding: 0.25rem 0.5rem !important;
+        font-size: 0.75rem !important;
+    }
+}

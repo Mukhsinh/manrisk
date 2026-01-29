@@ -1,0 +1,554 @@
+/* Risk Input Page Styles */
+
+/* PENTING: Form Section - Disembunyikan secara default */
+/* Form hanya akan muncul ketika tombol "Tambah Risiko" diklik */
+#risk-input-form-section {
+  display: none !important;
+  margin-top: 20px;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* PENTING: Analysis Sections - Disembunyikan secara default */
+/* Section analisis hanya muncul setelah data risiko berhasil disimpan */
+.form-section.analysis-section-hidden {
+  display: none !important;
+}
+
+/* Analysis Section Visibility Control */
+.form-section[data-analysis="inherent"],
+.form-section[data-analysis="residual"] {
+  transition: all 0.3s ease;
+}
+
+/* Notification Styles */
+.risk-notification {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  min-width: 300px;
+  max-width: 500px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 9999;
+  animation: slideInRight 0.3s ease-out;
+}
+
+.risk-notification-success {
+  border-left: 4px solid #28a745;
+}
+
+.risk-notification-error {
+  border-left: 4px solid #dc3545;
+}
+
+.risk-notification-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.risk-notification-content i {
+  font-size: 20px;
+}
+
+.risk-notification-success .risk-notification-content i {
+  color: #28a745;
+}
+
+.risk-notification-error .risk-notification-content i {
+  color: #dc3545;
+}
+
+.risk-notification-content span {
+  font-size: 14px;
+  color: #333;
+  font-weight: 500;
+}
+
+.risk-notification-close {
+  background: none;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  padding: 4px 8px;
+  font-size: 16px;
+  transition: color 0.2s;
+}
+
+.risk-notification-close:hover {
+  color: #333;
+}
+
+.risk-notification-fade-out {
+  animation: slideOutRight 0.3s ease-out forwards;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+}
+
+/* Button Styles */
+.btn-tambah-risiko {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.2s;
+}
+
+.btn-tambah-risiko:hover {
+  background-color: #0056b3;
+}
+
+.btn-tambah-risiko i {
+  font-size: 16px;
+}
+
+/* Table Actions */
+.table-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.table-actions .btn {
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.table-actions .btn-view {
+  background-color: #17a2b8;
+  color: white;
+}
+
+.table-actions .btn-view:hover {
+  background-color: #138496;
+}
+
+.table-actions .btn-edit {
+  background-color: #ffc107;
+  color: #333;
+}
+
+.table-actions .btn-edit:hover {
+  background-color: #e0a800;
+}
+
+.table-actions .btn-delete {
+  background-color: #dc3545;
+  color: white;
+}
+
+.table-actions .btn-delete:hover {
+  background-color: #c82333;
+}
+
+/* Risk Type Badge */
+.risk-type {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.risk-type.threat {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.risk-type.opportunity {
+  background-color: #d1ecf1;
+  color: #0c5460;
+}
+
+/* Status Badge */
+.status-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status-badge.active {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.status-badge.inactive {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.status-badge.closed {
+  background-color: #d6d8db;
+  color: #383d41;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .risk-notification {
+    right: 10px;
+    left: 10px;
+    min-width: auto;
+  }
+  
+  .table-actions {
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .table-actions .btn {
+    width: 100%;
+  }
+}
+
+
+/* Form Sections */
+.form-section {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.form-section:last-child {
+  border-bottom: none;
+}
+
+.form-section h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #007bff;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #555;
+  margin-bottom: 6px;
+}
+
+.form-group label .required {
+  color: #dc3545;
+  margin-left: 2px;
+}
+
+.form-control {
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: border-color 0.2s;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.form-control:disabled,
+.form-control:read-only {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+}
+
+textarea.form-control {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* Checkbox Container */
+.checkbox-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  min-height: 60px;
+}
+
+.checkbox-container .chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 13px;
+}
+
+.checkbox-container .chip:hover {
+  border-color: #007bff;
+  background-color: #f0f7ff;
+}
+
+.checkbox-container .chip input[type="checkbox"] {
+  cursor: pointer;
+}
+
+.checkbox-container .chip input[type="checkbox"]:checked + span {
+  font-weight: 600;
+  color: #007bff;
+}
+
+.checkbox-container .text-muted {
+  color: #6c757d;
+  font-style: italic;
+  margin: 0;
+}
+
+/* Form Actions */
+.form-actions {
+  display: flex;
+  gap: 10px;
+  padding-top: 20px;
+  border-top: 1px solid #e0e0e0;
+}
+
+/* Card Styles */
+.card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.card-header {
+  padding: 15px 20px;
+  border-bottom: 1px solid #e0e0e0;
+  background-color: #f8f9fa;
+  border-radius: 8px 8px 0 0;
+}
+
+.card-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+/* Table Styles */
+.table-responsive {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.table thead {
+  background-color: #f8f9fa;
+}
+
+.table th {
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+  color: #333;
+  border-bottom: 2px solid #dee2e6;
+  white-space: nowrap;
+}
+
+.table td {
+  padding: 12px;
+  border-bottom: 1px solid #dee2e6;
+  vertical-align: middle;
+}
+
+.table tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+.table .text-center {
+  text-align: center;
+}
+
+.table .text-muted {
+  color: #6c757d;
+  font-size: 12px;
+}
+
+/* Button Styles */
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: white;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background-color: #545b62;
+}
+
+.btn-sm {
+  padding: 6px 12px;
+  font-size: 12px;
+}
+
+/* Action Buttons Container */
+.action-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+/* Utility Classes */
+.text-danger {
+  color: #dc3545;
+}
+
+.text-success {
+  color: #28a745;
+}
+
+.text-info {
+  color: #17a2b8;
+}
+
+.text-warning {
+  color: #ffc107;
+}
+
+/* Loading Spinner */
+.fa-spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .action-buttons {
+    flex-direction: column;
+  }
+  
+  .action-buttons .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+  }
+  
+  .form-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .table {
+    font-size: 12px;
+  }
+  
+  .table th,
+  .table td {
+    padding: 8px;
+  }
+}
