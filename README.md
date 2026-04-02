@@ -1,148 +1,153 @@
-# Aplikasi Manajemen Risiko
+# Aplikasi Manajemen Risiko Terpadu
 
-Aplikasi web untuk manajemen risiko terpadu dengan Supabase backend.
+Aplikasi web untuk manajemen risiko berbasis Supabase dengan fitur lengkap untuk analisis risiko, perencanaan strategis, dan monitoring evaluasi.
 
-## Features
+## Fitur Utama
 
-- Authentication & Authorization
-- Risk Management Dashboard
-- Master Data Management
-- Reporting & Analytics
-- Real-time Chat
-- Responsive Design
+- 🔐 Autentikasi & Multi-tenant
+- 📊 Dashboard & Risk Profile
+- 📈 Analisis SWOT & Diagram Kartesius
+- 🎯 Rencana Strategis & Sasaran Strategi
+- 📉 Monitoring & Evaluasi
+- 📋 Risk Register & KRI
+- 📄 Export ke Excel/PDF
+- 🤖 AI Assistant
 
 ## Tech Stack
 
-- **Frontend**: HTML, CSS, JavaScript (Vanilla)
-- **Backend**: Node.js, Express
+- **Backend**: Node.js + Express
 - **Database**: Supabase (PostgreSQL)
-- **Deployment**: Vercel
+- **Frontend**: Vanilla JavaScript
+- **Deployment**: Vercel (Serverless)
 
-## Getting Started
+## Quick Start
 
 ### Prerequisites
 
-- Node.js 16+ 
-- npm or yarn
-- Supabase account
+- Node.js >= 18.x
+- Supabase Account
+- Vercel Account (untuk deployment)
 
 ### Installation
 
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   cd ManajemenResikoProject
-   ```
+```bash
+# Clone repository
+git clone <repository-url>
+cd manajemen-resiko-project
 
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
+# Install dependencies
+npm install
 
-3. Copy environment file:
-   ```bash
-   cp env.example .env
-   ```
-
-4. Configure environment variables in `.env`:
-   ```env
-   SUPABASE_URL=your_supabase_url
-   SUPABASE_ANON_KEY=your_supabase_anon_key
-   SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
-   PORT=3000
-   NODE_ENV=development
-   ```
-
-5. Start development server:
-   ```bash
-   npm run dev
-   ```
-
-6. Open browser at `http://localhost:3000`
-
-## Project Structure
-
+# Setup environment variables
+cp .env.example .env
+# Edit .env dengan credentials Supabase Anda
 ```
-├── public/              # Static files (HTML, CSS, JS)
-│   ├── css/            # Stylesheets
-│   ├── js/             # JavaScript files
-│   │   ├── services/   # Service layer (auth, API)
-│   │   └── ...
-│   └── index.html      # Main HTML file
-├── routes/             # API route handlers
-├── middleware/         # Express middleware
-├── config/             # Configuration files
-├── utils/              # Utility functions
-├── server.js           # Express server
-└── vercel.json         # Vercel configuration
+
+### Development
+
+```bash
+# Run development server
+npm run dev
+
+# Run dengan auto port detection
+npm run dev:auto
+
+# Run tests
+npm test
+```
+
+Server akan berjalan di `http://localhost:3001`
+
+## Deployment ke Vercel
+
+Lihat [DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md) untuk panduan lengkap deployment.
+
+### Quick Deploy
+
+```bash
+# Install Vercel CLI
+npm install -g vercel
+
+# Deploy
+vercel --prod
 ```
 
 ## Environment Variables
 
-See `env.example` for all available environment variables.
+```env
+SUPABASE_URL=your_supabase_url
+SUPABASE_ANON_KEY=your_supabase_anon_key
+SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
+NODE_ENV=development
+PORT=3001
+ALLOWED_ORIGINS=http://localhost:3001
+```
 
-### Required
+## Project Structure
 
-- `SUPABASE_URL` - Supabase project URL
-- `SUPABASE_ANON_KEY` - Supabase anonymous key
-- `SUPABASE_SERVICE_ROLE_KEY` - Supabase service role key
+```
+/
+├── api/                  # Vercel serverless functions
+├── config/              # Configuration files
+├── middleware/          # Express middleware
+├── routes/              # API routes
+├── utils/               # Utility functions
+├── public/              # Static files
+│   ├── css/            # Stylesheets
+│   ├── js/             # JavaScript files
+│   └── index.html      # Main SPA entry
+├── server.js           # Express app
+├── vercel.json         # Vercel configuration
+└── package.json        # Dependencies
+```
 
-### Optional
+## API Endpoints
 
-- `PORT` - Server port (default: 3000)
-- `NODE_ENV` - Environment (development/production)
-- `ALLOWED_ORIGINS` - CORS allowed origins
-- `API_BASE_URL` - API base URL
+### Authentication
+- `POST /api/auth/login` - Login
+- `POST /api/auth/register` - Register
+- `POST /api/auth/logout` - Logout
 
-## Deployment
+### Risk Management
+- `GET /api/risks` - Get all risks
+- `POST /api/risks` - Create risk
+- `PUT /api/risks/:id` - Update risk
+- `DELETE /api/risks/:id` - Delete risk
 
-See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed deployment instructions.
+### Reports
+- `GET /api/risk-profile` - Risk profile data
+- `GET /api/risk-profile/export` - Export risk profile
+- `GET /api/reports/residual-risk` - Residual risk reports
 
-### Quick Deploy to Vercel
+Lihat dokumentasi lengkap di [DATABASE_SCHEMA.md](./DATABASE_SCHEMA.md)
 
-1. Install Vercel CLI:
-   ```bash
-   npm i -g vercel
-   ```
+## Testing
 
-2. Deploy:
-   ```bash
-   vercel
-   ```
+```bash
+# Run all tests
+npm test
 
-3. Set environment variables in Vercel dashboard
+# Run specific test suite
+npm run test:unit
+npm run test:property
+npm run test:integration
 
-4. Deploy to production:
-   ```bash
-   vercel --prod
-   ```
+# Run with coverage
+npm run test:coverage
+```
 
-## Security
+## Contributing
 
-- All Supabase credentials are stored in environment variables
-- Security headers enabled (CSP, HSTS, X-Frame-Options)
-- Input validation on all endpoints
-- Authentication middleware for protected routes
-- CORS configuration
-
-## Development
-
-### Scripts
-
-- `npm start` - Start production server
-- `npm run dev` - Start development server with nodemon
-
-### Code Structure
-
-- **Services**: Business logic layer (`public/js/services/`)
-- **Routes**: API endpoints (`routes/`)
-- **Middleware**: Request processing (`middleware/`)
-- **Utils**: Shared utilities (`utils/`)
+1. Fork repository
+2. Create feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to branch (`git push origin feature/AmazingFeature`)
+5. Open Pull Request
 
 ## License
 
-ISC
+ISC License
 
 ## Support
 
-For issues or questions, please check the documentation or create an issue.
+Untuk pertanyaan dan dukungan, silakan buka issue di repository ini.

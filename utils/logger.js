@@ -1,6 +1,7 @@
 // Centralized logging utility
 
 const isDevelopment = process.env.NODE_ENV === 'development';
+const isProduction = process.env.NODE_ENV === 'production' || process.env.VERCEL;
 
 const logger = {
   info: (...args) => {
@@ -10,11 +11,14 @@ const logger = {
   },
   
   error: (...args) => {
+    // Always log errors, even in production
     console.error('[ERROR]', ...args);
   },
   
   warn: (...args) => {
-    console.warn('[WARN]', ...args);
+    if (!isProduction) {
+      console.warn('[WARN]', ...args);
+    }
   },
   
   debug: (...args) => {
@@ -25,4 +29,3 @@ const logger = {
 };
 
 module.exports = logger;
-

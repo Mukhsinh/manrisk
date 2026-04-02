@@ -3,7 +3,7 @@ const { AuthenticationError } = require('../utils/errors');
 const logger = require('../utils/logger');
 const { getUserOrganizations, isSuperAdmin, getUserRole } = require('../utils/organization');
 
-const authenticateUser = async (req, res, next) => {
+const authenticateUser = async (req, _res, next) => {
   try {
     const authHeader = req.headers.authorization;
     
@@ -52,11 +52,7 @@ const authenticateUser = async (req, res, next) => {
   }
 };
 
-/**
- * Middleware to check if user has access to an organization
- * Superadmin bypasses this check
- */
-const checkOrganizationAccess = async (req, res, next) => {
+const checkOrganizationAccess = async (req, _res, next) => {
   try {
     // Superadmin can access everything
     if (req.user.isSuperAdmin) {

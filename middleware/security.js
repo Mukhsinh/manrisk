@@ -55,10 +55,11 @@ function securityHeaders(req, res, next) {
   );
 
   // Strict-Transport-Security (HSTS) - only in production with HTTPS
-  if (process.env.NODE_ENV === 'production' && req.secure) {
+  // Vercel automatically provides HTTPS
+  if (process.env.NODE_ENV === 'production' || process.env.VERCEL) {
     res.setHeader(
       'Strict-Transport-Security',
-      'max-age=31536000; includeSubDomains'
+      'max-age=31536000; includeSubDomains; preload'
     );
   }
 

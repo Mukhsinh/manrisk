@@ -43,17 +43,26 @@ class ConflictError extends AppError {
 
 // Error handler middleware
 function errorHandler(err, req, res, next) {
-  // Log error
-  console.error('Error:', {
-    message: err.message,
-    stack: process.env.NODE_ENV === 'development' ? err.stack : undefined,
-    code: err.code,
-    statusCode: err.statusCode
-  });
+  const isDevelopment = process.env.NODE_ENV === 'development';
+  
+  // Log error (sanitized for production)
+  if (isDevelopment) {
+    console.error('Error:', {
+      message: err.message,
+      stack: err.stack,
+      code: err.code,
+      statusCode: err.statusCode
+    });
+  } else {
+    console.error('Error:', {
+      message: err.message,
+      code: err.code,
+      statusCode: err.statusCode
+    });
+  }
 
   // Determine status code
   const statusCode = err.statusCode || 500;
-  const isDevelopment = process.env.NODE_ENV === 'development';
 
   // Prepare error response
   const errorResponse = {
@@ -66,7 +75,7 @@ function errorHandler(err, req, res, next) {
     errorResponse.errors = err.errors;
   }
 
-  // Add stack trace in development
+  // Add stack trace only in development
   if (isDevelopment && err.stack) {
     errorResponse.stack = err.stack;
   }

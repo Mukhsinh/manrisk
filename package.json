@@ -3,26 +3,27 @@
   "version": "1.0.0",
   "description": "Aplikasi Manajemen Risiko Web dengan Supabase",
   "main": "server.js",
+  "engines": {
+    "node": ">=18.x"
+  },
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
     "dev:auto": "node start-auto-port.js",
     "dev:port": "node start-auto-port.js",
-    "build": "echo 'No build step required for Node.js app'",
-    "vercel-build": "echo 'No build step required'",
-    "test": "jest",
-    "test:property": "jest tests/property --verbose",
-    "test:unit": "jest tests/unit --verbose",
-    "test:integration": "jest tests/integration --verbose",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage",
-    "test-fix": "node test-infinite-loop-fix.js",
-    "start-fixed": "node server.js"
+    "build": "echo 'No build step required'",
+    "vercel-build": "echo 'Vercel serverless deployment'",
+    "test": "jest --runInBand",
+    "test:property": "jest tests/property --verbose --runInBand",
+    "test:unit": "jest tests/unit --verbose --runInBand",
+    "test:integration": "jest tests/integration --verbose --runInBand",
+    "test:coverage": "jest --coverage --runInBand"
   },
   "keywords": [
     "risk-management",
     "supabase",
-    "nodejs"
+    "nodejs",
+    "express"
   ],
   "author": "",
   "license": "ISC",
