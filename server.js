@@ -5,7 +5,11 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const { securityHeaders } = require('./middleware/security');
 const { errorHandler } = require('./utils/errors');
+const { setupServerlessErrorHandling } = require('./middleware/serverless-error-handler');
 const logger = require('./utils/logger');
+
+// Setup error handling untuk serverless
+setupServerlessErrorHandling();
 
 const app = express();
 
@@ -67,11 +71,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
+  const envCheck = {
+    supabaseUrl: !!process.env.SUPABASE_URL,
+    supabaseAnonKey: !!process.env.SUPABASE_ANON_KEY,
+    supabaseServiceKey: !!process.env.SUPABASE_SERVICE_ROLE_KEY,
+    nodeEnv: process.env.NODE_ENV || 'development',
+    isVercel: process.env.VERCEL === '1'
+  };
+  
   res.json({
     status: 'ok',
     timestamp: new Date().toISOString(),
     environment: process.env.NODE_ENV || 'development',
-    version: require('./package.json').version
+    version: require('./package.json').version,
+    platform: process.env.VERCEL ? 'vercel' : 'local',
+    config: envCheck
   });
 });
 
@@ -140,7 +154,7 @@ app.get('*', (req, res) => {
 app.use(errorHandler);
 
 // Start server (only if not running in serverless environment)
-if (require.main === module) {
+if (require.main === module && !process.env.VERCEL) {
   const { findAvailablePort, getPort } = require('./config/port');
   
   (async () => {
@@ -172,7 +186,7 @@ if (require.main === module) {
 }
 
 // Error handling (only in non-serverless environment)
-if (require.main === module) {
+if (require.main === module && !process.env.VERCEL) {
   process.on('uncaughtException', (err) => {
     logger.error('Uncaught Exception:', err);
     if (process.env.NODE_ENV === 'production') {

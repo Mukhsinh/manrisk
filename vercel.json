@@ -16,5 +16,8 @@
       "maxDuration": 30
     }
   },
-  "regions": ["sin1"]
+  "regions": ["sin1"],
+  "env": {
+    "DISABLE_PUPPETEER": "true"
+  }
 }

@@ -4,6 +4,7 @@ const { supabase } = require('../config/supabase');
 const { authenticateUser } = require('../middleware/auth');
 const { buildOrganizationFilter } = require('../utils/organization');
 const { exportToExcel } = require('../utils/exportHelper');
+const { isPdfGenerationAvailable, sendPdfNotAvailableResponse } = require('../utils/pdf-fallback');
 
 // DEBUG: User info endpoint
 router.get('/user-debug', authenticateUser, async (req, res) => {
@@ -1122,6 +1123,11 @@ router.get('/strategic-map/excel', authenticateUser, async (req, res) => {
 // PDF Export endpoints (structure ready - returns JSON for now)
 router.get('/risk-register/pdf', authenticateUser, async (req, res) => {
   try {
+    // Check if PDF generation is available
+    if (process.env.VERCEL === '1') {
+      return sendPdfNotAvailableResponse(res, 'pdf');
+    }
+    
     const puppeteer = require('puppeteer');
     const { supabaseAdmin } = require('../config/supabase');
     const client = supabaseAdmin || supabase;
@@ -1291,6 +1297,11 @@ router.get('/risk-register/pdf', authenticateUser, async (req, res) => {
 
 router.get('/risk-profile/pdf', authenticateUser, async (req, res) => {
   try {
+    // Check if PDF generation is available
+    if (process.env.VERCEL === '1') {
+      return sendPdfNotAvailableResponse(res, 'pdf');
+    }
+    
     const puppeteer = require('puppeteer');
     const { supabaseAdmin } = require('../config/supabase');
     const client = supabaseAdmin || supabase;
@@ -1436,6 +1447,11 @@ router.get('/risk-profile/pdf', authenticateUser, async (req, res) => {
 
 router.get('/residual-risk/pdf', authenticateUser, async (req, res) => {
   try {
+    // Check if PDF generation is available
+    if (process.env.VERCEL === '1') {
+      return sendPdfNotAvailableResponse(res, 'pdf');
+    }
+    
     const puppeteer = require('puppeteer');
     
     // Get residual risk data (reuse logic from main endpoint)
@@ -1709,6 +1725,11 @@ router.get('/residual-risk/pdf', authenticateUser, async (req, res) => {
 
 router.get('/risk-appetite/pdf', authenticateUser, async (req, res) => {
   try {
+    // Check if PDF generation is available
+    if (process.env.VERCEL === '1') {
+      return sendPdfNotAvailableResponse(res, 'pdf');
+    }
+    
     const puppeteer = require('puppeteer');
     
     let query = supabase
@@ -1809,6 +1830,11 @@ router.get('/risk-appetite/pdf', authenticateUser, async (req, res) => {
 
 router.get('/kri/pdf', authenticateUser, async (req, res) => {
   try {
+    // Check if PDF generation is available
+    if (process.env.VERCEL === '1') {
+      return sendPdfNotAvailableResponse(res, 'pdf');
+    }
+    
     const puppeteer = require('puppeteer');
     
     let query = supabase
@@ -1915,6 +1941,11 @@ router.get('/kri/pdf', authenticateUser, async (req, res) => {
 
 router.get('/monitoring/pdf', authenticateUser, async (req, res) => {
   try {
+    // Check if PDF generation is available
+    if (process.env.VERCEL === '1') {
+      return sendPdfNotAvailableResponse(res, 'pdf');
+    }
+    
     const puppeteer = require('puppeteer');
     const { supabaseAdmin } = require('../config/supabase');
     const client = supabaseAdmin || supabase;
@@ -2023,6 +2054,11 @@ router.get('/monitoring/pdf', authenticateUser, async (req, res) => {
 
 router.get('/loss-event/pdf', authenticateUser, async (req, res) => {
   try {
+    // Check if PDF generation is available
+    if (process.env.VERCEL === '1') {
+      return sendPdfNotAvailableResponse(res, 'pdf');
+    }
+    
     const puppeteer = require('puppeteer');
     
     let query = supabase
@@ -2128,6 +2164,11 @@ router.get('/loss-event/pdf', authenticateUser, async (req, res) => {
 
 router.get('/strategic-map/pdf', authenticateUser, async (req, res) => {
   try {
+    // Check if PDF generation is available
+    if (process.env.VERCEL === '1') {
+      return sendPdfNotAvailableResponse(res, 'pdf');
+    }
+    
     const puppeteer = require('puppeteer');
     const { supabaseAdmin } = require('../config/supabase');
     const client = supabaseAdmin || supabase;

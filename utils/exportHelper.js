@@ -244,6 +244,11 @@ async function exportToPDF(data, options = {}) {
     generatedBy = 'System Administrator'
   } = options;
 
+  // Check if puppeteer is disabled (serverless environment)
+  if (process.env.DISABLE_PUPPETEER === 'true' || process.env.VERCEL) {
+    throw new Error('PDF export tidak tersedia di serverless environment. Gunakan Excel export sebagai alternatif.');
+  }
+
   try {
     const puppeteer = require('puppeteer');
     

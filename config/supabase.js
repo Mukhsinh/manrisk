@@ -10,7 +10,8 @@ if (!supabaseUrl || !supabaseAnonKey) {
   const errorMsg = 'Missing Supabase environment variables (SUPABASE_URL, SUPABASE_ANON_KEY)';
   logger.error(errorMsg);
   
-  if (process.env.NODE_ENV === 'production') {
+  // Jangan throw error di serverless, biarkan app tetap jalan dengan fallback
+  if (process.env.NODE_ENV === 'production' && !process.env.VERCEL) {
     throw new Error(errorMsg);
   }
 }
