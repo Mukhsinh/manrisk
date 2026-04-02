@@ -1,3 +1,5 @@
+
+/* Cache-busted: 2026-03-31T02:15:20.498Z */
 /**
  * Rencana Strategis Page Styles v2.0
  * Professional and Modern Design
@@ -110,50 +112,95 @@
 }
 
 .rencana-strategis-wrapper .card-header h5 {
-  font-size: 1.1rem !important;
+  font-size: 1.15rem !important;
   font-weight: 600 !important;
-  color: #2c3e50 !important;
+  color: #1f2937 !important;
   margin: 0 !important;
 }
 
 .rencana-strategis-wrapper .card-header h5 i {
   color: #3b82f6 !important;
+  font-size: 1.25rem !important;
+  margin-right: 0.5rem !important;
 }
 
-/* Action Buttons in Header */
+/* Action Buttons in Header - ICON ONLY */
 .rencana-strategis-wrapper .card-header .btn-group {
   gap: 0.5rem;
+  display: inline-flex !important;
 }
 
+/* Tombol Header - ICON ONLY (TANPA TEKS) - WARNA SOLID CERAH */
 .rencana-strategis-wrapper .card-header .btn {
-  border-radius: 8px !important;
-  font-weight: 500 !important;
-  padding: 0.5rem 1rem !important;
-  font-size: 0.875rem !important;
-  transition: all 0.2s ease !important;
+  border-radius: 12px !important;
+  font-weight: 700 !important;
+  padding: 0 !important;
+  min-width: 48px !important;
+  min-height: 48px !important;
+  max-width: 48px !important;
+  max-height: 48px !important;
+  font-size: 0 !important; /* HIDE TEXT */
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border: none !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+  cursor: pointer !important;
 }
 
-.rencana-strategis-wrapper .card-header .btn-success {
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
-  border: none !important;
+/* Icon di tombol header - HANYA ICON TERLIHAT */
+.rencana-strategis-wrapper .card-header .btn i {
+  font-size: 1.3rem !important;
+  font-weight: 900 !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+  line-height: 1 !important;
+  margin: 0 !important;
   color: white !important;
 }
 
-.rencana-strategis-wrapper .card-header .btn-success:hover {
-  background: linear-gradient(135deg, #059669 0%, #047857 100%) !important;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3) !important;
-}
-
+/* Tombol Refresh - BIRU CERAH SOLID (LEBIH TERANG) */
+.rencana-strategis-wrapper .card-header #rs-refresh-btn,
 .rencana-strategis-wrapper .card-header .btn-outline-primary,
-.rencana-strategis-wrapper .card-header .btn-outline-success {
-  background: transparent !important;
-  border: 1px solid currentColor !important;
+.rencana-strategis-wrapper .card-header .btn-primary {
+  background: #3b82f6 !important;
+  border: none !important;
+  color: white !important;
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4) !important;
 }
 
+.rencana-strategis-wrapper .card-header #rs-refresh-btn:hover,
 .rencana-strategis-wrapper .card-header .btn-outline-primary:hover,
-.rencana-strategis-wrapper .card-header .btn-outline-success:hover {
-  transform: translateY(-1px);
+.rencana-strategis-wrapper .card-header .btn-primary:hover {
+  background: #2563eb !important;
+  transform: translateY(-3px) scale(1.08) !important;
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.5) !important;
+}
+
+/* Tombol Unduh Laporan - HIJAU CERAH SOLID (LEBIH TERANG) */
+.rencana-strategis-wrapper .card-header #rs-export-btn,
+.rencana-strategis-wrapper .card-header .btn-outline-success,
+.rencana-strategis-wrapper .card-header .btn-success {
+  background: #10b981 !important;
+  border: none !important;
+  color: white !important;
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4) !important;
+}
+
+.rencana-strategis-wrapper .card-header #rs-export-btn:hover,
+.rencana-strategis-wrapper .card-header .btn-outline-success:hover,
+.rencana-strategis-wrapper .card-header .btn-success:hover {
+  background: #059669 !important;
+  transform: translateY(-3px) scale(1.08) !important;
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.5) !important;
+}
+
+.rencana-strategis-wrapper .card-header .btn:active {
+  transform: scale(0.95) translateY(0) !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2) !important;
 }
 
 /* Table Styles */
@@ -167,13 +214,23 @@
 
 .rencana-strategis-wrapper .table th {
   font-weight: 600 !important;
-  font-size: 0.8rem !important;
+  font-size: 0.85rem !important;
   text-transform: uppercase !important;
   letter-spacing: 0.5px !important;
-  color: #64748b !important;
+  color: #1f2937 !important;
   padding: 1rem !important;
   border-bottom: 2px solid #e2e8f0 !important;
   white-space: nowrap;
+}
+
+/* ENHANCED: Icon di header tabel - lebih jelas dan terlihat */
+.rencana-strategis-wrapper .table th i {
+  font-size: 1.1rem !important;
+  color: #3b82f6 !important;
+  margin-right: 0.6rem !important;
+  font-weight: 900 !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
 }
 
 .rencana-strategis-wrapper .table td {
@@ -182,6 +239,8 @@
   font-size: 0.9rem !important;
   color: #334155 !important;
   border-bottom: 1px solid #f1f5f9 !important;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
 }
 
 .rencana-strategis-wrapper .table tbody tr {
@@ -259,7 +318,9 @@
   font-size: 0.85rem !important;
   color: #334155 !important;
   border-bottom: 1px solid #f1f5f9 !important;
-  overflow: hidden !important;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  max-width: 300px !important;
 }
 
 /* Status column specific */
@@ -276,6 +337,41 @@
   text-overflow: ellipsis !important;
 }
 
+/* Nama Rencana column - FIXED OVERFLOW */
+.rencana-strategis-wrapper .table td:nth-child(2) {
+  min-width: 200px !important;
+  max-width: 350px !important;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  white-space: normal !important;
+  line-height: 1.5 !important;
+}
+
+.rencana-strategis-wrapper .table td:nth-child(2) .fw-semibold {
+  display: block !important;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  white-space: normal !important;
+}
+
+/* Target column - FIXED OVERFLOW */
+.rencana-strategis-wrapper .table td:nth-child(3) {
+  min-width: 150px !important;
+  max-width: 250px !important;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  white-space: normal !important;
+  line-height: 1.4 !important;
+}
+
+/* Action column - ensure buttons stay in line (TANPA EDIT) */
+.rencana-strategis-wrapper .table td:nth-child(6) {
+  min-width: 100px !important;
+  max-width: 120px !important;
+  white-space: nowrap !important;
+  padding: 0.75rem 1rem !important;
+}
+
 /* Ensure table doesn't overflow container */
 .rencana-strategis-wrapper .table-responsive {
   overflow-x: auto !important;
@@ -287,62 +383,108 @@
   width: 100% !important;
 }
 
-/* Action Buttons in Table - Fixed */
+/* ============================================
+   TOMBOL AKSI - ICON ONLY (TANPA TEKS)
+   ============================================ */
+
+/* Container tombol aksi */
+.rencana-strategis-wrapper .table td:last-child .d-flex,
 .rencana-strategis-wrapper .btn-group-sm {
   display: inline-flex !important;
   flex-wrap: nowrap !important;
+  gap: 0.5rem !important;
+  justify-content: center !important;
 }
 
-.rencana-strategis-wrapper .btn-group-sm .btn {
-  padding: 0.3rem 0.5rem !important;
-  border-radius: 6px !important;
-  font-size: 0.75rem !important;
-  transition: all 0.2s ease !important;
+/* Reset semua tombol aksi - ICON ONLY (HANYA VIEW & DELETE) */
+.rencana-strategis-wrapper .btn-action-view,
+.rencana-strategis-wrapper .btn-action-delete,
+.rencana-strategis-wrapper .rs-action-btn,
+.rencana-strategis-wrapper table .btn-action-view,
+.rencana-strategis-wrapper table .btn-action-delete {
+  padding: 0.5rem !important;
+  border-radius: 8px !important;
   border: none !important;
-  margin: 0 1px !important;
+  min-width: 36px !important;
+  min-height: 36px !important;
+  max-width: 36px !important;
+  max-height: 36px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
+  font-size: 0 !important; /* HIDE TEXT */
+  overflow: hidden !important;
+  white-space: nowrap !important;
 }
 
-.rencana-strategis-wrapper .btn-group-sm .btn:focus {
-  box-shadow: none !important;
-  outline: none !important;
-}
-
-.rencana-strategis-wrapper .btn-outline-info {
-  color: #0ea5e9 !important;
-  background: transparent !important;
-}
-
-.rencana-strategis-wrapper .btn-outline-info:hover {
-  background: #0ea5e9 !important;
+/* Icon di tombol aksi - HANYA ICON TERLIHAT */
+.rencana-strategis-wrapper .btn-action-view i,
+.rencana-strategis-wrapper .btn-action-delete i,
+.rencana-strategis-wrapper .rs-action-btn i {
+  font-size: 1.1rem !important;
+  line-height: 1 !important;
+  font-weight: 900 !important;
   color: white !important;
-  transform: scale(1.05);
+  margin: 0 !important;
+  display: inline-block !important;
 }
 
-.rencana-strategis-wrapper .btn-outline-warning {
-  color: #f59e0b !important;
-  background: transparent !important;
+/* Tombol View - BIRU */
+.rencana-strategis-wrapper .btn-action-view,
+.rencana-strategis-wrapper .rs-action-btn[data-action="view"] {
+  background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%) !important;
 }
 
-.rencana-strategis-wrapper .btn-outline-warning:hover {
-  background: #f59e0b !important;
-  color: white !important;
-  transform: scale(1.05);
+.rencana-strategis-wrapper .btn-action-view:hover,
+.rencana-strategis-wrapper .rs-action-btn[data-action="view"]:hover {
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%) !important;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.4) !important;
 }
 
-.rencana-strategis-wrapper .btn-outline-danger {
-  color: #ef4444 !important;
-  background: transparent !important;
+/* Tombol Edit - DIHAPUS (TIDAK DIGUNAKAN LAGI) */
+
+/* Tombol Delete - MERAH */
+.rencana-strategis-wrapper .btn-action-delete,
+.rencana-strategis-wrapper .rs-action-btn[data-action="delete"] {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important;
 }
 
-.rencana-strategis-wrapper .btn-outline-danger:hover {
-  background: #ef4444 !important;
-  color: white !important;
-  transform: scale(1.05);
+.rencana-strategis-wrapper .btn-action-delete:hover,
+.rencana-strategis-wrapper .rs-action-btn[data-action="delete"]:hover {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%) !important;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4) !important;
 }
 
-/* Action button click feedback */
+/* Active state */
+.rencana-strategis-wrapper .btn-action-view:active,
+.rencana-strategis-wrapper .btn-action-delete:active,
 .rencana-strategis-wrapper .rs-action-btn:active {
-  transform: scale(0.95) !important;
+  transform: scale(0.95) translateY(0) !important;
+}
+
+/* Ensure FontAwesome icons loaded */
+.rencana-strategis-wrapper .fa-eye::before {
+  content: "\f06e" !important;
+  font-family: "Font Awesome 5 Free" !important;
+  font-weight: 900 !important;
+}
+
+.rencana-strategis-wrapper .fa-edit::before {
+  content: "\f044" !important;
+  font-family: "Font Awesome 5 Free" !important;
+  font-weight: 900 !important;
+}
+
+.rencana-strategis-wrapper .fa-trash-alt::before,
+.rencana-strategis-wrapper .fa-trash::before {
+  content: "\f2ed" !important;
+  font-family: "Font Awesome 5 Free" !important;
+  font-weight: 900 !important;
 }
 
 /* Form Card */
@@ -414,14 +556,18 @@
 }
 
 .rencana-strategis-wrapper .form-label {
-  font-size: 0.85rem !important;
+  font-size: 0.9rem !important;
   font-weight: 600 !important;
-  color: #475569 !important;
+  color: #1f2937 !important;
   margin-bottom: 0.5rem !important;
+  display: flex !important;
+  align-items: center !important;
 }
 
 .rencana-strategis-wrapper .form-label i {
-  color: #64748b !important;
+  color: #3b82f6 !important;
+  font-size: 1rem !important;
+  margin-right: 0.5rem !important;
 }
 
 /* Form Buttons */
@@ -748,10 +894,12 @@
   text-overflow: ellipsis !important;
 }
 
-/* Action column - ensure buttons stay in line */
+/* Action column - HANYA 2 TOMBOL (VIEW & DELETE) */
 .rencana-strategis-wrapper table td:nth-child(6) {
-  min-width: 110px !important;
+  min-width: 100px !important;
+  max-width: 120px !important;
   white-space: nowrap !important;
+  padding: 0.5rem 0.75rem !important;
 }
 
 /* Table wrapper for horizontal scroll on small screens */
@@ -769,20 +917,9 @@
 .rencana-strategis-wrapper .btn-group[role="group"] {
   display: inline-flex !important;
   flex-wrap: nowrap !important;
-  gap: 2px !important;
+  gap: 6px !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
-/* Clickable action buttons */
-.rencana-strategis-wrapper .rs-action-btn {
-  cursor: pointer !important;
-  user-select: none !important;
-  -webkit-user-select: none !important;
-}
-
-.rencana-strategis-wrapper .rs-action-btn:hover {
-  opacity: 0.9 !important;
-}
-
-.rencana-strategis-wrapper .rs-action-btn:active {
-  transform: scale(0.95) !important;
-}
+/* Icon visibility enhancement - DUPLICATE SECTION REMOVED - ALREADY DEFINED ABOVE */

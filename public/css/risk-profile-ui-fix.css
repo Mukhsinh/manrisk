@@ -1,0 +1,297 @@
+/* Risk Profile UI/UX Fix - Sesuai dengan gambar referensi */
+
+/* Header Table - Dark Blue */
+.risk-profile-table thead {
+  background-color: #1e3a8a !important;
+}
+
+.risk-profile-table thead th {
+  background-color: #1e3a8a !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  font-size: 0.7rem !important;
+  letter-spacing: 0.5px !important;
+  padding: 0.875rem 1rem !important;
+  border: none !important;
+}
+
+/* Badge Colors - Sesuai gambar */
+.badge-sangat-tinggi {
+  background-color: #dc2626 !important;
+  color: #ffffff !important;
+  padding: 6px 14px !important;
+  border-radius: 6px !important;
+  font-weight: 700 !important;
+  font-size: 0.75rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+.badge-tinggi {
+  background-color: #ea580c !important;
+  color: #ffffff !important;
+  padding: 6px 14px !important;
+  border-radius: 6px !important;
+  font-weight: 700 !important;
+  font-size: 0.75rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+.badge-sedang {
+  background-color: #eab308 !important;
+  color: #000000 !important;
+  padding: 6px 14px !important;
+  border-radius: 6px !important;
+  font-weight: 700 !important;
+  font-size: 0.75rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+.badge-rendah {
+  background-color: #14b8a6 !important;
+  color: #ffffff !important;
+  padding: 6px 14px !important;
+  border-radius: 6px !important;
+  font-weight: 700 !important;
+  font-size: 0.75rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+/* Action Buttons - Blue and Red */
+.btn-action-edit {
+  background-color: #2563eb !important;
+  color: #ffffff !important;
+  border: none !important;
+  padding: 0.5rem 0.75rem !important;
+  border-radius: 6px !important;
+  font-size: 0.875rem !important;
+  cursor: pointer !important;
+  transition: all 0.2s !important;
+}
+
+.btn-action-edit:hover {
+  background-color: #1d4ed8 !important;
+}
+
+.btn-action-delete {
+  background-color: #dc2626 !important;
+  color: #ffffff !important;
+  border: none !important;
+  padding: 0.5rem 0.75rem !important;
+  border-radius: 6px !important;
+  font-size: 0.875rem !important;
+  cursor: pointer !important;
+  transition: all 0.2s !important;
+}
+
+.btn-action-delete:hover {
+  background-color: #b91c1c !important;
+}
+
+/* Table Row Hover */
+.risk-profile-table tbody tr:hover {
+  background-color: #f1f5f9 !important;
+  transition: background-color 0.2s !important;
+}
+
+/* Table Cell Styling */
+.risk-profile-table tbody td {
+  padding: 0.875rem 1rem !important;
+  font-size: 0.875rem !important;
+  vertical-align: middle !important;
+  border-bottom: 1px solid #e5e7eb !important;
+}
+
+/* Kode Risiko Column */
+.risk-profile-table tbody td:first-child {
+  font-weight: 600 !important;
+  color: #1e293b !important;
+}
+
+/* Unit Kerja Column */
+.risk-profile-table tbody td:nth-child(2) {
+  max-width: 200px !important;
+}
+
+.risk-profile-table tbody td:nth-child(2) small {
+  color: #64748b !important;
+  font-size: 0.75rem !important;
+}
+
+/* Numeric Columns - Center Align */
+.risk-profile-table tbody td:nth-child(4),
+.risk-profile-table tbody td:nth-child(5),
+.risk-profile-table tbody td:nth-child(6),
+.risk-profile-table tbody td:nth-child(8) {
+  text-align: center !important;
+  font-weight: 600 !important;
+}
+
+/* Financial Column - Right Align */
+.risk-profile-table tbody td:nth-child(9) {
+  text-align: right !important;
+  font-weight: 600 !important;
+  color: #059669 !important;
+}
+
+/* Action Column */
+.risk-profile-table tbody td:last-child {
+  text-align: center !important;
+}
+
+/* Button Group in Action Column */
+.action-button-group {
+  display: flex !important;
+  gap: 0.5rem !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+/* Responsive Table */
+@media (max-width: 1024px) {
+  .risk-profile-table {
+    font-size: 0.8rem !important;
+  }
+  
+  .risk-profile-table thead th,
+  .risk-profile-table tbody td {
+    padding: 0.625rem 0.75rem !important;
+  }
+}
+
+/* Heat Map Colors - Sesuai dengan gambar */
+.heatmap-cell-extreme {
+  background-color: #dc2626 !important;
+  color: #ffffff !important;
+}
+
+.heatmap-cell-high {
+  background-color: #ea580c !important;
+  color: #ffffff !important;
+}
+
+.heatmap-cell-medium {
+  background-color: #eab308 !important;
+  color: #000000 !important;
+}
+
+.heatmap-cell-low {
+  background-color: #14b8a6 !important;
+  color: #ffffff !important;
+}
+
+.heatmap-cell-minimal {
+  background-color: #10b981 !important;
+  color: #ffffff !important;
+}
+
+/* Filter Dropdowns Styling */
+.filter-group select {
+  border: 1px solid #d1d5db !important;
+  border-radius: 8px !important;
+  padding: 0.625rem 0.875rem !important;
+  font-size: 0.875rem !important;
+  background-color: #ffffff !important;
+  transition: all 0.2s !important;
+}
+
+.filter-group select:focus {
+  border-color: #2563eb !important;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1) !important;
+  outline: none !important;
+}
+
+/* Top Action Buttons */
+.top-action-buttons {
+  display: flex !important;
+  gap: 0.75rem !important;
+  align-items: center !important;
+}
+
+.btn-refresh {
+  background-color: #2563eb !important;
+  color: #ffffff !important;
+  padding: 0.625rem 1.25rem !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  font-size: 0.875rem !important;
+  border: none !important;
+  cursor: pointer !important;
+  transition: all 0.2s !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+}
+
+.btn-refresh:hover {
+  background-color: #1d4ed8 !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3) !important;
+}
+
+.btn-download {
+  background-color: #059669 !important;
+  color: #ffffff !important;
+  padding: 0.625rem 1.25rem !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  font-size: 0.875rem !important;
+  border: none !important;
+  cursor: pointer !important;
+  transition: all 0.2s !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+}
+
+.btn-download:hover {
+  background-color: #047857 !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3) !important;
+}
+
+.btn-add-analysis {
+  background-color: #f59e0b !important;
+  color: #ffffff !important;
+  padding: 0.625rem 1.25rem !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  font-size: 0.875rem !important;
+  border: none !important;
+  cursor: pointer !important;
+  transition: all 0.2s !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+}
+
+.btn-add-analysis:hover {
+  background-color: #d97706 !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3) !important;
+}
+
+.btn-settings {
+  background-color: #6b7280 !important;
+  color: #ffffff !important;
+  padding: 0.625rem 1.25rem !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  font-size: 0.875rem !important;
+  border: none !important;
+  cursor: pointer !important;
+  transition: all 0.2s !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+}
+
+.btn-settings:hover {
+  background-color: #4b5563 !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(107, 114, 128, 0.3) !important;
+}

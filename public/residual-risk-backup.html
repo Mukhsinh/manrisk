@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
+<!DOCTYPE html><html lang="id"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Residual Risk Analysis - Manajemen Risiko</title>
@@ -152,6 +150,8 @@
             margin: 1rem 0;
         }
     </style>
+    <link rel="stylesheet" href="/css/button-standardization-final.css">
+    <link rel="stylesheet" href="/css/action-buttons-standardized.css">
 </head>
 <body>
     <!-- Debug Panel -->
@@ -165,7 +165,7 @@
             <a class="navbar-brand" href="index.html">
                 <i class="fas fa-shield-alt"></i> PINTAR MR
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler text-truncate" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Tombol">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -205,13 +205,13 @@
                         <p class="text-muted">Analisis Risiko Residual</p>
                     </div>
                     <div class="btn-group">
-                        <button class="btn btn-outline-secondary" onclick="toggleDebug()">
+                        <button class="btn btn-outline-secondary text-truncate" onclick="toggleDebug()" data-action="toggleDebug">
                             <i class="fas fa-bug"></i> Debug
                         </button>
-                        <button class="btn btn-outline-primary" onclick="loadData()">
+                        <button class="btn btn-outline-primary text-truncate" onclick="loadData()" data-action="loadData">
                             <i class="fas fa-sync-alt"></i> Refresh
                         </button>
-                        <button class="btn btn-primary" onclick="downloadExcel()">
+                        <button class="btn btn-primary text-truncate" onclick="downloadExcel()" data-action="downloadExcel">
                             <i class="fas fa-download"></i> Export Excel
                         </button>
                     </div>
@@ -352,10 +352,10 @@
                 <div class="error-panel">
                     <h4><i class="fas fa-exclamation-triangle"></i> Error</h4>
                     <p>${message}</p>
-                    <button class="btn btn-primary" onclick="loadData()">
+                    <button class="btn btn-primary text-truncate" onclick="loadData()">
                         <i class="fas fa-sync-alt"></i> Coba Lagi
                     </button>
-                    <button class="btn btn-secondary ms-2" onclick="toggleDebug()">
+                    <button class="btn btn-secondary ms-2 text-truncate" onclick="toggleDebug()">
                         <i class="fas fa-bug"></i> Show Debug
                     </button>
                 </div>
@@ -370,7 +370,7 @@
                     <div class="alert alert-info text-center">
                         <h4><i class="fas fa-info-circle"></i> Tidak Ada Data</h4>
                         <p>Belum ada data residual risk yang tersedia.</p>
-                        <button class="btn btn-secondary" onclick="toggleDebug()">
+                        <button class="btn btn-secondary text-truncate" onclick="toggleDebug()">
                             <i class="fas fa-bug"></i> Show Debug Info
                         </button>
                     </div>
@@ -698,7 +698,7 @@
             successDiv.className = 'alert alert-success alert-dismissible fade show';
             successDiv.innerHTML = `
                 <i class="fas fa-check-circle"></i> ${message}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <button aria-label="Tutup" type="button" class="btn-close text-truncate" data-bs-dismiss="alert"></button>
             `;
             container.insertBefore(successDiv, container.firstChild);
             
@@ -1035,5 +1035,70 @@
             window.location.href = 'login.html';
         }
     </script>
-</body>
-</html>
+    <script src="/js/button-standardization-auto.js"></script>
+    <script src="/js/action-buttons-standardizer.js"></script>
+
+<!-- Button Event Delegation Script -->
+<script>
+(function() {
+    'use strict';
+    
+    // Event delegation untuk tombol dengan data-action
+    document.addEventListener('click', function(e) {
+        const button = e.target.closest('[data-action]');
+        if (!button) return;
+        
+        const action = button.dataset.action;
+        const handler = window['handle' + action.charAt(0).toUpperCase() + action.slice(1)];
+        
+        if (typeof handler === 'function') {
+            handler.call(button, e);
+        } else {
+            console.warn('Handler not found for action:', action);
+        }
+    });
+    
+    // Default handlers untuk common actions
+    window.handleAdd = function(e) {
+        console.log('Add button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleEdit = function(e) {
+        console.log('Edit button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleDelete = function(e) {
+        console.log('Delete button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleDownload = function(e) {
+        console.log('Download button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleImport = function(e) {
+        console.log('Import button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleExport = function(e) {
+        console.log('Export button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleSave = function(e) {
+        console.log('Save button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleCancel = function(e) {
+        console.log('Cancel button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+})();
+</script>
+
+</body></html>

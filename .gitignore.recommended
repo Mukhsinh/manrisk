@@ -1,0 +1,89 @@
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build output
+dist/
+build/
+.next/
+out/
+
+# Testing
+coverage/
+test-results/
+*.test.js.snap
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Backup files
+backup-*/
+*.backup
+*.bak
+
+# Documentation (development only)
+docs/
+CLEANUP_*.md
+INVENTARISASI_*.md
+LAPORAN_*.md
+*_SUMMARY.md
+*_FIX_*.md
+*_COMPLETE.md
+
+# Test files
+test-*.js
+test-*.html
+verify-*.js
+debug-*.js
+
+# Utility scripts
+create-*.js
+apply-*.js
+fix-*.js
+integrate-*.js
+enforce-*.js
+force-*.js
+implement-*.js
+cleanup-*.js
+clear-*.js
+
+# Batch files
+*.bat
+
+# Test configuration
+jest.*.config.js
+run-property-tests.js
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# Vercel
+.vercel
+
+# Database
+*.sqlite
+*.db
+
+# Screenshots
+*-screenshot.png
+verify-*.png

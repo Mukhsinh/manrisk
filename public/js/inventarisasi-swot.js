@@ -201,11 +201,11 @@ const InventarisasiSwotModule = (() => {
                 <td>${item.deskripsi || '-'}</td>
                 <td>${item.tahun || '-'}</td>
                 <td>
-                  <button class="btn btn-sm btn-info" onclick="InventarisasiSwotModule.editData('${item.id}')">
-                    <i class="fas fa-edit"></i>
+                  <button class="btn-action-edit" onclick="InventarisasiSwotModule.editData('${item.id}')">
+                    <i data-lucide="pencil"></i>
                   </button>
-                  <button class="btn btn-sm btn-danger" onclick="InventarisasiSwotModule.deleteData('${item.id}')">
-                    <i class="fas fa-trash"></i>
+                  <button class="btn-action-delete" onclick="InventarisasiSwotModule.deleteData('${item.id}')">
+                    <i data-lucide="trash-2"></i>
                   </button>
                 </td>
               </tr>

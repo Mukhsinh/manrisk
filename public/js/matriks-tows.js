@@ -232,14 +232,14 @@ const MatriksTowsModule = (() => {
                   <td>${item.tahun}</td>
                   <td>${item.strategi}</td>
                   <td>${item.rencana_strategis?.nama_rencana || '-'}</td>
-                  <td>
-                    <button class="btn btn-edit btn-sm" onclick="MatriksTowsModule.edit('${item.id}')">
-                      <i class="fas fa-edit"></i>
-                    </button>
-                    <button class="btn btn-delete btn-sm" onclick="MatriksTowsModule.delete('${item.id}')">
-                      <i class="fas fa-trash"></i>
-                    </button>
-                  </td>
+                                    <td>
+                                        <button class="btn-action-edit" onclick="MatriksTowsModule.edit('${item.id}')">
+                                          <i data-lucide="pencil"></i> Edit
+                                        </button>
+                                        <button class="btn-action-delete" onclick="MatriksTowsModule.delete('${item.id}')">
+                                          <i data-lucide="trash-2"></i> Hapus
+                                        </button>
+                                    </td>
                 </tr>
               `).join('')}
             </tbody>

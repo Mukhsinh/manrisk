@@ -1,0 +1,134 @@
+/* ===================================
+   FIX ICON TOMBOL AKSI - OVERFLOW PREVENTION
+   Mencegah icon tombol edit dan hapus overflow
+   =================================== */
+
+/* Tombol aksi umum */
+.btn-sm {
+  padding: 4px 8px !important;
+  min-width: 32px !important;
+  height: 32px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 4px !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Icon di dalam tombol */
+.btn-sm i,
+.btn-sm .fas,
+.btn-sm .far,
+.btn-sm .fab {
+  font-size: 0.875rem !important;
+  line-height: 1 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Kolom aksi di tabel */
+td .btn-sm,
+.table-actions .btn-sm,
+[class*="action"] .btn-sm {
+  padding: 4px 8px !important;
+  min-width: 32px !important;
+  height: 32px !important;
+}
+
+/* Container tombol aksi */
+.table-actions,
+td > div[style*="display: flex"],
+td > div[style*="display: inline-flex"] {
+  display: inline-flex !important;
+  gap: 4px !important;
+  align-items: center !important;
+  white-space: nowrap !important;
+}
+
+/* Warna tombol */
+.btn-info {
+  background-color: #3b82f6 !important;
+  border-color: #3b82f6 !important;
+  color: white !important;
+}
+
+.btn-info:hover {
+  background-color: #2563eb !important;
+  border-color: #2563eb !important;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
+}
+
+.btn-danger {
+  background-color: #ef4444 !important;
+  border-color: #ef4444 !important;
+  color: white !important;
+}
+
+.btn-danger:hover {
+  background-color: #dc2626 !important;
+  border-color: #dc2626 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(239, 68, 68, 0.3);
+}
+
+.btn-success {
+  background-color: #10b981 !important;
+  border-color: #10b981 !important;
+  color: white !important;
+}
+
+.btn-success:hover {
+  background-color: #059669 !important;
+  border-color: #059669 !important;
+}
+
+.btn-warning {
+  background-color: #f59e0b !important;
+  border-color: #f59e0b !important;
+  color: white !important;
+}
+
+.btn-warning:hover {
+  background-color: #d97706 !important;
+  border-color: #d97706 !important;
+}
+
+/* Kolom aksi di tabel - pastikan tidak overflow */
+td:last-child,
+th:last-child {
+  white-space: nowrap !important;
+  overflow: visible !important;
+}
+
+/* Responsive untuk layar kecil */
+@media (max-width: 768px) {
+  .btn-sm {
+    min-width: 28px !important;
+    height: 28px !important;
+    padding: 3px 6px !important;
+  }
+  
+  .btn-sm i {
+    font-size: 0.75rem !important;
+  }
+}
+
+/* Fix untuk tombol di modal */
+.modal .btn-sm {
+  padding: 6px 12px !important;
+  min-width: auto !important;
+  height: auto !important;
+}
+
+/* Fix untuk tombol dengan text */
+.btn-sm:not(:has(i:only-child)) {
+  padding: 6px 12px !important;
+  min-width: auto !important;
+}
+
+/* Pastikan icon tidak terpotong */
+.btn i {
+  overflow: visible !important;
+  display: inline-block !important;
+}

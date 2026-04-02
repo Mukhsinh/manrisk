@@ -1,0 +1,274 @@
+/**
+ * ========================================
+ * PERBAIKAN SCROLL HORIZONTAL TABEL
+ * ========================================
+ * File ini memperbaiki masalah tabel yang terpotong
+ * dengan memastikan scroll horizontal berfungsi dengan baik
+ */
+
+/* ===== CONTAINER TABEL UTAMA ===== */
+.table-container,
+.table-responsive,
+.card-body > div:has(table),
+.data-table-wrapper {
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    -webkit-overflow-scrolling: touch !important;
+    position: relative !important;
+}
+
+/* ===== TABEL DASAR ===== */
+table,
+.table,
+.data-table,
+.iku-table,
+.swot-table,
+.risk-table,
+.strategic-map-table {
+    width: 100% !important;
+    min-width: max-content !important;
+    table-layout: auto !important;
+    border-collapse: collapse !important;
+}
+
+/* ===== CELL TABEL ===== */
+table td,
+table th,
+.table td,
+.table th {
+    white-space: nowrap !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    padding: 8px 12px !important;
+    vertical-align: middle !important;
+}
+
+/* ===== WRAPPER UNTUK KONTEN PANJANG ===== */
+.text-wrapper,
+.cell-content {
+    display: inline-block !important;
+    max-width: 300px !important;
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    line-height: 1.4 !important;
+}
+
+/* ===== SCROLLBAR STYLING ===== */
+.table-container::-webkit-scrollbar,
+.table-responsive::-webkit-scrollbar {
+    height: 12px !important;
+    width: 12px !important;
+}
+
+.table-container::-webkit-scrollbar-track,
+.table-responsive::-webkit-scrollbar-track {
+    background: #f1f5f9 !important;
+    border-radius: 6px !important;
+}
+
+.table-container::-webkit-scrollbar-thumb,
+.table-responsive::-webkit-scrollbar-thumb {
+    background: #94a3b8 !important;
+    border-radius: 6px !important;
+    border: 2px solid #f1f5f9 !important;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover,
+.table-responsive::-webkit-scrollbar-thumb:hover {
+    background: #64748b !important;
+}
+
+/* ===== INDIKATOR SCROLL ===== */
+.table-container::after {
+    content: '← Scroll untuk melihat lebih banyak →' !important;
+    position: sticky !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    background: linear-gradient(to top, rgba(241, 245, 249, 0.95), transparent) !important;
+    text-align: center !important;
+    padding: 8px !important;
+    font-size: 0.75rem !important;
+    color: #64748b !important;
+    pointer-events: none !important;
+    opacity: 0 !important;
+    transition: opacity 0.3s ease !important;
+}
+
+.table-container:hover::after {
+    opacity: 1 !important;
+}
+
+/* ===== CARD BODY FIXES ===== */
+.card-body {
+    padding: 0 !important;
+    overflow: visible !important;
+}
+
+.card-body > .table-container,
+.card-body > .table-responsive {
+    margin: 0 !important;
+    border-radius: 0 0 8px 8px !important;
+}
+
+/* ===== KOLOM AKSI TETAP DI KANAN ===== */
+.col-aksi,
+.action-column,
+th:last-child,
+td:last-child {
+    position: sticky !important;
+    right: 0 !important;
+    background: white !important;
+    z-index: 5 !important;
+    box-shadow: -2px 0 4px rgba(0, 0, 0, 0.05) !important;
+}
+
+thead th:last-child {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef) !important;
+}
+
+tbody tr:nth-child(even) td:last-child {
+    background: #f8f9fa !important;
+}
+
+/* ===== HEADER STICKY ===== */
+thead th,
+.table thead th {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 10 !important;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef) !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* ===== RESPONSIVE MOBILE ===== */
+@media (max-width: 768px) {
+    .table-container,
+    .table-responsive {
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+    
+    table,
+    .table {
+        font-size: 0.8rem !important;
+    }
+    
+    table td,
+    table th {
+        padding: 6px 8px !important;
+    }
+    
+    .text-wrapper,
+    .cell-content {
+        max-width: 200px !important;
+        font-size: 0.75rem !important;
+    }
+}
+
+@media (max-width: 576px) {
+    table,
+    .table {
+        font-size: 0.75rem !important;
+    }
+    
+    table td,
+    table th {
+        padding: 4px 6px !important;
+    }
+    
+    .text-wrapper,
+    .cell-content {
+        max-width: 150px !important;
+        font-size: 0.7rem !important;
+    }
+}
+
+/* ===== PERBAIKAN KHUSUS INDIKATOR KINERJA UTAMA ===== */
+.iku-table-container {
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    max-width: 100% !important;
+}
+
+.iku-table {
+    min-width: 1400px !important;
+    width: auto !important;
+}
+
+/* ===== PERBAIKAN KHUSUS ANALISIS SWOT ===== */
+.swot-table-container {
+    overflow-x: auto !important;
+    max-width: 100% !important;
+}
+
+.swot-table {
+    min-width: 1200px !important;
+}
+
+/* ===== PERBAIKAN KHUSUS RISK REGISTER ===== */
+.risk-register-table-container {
+    overflow-x: auto !important;
+    max-width: 100% !important;
+}
+
+.risk-register-table {
+    min-width: 1600px !important;
+}
+
+/* ===== PERBAIKAN KHUSUS RENCANA STRATEGIS ===== */
+.rencana-strategis-wrapper .table-responsive {
+    overflow-x: auto !important;
+    max-width: 100% !important;
+}
+
+.rencana-strategis-wrapper .table {
+    min-width: 1300px !important;
+}
+
+/* ===== SHADOW INDICATOR UNTUK SCROLL ===== */
+.table-container.has-scroll-left::before {
+    content: '' !important;
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    width: 20px !important;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.1), transparent) !important;
+    pointer-events: none !important;
+    z-index: 15 !important;
+}
+
+.table-container.has-scroll-right::after {
+    content: '' !important;
+    position: absolute !important;
+    right: 0 !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    width: 20px !important;
+    background: linear-gradient(to left, rgba(0, 0, 0, 0.1), transparent) !important;
+    pointer-events: none !important;
+    z-index: 15 !important;
+}
+
+/* ===== PREVENT LAYOUT SHIFT ===== */
+.table-container,
+.table-responsive {
+    contain: layout style !important;
+}
+
+/* ===== SMOOTH SCROLLING ===== */
+.table-container,
+.table-responsive {
+    scroll-behavior: smooth !important;
+}
+
+/* ===== ACCESSIBILITY ===== */
+.table-container:focus,
+.table-responsive:focus {
+    outline: 2px solid #3b82f6 !important;
+    outline-offset: 2px !important;
+}

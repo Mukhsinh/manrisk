@@ -1,0 +1,138 @@
+/* Analisis SWOT - Button Color Fix */
+
+/* Tombol Tambah - Warna Cerah Solid (Hijau Terang) */
+.btn-primary,
+button.btn-primary,
+.action-buttons .btn-primary,
+button[onclick*="showAddModal"] {
+    background: #10b981 !important; /* Hijau cerah solid */
+    background-color: #10b981 !important;
+    background-image: none !important;
+    border-color: #10b981 !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3) !important;
+    transition: all 0.2s ease !important;
+}
+
+.btn-primary:hover,
+button.btn-primary:hover,
+.action-buttons .btn-primary:hover,
+button[onclick*="showAddModal"]:hover {
+    background: #059669 !important; /* Hijau lebih gelap saat hover */
+    background-color: #059669 !important;
+    border-color: #059669 !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4) !important;
+}
+
+.btn-primary:active,
+button.btn-primary:active,
+.action-buttons .btn-primary:active,
+button[onclick*="showAddModal"]:active {
+    background: #047857 !important;
+    background-color: #047857 !important;
+    border-color: #047857 !important;
+    transform: translateY(0) !important;
+}
+
+/* Tombol Tambah di Modern UI */
+button.flex.items-center.justify-center.gap-2.h-10.px-4.bg-primary {
+    background: #10b981 !important;
+    background-color: #10b981 !important;
+    border: none !important;
+}
+
+button.flex.items-center.justify-center.gap-2.h-10.px-4.bg-primary:hover {
+    background: #059669 !important;
+    background-color: #059669 !important;
+}
+
+/* Tombol Simpan di Modal */
+.modal-footer .btn-primary,
+.modal-footer button[type="submit"] {
+    background: #10b981 !important;
+    background-color: #10b981 !important;
+    border-color: #10b981 !important;
+}
+
+.modal-footer .btn-primary:hover,
+.modal-footer button[type="submit"]:hover {
+    background: #059669 !important;
+    background-color: #059669 !important;
+    border-color: #059669 !important;
+}
+
+/* Tombol Batal - Pastikan Single Click */
+.btn-secondary,
+button.btn-secondary,
+.modal-footer .btn-secondary,
+button[onclick*="closest"] {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+}
+
+/* Hapus loading indicator yang tidak perlu */
+.spinner-border,
+.loading-indicator {
+    display: none !important;
+}
+
+/* Optimasi loading - Hapus delay */
+.modal.active {
+    animation: none !important;
+    transition: none !important;
+}
+
+.modal-content {
+    animation: none !important;
+    transition: none !important;
+}
+
+/* Pastikan tombol tidak double-click */
+button {
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+}
+
+/* Tombol Quick Actions */
+.w-full.py-3.bg-primary {
+    background: #10b981 !important;
+    background-color: #10b981 !important;
+}
+
+.w-full.py-3.bg-primary:hover {
+    background: #059669 !important;
+    background-color: #059669 !important;
+}
+
+/* Override semua warna primary menjadi hijau cerah */
+.bg-primary,
+.bg-primary-dark,
+.text-primary {
+    background-color: #10b981 !important;
+}
+
+.hover\:bg-primary-dark:hover {
+    background-color: #059669 !important;
+}
+
+.text-primary {
+    color: #10b981 !important;
+}
+
+/* Border primary */
+.border-primary {
+    border-color: #10b981 !important;
+}
+
+/* Shadow primary */
+.shadow-blue-500\/20 {
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.2) !important;
+}
+
+.shadow-lg.shadow-blue-500\/20 {
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3) !important;
+}

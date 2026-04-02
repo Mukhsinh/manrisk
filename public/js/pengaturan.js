@@ -167,9 +167,9 @@ const PengaturanAplikasi = {
             </div>
           </div>
           <div class="form-actions full-width">
-            <button type="button" class="btn btn-secondary" id="btn-identitas-cancel">Batalkan Perubahan</button>
-            <button type="button" class="btn btn-warning" id="btn-identitas-reset">Reset ke Default</button>
-            <button type="submit" class="btn btn-primary">Simpan Pengaturan</button>
+            <button type="button" class="btn btn-secondary" id="btn-identitas-cancel">Batal</button>
+            <button type="button" class="btn btn-warning" id="btn-identitas-reset">Reset</button>
+            <button type="submit" class="btn btn-primary">Simpan</button>
           </div>
         </form>
       </div>
@@ -358,7 +358,7 @@ const PengaturanAplikasi = {
           <div class="form-actions full-width">
             <button type="button" class="btn btn-secondary" id="btn-kode-reset">Kembalikan Nilai Awal</button>
             <button type="submit" class="btn btn-primary">
-              <i class="fas fa-save"></i> Simpan Pengaturan Kode
+              <i class="fas fa-save"></i> Simpan
             </button>
           </div>
         </form>
@@ -433,11 +433,11 @@ const PengaturanAplikasi = {
                 <td>${org.code || '-'}</td>
                 <td>${org.description || '-'}</td>
                 <td>
-                  <button class="btn btn-secondary btn-sm" data-action="edit-org" data-org="${org.id}" onclick="PengaturanAplikasi.populateOrgForm('${org.id}')">
-                    <i class="fas fa-edit"></i> Edit
+                  <button class="btn-action-edit" data-action="edit-org" data-org="${org.id}" onclick="PengaturanAplikasi.populateOrgForm('${org.id}')">
+                    <i data-lucide="pencil"></i> Edit
                   </button>
-                  <button class="btn btn-danger btn-sm" data-action="delete-org" data-org="${org.id}" onclick="PengaturanAplikasi.deleteOrganization('${org.id}')" style="margin-left: 0.5rem;">
-                    <i class="fas fa-trash"></i> Hapus
+                  <button class="btn-action-delete" data-action="delete-org" data-org="${org.id}" onclick="PengaturanAplikasi.deleteOrganization('${org.id}')" style="margin-left: 0.5rem;">
+                    <i data-lucide="trash-2"></i> Hapus
                   </button>
                 </td>
               </tr>`

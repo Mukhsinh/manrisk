@@ -371,17 +371,17 @@ const KRI = {
             
             <!-- Tombol-tombol di atas header tabel -->
             <div class="kri-action-bar">
-                <button class="btn btn-warning" onclick="KRI.downloadTemplate()">
-                    <i class="fas fa-download"></i> Unduh Template
+                <button class="btn-download" onclick="KRI.downloadTemplate()">
+                    <i data-lucide="download"></i> Unduh Template
                 </button>
-                <button class="btn btn-success" onclick="KRI.showImportModal()">
-                    <i class="fas fa-upload"></i> Import Data
+                <button class="btn-import" onclick="KRI.showImportModal()">
+                    <i data-lucide="upload"></i> Import Data
                 </button>
-                <button class="btn btn-primary" onclick="KRI.showAddModal()">
-                    <i class="fas fa-plus"></i> Tambah KRI
+                <button class="btn-tambah" onclick="KRI.showAddModal()">
+                    <i data-lucide="plus"></i> Tambah KRI
                 </button>
-                <button class="btn btn-info" onclick="KRI.downloadReport()">
-                    <i class="fas fa-file-pdf"></i> Unduh Laporan
+                <button class="btn-download" onclick="KRI.downloadReport()">
+                    <i data-lucide="file-text"></i> Unduh Laporan
                 </button>
             </div>
             
@@ -416,11 +416,11 @@ const KRI = {
                                         }">${item.status_indikator === 'Peringatan' ? 'Hati-hati' : item.status_indikator}</span>
                                     </td>
                                     <td class="action-cell">
-                                        <button class="btn-action btn-edit" onclick="KRI.edit('${item.id}')" title="Edit">
-                                            <i class="fas fa-edit"></i>
+                                        <button class="btn-action-edit" onclick="KRI.edit('${item.id}')" title="Edit">
+                                            <i data-lucide="pencil"></i> Edit
                                         </button>
-                                        <button class="btn-action btn-delete" onclick="KRI.confirmDelete('${item.id}', '${item.kode}')" title="Hapus">
-                                            <i class="fas fa-trash"></i>
+                                        <button class="btn-action-delete" onclick="KRI.confirmDelete('${item.id}', '${item.kode}')" title="Hapus">
+                                            <i data-lucide="trash-2"></i> Hapus
                                         </button>
                                     </td>
                                 </tr>

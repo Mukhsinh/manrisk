@@ -1,0 +1,341 @@
+/**
+ * RENCANA STRATEGIS - ICON CONTRAST FIX
+ * Meningkatkan visibilitas dan kontras icon pada tombol dan tabel
+ * Created: 2026-01-29
+ */
+
+/* ============================================
+   ICON ENHANCEMENT - TOMBOL AKSI DI TABEL
+   ============================================ */
+
+/* Tombol View - Biru dengan icon lebih tebal dan kontras tinggi */
+.rencana-strategis-wrapper .rs-action-btn[data-action="view"] {
+  background: #0284c7 !important;
+  color: #ffffff !important;
+  border: 2px solid #0369a1 !important;
+  box-shadow: 0 3px 8px rgba(2, 132, 199, 0.4) !important;
+}
+
+.rencana-strategis-wrapper .rs-action-btn[data-action="view"] i {
+  color: #ffffff !important;
+  font-size: 1.2rem !important;
+  font-weight: 900 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) !important;
+}
+
+.rencana-strategis-wrapper .rs-action-btn[data-action="view"]:hover {
+  background: #0369a1 !important;
+  border-color: #075985 !important;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 5px 15px rgba(2, 132, 199, 0.5) !important;
+}
+
+/* Tombol Edit - Orange dengan icon lebih tebal dan kontras tinggi */
+.rencana-strategis-wrapper .rs-action-btn[data-action="edit"] {
+  background: #ea580c !important;
+  color: #ffffff !important;
+  border: 2px solid #c2410c !important;
+  box-shadow: 0 3px 8px rgba(234, 88, 12, 0.4) !important;
+}
+
+.rencana-strategis-wrapper .rs-action-btn[data-action="edit"] i {
+  color: #ffffff !important;
+  font-size: 1.2rem !important;
+  font-weight: 900 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) !important;
+}
+
+.rencana-strategis-wrapper .rs-action-btn[data-action="edit"]:hover {
+  background: #c2410c !important;
+  border-color: #9a3412 !important;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 5px 15px rgba(234, 88, 12, 0.5) !important;
+}
+
+/* Tombol Delete - Merah dengan icon lebih tebal dan kontras tinggi */
+.rencana-strategis-wrapper .rs-action-btn[data-action="delete"] {
+  background: #dc2626 !important;
+  color: #ffffff !important;
+  border: 2px solid #b91c1c !important;
+  box-shadow: 0 3px 8px rgba(220, 38, 38, 0.4) !important;
+}
+
+.rencana-strategis-wrapper .rs-action-btn[data-action="delete"] i {
+  color: #ffffff !important;
+  font-size: 1.2rem !important;
+  font-weight: 900 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) !important;
+}
+
+.rencana-strategis-wrapper .rs-action-btn[data-action="delete"]:hover {
+  background: #b91c1c !important;
+  border-color: #991b1b !important;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 5px 15px rgba(220, 38, 38, 0.5) !important;
+}
+
+/* Ukuran tombol lebih besar untuk visibilitas lebih baik */
+.rencana-strategis-wrapper .btn-group-sm .btn {
+  padding: 0.7rem 1rem !important;
+  min-width: 48px !important;
+  min-height: 48px !important;
+  border-radius: 10px !important;
+}
+
+/* Efek active untuk feedback visual */
+.rencana-strategis-wrapper .rs-action-btn:active {
+  transform: scale(0.95) translateY(0) !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* ============================================
+   ICON ENHANCEMENT - TOMBOL HEADER
+   ============================================ */
+
+/* Tombol Refresh dengan icon lebih kontras */
+.rencana-strategis-wrapper .card-header #rs-refresh-btn {
+  background: #3b82f6 !important;
+  color: #ffffff !important;
+  border: 2px solid #2563eb !important;
+  box-shadow: 0 2px 6px rgba(59, 130, 246, 0.3) !important;
+}
+
+.rencana-strategis-wrapper .card-header #rs-refresh-btn i {
+  color: #ffffff !important;
+  font-size: 1.15rem !important;
+  font-weight: 900 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15) !important;
+}
+
+.rencana-strategis-wrapper .card-header #rs-refresh-btn:hover {
+  background: #2563eb !important;
+  border-color: #1d4ed8 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4) !important;
+}
+
+/* Tombol Export dengan icon lebih kontras */
+.rencana-strategis-wrapper .card-header #rs-export-btn {
+  background: #10b981 !important;
+  color: #ffffff !important;
+  border: 2px solid #059669 !important;
+  box-shadow: 0 2px 6px rgba(16, 185, 129, 0.3) !important;
+}
+
+.rencana-strategis-wrapper .card-header #rs-export-btn i {
+  color: #ffffff !important;
+  font-size: 1.15rem !important;
+  font-weight: 900 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15) !important;
+}
+
+.rencana-strategis-wrapper .card-header #rs-export-btn:hover {
+  background: #059669 !important;
+  border-color: #047857 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4) !important;
+}
+
+/* ============================================
+   ICON ENHANCEMENT - STATUS BADGE DI TABEL
+   ============================================ */
+
+/* Badge Aktif - Hijau dengan icon lebih kontras */
+.rencana-strategis-wrapper .badge[style*="background: #22c55e"] {
+  background: #16a34a !important;
+  color: #ffffff !important;
+  border: 2px solid #15803d !important;
+  box-shadow: 0 2px 4px rgba(22, 163, 74, 0.3) !important;
+  font-weight: 700 !important;
+  padding: 0.5rem 0.85rem !important;
+}
+
+.rencana-strategis-wrapper .badge[style*="background: #22c55e"] i {
+  color: #ffffff !important;
+  font-size: 0.9rem !important;
+  font-weight: 900 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Badge Draft - Orange dengan icon lebih kontras */
+.rencana-strategis-wrapper .badge[style*="background: #f59e0b"] {
+  background: #ea580c !important;
+  color: #ffffff !important;
+  border: 2px solid #c2410c !important;
+  box-shadow: 0 2px 4px rgba(234, 88, 12, 0.3) !important;
+  font-weight: 700 !important;
+  padding: 0.5rem 0.85rem !important;
+}
+
+.rencana-strategis-wrapper .badge[style*="background: #f59e0b"] i {
+  color: #ffffff !important;
+  font-size: 0.9rem !important;
+  font-weight: 900 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Badge Selesai - Biru dengan icon lebih kontras */
+.rencana-strategis-wrapper .badge[style*="background: #3b82f6"] {
+  background: #2563eb !important;
+  color: #ffffff !important;
+  border: 2px solid #1d4ed8 !important;
+  box-shadow: 0 2px 4px rgba(37, 99, 235, 0.3) !important;
+  font-weight: 700 !important;
+  padding: 0.5rem 0.85rem !important;
+}
+
+.rencana-strategis-wrapper .badge[style*="background: #3b82f6"] i {
+  color: #ffffff !important;
+  font-size: 0.9rem !important;
+  font-weight: 900 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* ============================================
+   ICON ENHANCEMENT - HEADER TABEL
+   ============================================ */
+
+/* Icon di header tabel lebih kontras */
+.rencana-strategis-wrapper .table th i {
+  color: #1e40af !important;
+  font-size: 1.1rem !important;
+  font-weight: 900 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+  margin-right: 0.6rem !important;
+}
+
+/* ============================================
+   ICON ENHANCEMENT - FORM
+   ============================================ */
+
+/* Icon di label form lebih kontras */
+.rencana-strategis-wrapper .form-label i {
+  color: #2563eb !important;
+  font-size: 1.1rem !important;
+  font-weight: 900 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+  margin-right: 0.6rem !important;
+}
+
+/* Icon di tombol form lebih kontras */
+.rencana-strategis-wrapper #rs-form .btn i {
+  font-size: 1.1rem !important;
+  font-weight: 900 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15) !important;
+  margin-right: 0.5rem !important;
+}
+
+/* ============================================
+   ICON ENHANCEMENT - STAT CARDS
+   ============================================ */
+
+/* Icon di stat cards lebih besar dan kontras */
+.rencana-strategis-wrapper .row.g-3.mb-4 .flex-shrink-0 i {
+  font-size: 2rem !important;
+  font-weight: 900 !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+  color: #ffffff !important;
+}
+
+/* ============================================
+   ACCESSIBILITY & FOCUS STATES
+   ============================================ */
+
+/* Focus state untuk keyboard navigation */
+.rencana-strategis-wrapper .rs-action-btn:focus {
+  outline: 3px solid rgba(59, 130, 246, 0.5) !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2) !important;
+}
+
+/* Hover state untuk semua tombol dengan icon */
+.rencana-strategis-wrapper .btn:hover i {
+  transform: scale(1.1);
+  transition: transform 0.2s ease;
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Icon tetap terlihat di mobile */
+  .rencana-strategis-wrapper .rs-action-btn i {
+    font-size: 1.1rem !important;
+  }
+  
+  .rencana-strategis-wrapper .btn-group-sm .btn {
+    min-width: 44px !important;
+    min-height: 44px !important;
+    padding: 0.6rem 0.8rem !important;
+  }
+}
+
+@media (max-width: 576px) {
+  /* Icon lebih kecil tapi tetap jelas di layar kecil */
+  .rencana-strategis-wrapper .rs-action-btn i {
+    font-size: 1rem !important;
+  }
+  
+  .rencana-strategis-wrapper .btn-group-sm .btn {
+    min-width: 40px !important;
+    min-height: 40px !important;
+    padding: 0.5rem 0.7rem !important;
+  }
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+  /* Sembunyikan tombol aksi saat print */
+  .rencana-strategis-wrapper .rs-action-btn,
+  .rencana-strategis-wrapper .card-header .btn-group {
+    display: none !important;
+  }
+  
+  /* Badge tetap terlihat dengan border saat print */
+  .rencana-strategis-wrapper .badge {
+    border: 2px solid #000 !important;
+    color: #000 !important;
+    background: #fff !important;
+  }
+}
+
+/* ============================================
+   ANIMATION ENHANCEMENTS
+   ============================================ */
+
+/* Smooth transition untuk semua icon */
+.rencana-strategis-wrapper i {
+  transition: all 0.2s ease-in-out !important;
+}
+
+/* Pulse animation untuk tombol refresh saat loading */
+@keyframes pulse-icon {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.rencana-strategis-wrapper #rs-refresh-btn.loading i {
+  animation: pulse-icon 1s infinite;
+}
+
+/* Rotate animation untuk icon refresh */
+@keyframes rotate-icon {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rencana-strategis-wrapper #rs-refresh-btn:active i {
+  animation: rotate-icon 0.5s ease-in-out;
+}

@@ -1,0 +1,323 @@
+/**
+ * Disabled Button Styles
+ * Styles untuk disabled buttons
+ */
+
+/* ===== DISABLED STATE ===== */
+
+/* Base disabled styles */
+button:disabled,
+button[disabled],
+button.disabled,
+button[aria-disabled="true"],
+.btn:disabled,
+.btn[disabled],
+.btn.disabled,
+.btn[aria-disabled="true"],
+[role="button"]:disabled,
+[role="button"][disabled],
+[role="button"].disabled,
+[role="button"][aria-disabled="true"],
+[data-action]:disabled,
+[data-action][disabled],
+[data-action].disabled,
+[data-action][aria-disabled="true"] {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+    position: relative;
+}
+
+/* Remove focus dari disabled buttons */
+button:disabled:focus,
+button[disabled]:focus,
+button.disabled:focus,
+button[aria-disabled="true"]:focus,
+.btn:disabled:focus,
+.btn[disabled]:focus,
+.btn.disabled:focus,
+.btn[aria-disabled="true"]:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+/* Prevent hover effects pada disabled buttons */
+button:disabled:hover,
+button[disabled]:hover,
+button.disabled:hover,
+button[aria-disabled="true"]:hover,
+.btn:disabled:hover,
+.btn[disabled]:hover,
+.btn.disabled:hover,
+.btn[aria-disabled="true"]:hover {
+    transform: none;
+    opacity: 0.6;
+}
+
+/* ===== DISABLED SHAKE ANIMATION ===== */
+
+/* Shake animation saat disabled button di-click */
+@keyframes disabled-shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.disabled-shake {
+    animation: disabled-shake 0.5s;
+}
+
+/* ===== DISABLED TOOLTIP ===== */
+
+/* Tooltip untuk disabled buttons */
+button:disabled::after,
+button[disabled]::after,
+button.disabled::after,
+button[aria-disabled="true"]::after,
+.btn:disabled::after,
+.btn[disabled]::after,
+.btn.disabled::after,
+.btn[aria-disabled="true"]::after {
+    content: attr(data-disabled-reason);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-5px);
+    background-color: #333;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s, transform 0.2s;
+    z-index: 1000;
+}
+
+button:disabled:hover::after,
+button[disabled]:hover::after,
+button.disabled:hover::after,
+button[aria-disabled="true"]:hover::after,
+.btn:disabled:hover::after,
+.btn[disabled]:hover::after,
+.btn.disabled:hover::after,
+.btn[aria-disabled="true"]:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-10px);
+}
+
+/* Arrow untuk tooltip */
+button:disabled::before,
+button[disabled]::before,
+button.disabled::before,
+button[aria-disabled="true"]::before,
+.btn:disabled::before,
+.btn[disabled]::before,
+.btn.disabled::before,
+.btn[aria-disabled="true"]::before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: #333;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+    z-index: 1000;
+}
+
+button:disabled:hover::before,
+button[disabled]:hover::before,
+button.disabled:hover::before,
+button[aria-disabled="true"]:hover::before,
+.btn:disabled:hover::before,
+.btn[disabled]:hover::before,
+.btn.disabled:hover::before,
+.btn[aria-disabled="true"]:hover::before {
+    opacity: 1;
+}
+
+/* Hide tooltip jika tidak ada data-disabled-reason */
+button:disabled:not([data-disabled-reason])::after,
+button[disabled]:not([data-disabled-reason])::after,
+button.disabled:not([data-disabled-reason])::after,
+button[aria-disabled="true"]:not([data-disabled-reason])::after,
+.btn:disabled:not([data-disabled-reason])::after,
+.btn[disabled]:not([data-disabled-reason])::after,
+.btn.disabled:not([data-disabled-reason])::after,
+.btn[aria-disabled="true"]:not([data-disabled-reason])::after {
+    display: none;
+}
+
+button:disabled:not([data-disabled-reason])::before,
+button[disabled]:not([data-disabled-reason])::before,
+button.disabled:not([data-disabled-reason])::before,
+button[aria-disabled="true"]:not([data-disabled-reason])::before,
+.btn:disabled:not([data-disabled-reason])::before,
+.btn[disabled]:not([data-disabled-reason])::before,
+.btn.disabled:not([data-disabled-reason])::before,
+.btn[aria-disabled="true"]:not([data-disabled-reason])::before {
+    display: none;
+}
+
+/* ===== DISABLED OVERLAY ===== */
+
+/* Overlay untuk disabled buttons */
+button:disabled,
+button[disabled],
+button.disabled,
+button[aria-disabled="true"],
+.btn:disabled,
+.btn[disabled],
+.btn.disabled,
+.btn[aria-disabled="true"] {
+    position: relative;
+}
+
+button:disabled::after,
+button[disabled]::after,
+button.disabled::after,
+button[aria-disabled="true"]::after,
+.btn:disabled::after,
+.btn[disabled]::after,
+.btn.disabled::after,
+.btn[aria-disabled="true"]::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.5);
+    pointer-events: none;
+}
+
+/* ===== SPECIFIC BUTTON TYPES ===== */
+
+/* Primary button disabled */
+.btn-primary:disabled,
+.btn-primary[disabled],
+.btn-primary.disabled,
+.btn-primary[aria-disabled="true"] {
+    background-color: #A0C4E8;
+    border-color: #A0C4E8;
+}
+
+/* Secondary button disabled */
+.btn-secondary:disabled,
+.btn-secondary[disabled],
+.btn-secondary.disabled,
+.btn-secondary[aria-disabled="true"] {
+    background-color: #B6BDC3;
+    border-color: #B6BDC3;
+}
+
+/* Success button disabled */
+.btn-success:disabled,
+.btn-success[disabled],
+.btn-success.disabled,
+.btn-success[aria-disabled="true"] {
+    background-color: #94D3A2;
+    border-color: #94D3A2;
+}
+
+/* Danger button disabled */
+.btn-danger:disabled,
+.btn-danger[disabled],
+.btn-danger.disabled,
+.btn-danger[aria-disabled="true"] {
+    background-color: #EE9BA2;
+    border-color: #EE9BA2;
+}
+
+/* Warning button disabled */
+.btn-warning:disabled,
+.btn-warning[disabled],
+.btn-warning.disabled,
+.btn-warning[aria-disabled="true"] {
+    background-color: #FFE083;
+    border-color: #FFE083;
+}
+
+/* Info button disabled */
+.btn-info:disabled,
+.btn-info[disabled],
+.btn-info.disabled,
+.btn-info[aria-disabled="true"] {
+    background-color: #8BD1DC;
+    border-color: #8BD1DC;
+}
+
+/* ===== LOADING STATE (similar to disabled) ===== */
+
+/* Loading buttons juga tidak dapat di-focus */
+button.loading,
+.btn.loading,
+[data-action].loading {
+    cursor: wait;
+    pointer-events: none;
+    position: relative;
+}
+
+button.loading:focus,
+.btn.loading:focus,
+[data-action].loading:focus {
+    outline: 1px dashed #4A90E2;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.1);
+}
+
+/* ===== HIGH CONTRAST MODE ===== */
+
+/* Support untuk Windows High Contrast Mode */
+@media (prefers-contrast: high) {
+    button:disabled,
+    button[disabled],
+    button.disabled,
+    button[aria-disabled="true"],
+    .btn:disabled,
+    .btn[disabled],
+    .btn.disabled,
+    .btn[aria-disabled="true"] {
+        border: 2px dashed currentColor;
+        opacity: 1;
+    }
+}
+
+/* ===== REDUCED MOTION ===== */
+
+/* Respect user preference untuk reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .disabled-shake {
+        animation: none;
+    }
+    
+    button:disabled::after,
+    button[disabled]::after,
+    button.disabled::after,
+    button[aria-disabled="true"]::after,
+    .btn:disabled::after,
+    .btn[disabled]::after,
+    .btn.disabled::after,
+    .btn[aria-disabled="true"]::after {
+        transition: none;
+    }
+}
+
+/* ===== PRINT STYLES ===== */
+
+/* Hide disabled buttons saat print (optional) */
+@media print {
+    button:disabled,
+    button[disabled],
+    button.disabled,
+    button[aria-disabled="true"],
+    .btn:disabled,
+    .btn[disabled],
+    .btn.disabled,
+    .btn[aria-disabled="true"] {
+        display: none;
+    }
+}

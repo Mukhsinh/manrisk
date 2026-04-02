@@ -1,0 +1,180 @@
+/**
+ * RENCANA STRATEGIS TABLE FIX
+ * Perbaikan icon dan overflow pada tabel
+ * Created: 2026-01-29
+ */
+
+/* ===== ICON BUTTON IMPROVEMENTS ===== */
+.rs-action-btn {
+  position: relative;
+  overflow: visible !important;
+}
+
+.rs-action-btn i {
+  display: inline-block;
+  line-height: 1;
+  font-size: 1.3rem !important;
+  font-weight: 900 !important;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2) !important;
+}
+
+.rs-action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25) !important;
+}
+
+.rs-action-btn:active {
+  transform: translateY(0);
+}
+
+/* Icon colors with better contrast */
+.rs-action-btn[data-action="view"] {
+  background: #0ea5e9 !important;
+}
+
+.rs-action-btn[data-action="view"]:hover {
+  background: #0284c7 !important;
+}
+
+.rs-action-btn[data-action="edit"] {
+  background: #f59e0b !important;
+}
+
+.rs-action-btn[data-action="edit"]:hover {
+  background: #d97706 !important;
+}
+
+.rs-action-btn[data-action="delete"] {
+  background: #ef4444 !important;
+}
+
+.rs-action-btn[data-action="delete"]:hover {
+  background: #dc2626 !important;
+}
+
+/* ===== TABLE CELL OVERFLOW FIX ===== */
+.table td {
+  vertical-align: middle !important;
+}
+
+/* Nama Rencana Column - Allow text wrapping */
+.table td:nth-child(2) {
+  min-width: 200px;
+  max-width: 350px;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  white-space: normal !important;
+  line-height: 1.5 !important;
+}
+
+.table td:nth-child(2) .fw-semibold {
+  display: block;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  white-space: normal !important;
+  line-height: 1.5 !important;
+}
+
+/* Target Column - Allow text wrapping */
+.table td:nth-child(3) {
+  min-width: 120px;
+  max-width: 200px;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  white-space: normal !important;
+  line-height: 1.5 !important;
+}
+
+.table td:nth-child(3) small {
+  display: block !important;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  white-space: normal !important;
+  line-height: 1.5 !important;
+}
+
+/* Kode Column - Prevent overflow */
+.table td:nth-child(1) {
+  min-width: 100px;
+  max-width: 130px;
+}
+
+.table td:nth-child(1) .badge {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+/* Periode Column */
+.table td:nth-child(4) {
+  min-width: 140px;
+  white-space: nowrap;
+}
+
+/* Status Column */
+.table td:nth-child(5) {
+  min-width: 90px;
+  max-width: 110px;
+}
+
+/* Action Column */
+.table td:nth-child(6) {
+  min-width: 150px;
+  white-space: nowrap;
+  text-align: center;
+}
+
+/* ===== TABLE RESPONSIVE IMPROVEMENTS ===== */
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Ensure table doesn't break layout */
+.table {
+  table-layout: auto;
+  width: 100%;
+}
+
+/* ===== BUTTON GROUP SPACING ===== */
+.btn-group[role="group"] {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ===== MOBILE RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .table td:nth-child(2) {
+    max-width: 250px;
+  }
+  
+  .table td:nth-child(3) {
+    max-width: 150px;
+  }
+  
+  .rs-action-btn {
+    min-width: 38px !important;
+    min-height: 38px !important;
+    padding: 0.5rem 0.75rem !important;
+  }
+  
+  .rs-action-btn i {
+    font-size: 1.1rem !important;
+  }
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+  .rs-action-btn {
+    display: none !important;
+  }
+  
+  .table td {
+    word-wrap: break-word !important;
+    white-space: normal !important;
+  }
+}

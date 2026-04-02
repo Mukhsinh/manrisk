@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
+<!DOCTYPE html><html lang="id"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Residual Risk Analysis - Enhanced TypeScript Version</title>
@@ -345,6 +343,10 @@
             }
         }
     </style>
+    <link href="/css/table-scroll-fix.css" rel="stylesheet">
+    <link href="/css/table-scroll-enhancer.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/button-standardization-final.css">
+    <link rel="stylesheet" href="/css/action-buttons-standardized.css">
 </head>
 <body>
     <!-- Debug Panel -->
@@ -361,7 +363,7 @@
             <a class="navbar-brand" href="index.html">
                 <i data-lucide="shield-check"></i> PINTAR MR
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler text-truncate" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Tombol">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -405,13 +407,13 @@
                         </div>
                     </div>
                     <div class="btn-group">
-                        <button class="btn btn-outline-secondary" onclick="window.residualRiskManager.toggleDebug()">
+                        <button class="btn btn-outline-secondary text-truncate" onclick="window.residualRiskManager.toggleDebug()">
                             <i data-lucide="bug"></i> Debug
                         </button>
-                        <button class="btn btn-outline-primary" onclick="window.residualRiskManager.loadData()">
+                        <button class="btn btn-outline-primary text-truncate" onclick="window.residualRiskManager.loadData()">
                             <i data-lucide="refresh-cw"></i> Refresh
                         </button>
-                        <button class="btn btn-primary" onclick="window.residualRiskManager.downloadExcel()">
+                        <button class="btn btn-primary text-truncate" onclick="window.residualRiskManager.downloadExcel()">
                             <i data-lucide="download"></i> Export Excel
                         </button>
                     </div>
@@ -563,7 +565,7 @@
                             <div class="error-panel">
                                 <h4><i data-lucide="alert-triangle"></i> Error</h4>
                                 <p>Gagal memuat data: ${error.message}</p>
-                                <button class="btn btn-primary" onclick="window.residualRiskManager.loadData()">
+                                <button class="btn btn-primary text-truncate" onclick="window.residualRiskManager.loadData()">
                                     <i data-lucide="refresh-cw"></i> Coba Lagi
                                 </button>
                             </div>
@@ -595,7 +597,7 @@
                             successDiv.className = 'alert alert-success alert-dismissible fade show';
                             successDiv.innerHTML = `
                                 <i data-lucide="check-circle"></i> File Excel berhasil diunduh
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                <button aria-label="Tutup" type="button" class="btn-close text-truncate" data-bs-dismiss="alert"></button>
                             `;
                             container.insertBefore(successDiv, container.firstChild);
                             
@@ -624,5 +626,71 @@
             }, 1000);
         }
     </script>
-</body>
-</html>
+    <script src="/js/table-scroll-enhancer.js"></script>
+    <script src="/js/button-standardization-auto.js"></script>
+    <script src="/js/action-buttons-standardizer.js"></script>
+
+<!-- Button Event Delegation Script -->
+<script>
+(function() {
+    'use strict';
+    
+    // Event delegation untuk tombol dengan data-action
+    document.addEventListener('click', function(e) {
+        const button = e.target.closest('[data-action]');
+        if (!button) return;
+        
+        const action = button.dataset.action;
+        const handler = window['handle' + action.charAt(0).toUpperCase() + action.slice(1)];
+        
+        if (typeof handler === 'function') {
+            handler.call(button, e);
+        } else {
+            console.warn('Handler not found for action:', action);
+        }
+    });
+    
+    // Default handlers untuk common actions
+    window.handleAdd = function(e) {
+        console.log('Add button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleEdit = function(e) {
+        console.log('Edit button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleDelete = function(e) {
+        console.log('Delete button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleDownload = function(e) {
+        console.log('Download button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleImport = function(e) {
+        console.log('Import button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleExport = function(e) {
+        console.log('Export button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleSave = function(e) {
+        console.log('Save button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleCancel = function(e) {
+        console.log('Cancel button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+})();
+</script>
+
+</body></html>

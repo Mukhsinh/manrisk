@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
+<!DOCTYPE html><html lang="id"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Indikator Kinerja Utama - Fixed</title>
@@ -316,6 +314,8 @@
             margin-right: 10px;
         }
     </style>
+    <link rel="stylesheet" href="/css/button-standardization-final.css">
+    <link rel="stylesheet" href="/css/action-buttons-standardized.css">
 </head>
 <body>
     <div class="container-fluid py-4">
@@ -329,10 +329,10 @@
                     </div>
                     <div class="col-md-4 text-end">
                         <div class="d-flex gap-2 justify-content-end flex-wrap">
-                            <button class="btn btn-success" onclick="downloadReport()">
+                            <button class="btn btn-success text-truncate" onclick="downloadReport()" data-action="downloadReport">
                                 <i class="fas fa-download"></i> Unduh Laporan
                             </button>
-                            <button class="btn btn-primary" onclick="showModal()">
+                            <button class="btn btn-primary text-truncate" onclick="showModal()" data-action="showModal">
                                 <i class="fas fa-plus"></i> Tambah Indikator
                             </button>
                         </div>
@@ -407,13 +407,13 @@
         <div class="modal-content" style="max-width: 800px;">
             <div class="modal-header">
                 <h3 class="modal-title" id="modalTitle">Tambah Indikator Kinerja Utama</h3>
-                <button class="modal-close" onclick="closeModal('dataModal')">&times;</button>
+                <button class="modal-close text-truncate" onclick="closeModal('dataModal')" data-action="closeModal">×</button>
             </div>
             <form id="ikuForm" onsubmit="saveData(event)">
                 <div style="padding: 1.5rem;">
                     <div class="mb-3">
                         <label class="form-label">Rencana Strategis *</label>
-                        <select class="form-control" id="rencanaStrategis" required>
+                        <select class="form-control" id="rencanaStrategis" required="">
                             <option value="">Pilih Rencana Strategis</option>
                         </select>
                     </div>
@@ -425,7 +425,7 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Indikator *</label>
-                        <textarea class="form-control" id="indikator" required rows="3"></textarea>
+                        <textarea class="form-control" id="indikator" required="" rows="3"></textarea>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
@@ -465,8 +465,8 @@
                     </div>
                 </div>
                 <div class="modal-footer" style="padding: 1rem 1.5rem; border-top: 1px solid #e2e8f0;">
-                    <button type="button" class="btn btn-secondary" onclick="closeModal('dataModal')">Batal</button>
-                    <button type="submit" class="btn btn-primary">
+                    <button type="button" class="btn btn-secondary text-truncate" onclick="closeModal('dataModal')" data-action="closeModal">Batal</button>
+                    <button type="submit" class="btn btn-primary text-truncate">
                         <i class="fas fa-save"></i> Simpan
                     </button>
                 </div>
@@ -670,10 +670,10 @@
                     </td>
                     <td class="col-aksi">
                         <div class="d-flex gap-1 justify-content-center">
-                            <button class="btn-icon btn-edit" onclick="editData('${item.id}')" title="Edit">
+                            <button class="btn-icon btn-edit text-truncate" onclick="editData('${item.id}')" title="Edit">
                                 <i class="fas fa-edit"></i>
                             </button>
-                            <button class="btn-icon btn-delete" onclick="deleteData('${item.id}')" title="Hapus">
+                            <button class="btn-icon btn-delete text-truncate" onclick="deleteData('${item.id}')" title="Hapus">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </div>
@@ -896,5 +896,70 @@
             loadInitialData();
         });
     </script>
-</body>
-</html>
+    <script src="/js/button-standardization-auto.js"></script>
+    <script src="/js/action-buttons-standardizer.js"></script>
+
+<!-- Button Event Delegation Script -->
+<script>
+(function() {
+    'use strict';
+    
+    // Event delegation untuk tombol dengan data-action
+    document.addEventListener('click', function(e) {
+        const button = e.target.closest('[data-action]');
+        if (!button) return;
+        
+        const action = button.dataset.action;
+        const handler = window['handle' + action.charAt(0).toUpperCase() + action.slice(1)];
+        
+        if (typeof handler === 'function') {
+            handler.call(button, e);
+        } else {
+            console.warn('Handler not found for action:', action);
+        }
+    });
+    
+    // Default handlers untuk common actions
+    window.handleAdd = function(e) {
+        console.log('Add button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleEdit = function(e) {
+        console.log('Edit button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleDelete = function(e) {
+        console.log('Delete button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleDownload = function(e) {
+        console.log('Download button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleImport = function(e) {
+        console.log('Import button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleExport = function(e) {
+        console.log('Export button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleSave = function(e) {
+        console.log('Save button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleCancel = function(e) {
+        console.log('Cancel button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+})();
+</script>
+
+</body></html>

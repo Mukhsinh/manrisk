@@ -1,0 +1,244 @@
+/**
+ * ENHANCED ACTION BUTTONS STYLING
+ * Membuat icon detail/view dan edit lebih jelas dan menonjol
+ * Updated: 2026-01-29
+ */
+
+/* Container untuk tombol aksi */
+.rs-action-btn-group {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Base styling untuk semua tombol aksi */
+.rs-action-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 48px !important;
+  min-height: 48px !important;
+  padding: 0.75rem 0.95rem !important;
+  border-radius: 12px !important;
+  cursor: pointer !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2) !important;
+  overflow: visible !important;
+  font-weight: 700 !important;
+}
+
+/* Icon styling - lebih besar dan jelas */
+.rs-action-btn i {
+  font-size: 1.5rem !important;
+  font-weight: 900 !important;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3) !important;
+  display: block !important;
+  line-height: 1 !important;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2)) !important;
+}
+
+/* Tombol View/Detail - Biru Cerah Solid */
+.rs-action-btn[data-action="view"] {
+  background: #0ea5e9 !important;
+  color: white !important;
+  font-weight: 700 !important;
+  border: 2px solid #0284c7 !important;
+}
+
+.rs-action-btn[data-action="view"]:hover {
+  background: #0284c7 !important;
+  border-color: #0369a1 !important;
+  transform: translateY(-3px) scale(1.1) !important;
+  box-shadow: 0 10px 25px rgba(14, 165, 233, 0.6) !important;
+}
+
+.rs-action-btn[data-action="view"]:active {
+  transform: translateY(-1px) scale(1.05) !important;
+  box-shadow: 0 5px 15px rgba(14, 165, 233, 0.5) !important;
+  background: #0369a1 !important;
+}
+
+/* Tombol Edit - Orange Cerah Solid */
+.rs-action-btn[data-action="edit"] {
+  background: #f59e0b !important;
+  color: white !important;
+  font-weight: 700 !important;
+  border: 2px solid #d97706 !important;
+}
+
+.rs-action-btn[data-action="edit"]:hover {
+  background: #d97706 !important;
+  border-color: #b45309 !important;
+  transform: translateY(-3px) scale(1.1) !important;
+  box-shadow: 0 10px 25px rgba(245, 158, 11, 0.6) !important;
+}
+
+.rs-action-btn[data-action="edit"]:active {
+  transform: translateY(-1px) scale(1.05) !important;
+  box-shadow: 0 5px 15px rgba(245, 158, 11, 0.5) !important;
+  background: #b45309 !important;
+}
+
+/* Tombol Delete - Merah Cerah Solid */
+.rs-action-btn[data-action="delete"] {
+  background: #ef4444 !important;
+  color: white !important;
+  font-weight: 700 !important;
+  border: 2px solid #dc2626 !important;
+}
+
+.rs-action-btn[data-action="delete"]:hover {
+  background: #dc2626 !important;
+  border-color: #b91c1c !important;
+  transform: translateY(-3px) scale(1.1) !important;
+  box-shadow: 0 10px 25px rgba(239, 68, 68, 0.6) !important;
+}
+
+.rs-action-btn[data-action="delete"]:active {
+  transform: translateY(-1px) scale(1.05) !important;
+  box-shadow: 0 5px 15px rgba(239, 68, 68, 0.5) !important;
+  background: #b91c1c !important;
+}
+
+/* Tooltip enhancement */
+.rs-action-btn::before {
+  content: attr(title);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  padding: 6px 12px;
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  border-radius: 6px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s ease;
+  z-index: 1000;
+}
+
+.rs-action-btn::after {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-2px);
+  border: 5px solid transparent;
+  border-top-color: rgba(0, 0, 0, 0.9);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s ease;
+  z-index: 1000;
+}
+
+.rs-action-btn:hover::before,
+.rs-action-btn:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-4px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .rs-action-btn {
+    min-width: 40px !important;
+    min-height: 40px !important;
+    padding: 0.55rem 0.75rem !important;
+  }
+  
+  .rs-action-btn i {
+    font-size: 1.2rem !important;
+  }
+  
+  .rs-action-btn-group {
+    gap: 6px;
+  }
+}
+
+/* Focus state untuk accessibility */
+.rs-action-btn:focus {
+  outline: 3px solid rgba(59, 130, 246, 0.5);
+  outline-offset: 2px;
+}
+
+.rs-action-btn:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Loading state */
+.rs-action-btn.loading {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.rs-action-btn.loading i {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Disabled state */
+.rs-action-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Kolom aksi pada tabel */
+td.action-column {
+  min-width: 180px !important;
+  white-space: nowrap !important;
+  padding: 0.85rem 1rem !important;
+  vertical-align: middle !important;
+}
+
+/* Pastikan icon terlihat jelas dengan kontras tinggi */
+.rs-action-btn[data-action="view"] i {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+.rs-action-btn[data-action="edit"] i {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+.rs-action-btn[data-action="delete"] i {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* Animasi pulse untuk menarik perhatian */
+@keyframes pulse-view {
+  0%, 100% {
+    box-shadow: 0 4px 12px rgba(14, 165, 233, 0.4);
+  }
+  50% {
+    box-shadow: 0 4px 20px rgba(14, 165, 233, 0.6);
+  }
+}
+
+@keyframes pulse-edit {
+  0%, 100% {
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+  }
+  50% {
+    box-shadow: 0 4px 20px rgba(245, 158, 11, 0.6);
+  }
+}
+
+/* Tambahkan efek glow saat hover */
+.rs-action-btn[data-action="view"]:hover {
+  animation: pulse-view 1.5s ease-in-out infinite;
+}
+
+.rs-action-btn[data-action="edit"]:hover {
+  animation: pulse-edit 1.5s ease-in-out infinite;
+}

@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<html class="light" lang="en">
-<head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<!DOCTYPE html><html class="light" lang="en"><head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Dashboard - Modul Manajemen Risiko</title>
-    <link href="https://fonts.googleapis.com" rel="preconnect"/>
-    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script id="tailwind-config">
         tailwind.config = {
@@ -97,6 +95,10 @@
             font-variation-settings: 'wght' 600;
         }
     </style>
+    <link href="/css/table-scroll-fix.css" rel="stylesheet">
+    <link href="/css/table-scroll-enhancer.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/button-standardization-final.css">
+    <link rel="stylesheet" href="/css/action-buttons-standardized.css">
 </head>
 <body class="bg-white min-h-screen flex text-text-main overflow-hidden">
     <!-- Sidebar -->
@@ -149,7 +151,7 @@
         <header class="bg-white border-b border-slate-200 z-20 flex-shrink-0 h-16 sticky top-0">
             <div class="w-full h-full px-6 flex items-center justify-between">
                 <div class="flex items-center gap-4">
-                    <button class="md:hidden text-slate-500 hover:bg-slate-100 p-2 rounded-lg">
+                    <button class="md:hidden text-slate-500 hover:bg-slate-100 p-2 rounded-lg text-truncate">
                         <span class="material-symbols-outlined">menu</span>
                     </button>
                     <div class="flex flex-col">
@@ -168,11 +170,11 @@
                     </div>
                     <div class="h-8 w-px bg-slate-200 hidden sm:block"></div>
                     <div class="flex items-center gap-2">
-                        <button class="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-50 rounded-full transition-colors relative">
+                        <button class="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-50 rounded-full transition-colors relative text-truncate">
                             <span class="material-symbols-outlined text-[22px]">notifications</span>
                             <span class="absolute top-2 right-2 size-2 bg-red-500 rounded-full border-2 border-white"></span>
                         </button>
-                        <button class="p-2 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-full transition-colors">
+                        <button class="p-2 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-full transition-colors text-truncate">
                             <span class="material-symbols-outlined text-[22px]">logout</span>
                         </button>
                     </div>
@@ -205,7 +207,7 @@
                                     <p class="font-bold text-lg">Semester II - 2025</p>
                                 </div>
                                 <div class="h-8 w-px bg-white/20 hidden sm:block"></div>
-                                <button class="bg-white text-primary hover:bg-blue-50 px-5 py-2.5 rounded-lg text-sm font-bold transition flex items-center gap-2 shadow-sm">
+                                <button class="bg-white text-primary hover:bg-blue-50 px-5 py-2.5 rounded-lg text-sm font-bold transition flex items-center gap-2 shadow-sm text-truncate">
                                     <span class="material-symbols-outlined text-[18px]">calendar_today</span>Filter
                                 </button>
                             </div>
@@ -278,7 +280,7 @@
                                     </div>
                                     Tren Risiko Bulanan
                                 </h3>
-                                <button class="text-slate-400 hover:text-primary transition-colors">
+                                <button class="text-slate-400 hover:text-primary transition-colors text-truncate">
                                     <span class="material-symbols-outlined text-[20px]">more_horiz</span>
                                 </button>
                             </div>
@@ -296,7 +298,7 @@
                                     </div>
                                     Distribusi Level Risiko
                                 </h3>
-                                <button class="text-slate-400 hover:text-primary transition-colors">
+                                <button class="text-slate-400 hover:text-primary transition-colors text-truncate">
                                     <span class="material-symbols-outlined text-[20px]">info</span>
                                 </button>
                             </div>
@@ -335,5 +337,8 @@
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="/js/dashboard-modern.js"></script>
-</body>
-</html>
+    <script src="/js/table-scroll-enhancer.js"></script>
+    <script src="/js/button-standardization-auto.js"></script>
+    <script src="/js/action-buttons-standardizer.js"></script>
+
+</body></html>

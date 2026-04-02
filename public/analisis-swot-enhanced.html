@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
+<!DOCTYPE html><html lang="id"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Analisis SWOT - Enhanced</title>
@@ -315,6 +313,8 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="/css/button-standardization-final.css">
+    <link rel="stylesheet" href="/css/action-buttons-standardized.css">
 </head>
 <body>
     <div class="container-fluid py-4">
@@ -325,7 +325,7 @@
                         <h2><i data-lucide="bar-chart-3"></i> Analisis SWOT Enhanced</h2>
                         <p class="text-muted mb-0">Analisis SWOT dengan korelasi rencana strategis dan total score per kategori</p>
                     </div>
-                    <button class="btn btn-primary" onclick="refreshData()">
+                    <button class="btn btn-primary text-truncate" onclick="refreshData()" data-action="refreshData">
                         <i data-lucide="refresh-cw"></i> Refresh
                     </button>
                 </div>
@@ -679,5 +679,70 @@
             loadInitialData();
         });
     </script>
-</body>
-</html>
+    <script src="/js/button-standardization-auto.js"></script>
+    <script src="/js/action-buttons-standardizer.js"></script>
+
+<!-- Button Event Delegation Script -->
+<script>
+(function() {
+    'use strict';
+    
+    // Event delegation untuk tombol dengan data-action
+    document.addEventListener('click', function(e) {
+        const button = e.target.closest('[data-action]');
+        if (!button) return;
+        
+        const action = button.dataset.action;
+        const handler = window['handle' + action.charAt(0).toUpperCase() + action.slice(1)];
+        
+        if (typeof handler === 'function') {
+            handler.call(button, e);
+        } else {
+            console.warn('Handler not found for action:', action);
+        }
+    });
+    
+    // Default handlers untuk common actions
+    window.handleAdd = function(e) {
+        console.log('Add button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleEdit = function(e) {
+        console.log('Edit button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleDelete = function(e) {
+        console.log('Delete button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleDownload = function(e) {
+        console.log('Download button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleImport = function(e) {
+        console.log('Import button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleExport = function(e) {
+        console.log('Export button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleSave = function(e) {
+        console.log('Save button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleCancel = function(e) {
+        console.log('Cancel button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+})();
+</script>
+
+</body></html>

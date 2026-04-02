@@ -1,0 +1,364 @@
+/* Diagram Kartesius - Fix untuk Tombol dan Tabel */
+
+/* ===== HEADER & TOMBOL UTAMA ===== */
+.diagram-kartesius-header {
+  background: #ffffff !important;
+  padding: 16px 20px !important;
+  margin-bottom: 16px !important;
+  border-radius: 8px !important;
+  border: 1px solid #e2e8f0 !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 12px !important;
+}
+
+.diagram-kartesius-header h3 {
+  color: #1e293b !important;
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  margin: 0 !important;
+}
+
+/* Tombol Header - Warna Cerah dan Solid */
+.btn-hitung-diagram {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  color: #ffffff !important;
+  border: none !important;
+  padding: 10px 20px !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3) !important;
+  cursor: pointer !important;
+}
+
+.btn-hitung-diagram:hover {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4) !important;
+}
+
+.btn-unduh-laporan {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%) !important;
+  color: #ffffff !important;
+  border: none !important;
+  padding: 10px 20px !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3) !important;
+  cursor: pointer !important;
+}
+
+.btn-unduh-laporan:hover {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4) !important;
+}
+
+.btn-reset-filter {
+  background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%) !important;
+  color: #ffffff !important;
+  border: none !important;
+  padding: 8px 16px !important;
+  border-radius: 6px !important;
+  font-weight: 500 !important;
+  font-size: 13px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+}
+
+.btn-reset-filter:hover {
+  background: linear-gradient(135deg, #4b5563 0%, #374151 100%) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* ===== FILTER SECTION ===== */
+.filter-section {
+  background: #ffffff !important;
+  padding: 16px !important;
+  margin-bottom: 16px !important;
+  border-radius: 8px !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+.filter-section .form-label {
+  font-weight: 600 !important;
+  color: #475569 !important;
+  font-size: 13px !important;
+  margin-bottom: 6px !important;
+}
+
+.filter-section .form-select {
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 6px !important;
+  padding: 8px 12px !important;
+  font-size: 14px !important;
+  transition: all 0.2s ease !important;
+}
+
+.filter-section .form-select:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+  outline: none !important;
+}
+
+/* ===== TABEL DIAGRAM KARTESIUS ===== */
+.diagram-kartesius-table-container {
+  background: #ffffff !important;
+  border-radius: 8px !important;
+  border: 1px solid #e2e8f0 !important;
+  overflow: hidden !important;
+}
+
+.diagram-kartesius-table-container .card-header {
+  background: #ffffff !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  padding: 16px 20px !important;
+}
+
+.diagram-kartesius-table-container .card-header h5 {
+  color: #1e293b !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  margin: 0 !important;
+}
+
+/* Tabel - Hapus Kolom Aksi */
+.diagram-kartesius-table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  background: #ffffff !important;
+}
+
+.diagram-kartesius-table thead th {
+  background: #f8fafc !important;
+  color: #475569 !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  padding: 12px 16px !important;
+  text-align: left !important;
+  border-bottom: 2px solid #e2e8f0 !important;
+  white-space: nowrap !important;
+}
+
+.diagram-kartesius-table tbody td {
+  padding: 12px 16px !important;
+  color: #1e293b !important;
+  font-size: 14px !important;
+  border-bottom: 1px solid #f1f5f9 !important;
+  vertical-align: middle !important;
+}
+
+.diagram-kartesius-table tbody tr:hover {
+  background: #f8fafc !important;
+}
+
+/* Kolom Width - Tanpa Kolom Aksi */
+.diagram-kartesius-table th:nth-child(1),
+.diagram-kartesius-table td:nth-child(1) {
+  width: 80px !important;
+  min-width: 80px !important;
+}
+
+.diagram-kartesius-table th:nth-child(2),
+.diagram-kartesius-table td:nth-child(2) {
+  width: 100px !important;
+  min-width: 100px !important;
+}
+
+.diagram-kartesius-table th:nth-child(3),
+.diagram-kartesius-table td:nth-child(3) {
+  width: auto !important;
+  min-width: 200px !important;
+}
+
+.diagram-kartesius-table th:nth-child(4),
+.diagram-kartesius-table td:nth-child(4) {
+  width: 100px !important;
+  min-width: 100px !important;
+  text-align: center !important;
+}
+
+.diagram-kartesius-table th:nth-child(5),
+.diagram-kartesius-table td:nth-child(5) {
+  width: 100px !important;
+  min-width: 100px !important;
+  text-align: center !important;
+}
+
+.diagram-kartesius-table th:nth-child(6),
+.diagram-kartesius-table td:nth-child(6) {
+  width: 140px !important;
+  min-width: 140px !important;
+  text-align: center !important;
+}
+
+.diagram-kartesius-table th:nth-child(7),
+.diagram-kartesius-table td:nth-child(7) {
+  width: 150px !important;
+  min-width: 150px !important;
+  text-align: center !important;
+}
+
+/* HAPUS KOLOM AKSI - Sembunyikan kolom ke-8 */
+.diagram-kartesius-table th:nth-child(8),
+.diagram-kartesius-table td:nth-child(8) {
+  display: none !important;
+}
+
+/* Badge Kuadran */
+.badge-kuadran {
+  display: inline-block !important;
+  padding: 6px 12px !important;
+  border-radius: 6px !important;
+  font-weight: 600 !important;
+  font-size: 11px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  white-space: nowrap !important;
+}
+
+.badge-kuadran-i {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 6px rgba(16, 185, 129, 0.3) !important;
+}
+
+.badge-kuadran-ii {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 6px rgba(59, 130, 246, 0.3) !important;
+}
+
+.badge-kuadran-iii {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 6px rgba(239, 68, 68, 0.3) !important;
+}
+
+.badge-kuadran-iv {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 6px rgba(245, 158, 11, 0.3) !important;
+}
+
+/* Badge Strategi */
+.badge-strategi {
+  display: inline-block !important;
+  padding: 6px 12px !important;
+  border-radius: 6px !important;
+  font-weight: 600 !important;
+  font-size: 11px !important;
+  text-transform: capitalize !important;
+  white-space: nowrap !important;
+}
+
+.badge-strategi-growth {
+  background: #dcfce7 !important;
+  color: #166534 !important;
+  border: 1px solid #86efac !important;
+}
+
+.badge-strategi-stability {
+  background: #dbeafe !important;
+  color: #1e40af !important;
+  border: 1px solid #93c5fd !important;
+}
+
+.badge-strategi-survival {
+  background: #fee2e2 !important;
+  color: #991b1b !important;
+  border: 1px solid #fca5a5 !important;
+}
+
+.badge-strategi-diversification {
+  background: #fef3c7 !important;
+  color: #92400e !important;
+  border: 1px solid #fcd34d !important;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .diagram-kartesius-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+  
+  .btn-hitung-diagram,
+  .btn-unduh-laporan {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+  
+  .diagram-kartesius-table {
+    font-size: 12px !important;
+  }
+  
+  .diagram-kartesius-table thead th,
+  .diagram-kartesius-table tbody td {
+    padding: 8px 10px !important;
+  }
+}
+
+/* ===== NO OVERFLOW ===== */
+.container-fluid {
+  overflow-x: hidden !important;
+}
+
+.table-responsive {
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+/* Pastikan tidak ada elemen yang overflow */
+* {
+  box-sizing: border-box !important;
+}
+
+/* Loading State */
+.loading-spinner {
+  display: inline-block !important;
+  width: 16px !important;
+  height: 16px !important;
+  border: 2px solid rgba(255, 255, 255, 0.3) !important;
+  border-top-color: #ffffff !important;
+  border-radius: 50% !important;
+  animation: spin 0.6s linear infinite !important;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Success/Error Messages */
+.alert-success {
+  background: #dcfce7 !important;
+  color: #166534 !important;
+  border: 1px solid #86efac !important;
+  border-radius: 8px !important;
+  padding: 12px 16px !important;
+  margin-bottom: 16px !important;
+}
+
+.alert-error {
+  background: #fee2e2 !important;
+  color: #991b1b !important;
+  border: 1px solid #fca5a5 !important;
+  border-radius: 8px !important;
+  padding: 12px 16px !important;
+  margin-bottom: 16px !important;
+}

@@ -1,0 +1,93 @@
+/* Fix untuk Kolom Aksi IKU - Memastikan tombol tidak terpotong */
+
+/* Kolom Aksi */
+.iku-table td:last-child,
+.iku-table th:last-child {
+  min-width: 110px !important;
+  width: 110px !important;
+  padding: 8px 10px !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+}
+
+/* Container tombol aksi */
+.iku-table td:last-child > div {
+  display: flex !important;
+  gap: 6px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-wrap: nowrap !important;
+}
+
+/* Tombol aksi */
+.iku-table td:last-child button {
+  padding: 6px 10px !important;
+  min-width: 36px !important;
+  height: 34px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  border: none !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Warna tombol */
+.iku-table td:last-child button.btn-info {
+  background-color: #17a2b8 !important;
+  color: white !important;
+}
+
+.iku-table td:last-child button.btn-info:hover {
+  background-color: #138496 !important;
+  transform: scale(1.05);
+}
+
+.iku-table td:last-child button.btn-danger {
+  background-color: #dc3545 !important;
+  color: white !important;
+}
+
+.iku-table td:last-child button.btn-danger:hover {
+  background-color: #c82333 !important;
+  transform: scale(1.05);
+}
+
+/* Icon dalam tombol */
+.iku-table td:last-child button i {
+  font-size: 0.875rem !important;
+  pointer-events: none;
+}
+
+/* Pastikan tabel bisa scroll horizontal jika perlu */
+.iku-table {
+  min-width: 2000px !important;
+  table-layout: fixed !important;
+}
+
+/* Container tabel dengan scroll */
+.card-body > div {
+  overflow-x: auto !important;
+  max-height: 70vh !important;
+}
+
+/* Responsive - untuk layar kecil */
+@media (max-width: 768px) {
+  .iku-table td:last-child,
+  .iku-table th:last-child {
+    min-width: 100px !important;
+    width: 100px !important;
+  }
+  
+  .iku-table td:last-child button {
+    padding: 5px 8px !important;
+    min-width: 32px !important;
+    height: 30px !important;
+  }
+  
+  .iku-table td:last-child > div {
+    gap: 4px !important;
+  }
+}

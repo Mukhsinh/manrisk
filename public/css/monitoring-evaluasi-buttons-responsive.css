@@ -1,0 +1,154 @@
+/* Monitoring Evaluasi - Responsive Button Fix */
+/* Perbaikan tombol agar tidak overflow dan responsif */
+
+.card-header .action-buttons {
+    display: flex !important;
+    gap: 0.5rem !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+}
+
+/* Tombol dengan warna cerah solid */
+.btn-monitoring-refresh,
+.btn-monitoring-report,
+.btn-monitoring-download-template,
+.btn-monitoring-import,
+.btn-monitoring-add {
+    padding: 8px 14px !important;
+    border-radius: 6px !important;
+    border: none !important;
+    cursor: pointer !important;
+    font-weight: 500 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    transition: all 0.2s ease !important;
+    white-space: nowrap !important;
+    font-size: 0.875rem !important;
+    line-height: 1.25rem !important;
+    min-height: 36px !important;
+}
+
+/* Warna solid cerah untuk setiap tombol */
+.btn-monitoring-refresh {
+    background: #10B981 !important; /* Green solid */
+    color: #fff !important;
+}
+
+.btn-monitoring-refresh:hover {
+    background: #059669 !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(16, 185, 129, 0.3);
+}
+
+.btn-monitoring-report {
+    background: #3B82F6 !important; /* Blue solid */
+    color: #fff !important;
+}
+
+.btn-monitoring-report:hover {
+    background: #2563EB !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+}
+
+.btn-monitoring-download-template {
+    background: #F59E0B !important; /* Orange solid */
+    color: #fff !important;
+}
+
+.btn-monitoring-download-template:hover {
+    background: #D97706 !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(245, 158, 11, 0.3);
+}
+
+.btn-monitoring-import {
+    background: #8B5CF6 !important; /* Purple solid */
+    color: #fff !important;
+}
+
+.btn-monitoring-import:hover {
+    background: #7C3AED !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(139, 92, 246, 0.3);
+}
+
+.btn-monitoring-add {
+    background: #EF4444 !important; /* Red solid */
+    color: #fff !important;
+}
+
+.btn-monitoring-add:hover {
+    background: #DC2626 !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(239, 68, 68, 0.3);
+}
+
+/* Icon styling */
+.btn-monitoring-refresh i,
+.btn-monitoring-report i,
+.btn-monitoring-download-template i,
+.btn-monitoring-import i,
+.btn-monitoring-add i {
+    width: 14px !important;
+    height: 14px !important;
+    flex-shrink: 0 !important;
+}
+
+/* Responsive untuk layar kecil */
+@media (max-width: 768px) {
+    .card-header {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+    }
+    
+    .card-header .action-buttons {
+        width: 100% !important;
+        justify-content: flex-start !important;
+    }
+    
+    .btn-monitoring-refresh,
+    .btn-monitoring-report,
+    .btn-monitoring-download-template,
+    .btn-monitoring-import,
+    .btn-monitoring-add {
+        flex: 0 1 auto !important;
+        min-width: fit-content !important;
+    }
+}
+
+@media (max-width: 576px) {
+    /* Pada layar sangat kecil, sembunyikan teks dan tampilkan hanya icon */
+    .btn-monitoring-refresh .btn-text,
+    .btn-monitoring-report .btn-text,
+    .btn-monitoring-download-template .btn-text,
+    .btn-monitoring-import .btn-text,
+    .btn-monitoring-add .btn-text {
+        display: none !important;
+    }
+    
+    .btn-monitoring-refresh,
+    .btn-monitoring-report,
+    .btn-monitoring-download-template,
+    .btn-monitoring-import,
+    .btn-monitoring-add {
+        padding: 8px !important;
+        min-width: 36px !important;
+    }
+}
+
+/* Pastikan tombol tidak terpotong */
+.card-header {
+    overflow: visible !important;
+}
+
+/* Fix untuk container yang mungkin menyebabkan overflow */
+#monitoring-evaluasi-content .card {
+    overflow: visible !important;
+}
+
+#monitoring-evaluasi-content .card-header {
+    overflow: visible !important;
+}

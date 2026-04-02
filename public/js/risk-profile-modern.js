@@ -13,6 +13,12 @@ class ModernRiskProfile {
     // Initialize risk profile
     async init() {
         console.log('Initializing Modern Risk Profile...');
+        // Integrate with filter fix
+        if (window.riskProfileFilterFix) {
+            console.log('✅ Filter fix detected, integrating...');
+            // Filter fix akan handle filter dropdown
+        }
+
         await this.loadData();
         this.initializeHeatMap();
         this.setupEventListeners();

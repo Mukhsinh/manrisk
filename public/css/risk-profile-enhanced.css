@@ -1,0 +1,709 @@
+/* Risk Profile - Enhanced Layout & Spacing Fix */
+/* Perbaikan tampilan untuk memastikan semua grafik dan kartu muncul sempurna */
+
+/* Main Container */
+#risk-profile-content {
+  padding: 1.5rem;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Fix untuk spacing dan alignment */
+main {
+  background-color: #ffffff !important;
+}
+
+/* Hero Section Spacing */
+.bg-gradient-to-br {
+  margin-bottom: 2rem !important;
+}
+
+/* Statistics Cards Grid - Better Spacing */
+.grid.grid-cols-1.sm\\:grid-cols-2.lg\\:grid-cols-4 {
+  margin-bottom: 2rem !important;
+  gap: 1.5rem !important;
+}
+
+/* Card Container */
+#risk-profile-content .card {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: none;
+  margin-bottom: 2rem;
+}
+
+#risk-profile-content .card-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 12px 12px 0 0;
+  border: none;
+}
+
+#risk-profile-content .card-header h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+#risk-profile-content .card-body {
+  padding: 2rem;
+  background: #ffffff;
+}
+
+/* Filter Section - Better Spacing */
+.bg-white.rounded-lg.shadow-sm.p-3.mb-3.border.border-slate-200 {
+  padding: 1.5rem !important;
+  margin-bottom: 2rem !important;
+  background: #f8f9fa !important;
+}
+
+.grid.grid-cols-1.md\\:grid-cols-4.gap-3 {
+  gap: 1rem !important;
+  margin-bottom: 1rem !important;
+}
+
+.filter-group {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.filter-group .form-group {
+  margin-bottom: 0;
+}
+
+.filter-group label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #495057;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.filter-group select {
+  width: 100%;
+  padding: 0.625rem;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.filter-group select:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+  outline: none;
+}
+
+/* Statistics Cards */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.25rem;
+  margin: 1.5rem 0;
+}
+
+.stat-card {
+  padding: 1.5rem;
+  border-radius: 12px;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.stat-card .stat-value {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.stat-card .stat-label {
+  font-size: 0.95rem;
+  opacity: 0.95;
+  font-weight: 500;
+}
+
+/* Pie Charts Grid - Fixed Layout */
+.grid.grid-cols-1.md\\:grid-cols-3 {
+  margin-bottom: 2rem !important;
+  gap: 1.5rem !important;
+}
+
+/* Pie Chart Cards - Better Sizing */
+.bg-white.rounded-2xl.p-6.border.border-slate-100.shadow-card {
+  min-height: 350px !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.bg-white.rounded-2xl.p-6.border.border-slate-100.shadow-card > div {
+  flex: 1 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Canvas Sizing - Fixed */
+canvas {
+  max-width: 100% !important;
+  max-height: 250px !important;
+  height: auto !important;
+}
+
+/* Pie Chart Container */
+.relative[style*="height: 250px"] {
+  height: 250px !important;
+  width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Action Buttons in Table - Sesuai Gambar */
+.action-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin: 0 2px;
+}
+
+.action-btn i {
+  font-size: 0.875rem;
+}
+
+.action-btn.btn-edit {
+  background: #3b82f6;
+  color: white;
+}
+
+.action-btn.btn-edit:hover {
+  background: #2563eb;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+}
+
+.action-btn.btn-delete {
+  background: #ef4444;
+  color: white;
+}
+
+.action-btn.btn-delete:hover {
+  background: #dc2626;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(239, 68, 68, 0.3);
+}
+
+/* Table Container - Better Layout */
+.xl\\:col-span-8 {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.overflow-x-auto {
+  flex: 1 !important;
+  overflow-x: auto !important;
+  overflow-y: auto !important;
+  max-height: 600px !important;
+}
+
+/* Table Header - Dark Blue Background sesuai gambar */
+.table-container thead {
+  background: #1e3a8a !important;
+  color: white !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 10 !important;
+}
+
+.table-container thead th {
+  background: #1e3a8a !important;
+  color: white !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  font-size: 0.75rem !important;
+  letter-spacing: 0.5px !important;
+  padding: 0.875rem 1rem !important;
+  text-align: center !important;
+  vertical-align: middle !important;
+  border: none !important;
+}
+
+.table-container {
+  overflow-x: auto;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  margin-top: 1.5rem;
+}
+
+.table-container table {
+  margin-bottom: 0;
+  width: 100%;
+}
+
+.table-container thead {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 10 !important;
+}
+
+.table-container thead th {
+  padding: 1rem;
+  font-weight: 600;
+  border: none;
+  white-space: nowrap;
+}
+
+.table-container tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.table-container tbody tr:hover {
+  background-color: #f0f0f0 !important;
+}
+
+.table-container tbody td {
+  padding: 1rem;
+  border-bottom: 1px solid #e0e0e0;
+  vertical-align: middle;
+}
+
+/* Badge Status - Sesuai dengan gambar */
+.badge-status {
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.75rem;
+  display: inline-block;
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* SANGAT TINGGI - Red */
+.badge-status.badge-kritis,
+.badge-status.badge-sangat-tinggi {
+  background-color: #dc2626 !important;
+  color: #ffffff !important;
+}
+
+/* TINGGI - Orange */
+.badge-status.badge-tinggi,
+.badge-status.badge-hati-hati {
+  background-color: #ea580c !important;
+  color: #ffffff !important;
+}
+
+/* SEDANG - Yellow */
+.badge-status.badge-sedang,
+.badge-status.badge-normal,
+.badge-status.badge-medium {
+  background-color: #eab308 !important;
+  color: #000000 !important;
+}
+
+/* RENDAH - Teal/Cyan */
+.badge-status.badge-rendah,
+.badge-status.badge-aman,
+.badge-status.badge-low {
+  background-color: #14b8a6 !important;
+  color: #ffffff !important;
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 4rem;
+  color: #666;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.empty-state i {
+  font-size: 4rem;
+  color: #3498db;
+  margin-bottom: 1.5rem;
+}
+
+.empty-state h4 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.empty-state p {
+  color: #7f8c8d;
+  font-size: 1rem;
+}
+
+/* Main Content Grid - Better Alignment */
+.grid.grid-cols-1.xl\\:grid-cols-12.gap-8.items-start {
+  gap: 2rem !important;
+  align-items: stretch !important;
+}
+
+/* Heat Map Container - Better Sizing */
+.xl\\:col-span-4 {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2rem !important;
+}
+
+.bg-white.rounded-2xl.shadow-card.border.border-slate-200.p-6.flex.flex-col {
+  height: 100% !important;
+}
+
+/* Heat Map Grid - Fixed Size */
+#heat-map {
+  width: 280px !important;
+  height: 280px !important;
+  margin: 0 auto !important;
+}
+
+/* Risk Analysis Panel - Better Height */
+.bg-white.rounded-2xl.shadow-card.border.border-slate-200.overflow-hidden.flex-1 {
+  min-height: 400px !important;
+  max-height: 600px !important;
+  overflow-y: auto !important;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .grid.grid-cols-1.md\\:grid-cols-3 {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .xl\\:col-span-8,
+  .xl\\:col-span-4 {
+    grid-column: span 12 !important;
+  }
+}
+
+@media (max-width: 768px) {
+  #risk-profile-content {
+    padding: 1rem;
+  }
+
+  main {
+    padding: 1rem !important;
+  }
+
+  .bg-gradient-to-br {
+    padding: 1.5rem !important;
+  }
+
+  .grid.grid-cols-1.sm\\:grid-cols-2.lg\\:grid-cols-4 {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1rem !important;
+  }
+
+  .grid.grid-cols-1.md\\:grid-cols-3 {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  .bg-white.rounded-2xl.p-6 {
+    padding: 1rem !important;
+  }
+
+  canvas {
+    max-height: 200px !important;
+  }
+
+  #heat-map {
+    width: 240px !important;
+    height: 240px !important;
+  }
+
+  .overflow-x-auto {
+    max-height: 400px !important;
+  }
+
+  .filter-group {
+    padding: 1rem;
+  }
+
+  .action-buttons-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .table-container {
+    font-size: 0.85rem;
+  }
+
+  .table-container thead th,
+  .table-container tbody td {
+    padding: 0.75rem 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-card .stat-value {
+    font-size: 1.75rem;
+  }
+
+  .pie-chart-container {
+    height: 200px;
+  }
+}
+
+/* Print Styles */
+@media print {
+  #risk-profile-content {
+    padding: 0;
+  }
+
+  .filter-group,
+  .action-buttons-container {
+    display: none;
+  }
+
+  .pie-chart-card,
+  .stat-card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card,
+.stat-card,
+.pie-chart-card {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Loading State */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.loading-spinner {
+  font-size: 3rem;
+  color: #667eea;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* Additional Fixes for Better Layout */
+
+/* Ensure proper spacing between sections */
+.space-y-8 > * + * {
+  margin-top: 2rem !important;
+}
+
+/* Fix for filter section visibility */
+.bg-white.rounded-lg.shadow-sm {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06) !important;
+}
+
+/* Better card shadows */
+.shadow-card {
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.03), 0 2px 8px rgba(0,0,0,0.04) !important;
+}
+
+/* Ensure charts are visible */
+canvas {
+  display: block !important;
+  visibility: visible !important;
+}
+
+/* Fix for table header */
+.bg-slate-50.border-b.border-slate-100 {
+  background-color: #f8fafc !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 5 !important;
+}
+
+/* Table styling sesuai gambar */
+table thead {
+  background: #1e3a8a !important;
+}
+
+table thead th {
+  background: #1e3a8a !important;
+  color: white !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  font-size: 0.7rem !important;
+  padding: 0.875rem 1rem !important;
+  letter-spacing: 0.5px !important;
+}
+
+table tbody tr:hover {
+  background-color: #f1f5f9 !important;
+}
+
+table tbody td {
+  padding: 0.875rem 1rem !important;
+  font-size: 0.875rem !important;
+  vertical-align: middle !important;
+}
+
+/* Better scrollbar for table */
+.overflow-x-auto::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+.overflow-x-auto::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+.overflow-x-auto::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+.overflow-x-auto::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Fix for heat map cells */
+.heatmap-cell {
+  min-width: 48px !important;
+  min-height: 48px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+}
+
+/* Better spacing for filter buttons */
+.flex.gap-2.mt-3 {
+  margin-top: 1rem !important;
+  gap: 0.75rem !important;
+}
+
+/* Fix for pagination */
+#pagination-controls {
+  display: flex !important;
+  gap: 0.5rem !important;
+  align-items: center !important;
+}
+
+/* Better alignment for statistics cards */
+.grid.grid-cols-1.sm\\:grid-cols-2.lg\\:grid-cols-4 > div {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+}
+
+/* Fix for risk analysis content */
+#risk-analysis-content {
+  padding: 1.5rem !important;
+  overflow-y: auto !important;
+  max-height: 500px !important;
+}
+
+/* Better spacing for hero section */
+.bg-gradient-to-br.from-\\[\\#0066cc\\].to-\\[\\#0ea5e9\\] {
+  padding: 2rem !important;
+}
+
+@media (min-width: 768px) {
+  .bg-gradient-to-br.from-\\[\\#0066cc\\].to-\\[\\#0ea5e9\\] {
+    padding: 2.5rem !important;
+  }
+}
+
+/* Ensure proper grid layout */
+.max-w-\\[1600px\\] {
+  max-width: 1600px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Fix for table tabs */
+.px-6.pt-2.pb-0.border-b.border-slate-100 {
+  padding-left: 1.5rem !important;
+  padding-right: 1.5rem !important;
+  padding-top: 0.5rem !important;
+  padding-bottom: 0 !important;
+  background-color: #ffffff !important;
+}
+
+/* Better button styling */
+button {
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+button:hover {
+  transform: translateY(-1px) !important;
+}
+
+button:active {
+  transform: translateY(0) !important;
+}
+
+/* Fix for empty state */
+.flex.flex-col.items-center.gap-2 {
+  padding: 2rem !important;
+}
+
+/* Better contrast for text */
+.text-slate-500 {
+  color: #64748b !important;
+}
+
+.text-slate-600 {
+  color: #475569 !important;
+}
+
+.text-slate-700 {
+  color: #334155 !important;
+}
+
+.text-slate-800 {
+  color: #1e293b !important;
+}

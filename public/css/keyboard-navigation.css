@@ -1,0 +1,284 @@
+/**
+ * Keyboard Navigation Styles
+ * Styles untuk visible focus indicators dan keyboard navigation
+ */
+
+/* ===== FOCUS INDICATORS ===== */
+
+/* Default focus style untuk semua focusable elements */
+button:focus,
+a:focus,
+input:focus,
+select:focus,
+textarea:focus,
+[tabindex]:focus,
+[data-action]:focus {
+    outline: 2px solid #4A90E2;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+}
+
+/* Enhanced focus style untuk keyboard navigation */
+button.keyboard-focus,
+a.keyboard-focus,
+[data-action].keyboard-focus {
+    outline: 3px solid #4A90E2;
+    outline-offset: 3px;
+    box-shadow: 0 0 0 5px rgba(74, 144, 226, 0.3);
+    position: relative;
+    z-index: 10;
+}
+
+/* Remove focus outline untuk mouse clicks (optional) */
+button:focus:not(.keyboard-focus),
+a:focus:not(.keyboard-focus),
+[data-action]:focus:not(.keyboard-focus) {
+    outline: 1px solid #4A90E2;
+    outline-offset: 1px;
+}
+
+/* ===== BUTTON FOCUS STATES ===== */
+
+/* Primary button focus */
+.btn-primary:focus,
+.btn-primary.keyboard-focus {
+    outline-color: #2E5C8A;
+    box-shadow: 0 0 0 3px rgba(46, 92, 138, 0.3);
+}
+
+/* Secondary button focus */
+.btn-secondary:focus,
+.btn-secondary.keyboard-focus {
+    outline-color: #6C757D;
+    box-shadow: 0 0 0 3px rgba(108, 117, 125, 0.3);
+}
+
+/* Success button focus */
+.btn-success:focus,
+.btn-success.keyboard-focus {
+    outline-color: #28A745;
+    box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.3);
+}
+
+/* Danger button focus */
+.btn-danger:focus,
+.btn-danger.keyboard-focus {
+    outline-color: #DC3545;
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.3);
+}
+
+/* Warning button focus */
+.btn-warning:focus,
+.btn-warning.keyboard-focus {
+    outline-color: #FFC107;
+    box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.3);
+}
+
+/* Info button focus */
+.btn-info:focus,
+.btn-info.keyboard-focus {
+    outline-color: #17A2B8;
+    box-shadow: 0 0 0 3px rgba(23, 162, 184, 0.3);
+}
+
+/* ===== DISABLED STATE ===== */
+
+/* Disabled buttons tidak dapat di-focus */
+button:disabled,
+button[disabled],
+.btn:disabled,
+.btn[disabled],
+[data-action][disabled] {
+    cursor: not-allowed;
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* Remove focus dari disabled buttons */
+button:disabled:focus,
+button[disabled]:focus,
+.btn:disabled:focus,
+.btn[disabled]:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+/* ===== LOADING STATE ===== */
+
+/* Loading buttons tidak dapat di-focus */
+button.loading,
+.btn.loading,
+[data-action].loading {
+    cursor: wait;
+    pointer-events: none;
+}
+
+button.loading:focus,
+.btn.loading:focus,
+[data-action].loading:focus {
+    outline: 1px dashed #4A90E2;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.1);
+}
+
+/* ===== SKIP LINK ===== */
+
+/* Skip to main content link untuk accessibility */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #4A90E2;
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 0 0 4px 0;
+    z-index: 9999;
+    transition: top 0.2s;
+}
+
+.skip-link:focus {
+    top: 0;
+    outline: 3px solid #2E5C8A;
+    outline-offset: 2px;
+}
+
+/* ===== FOCUS TRAP (untuk modals) ===== */
+
+/* Modal dengan focus trap */
+.modal.focus-trap {
+    position: relative;
+}
+
+.modal.focus-trap::before,
+.modal.focus-trap::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+}
+
+/* ===== HIGH CONTRAST MODE ===== */
+
+/* Support untuk Windows High Contrast Mode */
+@media (prefers-contrast: high) {
+    button:focus,
+    a:focus,
+    [data-action]:focus {
+        outline: 3px solid currentColor;
+        outline-offset: 3px;
+    }
+}
+
+/* ===== REDUCED MOTION ===== */
+
+/* Respect user preference untuk reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    button:focus,
+    a:focus,
+    [data-action]:focus {
+        transition: none;
+    }
+    
+    .skip-link {
+        transition: none;
+    }
+}
+
+/* ===== FOCUS VISIBLE POLYFILL ===== */
+
+/* Modern focus-visible support */
+button:focus-visible,
+a:focus-visible,
+[data-action]:focus-visible {
+    outline: 3px solid #4A90E2;
+    outline-offset: 3px;
+    box-shadow: 0 0 0 5px rgba(74, 144, 226, 0.3);
+}
+
+/* Hide focus untuk mouse clicks dengan :focus-visible */
+button:focus:not(:focus-visible),
+a:focus:not(:focus-visible),
+[data-action]:focus:not(:focus-visible) {
+    outline: none;
+    box-shadow: none;
+}
+
+/* ===== CUSTOM FOCUS INDICATORS ===== */
+
+/* Icon buttons dengan focus indicator */
+.btn-icon:focus,
+.btn-icon.keyboard-focus {
+    outline: 2px solid #4A90E2;
+    outline-offset: 2px;
+    border-radius: 50%;
+}
+
+/* Action buttons dengan focus indicator */
+.action-btn:focus,
+.action-btn.keyboard-focus {
+    outline: 2px solid #4A90E2;
+    outline-offset: 2px;
+    transform: scale(1.05);
+}
+
+/* Table action buttons dengan focus indicator */
+.table-action-btn:focus,
+.table-action-btn.keyboard-focus {
+    outline: 2px solid #4A90E2;
+    outline-offset: 1px;
+    background-color: rgba(74, 144, 226, 0.1);
+}
+
+/* ===== FOCUS WITHIN ===== */
+
+/* Highlight container saat child element focused */
+.form-group:focus-within {
+    background-color: rgba(74, 144, 226, 0.05);
+    border-radius: 4px;
+}
+
+.card:focus-within {
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+/* ===== ACCESSIBILITY HELPERS ===== */
+
+/* Visually hidden tapi tetap accessible untuk screen readers */
+.sr-only,
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Show saat focused */
+.sr-only:focus,
+.visually-hidden:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: inherit;
+    margin: inherit;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+}
+
+/* ===== PRINT STYLES ===== */
+
+/* Remove focus indicators saat print */
+@media print {
+    button:focus,
+    a:focus,
+    [data-action]:focus {
+        outline: none;
+        box-shadow: none;
+    }
+}

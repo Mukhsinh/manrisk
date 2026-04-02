@@ -200,6 +200,8 @@ router.get('/', authenticateUser, async (req, res) => {
 // Get by ID
 router.get('/:id', authenticateUser, async (req, res) => {
   try {
+    console.log('🔍 GET by ID:', req.params.id);
+    
     // Use admin client to bypass RLS issues (consistent with other endpoints)
     const client = supabaseAdmin || supabase;
     
@@ -209,24 +211,27 @@ router.get('/:id', authenticateUser, async (req, res) => {
         *,
         risk_inputs (
           kode_risiko,
-          sasaran
+          sasaran,
+          organization_id
         )
       `)
-      .eq('id', req.params.id);
-    // Removed .eq('user_id', req.user.id) - causes "Cannot coerce to single JSON object" error
-    // when user_id doesn't match (data created by different users)
+      .eq('id', req.params.id)
+      .single(); // Use .single() to get single object instead of array
 
-    if (error) throw error;
+    if (error) {
+      console.error('GET by ID error:', error);
+      throw error;
+    }
     
-    // Handle case where no data found or multiple results
-    if (!data || data.length === 0) {
+    if (!data) {
+      console.warn('Data not found for ID:', req.params.id);
       return res.status(404).json({ error: 'Monitoring Evaluasi tidak ditemukan' });
     }
     
-    // Return first result (should be unique by ID)
-    res.json(data[0]);
+    console.log('✅ Data found:', { id: data.id, tanggal: data.tanggal_monitoring });
+    res.json(data);
   } catch (error) {
-    console.error('Monitoring Evaluasi error:', error);
+    console.error('Monitoring Evaluasi GET by ID error:', error);
     res.status(500).json({ error: error.message });
   }
 });

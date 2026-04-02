@@ -1,0 +1,631 @@
+/* Risk Profile UI Fix - Complete Version */
+/* Perbaikan tampilan sesuai gambar yang diberikan */
+
+/* Reset dan Base Styles */
+#risk-profile-content {
+  padding: 0;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+#risk-profile-content * {
+  box-sizing: border-box;
+}
+
+/* Header Section - Sesuai Gambar */
+.risk-profile-header {
+  background: linear-gradient(135deg, #0066cc 0%, #0ea5e9 100%);
+  color: white;
+  padding: 1.5rem 2rem;
+  border-radius: 12px 12px 0 0;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
+  margin-bottom: 0;
+}
+
+.risk-profile-header img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.risk-profile-header h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: white;
+}
+
+/* Main Body */
+.risk-profile-body {
+  background: white;
+  padding: 2rem;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Action Buttons - Sesuai Gambar */
+.action-buttons {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.btn-action {
+  padding: 0.625rem 1.25rem;
+  border-radius: 6px;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-action:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-action:active {
+  transform: translateY(0);
+}
+
+.btn-action i {
+  font-size: 1rem;
+}
+
+.btn-refresh {
+  background: #0066cc;
+  color: white;
+}
+
+.btn-refresh:hover {
+  background: #0052a3;
+}
+
+.btn-download {
+  background: #10b981;
+  color: white;
+}
+
+.btn-download:hover {
+  background: #059669;
+}
+
+.btn-add {
+  background: #f59e0b;
+  color: white;
+}
+
+.btn-add:hover {
+  background: #d97706;
+}
+
+.btn-settings {
+  background: #f97316;
+  color: white;
+}
+
+.btn-settings:hover {
+  background: #ea580c;
+}
+
+/* Main Grid Layout */
+.main-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* Heat Map Container */
+.heat-map-container {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e5e7eb;
+}
+
+.heat-map-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 4px;
+  margin: 1rem 0;
+}
+
+.heat-map-cell {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.125rem;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 48px;
+}
+
+.heat-map-cell:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+/* Heat Map Colors - Sesuai Gambar */
+.heat-map-cell.level-low {
+  background: #10b981;
+}
+
+.heat-map-cell.level-medium {
+  background: #eab308;
+}
+
+.heat-map-cell.level-high {
+  background: #f59e0b;
+}
+
+.heat-map-cell.level-extreme {
+  background: #dc2626;
+}
+
+.axis-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #374151;
+  text-align: center;
+}
+
+/* Filter Container */
+.filter-container {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e5e7eb;
+}
+
+.filter-group {
+  margin-bottom: 1.5rem;
+}
+
+.filter-group:last-child {
+  margin-bottom: 0;
+}
+
+.filter-group label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  display: block;
+  color: #374151;
+}
+
+.filter-dropdown {
+  width: 100%;
+  padding: 0.625rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-dropdown:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.filter-dropdown:hover {
+  border-color: #9ca3af;
+}
+
+/* Table Container */
+.table-container {
+  overflow-x: auto;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-top: 2rem;
+  border: 1px solid #e5e7eb;
+}
+
+.table-container table {
+  margin-bottom: 0;
+  width: 100%;
+  font-size: 0.875rem;
+  border-collapse: collapse;
+}
+
+/* Table Header - Dark Blue sesuai gambar */
+.table-container thead {
+  background: #1e3a8a !important;
+  color: white !important;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.table-container thead th {
+  padding: 0.875rem 1rem !important;
+  font-weight: 600 !important;
+  border: none !important;
+  white-space: nowrap;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 0.75rem !important;
+  letter-spacing: 0.5px;
+  background: #1e3a8a !important;
+  color: white !important;
+  vertical-align: middle;
+}
+
+/* Table Body */
+.table-container tbody td {
+  padding: 0.875rem 1rem;
+  border-bottom: 1px solid #e5e7eb;
+  vertical-align: middle;
+  color: #1f2937;
+}
+
+.table-container tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.table-container tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+.table-container tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Badge Status - Sesuai Gambar */
+.badge-status {
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.75rem;
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+/* SANGAT TINGGI - Red */
+.badge-status.badge-sangat-tinggi {
+  background-color: #dc2626 !important;
+  color: #ffffff !important;
+}
+
+/* TINGGI - Orange */
+.badge-status.badge-tinggi {
+  background-color: #ea580c !important;
+  color: #ffffff !important;
+}
+
+/* SEDANG - Yellow */
+.badge-status.badge-sedang {
+  background-color: #eab308 !important;
+  color: #000000 !important;
+}
+
+/* RENDAH - Teal/Cyan */
+.badge-status.badge-rendah {
+  background-color: #14b8a6 !important;
+  color: #ffffff !important;
+}
+
+/* Action Buttons in Table - Sesuai Gambar */
+.action-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin: 0 2px;
+}
+
+.action-btn i {
+  font-size: 0.875rem;
+}
+
+.action-btn.btn-edit {
+  background: #3b82f6;
+  color: white;
+}
+
+.action-btn.btn-edit:hover {
+  background: #2563eb;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+}
+
+.action-btn.btn-delete {
+  background: #ef4444;
+  color: white;
+}
+
+.action-btn.btn-delete:hover {
+  background: #dc2626;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(239, 68, 68, 0.3);
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #6b7280;
+}
+
+.empty-state i {
+  font-size: 3rem;
+  color: #3b82f6;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.empty-state h4 {
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.empty-state p {
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+/* Loading State */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.loading-spinner {
+  font-size: 3rem;
+  color: #0066cc;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Scrollbar Styling */
+.table-container::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+.table-container::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .main-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .filter-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  
+  .filter-group {
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .risk-profile-header {
+    padding: 1rem;
+  }
+  
+  .risk-profile-header h3 {
+    font-size: 1.25rem;
+  }
+  
+  .risk-profile-body {
+    padding: 1rem;
+  }
+  
+  .action-buttons {
+    flex-direction: column;
+  }
+  
+  .btn-action {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .main-grid {
+    gap: 1rem;
+  }
+  
+  .filter-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .heat-map-container {
+    padding: 1rem;
+  }
+  
+  .heat-map-cell {
+    font-size: 1rem;
+    min-height: 40px;
+  }
+  
+  .table-container {
+    font-size: 0.8125rem;
+  }
+  
+  .table-container thead th,
+  .table-container tbody td {
+    padding: 0.625rem 0.5rem;
+  }
+  
+  .badge-status {
+    padding: 4px 10px;
+    font-size: 0.6875rem;
+  }
+  
+  .action-btn {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .risk-profile-header img {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .risk-profile-header h3 {
+    font-size: 1.125rem;
+  }
+  
+  .heat-map-cell {
+    font-size: 0.875rem;
+    min-height: 36px;
+  }
+  
+  .table-container {
+    font-size: 0.75rem;
+  }
+  
+  .action-btn {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .action-btn i {
+    font-size: 0.75rem;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .action-buttons,
+  .filter-container,
+  .action-btn {
+    display: none !important;
+  }
+  
+  .risk-profile-body {
+    box-shadow: none;
+  }
+  
+  .table-container {
+    box-shadow: none;
+    border: 1px solid #000;
+  }
+  
+  .table-container thead {
+    background: #1e3a8a !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  
+  .badge-status {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.risk-profile-body > * {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Utility Classes */
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.font-weight-bold {
+  font-weight: 600;
+}
+
+.font-weight-normal {
+  font-weight: 400;
+}
+
+.text-muted {
+  color: #6b7280;
+}
+
+.text-primary {
+  color: #0066cc;
+}
+
+.text-success {
+  color: #10b981;
+}
+
+.text-warning {
+  color: #f59e0b;
+}
+
+.text-danger {
+  color: #ef4444;
+}

@@ -77,7 +77,12 @@ router.get('/test-excel-download', async (req, res) => {
     ];
 
     console.log('Generating Excel with', sampleData.length, 'records');
-    const buffer = exportToExcel(sampleData, 'Test Risk Register');
+    const buffer = exportToExcel(sampleData, 'Test Risk Register', {
+      organizationName: 'PINTAR MR - Manajemen Risiko Terpadu',
+      reportTitle: 'Test Risk Register Report',
+      reportType: 'Laporan Test Register Risiko',
+      generatedBy: 'Test Administrator'
+    });
     
     if (!buffer || buffer.length === 0) {
       throw new Error('Failed to generate Excel buffer');
@@ -694,7 +699,12 @@ router.get('/risk-register/excel', authenticateUser, async (req, res) => {
     const flattened = flattenRiskData(processedData);
     console.log('Flattened data for Excel:', flattened.length, 'records');
     
-    const buffer = exportToExcel(flattened, 'Risk Register');
+    const buffer = exportToExcel(flattened, 'Risk Register', {
+      organizationName: 'PINTAR MR - Manajemen Risiko Terpadu',
+      reportTitle: 'Risk Register Report',
+      reportType: 'Laporan Register Risiko',
+      generatedBy: req.user?.email || 'System Administrator'
+    });
     sendExcelResponse(res, buffer, `risk-register-${new Date().toISOString().split('T')[0]}.xlsx`);
   } catch (error) {
     console.error('Export risk register error:', error);

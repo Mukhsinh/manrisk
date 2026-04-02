@@ -1,0 +1,221 @@
+/**
+ * RENCANA STRATEGIS - BUTTON FIX
+ * Perbaikan tombol sesuai standar UI aplikasi
+ * - Tombol aksi: Icon only (tanpa teks)
+ * - Tombol header: Warna cerah, solid, berbeda
+ */
+
+/* ============================================
+   TOMBOL HEADER - CERAH & SOLID
+   ============================================ */
+
+/* Tombol Refresh - Biru Cerah Solid */
+.rencana-strategis-wrapper .card-header #rs-refresh-btn {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%) !important;
+  border: none !important;
+  color: white !important;
+  font-weight: 600 !important;
+  padding: 0.65rem 1.5rem !important;
+  border-radius: 10px !important;
+  font-size: 0.95rem !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3) !important;
+}
+
+.rencana-strategis-wrapper .card-header #rs-refresh-btn:hover {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4) !important;
+}
+
+.rencana-strategis-wrapper .card-header #rs-refresh-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3) !important;
+}
+
+/* Icon di tombol refresh - lebih besar */
+.rencana-strategis-wrapper .card-header #rs-refresh-btn i {
+  font-size: 1.1rem !important;
+  margin-right: 0.5rem !important;
+  font-weight: 900 !important;
+}
+
+/* Tombol Unduh Laporan - Hijau Cerah Solid */
+.rencana-strategis-wrapper .card-header #rs-export-btn {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  border: none !important;
+  color: white !important;
+  font-weight: 600 !important;
+  padding: 0.65rem 1.5rem !important;
+  border-radius: 10px !important;
+  font-size: 0.95rem !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3) !important;
+}
+
+.rencana-strategis-wrapper .card-header #rs-export-btn:hover {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4) !important;
+}
+
+.rencana-strategis-wrapper .card-header #rs-export-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3) !important;
+}
+
+/* Icon di tombol unduh - lebih besar */
+.rencana-strategis-wrapper .card-header #rs-export-btn i {
+  font-size: 1.1rem !important;
+  margin-right: 0.5rem !important;
+  font-weight: 900 !important;
+}
+
+/* ============================================
+   TOMBOL AKSI - ICON ONLY (TANPA TEKS)
+   ============================================ */
+
+/* Reset semua tombol aksi */
+.rencana-strategis-wrapper .btn-action-view,
+.rencana-strategis-wrapper .btn-action-edit,
+.rencana-strategis-wrapper .btn-action-delete {
+  padding: 0.5rem !important;
+  border-radius: 8px !important;
+  border: none !important;
+  min-width: 36px !important;
+  min-height: 36px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
+  font-size: 0 !important; /* Hide text */
+}
+
+/* Sembunyikan teks, tampilkan hanya icon */
+.rencana-strategis-wrapper .btn-action-view::before,
+.rencana-strategis-wrapper .btn-action-edit::before,
+.rencana-strategis-wrapper .btn-action-delete::before {
+  font-size: 1.1rem !important;
+  line-height: 1 !important;
+  font-weight: 900 !important;
+  color: white !important;
+}
+
+/* Tombol View - Biru */
+.rencana-strategis-wrapper .btn-action-view {
+  background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%) !important;
+}
+
+.rencana-strategis-wrapper .btn-action-view:hover {
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%) !important;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.4) !important;
+}
+
+/* Tombol Edit - Orange */
+.rencana-strategis-wrapper .btn-action-edit {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+}
+
+.rencana-strategis-wrapper .btn-action-edit:hover {
+  background: linear-gradient(135deg, #d97706 0%, #b45309 100%) !important;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4) !important;
+}
+
+/* Tombol Delete - Merah */
+.rencana-strategis-wrapper .btn-action-delete {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important;
+}
+
+.rencana-strategis-wrapper .btn-action-delete:hover {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%) !important;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4) !important;
+}
+
+/* Active state untuk semua tombol aksi */
+.rencana-strategis-wrapper .btn-action-view:active,
+.rencana-strategis-wrapper .btn-action-edit:active,
+.rencana-strategis-wrapper .btn-action-delete:active {
+  transform: scale(0.95) translateY(0) !important;
+}
+
+/* Icon visibility - pastikan icon terlihat */
+.rencana-strategis-wrapper .btn-action-view i,
+.rencana-strategis-wrapper .btn-action-edit i,
+.rencana-strategis-wrapper .btn-action-delete i {
+  display: inline-block !important;
+  font-size: 1.1rem !important;
+  line-height: 1 !important;
+  vertical-align: middle !important;
+  font-weight: 900 !important;
+  color: white !important;
+  margin: 0 !important;
+}
+
+/* Lucide icons support */
+.rencana-strategis-wrapper .btn-action-view svg,
+.rencana-strategis-wrapper .btn-action-edit svg,
+.rencana-strategis-wrapper .btn-action-delete svg {
+  width: 18px !important;
+  height: 18px !important;
+  stroke: white !important;
+  stroke-width: 2.5 !important;
+}
+
+/* Container tombol aksi */
+.rencana-strategis-wrapper .table td:last-child .d-flex {
+  gap: 0.5rem !important;
+  justify-content: center !important;
+}
+
+/* Responsive - mobile */
+@media (max-width: 768px) {
+  .rencana-strategis-wrapper .btn-action-view,
+  .rencana-strategis-wrapper .btn-action-edit,
+  .rencana-strategis-wrapper .btn-action-delete {
+    min-width: 32px !important;
+    min-height: 32px !important;
+    padding: 0.4rem !important;
+  }
+  
+  .rencana-strategis-wrapper .btn-action-view i,
+  .rencana-strategis-wrapper .btn-action-edit i,
+  .rencana-strategis-wrapper .btn-action-delete i {
+    font-size: 1rem !important;
+  }
+  
+  .rencana-strategis-wrapper .btn-action-view svg,
+  .rencana-strategis-wrapper .btn-action-edit svg,
+  .rencana-strategis-wrapper .btn-action-delete svg {
+    width: 16px !important;
+    height: 16px !important;
+  }
+}
+
+/* ============================================
+   BUTTON GROUP SPACING
+   ============================================ */
+
+.rencana-strategis-wrapper .card-header .btn-group {
+  gap: 0.75rem !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+}
+
+/* Responsive button group */
+@media (max-width: 576px) {
+  .rencana-strategis-wrapper .card-header .btn-group {
+    width: 100% !important;
+    flex-direction: column !important;
+  }
+  
+  .rencana-strategis-wrapper .card-header #rs-refresh-btn,
+  .rencana-strategis-wrapper .card-header #rs-export-btn {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+}

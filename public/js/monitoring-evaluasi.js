@@ -16,6 +16,14 @@ const MonitoringEvaluasi = {
                 document.head.appendChild(link);
             }
             
+            // Load responsive buttons CSS
+            if (!document.querySelector('link[href*="monitoring-evaluasi-buttons-responsive.css"]')) {
+                const link = document.createElement('link');
+                link.rel = 'stylesheet';
+                link.href = '/css/monitoring-evaluasi-buttons-responsive.css';
+                document.head.appendChild(link);
+            }
+            
             const content = document.getElementById('monitoring-evaluasi-content');
             if (!content) {
                 console.error('Content container not found');
@@ -115,20 +123,23 @@ const MonitoringEvaluasi = {
         
         content.innerHTML = `
             <div class="card">
-                <div class="card-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
-                    <h3 class="card-title" style="margin: 0;"><i class="fas fa-tasks"></i> Monitoring & Evaluasi Risiko</h3>
+                <div class="card-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; padding: 1.25rem;">
+                    <h3 class="card-title" style="margin: 0; font-size: 1.25rem;"><i class="fas fa-tasks"></i> Monitoring & Evaluasi Risiko</h3>
                     <div class="action-buttons" style="display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center;">
-                        <button class="btn btn-warning btn-sm btn-monitoring-download-template" title="Unduh Template">
-                            <i class="fas fa-download"></i> <span class="btn-text">Template</span>
+                        <button class="btn-refresh btn-monitoring-refresh" onclick="MonitoringEvaluasi.refresh()" title="Refresh Data" style="padding:8px 14px;border-radius:6px;background:#10B981;color:#fff;border:none;cursor:pointer;font-weight:500;display:inline-flex;align-items:center;gap:6px;transition:all 0.2s ease;white-space:nowrap;font-size:0.875rem;">
+                            <i class="fas fa-sync-alt" style="font-size:14px;"></i> <span class="btn-text">Refresh</span>
                         </button>
-                        <button class="btn btn-success btn-sm btn-monitoring-import" title="Import Data">
-                            <i class="fas fa-upload"></i> <span class="btn-text">Import</span>
+                        <button class="btn-download btn-monitoring-report" onclick="MonitoringEvaluasi.downloadReport()" title="Unduh Laporan" style="padding:8px 14px;border-radius:6px;background:#3B82F6;color:#fff;border:none;cursor:pointer;font-weight:500;display:inline-flex;align-items:center;gap:6px;transition:all 0.2s ease;white-space:nowrap;font-size:0.875rem;">
+                            <i class="fas fa-file-excel" style="font-size:14px;"></i> <span class="btn-text">Unduh Laporan</span>
                         </button>
-                        <button class="btn btn-primary btn-sm btn-monitoring-add" title="Tambah Monitoring">
-                            <i class="fas fa-plus"></i> <span class="btn-text">Tambah</span>
+                        <button class="btn-download btn-monitoring-download-template" onclick="MonitoringEvaluasi.downloadTemplate()" title="Unduh Template" style="padding:8px 14px;border-radius:6px;background:#F59E0B;color:#fff;border:none;cursor:pointer;font-weight:500;display:inline-flex;align-items:center;gap:6px;transition:all 0.2s ease;white-space:nowrap;font-size:0.875rem;">
+                            <i class="fas fa-download" style="font-size:14px;"></i> <span class="btn-text">Template</span>
                         </button>
-                        <button class="btn btn-info btn-sm btn-monitoring-report" title="Unduh Laporan">
-                            <i class="fas fa-file-pdf"></i> <span class="btn-text">Laporan</span>
+                        <button class="btn-import btn-monitoring-import" onclick="MonitoringEvaluasi.showImportModal()" title="Import Data" style="padding:8px 14px;border-radius:6px;background:#8B5CF6;color:#fff;border:none;cursor:pointer;font-weight:500;display:inline-flex;align-items:center;gap:6px;transition:all 0.2s ease;white-space:nowrap;font-size:0.875rem;">
+                            <i class="fas fa-upload" style="font-size:14px;"></i> <span class="btn-text">Import</span>
+                        </button>
+                        <button class="btn-tambah btn-monitoring-add" onclick="MonitoringEvaluasi.showAddModal()" title="Tambah Monitoring" style="padding:8px 14px;border-radius:6px;background:#EF4444;color:#fff;border:none;cursor:pointer;font-weight:500;display:inline-flex;align-items:center;gap:6px;transition:all 0.2s ease;white-space:nowrap;font-size:0.875rem;">
+                            <i class="fas fa-plus" style="font-size:14px;"></i> <span class="btn-text">Tambah</span>
                         </button>
                     </div>
                 </div>
@@ -190,12 +201,12 @@ const MonitoringEvaluasi = {
                                         <td style="padding: 10px; border-bottom: 1px solid #e0e0e0;">${this.getProgressBadge(item.progress_mitigasi)}</td>
                                         <td style="padding: 10px; border-bottom: 1px solid #e0e0e0; max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="${evaluasiText}">${shortEvaluasi}</td>
                                         <td style="padding: 10px; border-bottom: 1px solid #e0e0e0;">
-                                            <div style="display: flex; gap: 6px; justify-content: center;">
-                                                <button class="btn-monitoring-edit" data-id="${item.id}" title="Edit" style="width: 32px; height: 32px; border-radius: 6px; border: none; background: #3B82F6; color: #fff; cursor: pointer; display: inline-flex; align-items: center; justify-content: center;">
-                                                    <i class="fas fa-edit"></i>
+                                            <div style="display: flex; gap: 6px; justify-content: center; align-items: center;">
+                                                <button class="btn-action-edit" data-id="${item.id}" title="Edit" style="width:32px;height:32px;border-radius:6px;border:none;background:#3B82F6;color:#fff;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all 0.2s ease;">
+                                                    <i class="fas fa-pencil-alt" style="font-size:14px;"></i>
                                                 </button>
-                                                <button class="btn-monitoring-delete" data-id="${item.id}" title="Hapus" style="width: 32px; height: 32px; border-radius: 6px; border: none; background: #EF4444; color: #fff; cursor: pointer; display: inline-flex; align-items: center; justify-content: center;">
-                                                    <i class="fas fa-trash"></i>
+                                                <button class="btn-action-delete" data-id="${item.id}" title="Hapus" style="width:32px;height:32px;border-radius:6px;border:none;background:#EF4444;color:#fff;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all 0.2s ease;">
+                                                    <i class="fas fa-trash-alt" style="font-size:14px;"></i>
                                                 </button>
                                             </div>
                                         </td>
@@ -229,12 +240,13 @@ const MonitoringEvaluasi = {
         // Create and store bound handler
         this._boundClickHandler = (e) => {
             const target = e.target;
-            const editBtn = target.closest('.btn-monitoring-edit');
-            const deleteBtn = target.closest('.btn-monitoring-delete');
+            const editBtn = target.closest('.btn-action-edit');
+            const deleteBtn = target.closest('.btn-action-delete');
             const addBtn = target.closest('.btn-monitoring-add');
             const importBtn = target.closest('.btn-monitoring-import');
             const templateBtn = target.closest('.btn-monitoring-download-template');
             const reportBtn = target.closest('.btn-monitoring-report');
+            const refreshBtn = target.closest('.btn-monitoring-refresh');
             
             if (editBtn) {
                 e.preventDefault();
@@ -287,6 +299,14 @@ const MonitoringEvaluasi = {
                 e.stopPropagation();
                 console.log('📊 Download report button clicked');
                 MonitoringEvaluasi.downloadReport();
+                return;
+            }
+            
+            if (refreshBtn) {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('🔄 Refresh button clicked');
+                MonitoringEvaluasi.refresh();
                 return;
             }
         };
@@ -387,80 +407,82 @@ const MonitoringEvaluasi = {
         modal.className = 'modal active';
         modal.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:9999;';
         modal.innerHTML = `
-            <div class="modal-content" style="background:#fff;border-radius:12px;max-width:700px;width:95%;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.3);">
-                <div class="modal-header" style="padding:20px 24px;border-bottom:1px solid #e0e0e0;display:flex;justify-content:space-between;align-items:center;background:#f8f9fa;border-radius:12px 12px 0 0;">
+            <div class="modal-content" style="background:#fff;border-radius:12px;max-width:700px;width:95%;max-height:90vh;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,0.3);">
+                <div class="modal-header" style="padding:20px 24px;border-bottom:1px solid #e0e0e0;display:flex;justify-content:space-between;align-items:center;background:#f8f9fa;border-radius:12px 12px 0 0;flex-shrink:0;">
                     <h3 class="modal-title" style="margin:0;font-size:1.25rem;font-weight:600;">${id ? 'Edit' : 'Tambah'} Monitoring & Evaluasi</h3>
-                    <button class="modal-close btn-close-modal" style="width:36px;height:36px;border-radius:50%;border:none;background:#e5e7eb;color:#6b7280;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;">&times;</button>
+                    <button class="modal-close btn-close-modal" style="width:36px;height:36px;border-radius:50%;border:none;background:#e5e7eb;color:#6b7280;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s ease;">&times;</button>
                 </div>
-                <form id="monitoring-form" style="padding:24px;">
-                    <input type="hidden" id="monitoring-id" value="${id || ''}">
-                    
-                    <div class="form-group" style="margin-bottom:16px;">
-                        <label class="form-label" style="display:block;margin-bottom:6px;font-weight:500;">Risiko *</label>
-                        <select class="form-control" id="monitoring-risk" required style="width:100%;padding:10px 12px;border:1px solid #d1d5db;border-radius:8px;">
-                            <option value="">Pilih Risiko</option>
-                            ${risks.map(r => `<option value="${r.id}">${r.kode_risiko} - ${(r.sasaran || '').substring(0,40)}</option>`).join('')}
-                        </select>
-                    </div>
-                    
-                    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
+                <form id="monitoring-form" style="display:flex;flex-direction:column;flex:1;min-height:0;">
+                    <div style="padding:24px;overflow-y:auto;flex:1;">
+                        <input type="hidden" id="monitoring-id" value="${id || ''}">
+                        
                         <div class="form-group" style="margin-bottom:16px;">
-                            <label class="form-label" style="display:block;margin-bottom:6px;font-weight:500;">Tanggal Monitoring *</label>
-                            <input type="date" class="form-control" id="monitoring-tanggal" required style="width:100%;padding:10px 12px;border:1px solid #d1d5db;border-radius:8px;">
-                        </div>
-                        <div class="form-group" style="margin-bottom:16px;">
-                            <label class="form-label" style="display:block;margin-bottom:6px;font-weight:500;">Status Risiko</label>
-                            <select class="form-control" id="monitoring-status" style="width:100%;padding:10px 12px;border:1px solid #d1d5db;border-radius:8px;">
-                                <option value="Stabil">Stabil</option>
-                                <option value="Meningkat">Meningkat</option>
-                                <option value="Menurun">Menurun</option>
+                            <label class="form-label" style="display:block;margin-bottom:6px;font-weight:500;">Risiko *</label>
+                            <select class="form-control" id="monitoring-risk" required style="width:100%;padding:10px 12px;border:1px solid #d1d5db;border-radius:8px;">
+                                <option value="">Pilih Risiko</option>
+                                ${risks.map(r => `<option value="${r.id}">${r.kode_risiko} - ${(r.sasaran || '').substring(0,40)}</option>`).join('')}
                             </select>
                         </div>
+                        
+                        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
+                            <div class="form-group" style="margin-bottom:16px;">
+                                <label class="form-label" style="display:block;margin-bottom:6px;font-weight:500;">Tanggal Monitoring *</label>
+                                <input type="date" class="form-control" id="monitoring-tanggal" required style="width:100%;padding:10px 12px;border:1px solid #d1d5db;border-radius:8px;">
+                            </div>
+                            <div class="form-group" style="margin-bottom:16px;">
+                                <label class="form-label" style="display:block;margin-bottom:6px;font-weight:500;">Status Risiko</label>
+                                <select class="form-control" id="monitoring-status" style="width:100%;padding:10px 12px;border:1px solid #d1d5db;border-radius:8px;">
+                                    <option value="Stabil">Stabil</option>
+                                    <option value="Meningkat">Meningkat</option>
+                                    <option value="Menurun">Menurun</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+                            <div class="form-group" style="margin-bottom:16px;">
+                                <label class="form-label" style="display:block;margin-bottom:6px;font-weight:500;">Probabilitas</label>
+                                <input type="number" class="form-control" id="monitoring-probabilitas" min="1" max="5" style="width:100%;padding:10px 12px;border:1px solid #d1d5db;border-radius:8px;">
+                            </div>
+                            <div class="form-group" style="margin-bottom:16px;">
+                                <label class="form-label" style="display:block;margin-bottom:6px;font-weight:500;">Dampak</label>
+                                <input type="number" class="form-control" id="monitoring-dampak" min="1" max="5" style="width:100%;padding:10px 12px;border:1px solid #d1d5db;border-radius:8px;">
+                            </div>
+                            <div class="form-group" style="margin-bottom:16px;">
+                                <label class="form-label" style="display:block;margin-bottom:6px;font-weight:500;">Nilai Risiko</label>
+                                <input type="number" class="form-control" id="monitoring-nilai" min="1" max="25" style="width:100%;padding:10px 12px;border:1px solid #d1d5db;border-radius:8px;">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group" style="margin-bottom:16px;">
+                            <label class="form-label" style="display:block;margin-bottom:6px;font-weight:500;">Tindakan Mitigasi</label>
+                            <textarea class="form-control" id="monitoring-tindakan" rows="2" style="width:100%;padding:10px 12px;border:1px solid #d1d5db;border-radius:8px;resize:vertical;"></textarea>
+                        </div>
+                        
+                        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
+                            <div class="form-group" style="margin-bottom:16px;">
+                                <label class="form-label" style="display:block;margin-bottom:6px;font-weight:500;">Progress Mitigasi (%)</label>
+                                <input type="number" class="form-control" id="monitoring-progress" min="0" max="100" value="0" style="width:100%;padding:10px 12px;border:1px solid #d1d5db;border-radius:8px;">
+                            </div>
+                            <div class="form-group" style="margin-bottom:16px;">
+                                <label class="form-label" style="display:block;margin-bottom:6px;font-weight:500;">Status Data</label>
+                                <select class="form-control" id="monitoring-status-data" style="width:100%;padding:10px 12px;border:1px solid #d1d5db;border-radius:8px;">
+                                    <option value="Aktif">Aktif</option>
+                                    <option value="Tutup">Tutup</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group" style="margin-bottom:16px;">
+                            <label class="form-label" style="display:block;margin-bottom:6px;font-weight:500;">Evaluasi</label>
+                            <textarea class="form-control" id="monitoring-evaluasi-text" rows="3" style="width:100%;padding:10px 12px;border:1px solid #d1d5db;border-radius:8px;resize:vertical;"></textarea>
+                        </div>
                     </div>
                     
-                    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
-                        <div class="form-group" style="margin-bottom:16px;">
-                            <label class="form-label" style="display:block;margin-bottom:6px;font-weight:500;">Probabilitas</label>
-                            <input type="number" class="form-control" id="monitoring-probabilitas" min="1" max="5" style="width:100%;padding:10px 12px;border:1px solid #d1d5db;border-radius:8px;">
-                        </div>
-                        <div class="form-group" style="margin-bottom:16px;">
-                            <label class="form-label" style="display:block;margin-bottom:6px;font-weight:500;">Dampak</label>
-                            <input type="number" class="form-control" id="monitoring-dampak" min="1" max="5" style="width:100%;padding:10px 12px;border:1px solid #d1d5db;border-radius:8px;">
-                        </div>
-                        <div class="form-group" style="margin-bottom:16px;">
-                            <label class="form-label" style="display:block;margin-bottom:6px;font-weight:500;">Nilai Risiko</label>
-                            <input type="number" class="form-control" id="monitoring-nilai" min="1" max="25" style="width:100%;padding:10px 12px;border:1px solid #d1d5db;border-radius:8px;">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group" style="margin-bottom:16px;">
-                        <label class="form-label" style="display:block;margin-bottom:6px;font-weight:500;">Tindakan Mitigasi</label>
-                        <textarea class="form-control" id="monitoring-tindakan" rows="2" style="width:100%;padding:10px 12px;border:1px solid #d1d5db;border-radius:8px;resize:vertical;"></textarea>
-                    </div>
-                    
-                    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
-                        <div class="form-group" style="margin-bottom:16px;">
-                            <label class="form-label" style="display:block;margin-bottom:6px;font-weight:500;">Progress Mitigasi (%)</label>
-                            <input type="number" class="form-control" id="monitoring-progress" min="0" max="100" value="0" style="width:100%;padding:10px 12px;border:1px solid #d1d5db;border-radius:8px;">
-                        </div>
-                        <div class="form-group" style="margin-bottom:16px;">
-                            <label class="form-label" style="display:block;margin-bottom:6px;font-weight:500;">Status Data</label>
-                            <select class="form-control" id="monitoring-status-data" style="width:100%;padding:10px 12px;border:1px solid #d1d5db;border-radius:8px;">
-                                <option value="Aktif">Aktif</option>
-                                <option value="Tutup">Tutup</option>
-                            </select>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group" style="margin-bottom:16px;">
-                        <label class="form-label" style="display:block;margin-bottom:6px;font-weight:500;">Evaluasi</label>
-                        <textarea class="form-control" id="monitoring-evaluasi-text" rows="3" style="width:100%;padding:10px 12px;border:1px solid #d1d5db;border-radius:8px;resize:vertical;"></textarea>
-                    </div>
-                    
-                    <div style="display:flex;gap:12px;justify-content:flex-end;margin-top:24px;padding-top:16px;border-top:1px solid #e0e0e0;">
-                        <button type="button" class="btn btn-secondary btn-close-modal" style="padding:10px 20px;border-radius:8px;background:#e5e7eb;color:#374151;border:none;cursor:pointer;">Batal</button>
-                        <button type="submit" class="btn btn-primary" style="padding:10px 20px;border-radius:8px;background:#3b82f6;color:#fff;border:none;cursor:pointer;">
-                            <i class="fas fa-save"></i> Simpan
+                    <div style="display:flex;gap:12px;justify-content:flex-end;padding:16px 24px;border-top:1px solid #e0e0e0;background:#f8f9fa;border-radius:0 0 12px 12px;flex-shrink:0;">
+                        <button type="button" class="btn btn-secondary btn-close-modal" style="padding:10px 20px;border-radius:8px;background:#e5e7eb;color:#374151;border:none;cursor:pointer;font-weight:500;transition:all 0.2s ease;">Batal</button>
+                        <button type="submit" class="btn btn-primary" style="padding:10px 20px;border-radius:8px;background:#3b82f6;color:#fff;border:none;cursor:pointer;font-weight:500;transition:all 0.2s ease;display:flex;align-items:center;gap:8px;">
+                            <i class="fas fa-save" style="font-size:14px;"></i> Simpan
                         </button>
                     </div>
                 </form>
@@ -577,45 +599,113 @@ const MonitoringEvaluasi = {
     async loadForEdit(id) {
         try {
             console.log('Loading data for edit, ID:', id);
+            
+            // Wait a bit for modal to be fully rendered
+            await new Promise(resolve => setTimeout(resolve, 200));
+            
             const data = await apiCall(`/api/monitoring-evaluasi/${id}`);
+            console.log('Loaded data for edit:', data);
             console.log('Loaded data:', data);
             
-            if (data) {
-                // Set risk dropdown - need to wait for options to be available
-                const riskSelect = document.getElementById('monitoring-risk');
-                if (riskSelect && data.risk_input_id) {
-                    // Check if option exists, if not add it
-                    let optionExists = false;
-                    for (let option of riskSelect.options) {
-                        if (option.value === data.risk_input_id) {
-                            optionExists = true;
-                            break;
-                        }
-                    }
-                    if (!optionExists && data.risk_inputs) {
-                        const newOption = document.createElement('option');
-                        newOption.value = data.risk_input_id;
-                        newOption.textContent = `${data.risk_inputs.kode_risiko || 'Unknown'} - ${(data.risk_inputs.sasaran || '').substring(0, 40)}`;
-                        riskSelect.appendChild(newOption);
-                    }
-                    riskSelect.value = data.risk_input_id;
-                }
-                
-                document.getElementById('monitoring-tanggal').value = data.tanggal_monitoring || '';
-                document.getElementById('monitoring-status').value = data.status_risiko || 'Stabil';
-                document.getElementById('monitoring-probabilitas').value = data.tingkat_probabilitas || '';
-                document.getElementById('monitoring-dampak').value = data.tingkat_dampak || '';
-                document.getElementById('monitoring-nilai').value = data.nilai_risiko || '';
-                document.getElementById('monitoring-tindakan').value = data.tindakan_mitigasi || '';
-                document.getElementById('monitoring-progress').value = data.progress_mitigasi || 0;
-                document.getElementById('monitoring-evaluasi-text').value = data.evaluasi || '';
-                document.getElementById('monitoring-status-data').value = data.status || 'Aktif';
-                
-                console.log('Form populated successfully');
+            if (!data) {
+                console.error('No data returned from API');
+                // Don't show alert, just log - modal is already open
+                console.warn('Data tidak ditemukan untuk ID:', id);
+                return;
             }
+            
+            // Set risk dropdown - need to wait for options to be available
+            const riskSelect = document.getElementById('monitoring-risk');
+            if (riskSelect && data.risk_input_id) {
+                // Check if option exists, if not add it
+                let optionExists = false;
+                for (let option of riskSelect.options) {
+                    if (option.value == data.risk_input_id) {
+                        optionExists = true;
+                        break;
+                    }
+                }
+                if (!optionExists && data.risk_inputs) {
+                    const newOption = document.createElement('option');
+                    newOption.value = data.risk_input_id;
+                    newOption.textContent = `${data.risk_inputs.kode_risiko || 'Unknown'} - ${(data.risk_inputs.sasaran || '').substring(0, 40)}`;
+                    riskSelect.appendChild(newOption);
+                }
+                riskSelect.value = data.risk_input_id;
+                console.log('✅ Risk dropdown set to:', data.risk_input_id);
+            }
+            
+            // Populate all form fields
+            const tanggalInput = document.getElementById('monitoring-tanggal');
+            if (tanggalInput && data.tanggal_monitoring) {
+                // Format date properly for input[type="date"]
+                const dateValue = data.tanggal_monitoring.split('T')[0];
+                tanggalInput.value = dateValue;
+            }
+            
+            const statusSelect = document.getElementById('monitoring-status');
+            if (statusSelect) statusSelect.value = data.status_risiko || 'Stabil';
+            
+            const probabilitasInput = document.getElementById('monitoring-probabilitas');
+            if (probabilitasInput) probabilitasInput.value = data.tingkat_probabilitas || '';
+            
+            const dampakInput = document.getElementById('monitoring-dampak');
+            if (dampakInput) dampakInput.value = data.tingkat_dampak || '';
+            
+            const nilaiInput = document.getElementById('monitoring-nilai');
+            if (nilaiInput) nilaiInput.value = data.nilai_risiko || '';
+            
+            const tindakanTextarea = document.getElementById('monitoring-tindakan');
+            if (tindakanTextarea) tindakanTextarea.value = data.tindakan_mitigasi || '';
+            
+            const progressInput = document.getElementById('monitoring-progress');
+            if (progressInput) progressInput.value = data.progress_mitigasi || 0;
+            
+            const evaluasiTextarea = document.getElementById('monitoring-evaluasi-text');
+            if (evaluasiTextarea) evaluasiTextarea.value = data.evaluasi || '';
+            
+            const statusDataSelect = document.getElementById('monitoring-status-data');
+            if (statusDataSelect) statusDataSelect.value = data.status || 'Aktif';
+            
+            console.log('✅ Form populated successfully with data:', {
+                risk_input_id: data.risk_input_id,
+                tanggal: data.tanggal_monitoring,
+                evaluasi: data.evaluasi
+            });
         } catch (error) {
             console.error('Error loading data for edit:', error);
-            alert('Gagal memuat data: ' + error.message);
+            // Show error in console but don't block the modal
+            console.warn('Gagal memuat data, form akan tetap terbuka:', error.message);
+        }
+    },
+
+    async refresh() {
+        console.log('🔄 Refreshing monitoring evaluasi data...');
+        try {
+            // Show loading indicator
+            const content = document.getElementById('monitoring-evaluasi-content');
+            if (content) {
+                const loadingDiv = document.createElement('div');
+                loadingDiv.className = 'refresh-loading';
+                loadingDiv.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(255,255,255,0.95);padding:20px 40px;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,0.15);z-index:10000;display:flex;align-items:center;gap:12px;';
+                loadingDiv.innerHTML = `
+                    <div style="width:24px;height:24px;border:3px solid #e5e7eb;border-top-color:#10B981;border-radius:50%;animation:spin 0.8s linear infinite;"></div>
+                    <span style="font-weight:500;color:#374151;">Memuat ulang data...</span>
+                    <style>@keyframes spin{to{transform:rotate(360deg)}}</style>
+                `;
+                document.body.appendChild(loadingDiv);
+                
+                // Reload data
+                await this.load();
+                
+                // Remove loading indicator
+                setTimeout(() => {
+                    loadingDiv.remove();
+                }, 500);
+            }
+        } catch (error) {
+            console.error('Error refreshing data:', error);
+            alert('Gagal memuat ulang data: ' + error.message);
         }
     },
 
@@ -845,8 +935,8 @@ document.addEventListener('click', function(e) {
     const target = e.target;
     
     // Check for edit button
-    if (target.closest('.btn-monitoring-edit')) {
-        const btn = target.closest('.btn-monitoring-edit');
+    if (target.closest('.btn-action-edit')) {
+        const btn = target.closest('.btn-action-edit');
         const id = btn.getAttribute('data-id');
         if (id) {
             e.preventDefault();
@@ -858,8 +948,8 @@ document.addEventListener('click', function(e) {
     }
     
     // Check for delete button
-    if (target.closest('.btn-monitoring-delete')) {
-        const btn = target.closest('.btn-monitoring-delete');
+    if (target.closest('.btn-action-delete')) {
+        const btn = target.closest('.btn-action-delete');
         const id = btn.getAttribute('data-id');
         if (id) {
             e.preventDefault();

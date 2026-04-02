@@ -104,27 +104,169 @@ app.get('/api/risk-profile-excel', async (req, res) => {
       };
     });
 
+    // Use proper Excel export
+    const { exportToExcel } = require('./utils/exportHelper');
+    const buffer = exportToExcel(excelData, 'Risk Profile', {
+      organizationName: 'PINTAR MR - Manajemen Risiko Terpadu',
+      reportTitle: 'Risk Profile Report',
+      reportType: 'Laporan Profil Risiko',
+      generatedBy: 'System Administrator'
+    });
+
     // Set headers for Excel download
     res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
     res.setHeader('Content-Disposition', `attachment; filename=risk-profile-${new Date().toISOString().split('T')[0]}.xlsx`);
     
-    // For now, return CSV format (can be opened in Excel)
-    const headers = Object.keys(excelData[0]);
-    const csvContent = [
-      headers.join(','),
-      ...excelData.map(row => 
-        headers.map(header => {
-          const value = row[header];
-          return typeof value === 'string' && (value.includes(',') || value.includes('"')) 
-            ? `"${value.replace(/"/g, '""')}"` 
-            : value;
-        }).join(',')
-      )
-    ].join('\n');
-
-    res.send('\uFEFF' + csvContent); // BOM for UTF-8
+    res.send(buffer);
   } catch (error) {
     console.error('Excel export error:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Risk Profile PDF Export
+app.get('/api/risk-profile-pdf', async (req, res) => {
+  try {
+    // Get data from the correct risk-profile endpoint
+    const response = await fetch(`${req.protocol}://${req.get('host')}/api/risk-profile`, {
+      headers: {
+        'Authorization': req.headers.authorization || '',
+        'Content-Type': 'application/json'
+      }
+    });
+    const data = await response.json();
+    
+    if (!data || data.length === 0) {
+      return res.status(404).json({ error: 'No data found' });
+    }
+
+    // Prepare PDF data
+    const pdfData = data.map((item, index) => {
+      const risk = item.risk_inputs || {};
+      return {
+        'No': index + 1,
+        'Kode Risiko': risk.kode_risiko || '-',
+        'Unit Kerja': risk.master_work_units?.name || '-',
+        'Kategori Risiko': risk.master_risk_categories?.name || '-',
+        'Sasaran': risk.sasaran || '-',
+        'Probabilitas': item.probability || 0,
+        'Dampak': item.impact || 0,
+        'Risk Level': item.risk_level || '-',
+        'Tanggal Dibuat': item.created_at ? new Date(item.created_at).toLocaleDateString('id-ID') : '-'
+      };
+    });
+
+    // Use proper PDF export
+    const { exportToPDF } = require('./utils/exportHelper');
+    const buffer = await exportToPDF(pdfData, {
+      title: 'Risk Profile Report',
+      organizationName: 'PINTAR MR - Manajemen Risiko Terpadu',
+      reportTitle: 'Risk Profile Report',
+      reportType: 'Laporan Profil Risiko',
+      generatedBy: 'System Administrator',
+      orientation: 'landscape'
+    });
+
+    // Set headers for PDF download
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader('Content-Disposition', `attachment; filename=risk-profile-${new Date().toISOString().split('T')[0]}.pdf`);
+    
+    res.send(buffer);
+  } catch (error) {
+    console.error('PDF export error:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Universal Export Endpoint with format selection
+app.get('/api/risk-profile-export', async (req, res) => {
+  try {
+    const format = req.query.format || 'excel'; // excel, pdf, csv
+    
+    // Get data from the correct risk-profile endpoint
+    const response = await fetch(`${req.protocol}://${req.get('host')}/api/risk-profile`, {
+      headers: {
+        'Authorization': req.headers.authorization || '',
+        'Content-Type': 'application/json'
+      }
+    });
+    const data = await response.json();
+    
+    if (!data || data.length === 0) {
+      return res.status(404).json({ error: 'No data found' });
+    }
+
+    // Prepare export data
+    const exportData = data.map((item, index) => {
+      const risk = item.risk_inputs || {};
+      return {
+        'No': index + 1,
+        'Kode Risiko': risk.kode_risiko || '-',
+        'Unit Kerja': risk.master_work_units?.name || '-',
+        'Jenis Unit Kerja': risk.master_work_units?.jenis || '-',
+        'Kategori Unit Kerja': risk.master_work_units?.kategori || '-',
+        'Kategori Risiko': risk.master_risk_categories?.name || '-',
+        'Sasaran': risk.sasaran || '-',
+        'Probabilitas': item.probability || 0,
+        'Dampak': item.impact || 0,
+        'Risk Value': item.risk_value || 0,
+        'Risk Level': item.risk_level || '-',
+        'Probabilitas %': item.probability_percentage || '-',
+        'Dampak Finansial': item.financial_impact || 0,
+        'Tanggal Dibuat': item.created_at ? new Date(item.created_at).toLocaleDateString('id-ID') : '-'
+      };
+    });
+
+    const { exportToExcel, exportToPDF } = require('./utils/exportHelper');
+    const timestamp = new Date().toISOString().split('T')[0];
+
+    switch (format.toLowerCase()) {
+      case 'pdf':
+        const pdfBuffer = await exportToPDF(exportData, {
+          title: 'Risk Profile Report',
+          organizationName: 'PINTAR MR - Manajemen Risiko Terpadu',
+          reportType: 'Laporan Profil Risiko',
+          generatedBy: 'System Administrator',
+          orientation: 'landscape'
+        });
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', `attachment; filename=risk-profile-${timestamp}.pdf`);
+        res.send(pdfBuffer);
+        break;
+
+      case 'csv':
+        const headers = Object.keys(exportData[0]);
+        const csvContent = [
+          headers.join(','),
+          ...exportData.map(row => 
+            headers.map(header => {
+              const value = row[header];
+              return typeof value === 'string' && (value.includes(',') || value.includes('"')) 
+                ? `"${value.replace(/"/g, '""')}"` 
+                : value;
+            }).join(',')
+          )
+        ].join('\n');
+        res.setHeader('Content-Type', 'text/csv;charset=utf-8');
+        res.setHeader('Content-Disposition', `attachment; filename=risk-profile-${timestamp}.csv`);
+        res.send('\uFEFF' + csvContent);
+        break;
+
+      case 'excel':
+      default:
+        const excelBuffer = exportToExcel(exportData, 'Risk Profile', {
+          organizationName: 'PINTAR MR - Manajemen Risiko Terpadu',
+          reportTitle: 'Risk Profile Report',
+          reportType: 'Laporan Profil Risiko',
+          generatedBy: 'System Administrator'
+        });
+        res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        res.setHeader('Content-Disposition', `attachment; filename=risk-profile-${timestamp}.xlsx`);
+        res.send(excelBuffer);
+        break;
+    }
+  } catch (error) {
+    console.error('Export error:', error);
     res.status(500).json({ error: error.message });
   }
 });
@@ -133,6 +275,7 @@ app.use('/api/users', require('./routes/users'));
 app.use('/api/user-management', require('./routes/user-management'));
 app.use('/api/risks', require('./routes/risks'));
 app.use('/api/risk-profile', require('./routes/risk-profile'));
+app.use('/api/risk-profile/export', require('./routes/risk-profile-export'));
 app.use('/api/master-data', require('./routes/master-data'));
 // Add residual risk reports endpoint BEFORE general reports
 app.get('/api/reports/residual-risk/test', (req, res) => {

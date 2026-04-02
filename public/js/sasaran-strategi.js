@@ -254,11 +254,11 @@ const SasaranStrategiModule = (() => {
           </td>
           <td class="ss-col-aksi">
             <div class="ss-actions">
-              <button class="ss-btn-edit" data-id="${item.id}" title="Edit">
-                <i class="fas fa-edit"></i>
+              <button class="btn-action-edit" data-id="${item.id}" title="Edit">
+                <i data-lucide="pencil"></i>
               </button>
-              <button class="ss-btn-delete" data-id="${item.id}" title="Hapus">
-                <i class="fas fa-trash"></i>
+              <button class="btn-action-delete" data-id="${item.id}" title="Hapus">
+                <i data-lucide="trash-2"></i>
               </button>
             </div>
           </td>

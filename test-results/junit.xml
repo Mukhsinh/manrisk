@@ -1,31 +1,127 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="5" failures="5" errors="0" time="0.911">
-  <testsuite name="Complete Page Loading Properties (Standalone)" errors="0" failures="5" skipped="0" timestamp="2025-12-27T16:10:43" time="0.798" tests="5">
-    <testcase classname="Complete Page Loading Properties (Standalone) Property 1: Page initialization completes without refresh requirement" name="Complete Page Loading Properties (Standalone) Property 1: Page initialization completes without refresh requirement" time="0.002">
+<testsuites name="jest tests" tests="21" failures="21" errors="0" time="2.132">
+  <testsuite name="Property 2: Konsistensi Warna Tombol Aksi" errors="0" failures="21" skipped="0" timestamp="2026-03-30T02:57:15" time="1.677" tests="21">
+    <testcase classname="Property 2: Konsistensi Warna Tombol Aksi Setiap class tombol aksi harus memiliki mapping warna yang terdefinisi" name="Property 2: Konsistensi Warna Tombol Aksi Setiap class tombol aksi harus memiliki mapping warna yang terdefinisi" time="0.002">
       <failure>Error: Server is not running. Please start the server before running tests.
     at Object.setup (D:\APLIKASI_cursor\ManajemenResikoProject\tests\utils\test-helpers.js:188:13)
     at processTicksAndRejections (node:internal/process/task_queues:105:5)
     at Object.&lt;anonymous&gt; (D:\APLIKASI_cursor\ManajemenResikoProject\tests\setup.js:68:3)</failure>
     </testcase>
-    <testcase classname="Complete Page Loading Properties (Standalone) Property 2: Module loading is idempotent" name="Complete Page Loading Properties (Standalone) Property 2: Module loading is idempotent" time="0.001">
+    <testcase classname="Property 2: Konsistensi Warna Tombol Aksi Tombol edit harus selalu berwarna biru" name="Property 2: Konsistensi Warna Tombol Aksi Tombol edit harus selalu berwarna biru" time="0.001">
       <failure>Error: Server is not running. Please start the server before running tests.
     at Object.setup (D:\APLIKASI_cursor\ManajemenResikoProject\tests\utils\test-helpers.js:188:13)
     at processTicksAndRejections (node:internal/process/task_queues:105:5)
     at Object.&lt;anonymous&gt; (D:\APLIKASI_cursor\ManajemenResikoProject\tests\setup.js:68:3)</failure>
     </testcase>
-    <testcase classname="Complete Page Loading Properties (Standalone) Property 3: UI enhancements preserve existing functionality" name="Complete Page Loading Properties (Standalone) Property 3: UI enhancements preserve existing functionality" time="0.001">
+    <testcase classname="Property 2: Konsistensi Warna Tombol Aksi Tombol delete harus selalu berwarna merah" name="Property 2: Konsistensi Warna Tombol Aksi Tombol delete harus selalu berwarna merah" time="0">
       <failure>Error: Server is not running. Please start the server before running tests.
     at Object.setup (D:\APLIKASI_cursor\ManajemenResikoProject\tests\utils\test-helpers.js:188:13)
     at processTicksAndRejections (node:internal/process/task_queues:105:5)
     at Object.&lt;anonymous&gt; (D:\APLIKASI_cursor\ManajemenResikoProject\tests\setup.js:68:3)</failure>
     </testcase>
-    <testcase classname="Complete Page Loading Properties (Standalone) Property 4: Performance requirements are met" name="Complete Page Loading Properties (Standalone) Property 4: Performance requirements are met" time="0.001">
+    <testcase classname="Property 2: Konsistensi Warna Tombol Aksi Tombol view harus selalu berwarna hijau" name="Property 2: Konsistensi Warna Tombol Aksi Tombol view harus selalu berwarna hijau" time="0">
       <failure>Error: Server is not running. Please start the server before running tests.
     at Object.setup (D:\APLIKASI_cursor\ManajemenResikoProject\tests\utils\test-helpers.js:188:13)
     at processTicksAndRejections (node:internal/process/task_queues:105:5)
     at Object.&lt;anonymous&gt; (D:\APLIKASI_cursor\ManajemenResikoProject\tests\setup.js:68:3)</failure>
     </testcase>
-    <testcase classname="Complete Page Loading Properties (Standalone) Property 5: Error recovery works correctly" name="Complete Page Loading Properties (Standalone) Property 5: Error recovery works correctly" time="0">
+    <testcase classname="Property 3: Semua Ikon Menggunakan Lucide Ikon Lucide yang valid harus ada dalam daftar icon yang dikenal" name="Property 3: Semua Ikon Menggunakan Lucide Ikon Lucide yang valid harus ada dalam daftar icon yang dikenal" time="0">
+      <failure>Error: Server is not running. Please start the server before running tests.
+    at Object.setup (D:\APLIKASI_cursor\ManajemenResikoProject\tests\utils\test-helpers.js:188:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (D:\APLIKASI_cursor\ManajemenResikoProject\tests\setup.js:68:3)</failure>
+    </testcase>
+    <testcase classname="Property 3: Semua Ikon Menggunakan Lucide Tombol aksi yang dihasilkan tidak boleh menggunakan Font Awesome" name="Property 3: Semua Ikon Menggunakan Lucide Tombol aksi yang dihasilkan tidak boleh menggunakan Font Awesome" time="0">
+      <failure>Error: Server is not running. Please start the server before running tests.
+    at Object.setup (D:\APLIKASI_cursor\ManajemenResikoProject\tests\utils\test-helpers.js:188:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (D:\APLIKASI_cursor\ManajemenResikoProject\tests\setup.js:68:3)</failure>
+    </testcase>
+    <testcase classname="Property 3: Semua Ikon Menggunakan Lucide ACTION_ICONS mapping harus menggunakan nama ikon Lucide yang valid" name="Property 3: Semua Ikon Menggunakan Lucide ACTION_ICONS mapping harus menggunakan nama ikon Lucide yang valid" time="0">
+      <failure>Error: Server is not running. Please start the server before running tests.
+    at Object.setup (D:\APLIKASI_cursor\ManajemenResikoProject\tests\utils\test-helpers.js:188:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (D:\APLIKASI_cursor\ManajemenResikoProject\tests\setup.js:68:3)</failure>
+    </testcase>
+    <testcase classname="Property 4: Tipografi Konsisten Ukuran font judul halaman harus dalam range 1.25rem - 2rem" name="Property 4: Tipografi Konsisten Ukuran font judul halaman harus dalam range 1.25rem - 2rem" time="0.007">
+      <failure>Error: Server is not running. Please start the server before running tests.
+    at Object.setup (D:\APLIKASI_cursor\ManajemenResikoProject\tests\utils\test-helpers.js:188:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (D:\APLIKASI_cursor\ManajemenResikoProject\tests\setup.js:68:3)</failure>
+    </testcase>
+    <testcase classname="Property 4: Tipografi Konsisten CSS variable font size page title harus 1.5rem (dalam range valid)" name="Property 4: Tipografi Konsisten CSS variable font size page title harus 1.5rem (dalam range valid)" time="0.001">
+      <failure>Error: Server is not running. Please start the server before running tests.
+    at Object.setup (D:\APLIKASI_cursor\ManajemenResikoProject\tests\utils\test-helpers.js:188:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (D:\APLIKASI_cursor\ManajemenResikoProject\tests\setup.js:68:3)</failure>
+    </testcase>
+    <testcase classname="Property 4: Tipografi Konsisten Font weight judul halaman harus &gt;= 600" name="Property 4: Tipografi Konsisten Font weight judul halaman harus &gt;= 600" time="0">
+      <failure>Error: Server is not running. Please start the server before running tests.
+    at Object.setup (D:\APLIKASI_cursor\ManajemenResikoProject\tests\utils\test-helpers.js:188:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (D:\APLIKASI_cursor\ManajemenResikoProject\tests\setup.js:68:3)</failure>
+    </testcase>
+    <testcase classname="Property 4: Tipografi Konsisten CSS variable font weight bold harus 700 dan semibold harus 600" name="Property 4: Tipografi Konsisten CSS variable font weight bold harus 700 dan semibold harus 600" time="0.001">
+      <failure>Error: Server is not running. Please start the server before running tests.
+    at Object.setup (D:\APLIKASI_cursor\ManajemenResikoProject\tests\utils\test-helpers.js:188:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (D:\APLIKASI_cursor\ManajemenResikoProject\tests\setup.js:68:3)</failure>
+    </testcase>
+    <testcase classname="Property 4: Tipografi Konsisten Hierarki font weight harus konsisten: bold &gt; semibold &gt; medium &gt; regular" name="Property 4: Tipografi Konsisten Hierarki font weight harus konsisten: bold &gt; semibold &gt; medium &gt; regular" time="0">
+      <failure>Error: Server is not running. Please start the server before running tests.
+    at Object.setup (D:\APLIKASI_cursor\ManajemenResikoProject\tests\utils\test-helpers.js:188:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (D:\APLIKASI_cursor\ManajemenResikoProject\tests\setup.js:68:3)</failure>
+    </testcase>
+    <testcase classname="Property 1: Tidak Ada Overflow pada Elemen UI CSS overflow prevention rules harus terdefinisi untuk semua elemen kritis" name="Property 1: Tidak Ada Overflow pada Elemen UI CSS overflow prevention rules harus terdefinisi untuk semua elemen kritis" time="0">
+      <failure>Error: Server is not running. Please start the server before running tests.
+    at Object.setup (D:\APLIKASI_cursor\ManajemenResikoProject\tests\utils\test-helpers.js:188:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (D:\APLIKASI_cursor\ManajemenResikoProject\tests\setup.js:68:3)</failure>
+    </testcase>
+    <testcase classname="Property 1: Tidak Ada Overflow pada Elemen UI Teks panjang harus di-truncate dengan ellipsis, bukan overflow" name="Property 1: Tidak Ada Overflow pada Elemen UI Teks panjang harus di-truncate dengan ellipsis, bukan overflow" time="0">
+      <failure>Error: Server is not running. Please start the server before running tests.
+    at Object.setup (D:\APLIKASI_cursor\ManajemenResikoProject\tests\utils\test-helpers.js:188:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (D:\APLIKASI_cursor\ManajemenResikoProject\tests\setup.js:68:3)</failure>
+    </testcase>
+    <testcase classname="Property 5: Tabel Responsif Breakpoints harus terdefinisi dengan benar" name="Property 5: Tabel Responsif Breakpoints harus terdefinisi dengan benar" time="0.001">
+      <failure>Error: Server is not running. Please start the server before running tests.
+    at Object.setup (D:\APLIKASI_cursor\ManajemenResikoProject\tests\utils\test-helpers.js:188:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (D:\APLIKASI_cursor\ManajemenResikoProject\tests\setup.js:68:3)</failure>
+    </testcase>
+    <testcase classname="Property 5: Tabel Responsif Pada layar mobile, tabel harus memiliki overflow-x: auto" name="Property 5: Tabel Responsif Pada layar mobile, tabel harus memiliki overflow-x: auto" time="0.001">
+      <failure>Error: Server is not running. Please start the server before running tests.
+    at Object.setup (D:\APLIKASI_cursor\ManajemenResikoProject\tests\utils\test-helpers.js:188:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (D:\APLIKASI_cursor\ManajemenResikoProject\tests\setup.js:68:3)</failure>
+    </testcase>
+    <testcase classname="Property 5: Tabel Responsif Pada layar desktop, tabel tidak perlu scroll horizontal" name="Property 5: Tabel Responsif Pada layar desktop, tabel tidak perlu scroll horizontal" time="0">
+      <failure>Error: Server is not running. Please start the server before running tests.
+    at Object.setup (D:\APLIKASI_cursor\ManajemenResikoProject\tests\utils\test-helpers.js:188:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (D:\APLIKASI_cursor\ManajemenResikoProject\tests\setup.js:68:3)</failure>
+    </testcase>
+    <testcase classname="Property 5: Tabel Responsif CSS class untuk tabel responsif harus terdefinisi" name="Property 5: Tabel Responsif CSS class untuk tabel responsif harus terdefinisi" time="0">
+      <failure>Error: Server is not running. Please start the server before running tests.
+    at Object.setup (D:\APLIKASI_cursor\ManajemenResikoProject\tests\utils\test-helpers.js:188:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (D:\APLIKASI_cursor\ManajemenResikoProject\tests\setup.js:68:3)</failure>
+    </testcase>
+    <testcase classname="Property 6: Konsistensi Ukuran Tombol Aksi Semua tombol aksi dengan class yang sama harus memiliki ukuran identik" name="Property 6: Konsistensi Ukuran Tombol Aksi Semua tombol aksi dengan class yang sama harus memiliki ukuran identik" time="0.001">
+      <failure>Error: Server is not running. Please start the server before running tests.
+    at Object.setup (D:\APLIKASI_cursor\ManajemenResikoProject\tests\utils\test-helpers.js:188:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (D:\APLIKASI_cursor\ManajemenResikoProject\tests\setup.js:68:3)</failure>
+    </testcase>
+    <testcase classname="Property 6: Konsistensi Ukuran Tombol Aksi CSS variable ukuran tombol harus konsisten" name="Property 6: Konsistensi Ukuran Tombol Aksi CSS variable ukuran tombol harus konsisten" time="0.001">
+      <failure>Error: Server is not running. Please start the server before running tests.
+    at Object.setup (D:\APLIKASI_cursor\ManajemenResikoProject\tests\utils\test-helpers.js:188:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (D:\APLIKASI_cursor\ManajemenResikoProject\tests\setup.js:68:3)</failure>
+    </testcase>
+    <testcase classname="Property 6: Konsistensi Ukuran Tombol Aksi Ukuran tombol di mobile harus lebih kecil dari desktop" name="Property 6: Konsistensi Ukuran Tombol Aksi Ukuran tombol di mobile harus lebih kecil dari desktop" time="0.001">
       <failure>Error: Server is not running. Please start the server before running tests.
     at Object.setup (D:\APLIKASI_cursor\ManajemenResikoProject\tests\utils\test-helpers.js:188:13)
     at processTicksAndRejections (node:internal/process/task_queues:105:5)

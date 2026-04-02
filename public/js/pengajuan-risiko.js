@@ -57,7 +57,7 @@ const PengajuanRisikoUI = {
                                     </td>
                                     <td>
                                         <button class="btn btn-edit btn-sm" onclick="PengajuanRisikoUI.edit('${item.id}')">
-                                            <i class="fas fa-edit"></i> Edit
+                                            <i data-lucide="pencil"></i> Edit
                                         </button>
                                         ${item.status_pengajuan === 'Menunggu Persetujuan' ? `
                                             <button class="btn btn-success btn-sm" onclick="PengajuanRisikoUI.approve('${item.id}', 'Disetujui')">

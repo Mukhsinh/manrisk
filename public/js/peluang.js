@@ -157,17 +157,17 @@ const Peluang = {
                 <div class="card-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
                     <h3 class="card-title" style="margin: 0;"><i class="fas fa-lightbulb"></i> Peluang</h3>
                     <div class="action-buttons" style="display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center;">
-                        <button class="btn btn-warning btn-sm" onclick="Peluang.downloadTemplate()" title="Unduh Template">
-                            <i class="fas fa-download"></i> <span class="btn-text">Unduh Template</span>
+                        <button class="btn-download" onclick="Peluang.downloadTemplate()" title="Unduh Template">
+                            <i data-lucide="download"></i> <span class="btn-text">Unduh Template</span>
                         </button>
-                        <button class="btn btn-success btn-sm" onclick="Peluang.showImportModal()" title="Import Data">
-                            <i class="fas fa-upload"></i> <span class="btn-text">Import Data</span>
+                        <button class="btn-import" onclick="Peluang.showImportModal()" title="Import Data">
+                            <i data-lucide="upload"></i> <span class="btn-text">Import Data</span>
                         </button>
-                        <button class="btn btn-primary btn-sm" onclick="Peluang.showAddModal()" title="Tambah Peluang">
-                            <i class="fas fa-plus"></i> <span class="btn-text">Tambah Peluang</span>
+                        <button class="btn-tambah" onclick="Peluang.showAddModal()" title="Tambah Peluang">
+                            <i data-lucide="plus"></i> <span class="btn-text">Tambah Peluang</span>
                         </button>
-                        <button class="btn btn-info btn-sm" onclick="Peluang.downloadReport()" title="Unduh Laporan">
-                            <i class="fas fa-file-pdf"></i> <span class="btn-text">Unduh Laporan</span>
+                        <button class="btn-download" onclick="Peluang.downloadReport()" title="Unduh Laporan">
+                            <i data-lucide="file-text"></i> <span class="btn-text">Unduh Laporan</span>
                         </button>
                     </div>
                 </div>
@@ -220,11 +220,11 @@ const Peluang = {
                                         <td><span class="badge-status badge-${getStatusColor(item.status)}">${item.status}</span></td>
                                         <td>
                                             <div style="display: flex; gap: 0.25rem;">
-                                                <button class="btn btn-edit btn-sm" onclick="Peluang.edit('${item.id}')" title="Edit">
-                                                    <i class="fas fa-edit"></i>
+                                                <button class="btn-action-edit" onclick="Peluang.edit('${item.id}')" title="Edit">
+                                                    <i data-lucide="pencil"></i> Edit
                                                 </button>
-                                                <button class="btn btn-delete btn-sm" onclick="Peluang.delete('${item.id}')" title="Hapus">
-                                                    <i class="fas fa-trash"></i>
+                                                <button class="btn-action-delete" onclick="Peluang.delete('${item.id}')" title="Hapus">
+                                                    <i data-lucide="trash-2"></i> Hapus
                                                 </button>
                                             </div>
                                         </td>

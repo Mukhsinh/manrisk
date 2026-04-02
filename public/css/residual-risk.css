@@ -1,4 +1,19 @@
-/* Residual Risk Module Styles */
+/* Residual Risk Module Styles - Enhanced */
+
+/* ============================================
+   GLOBAL STYLES
+   ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f7fa;
+    color: #1a1a1a;
+}
 
 /* ============================================
    RISK LEVEL BADGES - BRIGHT SOLID COLORS
@@ -7,16 +22,16 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 6px 12px;
+    padding: 6px 14px;
     border-radius: 6px;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 700;
     text-align: center;
     white-space: nowrap;
     line-height: 1.2;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    min-width: 80px;
+    min-width: 90px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.15);
     transition: all 0.3s ease;
 }
@@ -298,7 +313,8 @@
 }
 
 /* Table Styles - Enhanced */
-.residual-risk-table {
+.residual-risk-table,
+.data-table {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0;
@@ -309,15 +325,18 @@
 }
 
 .residual-risk-table th,
-.residual-risk-table td {
+.residual-risk-table td,
+.data-table th,
+.data-table td {
     padding: 12px 16px;
-    text-align: left;
+    text-align: center;
     border-bottom: 1px solid #E5E7EB;
     font-size: 0.875rem;
     vertical-align: middle;
 }
 
-.residual-risk-table th {
+.residual-risk-table th,
+.data-table th {
     background: linear-gradient(135deg, #1E3A5F 0%, #2D4A6F 100%);
     color: #FFFFFF;
     font-weight: 600;
@@ -327,11 +346,13 @@
     border-bottom: 2px solid #0F2744;
 }
 
-.residual-risk-table tbody tr:hover {
+.residual-risk-table tbody tr:hover,
+.data-table tbody tr:hover {
     background-color: #F0F9FF;
 }
 
-.residual-risk-table tbody tr:nth-child(even) {
+.residual-risk-table tbody tr:nth-child(even),
+.data-table tbody tr:nth-child(even) {
     background-color: #F9FAFB;
 }
 

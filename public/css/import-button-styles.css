@@ -1,0 +1,126 @@
+/**
+ * Import Button Styles
+ * Styling untuk tombol import dengan progress indicator
+ */
+
+/* Loading state */
+[data-action="import"].loading {
+  opacity: 0.7;
+  cursor: wait;
+  pointer-events: none;
+}
+
+[data-action="import"].loading i {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Progress bar */
+.import-progress {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #f0f9ff;
+  border-radius: 6px;
+  border: 1px solid #bfdbfe;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background-color: #e5e7eb;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+@keyframes progress-indeterminate {
+  0% {
+    width: 0%;
+    margin-left: 0%;
+  }
+  50% {
+    width: 50%;
+    margin-left: 25%;
+  }
+  100% {
+    width: 0%;
+    margin-left: 100%;
+  }
+}
+
+.progress-text {
+  font-size: 12px;
+  color: #1e40af;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* Success flash animation */
+[data-action="import"].success-flash {
+  animation: successFlash 0.5s ease-in-out;
+}
+
+@keyframes successFlash {
+  0%, 100% {
+    background-color: inherit;
+  }
+  50% {
+    background-color: #10b981;
+    color: white;
+  }
+}
+
+/* Error flash animation */
+[data-action="import"].error-flash {
+  animation: errorFlash 0.5s ease-in-out;
+}
+
+@keyframes errorFlash {
+  0%, 100% {
+    background-color: inherit;
+  }
+  50% {
+    background-color: #ef4444;
+    color: white;
+  }
+}
+
+/* Import icon animation */
+[data-action="import"]:not(.loading):hover i {
+  animation: importBounce 0.5s ease-in-out;
+}
+
+@keyframes importBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+/* Disabled state */
+[data-action="import"]:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* File input hidden */
+input[type="file"] {
+  display: none;
+}

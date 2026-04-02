@@ -1,0 +1,147 @@
+/* Monitoring & Evaluasi - Tombol Fix dengan Warna Solid Cerah */
+
+/* Tombol di atas tabel - Warna Solid Cerah */
+.btn-monitoring-refresh {
+    padding: 10px 16px !important;
+    border-radius: 8px !important;
+    background: #10B981 !important; /* Hijau cerah */
+    color: #fff !important;
+    border: none !important;
+    cursor: pointer !important;
+    font-weight: 500 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    transition: all 0.2s ease !important;
+    font-size: 14px !important;
+}
+
+.btn-monitoring-refresh:hover {
+    background: #059669 !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3) !important;
+}
+
+.btn-monitoring-report {
+    padding: 10px 16px !important;
+    border-radius: 8px !important;
+    background: #3B82F6 !important; /* Biru cerah */
+    color: #fff !important;
+    border: none !important;
+    cursor: pointer !important;
+    font-weight: 500 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    transition: all 0.2s ease !important;
+    font-size: 14px !important;
+}
+
+.btn-monitoring-report:hover {
+    background: #2563EB !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3) !important;
+}
+
+.btn-monitoring-download-template {
+    padding: 10px 16px !important;
+    border-radius: 8px !important;
+    background: #F59E0B !important; /* Kuning cerah */
+    color: #fff !important;
+    border: none !important;
+    cursor: pointer !important;
+    font-weight: 500 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    transition: all 0.2s ease !important;
+    font-size: 14px !important;
+}
+
+.btn-monitoring-download-template:hover {
+    background: #D97706 !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3) !important;
+}
+
+.btn-monitoring-import {
+    padding: 10px 16px !important;
+    border-radius: 8px !important;
+    background: #8B5CF6 !important; /* Ungu cerah */
+    color: #fff !important;
+    border: none !important;
+    cursor: pointer !important;
+    font-weight: 500 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    transition: all 0.2s ease !important;
+    font-size: 14px !important;
+}
+
+.btn-monitoring-import:hover {
+    background: #7C3AED !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3) !important;
+}
+
+.btn-monitoring-add {
+    padding: 10px 16px !important;
+    border-radius: 8px !important;
+    background: #EF4444 !important; /* Merah cerah */
+    color: #fff !important;
+    border: none !important;
+    cursor: pointer !important;
+    font-weight: 500 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    transition: all 0.2s ease !important;
+    font-size: 14px !important;
+}
+
+.btn-monitoring-add:hover {
+    background: #DC2626 !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3) !important;
+}
+
+/* Pastikan icon terlihat */
+.btn-monitoring-refresh i,
+.btn-monitoring-report i,
+.btn-monitoring-download-template i,
+.btn-monitoring-import i,
+.btn-monitoring-add i {
+    width: 16px !important;
+    height: 16px !important;
+}
+
+/* Pastikan teks terlihat */
+.btn-text {
+    display: inline !important;
+    font-size: 14px !important;
+}
+
+/* Container tombol */
+.action-buttons {
+    display: flex !important;
+    gap: 0.5rem !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+}
+
+/* Loading indicator untuk refresh */
+.refresh-loading {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    padding: 20px 40px !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+    z-index: 10000 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+}

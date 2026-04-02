@@ -1,0 +1,624 @@
+/**
+ * Action Buttons Icon-Only Fix
+ * Perbaikan tombol aksi (Lihat, Edit, Hapus) - HANYA ICON, TANPA TEXT
+ * Form modal tidak overflow dan fungsi berjalan sempurna
+ */
+
+/* ============================================================
+   1. TOMBOL AKSI - ICON ONLY (TANPA TEXT)
+   ============================================================ */
+
+/* Base styling untuk semua tombol aksi */
+.btn-action-view,
+.btn-action-edit,
+.btn-action-delete,
+td .btn-view,
+td .btn-lihat,
+td .btn-detail,
+td .btn-edit,
+td .btn-hapus,
+td .btn-delete,
+td .ss-btn-edit,
+td .ss-btn-delete,
+td .action-btn-edit,
+td .action-btn-delete,
+td .action-btn-view,
+.me-btn-edit,
+.me-btn-delete,
+.mon-btn-edit,
+.mon-btn-delete {
+  /* Ukuran tombol - persegi sempurna */
+  width: 32px !important;
+  height: 32px !important;
+  min-width: 32px !important;
+  min-height: 32px !important;
+  max-width: 32px !important;
+  max-height: 32px !important;
+  
+  /* Layout */
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  
+  /* Padding minimal karena hanya icon */
+  padding: 0 !important;
+  
+  /* Border dan radius */
+  border-radius: 6px !important;
+  border: none !important;
+  
+  /* Cursor */
+  cursor: pointer !important;
+  
+  /* Transition smooth */
+  transition: all 0.2s ease !important;
+  
+  /* Flex shrink */
+  flex-shrink: 0 !important;
+  
+  /* Overflow hidden */
+  overflow: hidden !important;
+  
+  /* Text decoration */
+  text-decoration: none !important;
+  
+  /* Font size untuk icon */
+  font-size: 0 !important;
+  line-height: 1 !important;
+  
+  /* Vertical align */
+  vertical-align: middle !important;
+}
+
+/* Sembunyikan semua text di dalam tombol */
+.btn-action-view span,
+.btn-action-edit span,
+.btn-action-delete span,
+td .btn-view span,
+td .btn-lihat span,
+td .btn-detail span,
+td .btn-edit span,
+td .btn-hapus span,
+td .btn-delete span,
+td .ss-btn-edit span,
+td .ss-btn-delete span,
+td .action-btn-edit span,
+td .action-btn-delete span,
+td .action-btn-view span,
+.me-btn-edit span,
+.me-btn-delete span,
+.mon-btn-edit span,
+.mon-btn-delete span {
+  display: none !important;
+  visibility: hidden !important;
+  width: 0 !important;
+  height: 0 !important;
+  opacity: 0 !important;
+}
+
+/* Icon di dalam tombol - ukuran sempurna */
+.btn-action-view svg,
+.btn-action-view i,
+.btn-action-view [data-lucide],
+.btn-action-edit svg,
+.btn-action-edit i,
+.btn-action-edit [data-lucide],
+.btn-action-delete svg,
+.btn-action-delete i,
+.btn-action-delete [data-lucide],
+td .btn-view svg,
+td .btn-view i,
+td .btn-view [data-lucide],
+td .btn-lihat svg,
+td .btn-lihat i,
+td .btn-lihat [data-lucide],
+td .btn-detail svg,
+td .btn-detail i,
+td .btn-detail [data-lucide],
+td .btn-edit svg,
+td .btn-edit i,
+td .btn-edit [data-lucide],
+td .btn-hapus svg,
+td .btn-hapus i,
+td .btn-hapus [data-lucide],
+td .btn-delete svg,
+td .btn-delete i,
+td .btn-delete [data-lucide],
+td .ss-btn-edit svg,
+td .ss-btn-edit i,
+td .ss-btn-edit [data-lucide],
+td .ss-btn-delete svg,
+td .ss-btn-delete i,
+td .ss-btn-delete [data-lucide],
+td .action-btn-edit svg,
+td .action-btn-edit i,
+td .action-btn-edit [data-lucide],
+td .action-btn-delete svg,
+td .action-btn-delete i,
+td .action-btn-delete [data-lucide],
+td .action-btn-view svg,
+td .action-btn-view i,
+td .action-btn-view [data-lucide],
+.me-btn-edit svg,
+.me-btn-edit i,
+.me-btn-edit [data-lucide],
+.me-btn-delete svg,
+.me-btn-delete i,
+.me-btn-delete [data-lucide],
+.mon-btn-edit svg,
+.mon-btn-edit i,
+.mon-btn-edit [data-lucide],
+.mon-btn-delete svg,
+.mon-btn-delete i,
+.mon-btn-delete [data-lucide] {
+  width: 16px !important;
+  height: 16px !important;
+  min-width: 16px !important;
+  min-height: 16px !important;
+  max-width: 16px !important;
+  max-height: 16px !important;
+  flex-shrink: 0 !important;
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* ============================================================
+   2. WARNA TOMBOL - EDIT (BIRU)
+   ============================================================ */
+.btn-action-edit,
+td .btn-edit,
+td .ss-btn-edit,
+td .action-btn-edit,
+.me-btn-edit,
+.mon-btn-edit {
+  background-color: #3B82F6 !important;
+  color: #ffffff !important;
+}
+
+.btn-action-edit:hover,
+td .btn-edit:hover,
+td .ss-btn-edit:hover,
+td .action-btn-edit:hover,
+.me-btn-edit:hover,
+.mon-btn-edit:hover {
+  background-color: #2563EB !important;
+  transform: scale(1.05) !important;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3) !important;
+}
+
+.btn-action-edit svg,
+.btn-action-edit i,
+.btn-action-edit [data-lucide],
+td .btn-edit svg,
+td .btn-edit i,
+td .btn-edit [data-lucide],
+td .ss-btn-edit svg,
+td .ss-btn-edit i,
+td .ss-btn-edit [data-lucide],
+td .action-btn-edit svg,
+td .action-btn-edit i,
+td .action-btn-edit [data-lucide],
+.me-btn-edit svg,
+.me-btn-edit i,
+.me-btn-edit [data-lucide],
+.mon-btn-edit svg,
+.mon-btn-edit i,
+.mon-btn-edit [data-lucide] {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+  fill: none !important;
+}
+
+/* ============================================================
+   3. WARNA TOMBOL - DELETE (MERAH)
+   ============================================================ */
+.btn-action-delete,
+td .btn-delete,
+td .btn-hapus,
+td .ss-btn-delete,
+td .action-btn-delete,
+.me-btn-delete,
+.mon-btn-delete {
+  background-color: #EF4444 !important;
+  color: #ffffff !important;
+}
+
+.btn-action-delete:hover,
+td .btn-delete:hover,
+td .btn-hapus:hover,
+td .ss-btn-delete:hover,
+td .action-btn-delete:hover,
+.me-btn-delete:hover,
+.mon-btn-delete:hover {
+  background-color: #DC2626 !important;
+  transform: scale(1.05) !important;
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3) !important;
+}
+
+.btn-action-delete svg,
+.btn-action-delete i,
+.btn-action-delete [data-lucide],
+td .btn-delete svg,
+td .btn-delete i,
+td .btn-delete [data-lucide],
+td .btn-hapus svg,
+td .btn-hapus i,
+td .btn-hapus [data-lucide],
+td .ss-btn-delete svg,
+td .ss-btn-delete i,
+td .ss-btn-delete [data-lucide],
+td .action-btn-delete svg,
+td .action-btn-delete i,
+td .action-btn-delete [data-lucide],
+.me-btn-delete svg,
+.me-btn-delete i,
+.me-btn-delete [data-lucide],
+.mon-btn-delete svg,
+.mon-btn-delete i,
+.mon-btn-delete [data-lucide] {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+  fill: none !important;
+}
+
+/* ============================================================
+   4. WARNA TOMBOL - VIEW (HIJAU)
+   ============================================================ */
+.btn-action-view,
+td .btn-view,
+td .btn-lihat,
+td .btn-detail,
+td .action-btn-view {
+  background-color: #10B981 !important;
+  color: #ffffff !important;
+}
+
+.btn-action-view:hover,
+td .btn-view:hover,
+td .btn-lihat:hover,
+td .btn-detail:hover,
+td .action-btn-view:hover {
+  background-color: #059669 !important;
+  transform: scale(1.05) !important;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3) !important;
+}
+
+.btn-action-view svg,
+.btn-action-view i,
+.btn-action-view [data-lucide],
+td .btn-view svg,
+td .btn-view i,
+td .btn-view [data-lucide],
+td .btn-lihat svg,
+td .btn-lihat i,
+td .btn-lihat [data-lucide],
+td .btn-detail svg,
+td .btn-detail i,
+td .btn-detail [data-lucide],
+td .action-btn-view svg,
+td .action-btn-view i,
+td .action-btn-view [data-lucide] {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+  fill: none !important;
+}
+
+/* ============================================================
+   5. CONTAINER TOMBOL AKSI
+   ============================================================ */
+.action-buttons,
+.btn-group-action,
+.table-actions,
+.aksi-wrapper,
+td .action-buttons,
+td .btn-group-action {
+  display: flex !important;
+  gap: 6px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-wrap: nowrap !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Kolom aksi di tabel */
+td.aksi,
+td.actions,
+td.action-column,
+td[class*="action"],
+th.aksi,
+th.actions,
+th.action-column {
+  white-space: nowrap !important;
+  min-width: 80px !important;
+  text-align: center !important;
+  padding: 8px !important;
+}
+
+/* ============================================================
+   6. MODAL FORM - TIDAK OVERFLOW
+   ============================================================ */
+
+/* Modal container */
+.modal,
+.modal.active,
+.monitoring-modal {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: rgba(0, 0, 0, 0.5) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 9999 !important;
+  overflow-y: auto !important;
+  padding: 20px !important;
+}
+
+/* Modal content - flexbox untuk prevent overflow */
+.modal-content {
+  background: #ffffff !important;
+  border-radius: 12px !important;
+  max-width: 700px !important;
+  width: 95% !important;
+  max-height: 90vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3) !important;
+  overflow: hidden !important;
+  margin: auto !important;
+}
+
+/* Modal header - fixed */
+.modal-header {
+  padding: 20px 24px !important;
+  border-bottom: 1px solid #e0e0e0 !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  background: #f8f9fa !important;
+  border-radius: 12px 12px 0 0 !important;
+  flex-shrink: 0 !important;
+}
+
+.modal-title {
+  margin: 0 !important;
+  font-size: 1.25rem !important;
+  font-weight: 600 !important;
+  color: #1f2937 !important;
+}
+
+.modal-close,
+.btn-close-modal {
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 50% !important;
+  border: none !important;
+  background: #e5e7eb !important;
+  color: #6b7280 !important;
+  font-size: 20px !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.2s ease !important;
+  flex-shrink: 0 !important;
+}
+
+.modal-close:hover,
+.btn-close-modal:hover {
+  background: #d1d5db !important;
+  color: #374151 !important;
+}
+
+/* Modal form - flexbox layout */
+.modal form,
+#monitoring-form,
+#evaluasi-form,
+#peluang-form {
+  display: flex !important;
+  flex-direction: column !important;
+  flex: 1 !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Modal body - scrollable */
+.modal-body,
+.modal form > div:first-of-type {
+  padding: 24px !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  flex: 1 !important;
+  min-height: 0 !important;
+}
+
+/* Modal footer - fixed */
+.modal-footer,
+.modal form > div:last-of-type {
+  display: flex !important;
+  gap: 12px !important;
+  justify-content: flex-end !important;
+  padding: 16px 24px !important;
+  border-top: 1px solid #e0e0e0 !important;
+  background: #f8f9fa !important;
+  border-radius: 0 0 12px 12px !important;
+  flex-shrink: 0 !important;
+}
+
+/* Form groups di dalam modal */
+.modal .form-group,
+.modal-body .form-group {
+  margin-bottom: 16px !important;
+}
+
+.modal .form-label {
+  display: block !important;
+  margin-bottom: 6px !important;
+  font-weight: 500 !important;
+  color: #374151 !important;
+}
+
+.modal .form-control,
+.modal input,
+.modal select,
+.modal textarea {
+  width: 100% !important;
+  padding: 10px 12px !important;
+  border: 1px solid #d1d5db !important;
+  border-radius: 8px !important;
+  font-size: 0.875rem !important;
+  transition: border-color 0.2s ease !important;
+}
+
+.modal .form-control:focus,
+.modal input:focus,
+.modal select:focus,
+.modal textarea:focus {
+  outline: none !important;
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+}
+
+/* Textarea resize */
+.modal textarea {
+  resize: vertical !important;
+  min-height: 60px !important;
+}
+
+/* ============================================================
+   7. RESPONSIVE - MOBILE
+   ============================================================ */
+@media (max-width: 767px) {
+  /* Tombol aksi lebih kecil di mobile */
+  .btn-action-view,
+  .btn-action-edit,
+  .btn-action-delete,
+  td .btn-view,
+  td .btn-lihat,
+  td .btn-detail,
+  td .btn-edit,
+  td .btn-hapus,
+  td .btn-delete {
+    width: 28px !important;
+    height: 28px !important;
+    min-width: 28px !important;
+    min-height: 28px !important;
+    max-width: 28px !important;
+    max-height: 28px !important;
+  }
+  
+  /* Icon lebih kecil di mobile */
+  .btn-action-view svg,
+  .btn-action-view i,
+  .btn-action-edit svg,
+  .btn-action-edit i,
+  .btn-action-delete svg,
+  .btn-action-delete i,
+  td .btn-view svg,
+  td .btn-view i,
+  td .btn-edit svg,
+  td .btn-edit i,
+  td .btn-delete svg,
+  td .btn-delete i {
+    width: 14px !important;
+    height: 14px !important;
+    min-width: 14px !important;
+    min-height: 14px !important;
+    max-width: 14px !important;
+    max-height: 14px !important;
+  }
+  
+  /* Modal full width di mobile */
+  .modal-content {
+    max-width: 100vw !important;
+    width: 100% !important;
+    margin: 0 !important;
+    border-radius: 10px 10px 0 0 !important;
+    max-height: 95vh !important;
+  }
+  
+  /* Modal padding lebih kecil */
+  .modal-header {
+    padding: 16px 20px !important;
+  }
+  
+  .modal-body,
+  .modal form > div:first-of-type {
+    padding: 20px !important;
+  }
+  
+  .modal-footer,
+  .modal form > div:last-of-type {
+    padding: 12px 20px !important;
+  }
+  
+  /* Form grid jadi 1 kolom */
+  .modal .form-group[style*="grid-template-columns"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ============================================================
+   8. ACCESSIBILITY & FOCUS STATES
+   ============================================================ */
+
+/* Focus visible untuk keyboard navigation */
+.btn-action-view:focus-visible,
+.btn-action-edit:focus-visible,
+.btn-action-delete:focus-visible,
+td .btn-view:focus-visible,
+td .btn-edit:focus-visible,
+td .btn-delete:focus-visible {
+  outline: 2px solid #3b82f6 !important;
+  outline-offset: 2px !important;
+}
+
+/* Active state */
+.btn-action-view:active,
+.btn-action-edit:active,
+.btn-action-delete:active,
+td .btn-view:active,
+td .btn-edit:active,
+td .btn-delete:active {
+  transform: scale(0.95) !important;
+}
+
+/* Disabled state */
+.btn-action-view:disabled,
+.btn-action-edit:disabled,
+.btn-action-delete:disabled,
+td .btn-view:disabled,
+td .btn-edit:disabled,
+td .btn-delete:disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+}
+
+/* ============================================================
+   9. PRINT STYLES
+   ============================================================ */
+@media print {
+  /* Sembunyikan tombol aksi saat print */
+  .btn-action-view,
+  .btn-action-edit,
+  .btn-action-delete,
+  td .btn-view,
+  td .btn-edit,
+  td .btn-delete,
+  .action-buttons,
+  td.aksi,
+  td.actions {
+    display: none !important;
+  }
+  
+  /* Sembunyikan modal saat print */
+  .modal,
+  .modal-content {
+    display: none !important;
+  }
+}

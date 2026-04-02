@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
+<!DOCTYPE html><html lang="id"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test Data Loading</title>
@@ -13,13 +11,15 @@
         pre { background: #f5f5f5; padding: 10px; overflow-x: auto; }
         button { padding: 10px 15px; margin: 5px; }
     </style>
+    <link rel="stylesheet" href="/css/button-standardization-final.css">
+    <link rel="stylesheet" href="/css/action-buttons-standardized.css">
 </head>
 <body>
     <h1>Test Data Loading</h1>
     
     <div class="section">
         <h2>1. Test Configuration</h2>
-        <button onclick="testConfig()">Test Config</button>
+        <button onclick="testConfig()" class="text-truncate" data-action="testConfig">Test Config</button>
         <div id="config-result"></div>
     </div>
     
@@ -27,19 +27,19 @@
         <h2>2. Test Login</h2>
         <input type="email" id="email" placeholder="Email" value="mukhsin9@gmail.com">
         <input type="password" id="password" placeholder="Password" value="">
-        <button onclick="testLogin()">Login</button>
+        <button onclick="testLogin()" class="text-truncate" data-action="testLogin">Login</button>
         <div id="login-result"></div>
     </div>
     
     <div class="section">
         <h2>3. Test Data Access</h2>
-        <button onclick="testData()">Test Data</button>
+        <button onclick="testData()" class="text-truncate" data-action="testData">Test Data</button>
         <div id="data-result"></div>
     </div>
     
     <div class="section">
         <h2>4. Test Dashboard API</h2>
-        <button onclick="testDashboard()">Test Dashboard</button>
+        <button onclick="testDashboard()" class="text-truncate" data-action="testDashboard">Test Dashboard</button>
         <div id="dashboard-result"></div>
     </div>
 
@@ -152,5 +152,7 @@
         // Auto-load config on page load
         window.addEventListener('load', testConfig);
     </script>
-</body>
-</html>
+    <script src="/js/button-standardization-auto.js"></script>
+    <script src="/js/action-buttons-standardizer.js"></script>
+
+</body></html>

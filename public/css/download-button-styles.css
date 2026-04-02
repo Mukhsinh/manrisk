@@ -1,0 +1,74 @@
+/**
+ * Download Button Styles
+ * Styling untuk tombol download dengan loading state dan feedback visual
+ */
+
+/* Loading state */
+[data-action="download"].loading {
+  opacity: 0.7;
+  cursor: wait;
+  pointer-events: none;
+}
+
+[data-action="download"].loading i {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Success flash animation */
+[data-action="download"].success-flash {
+  animation: successFlash 0.5s ease-in-out;
+}
+
+@keyframes successFlash {
+  0%, 100% {
+    background-color: inherit;
+  }
+  50% {
+    background-color: #10b981;
+    color: white;
+  }
+}
+
+/* Error flash animation */
+[data-action="download"].error-flash {
+  animation: errorFlash 0.5s ease-in-out;
+}
+
+@keyframes errorFlash {
+  0%, 100% {
+    background-color: inherit;
+  }
+  50% {
+    background-color: #ef4444;
+    color: white;
+  }
+}
+
+/* Download icon animation */
+[data-action="download"]:not(.loading):hover i {
+  animation: downloadBounce 0.5s ease-in-out;
+}
+
+@keyframes downloadBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(3px);
+  }
+}
+
+/* Disabled state */
+[data-action="download"]:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

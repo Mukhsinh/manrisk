@@ -1,0 +1,255 @@
+/**
+ * SOLID BUTTON COLORS - WARNA CERAH SOLID
+ * Tombol Lihat Detail dan Edit dengan warna cerah yang jelas
+ * Updated: 2026-01-29
+ */
+
+/* ===== TOMBOL LIHAT DETAIL - BIRU CERAH ===== */
+.btn-info,
+.btn-view,
+button[title*="Lihat Detail"],
+button[title*="lihat detail"],
+button[data-action="view"],
+.rs-action-btn[data-action="view"] {
+  background: #0ea5e9 !important;
+  color: #ffffff !important;
+  border: 2px solid #0284c7 !important;
+  font-weight: 700 !important;
+  border-radius: 12px !important;
+  padding: 0.75rem 1rem !important;
+  min-width: 48px !important;
+  min-height: 48px !important;
+  box-shadow: 0 5px 15px rgba(14, 165, 233, 0.4) !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+}
+
+.btn-info:hover,
+.btn-view:hover,
+button[title*="Lihat Detail"]:hover,
+button[title*="lihat detail"]:hover,
+button[data-action="view"]:hover,
+.rs-action-btn[data-action="view"]:hover {
+  background: #0284c7 !important;
+  border-color: #0369a1 !important;
+  transform: translateY(-3px) scale(1.08) !important;
+  box-shadow: 0 10px 25px rgba(14, 165, 233, 0.6) !important;
+}
+
+.btn-info:active,
+.btn-view:active,
+button[title*="Lihat Detail"]:active,
+button[title*="lihat detail"]:active,
+button[data-action="view"]:active,
+.rs-action-btn[data-action="view"]:active {
+  background: #0369a1 !important;
+  transform: translateY(-1px) scale(1.03) !important;
+  box-shadow: 0 5px 15px rgba(14, 165, 233, 0.5) !important;
+}
+
+/* ===== TOMBOL EDIT - ORANGE CERAH ===== */
+.btn-warning,
+.btn-edit,
+button[title*="Edit"],
+button[title*="edit"],
+button[data-action="edit"],
+.rs-action-btn[data-action="edit"] {
+  background: #f59e0b !important;
+  color: #ffffff !important;
+  border: 2px solid #d97706 !important;
+  font-weight: 700 !important;
+  border-radius: 12px !important;
+  padding: 0.75rem 1rem !important;
+  min-width: 48px !important;
+  min-height: 48px !important;
+  box-shadow: 0 5px 15px rgba(245, 158, 11, 0.4) !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+}
+
+.btn-warning:hover,
+.btn-edit:hover,
+button[title*="Edit"]:hover,
+button[title*="edit"]:hover,
+button[data-action="edit"]:hover,
+.rs-action-btn[data-action="edit"]:hover {
+  background: #d97706 !important;
+  border-color: #b45309 !important;
+  transform: translateY(-3px) scale(1.08) !important;
+  box-shadow: 0 10px 25px rgba(245, 158, 11, 0.6) !important;
+}
+
+.btn-warning:active,
+.btn-edit:active,
+button[title*="Edit"]:active,
+button[title*="edit"]:active,
+button[data-action="edit"]:active,
+.rs-action-btn[data-action="edit"]:active {
+  background: #b45309 !important;
+  transform: translateY(-1px) scale(1.03) !important;
+  box-shadow: 0 5px 15px rgba(245, 158, 11, 0.5) !important;
+}
+
+/* ===== ICON STYLING ===== */
+.btn-info i,
+.btn-view i,
+.btn-warning i,
+.btn-edit i,
+button[title*="Lihat Detail"] i,
+button[title*="Edit"] i,
+button[data-action="view"] i,
+button[data-action="edit"] i,
+.rs-action-btn i {
+  font-size: 1.5rem !important;
+  font-weight: 900 !important;
+  color: #ffffff !important;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3) !important;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2)) !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* ===== BUTTON GROUP SPACING ===== */
+.btn-group .btn-info,
+.btn-group .btn-warning,
+.btn-group .btn-view,
+.btn-group .btn-edit,
+.rs-action-btn-group button {
+  margin: 0 4px !important;
+}
+
+/* ===== SMALL BUTTONS ===== */
+.btn-sm.btn-info,
+.btn-sm.btn-warning,
+.btn-sm.btn-view,
+.btn-sm.btn-edit {
+  min-width: 42px !important;
+  min-height: 42px !important;
+  padding: 0.6rem 0.85rem !important;
+}
+
+.btn-sm.btn-info i,
+.btn-sm.btn-warning i,
+.btn-sm.btn-view i,
+.btn-sm.btn-edit i {
+  font-size: 1.3rem !important;
+}
+
+/* ===== FOCUS STATE ===== */
+.btn-info:focus,
+.btn-warning:focus,
+.btn-view:focus,
+.btn-edit:focus,
+button[data-action="view"]:focus,
+button[data-action="edit"]:focus {
+  outline: 3px solid rgba(59, 130, 246, 0.5) !important;
+  outline-offset: 2px !important;
+}
+
+/* ===== DISABLED STATE ===== */
+.btn-info:disabled,
+.btn-warning:disabled,
+.btn-view:disabled,
+.btn-edit:disabled,
+button[data-action="view"]:disabled,
+button[data-action="edit"]:disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .btn-info,
+  .btn-warning,
+  .btn-view,
+  .btn-edit,
+  button[data-action="view"],
+  button[data-action="edit"] {
+    min-width: 44px !important;
+    min-height: 44px !important;
+    padding: 0.65rem 0.85rem !important;
+  }
+  
+  .btn-info i,
+  .btn-warning i,
+  .btn-view i,
+  .btn-edit i,
+  button[data-action="view"] i,
+  button[data-action="edit"] i {
+    font-size: 1.3rem !important;
+  }
+}
+
+/* ===== TOOLTIP ENHANCEMENT ===== */
+button[title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  padding: 6px 12px;
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  border-radius: 6px;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+/* ===== PULSE ANIMATION ===== */
+@keyframes pulse-blue {
+  0%, 100% {
+    box-shadow: 0 5px 15px rgba(14, 165, 233, 0.4);
+  }
+  50% {
+    box-shadow: 0 5px 25px rgba(14, 165, 233, 0.7);
+  }
+}
+
+@keyframes pulse-orange {
+  0%, 100% {
+    box-shadow: 0 5px 15px rgba(245, 158, 11, 0.4);
+  }
+  50% {
+    box-shadow: 0 5px 25px rgba(245, 158, 11, 0.7);
+  }
+}
+
+.btn-info:hover,
+.btn-view:hover,
+button[data-action="view"]:hover {
+  animation: pulse-blue 1.5s ease-in-out infinite;
+}
+
+.btn-warning:hover,
+.btn-edit:hover,
+button[data-action="edit"]:hover {
+  animation: pulse-orange 1.5s ease-in-out infinite;
+}
+
+/* ===== OVERRIDE BOOTSTRAP DEFAULT ===== */
+.btn-info:not(:disabled):not(.disabled):active,
+.btn-info:not(:disabled):not(.disabled).active,
+.show > .btn-info.dropdown-toggle {
+  background: #0369a1 !important;
+  border-color: #0369a1 !important;
+}
+
+.btn-warning:not(:disabled):not(.disabled):active,
+.btn-warning:not(:disabled):not(.disabled).active,
+.show > .btn-warning.dropdown-toggle {
+  background: #b45309 !important;
+  border-color: #b45309 !important;
+}
+
+/* ===== TABLE ACTION COLUMN ===== */
+td.action-column,
+td.table-actions {
+  min-width: 180px !important;
+  white-space: nowrap !important;
+  padding: 0.85rem 1rem !important;
+  vertical-align: middle !important;
+  text-align: center !important;
+}

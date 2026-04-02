@@ -246,3 +246,198 @@
   - Ensure consistent UI elements across the entire application
   - Test all pages for visual consistency and proper styling
   - _Requirements: UI consistency and modern design standards_
+
+- [x] 27. Audit menyeluruh fungsi tombol di seluruh halaman aplikasi ✓
+  - **Status:** Audit selesai - Script audit telah dijalankan
+  - **Hasil:** 1,897 tombol diaudit di 367 halaman
+  - **Issues Ditemukan:** 3,378 issues (583 ERROR, 1,649 WARNING, 1,146 INFO)
+  - **Report:** `audit-button-report.md` dan `COMPREHENSIVE_BUTTON_AUDIT_SUMMARY.md`
+  - **Next:** Perbaikan issues berdasarkan prioritas
+  
+  - [ ] 27.1 Audit tombol di halaman Dashboard
+    - Periksa tombol navigasi ke modul lain
+    - Periksa tombol filter dan refresh data
+    - Periksa tombol export/download laporan
+    - Pastikan semua tombol berfungsi normal tanpa error
+    - _Requirements: 12.1, 12.4, 12.5_
+  
+  - [ ] 27.2 Audit tombol di halaman Master Data
+    - Periksa tombol "Tambah Data" untuk semua jenis master data
+    - Periksa tombol "Edit" dan "Hapus" di setiap tabel
+    - Periksa tombol "Unduh Template" untuk import
+    - Periksa tombol "Import Data" dan proses upload file
+    - Periksa tombol "Export" untuk download data
+    - Pastikan tidak ada overflow pada kolom aksi
+    - _Requirements: 12.1, 12.2, 12.3, 12.4, 12.5_
+  
+  - [ ] 27.3 Audit tombol di halaman Risk Input
+    - Periksa tombol "Tambah Risiko"
+    - Periksa tombol "Edit" dan "Hapus" di tabel risiko
+    - Periksa tombol "Lihat Detail" risiko
+    - Periksa tombol "Import" dan "Export" risiko
+    - Periksa tombol filter dan pencarian
+    - Pastikan form modal berfungsi dengan baik
+    - _Requirements: 12.1, 12.2, 12.3, 12.4, 12.5_
+  
+  - [ ] 27.4 Audit tombol di halaman Risk Profile
+    - Periksa tombol filter tahun dan organisasi
+    - Periksa tombol "Download PDF" dan "Download Excel"
+    - Periksa tombol navigasi antar chart
+    - Periksa tombol refresh data
+    - Pastikan chart interaktif berfungsi
+    - _Requirements: 12.4, 12.5_
+  
+  - [ ] 27.5 Audit tombol di halaman KRI (Key Risk Indicator)
+    - Periksa tombol "Tambah KRI"
+    - Periksa tombol "Edit" dan "Hapus" di tabel
+    - Periksa tombol "Import" dan "Export"
+    - Periksa tombol filter dan sorting
+    - Pastikan tidak ada overflow pada tabel
+    - _Requirements: 12.1, 12.2, 12.3, 12.4, 12.5_
+  
+  - [ ] 27.6 Audit tombol di halaman Residual Risk
+    - Periksa tombol "Tambah Analisis"
+    - Periksa tombol "Edit" dan "Hapus"
+    - Periksa tombol "Lihat Matrix"
+    - Periksa tombol "Download Laporan"
+    - Periksa tombol filter dan pencarian
+    - Pastikan matrix risiko interaktif berfungsi
+    - _Requirements: 12.1, 12.4, 12.5_
+  
+  - [ ] 27.7 Audit tombol di halaman Analisis SWOT
+    - Periksa tombol "Tambah SWOT"
+    - Periksa tombol "Edit" dan "Hapus" untuk S, W, O, T
+    - Periksa tombol "Generate Diagram Kartesius"
+    - Periksa tombol "Download Diagram"
+    - Periksa tombol "Matriks TOWS"
+    - Pastikan diagram interaktif berfungsi
+    - _Requirements: 12.1, 12.4, 12.5_
+  
+  - [ ] 27.8 Audit tombol di halaman Rencana Strategis
+    - Periksa tombol "Tambah Rencana"
+    - Periksa tombol "Edit" dan "Hapus"
+    - Periksa tombol "Tambah Sasaran Strategi"
+    - Periksa tombol "Tambah IKU"
+    - Periksa tombol "Download Strategic Map"
+    - Periksa tombol filter dan view mode (table/card)
+    - Pastikan tidak ada overflow pada tabel
+    - _Requirements: 12.1, 12.4, 12.5_
+  
+  - [ ] 27.9 Audit tombol di halaman Monitoring & Evaluasi
+    - Periksa tombol "Tambah Monitoring"
+    - Periksa tombol "Edit" dan "Hapus"
+    - Periksa tombol "Lihat Progress"
+    - Periksa tombol "Download Laporan"
+    - Periksa tombol filter periode
+    - _Requirements: 12.1, 12.4, 12.5_
+  
+  - [ ] 27.10 Audit tombol di halaman Laporan
+    - Periksa tombol "Generate Laporan" untuk setiap jenis
+    - Periksa tombol "Download PDF"
+    - Periksa tombol "Download Excel"
+    - Periksa tombol "Print"
+    - Periksa tombol filter dan parameter laporan
+    - Pastikan preview laporan berfungsi
+    - _Requirements: 12.4, 12.5_
+  
+  - [ ] 27.11 Audit tombol di halaman Pengaturan
+    - Periksa tombol "Tambah User"
+    - Periksa tombol "Edit" dan "Hapus" user
+    - Periksa tombol "Reset Password"
+    - Periksa tombol "Tambah Organisasi"
+    - Periksa tombol "Edit" organisasi
+    - Periksa tombol "Simpan" di form pengaturan
+    - _Requirements: 12.1, 12.5_
+  
+  - [ ] 27.12 Audit tombol di halaman Visi Misi
+    - Periksa tombol "Edit Visi"
+    - Periksa tombol "Edit Misi"
+    - Periksa tombol "Simpan"
+    - Periksa tombol "Batal"
+    - _Requirements: 12.1, 12.5_
+
+- [ ] 28. Audit dan perbaikan overflow di seluruh halaman
+  - [ ] 28.1 Periksa overflow pada tabel data
+    - Audit semua tabel untuk memastikan tidak ada overflow horizontal
+    - Implementasi responsive table dengan scroll horizontal jika diperlukan
+    - Pastikan kolom aksi tidak terpotong
+    - Pastikan text panjang di-wrap atau di-truncate dengan baik
+    - _Requirements: UI/UX best practices_
+  
+  - [ ] 28.2 Periksa overflow pada card dan container
+    - Audit semua card component untuk overflow
+    - Periksa container dengan konten dinamis
+    - Pastikan modal dan popup tidak overflow
+    - Pastikan chart dan diagram fit dalam container
+    - _Requirements: UI/UX best practices_
+  
+  - [ ] 28.3 Periksa overflow pada form input
+    - Audit semua form untuk memastikan input field tidak overflow
+    - Periksa dropdown dan select yang panjang
+    - Pastikan textarea memiliki scroll jika diperlukan
+    - Periksa form validation message tidak overflow
+    - _Requirements: UI/UX best practices_
+  
+  - [ ] 28.4 Periksa responsive design
+    - Test semua halaman pada berbagai ukuran layar
+    - Pastikan tidak ada overflow pada mobile view
+    - Periksa sidebar dan navigation pada mobile
+    - Pastikan button dan action tidak terpotong pada layar kecil
+    - _Requirements: UI/UX best practices_
+
+- [ ] 29. Test build dan integrasi sempurna
+  - [ ] 29.1 Test build aplikasi
+    - Jalankan npm run build (jika ada)
+    - Periksa tidak ada error saat build
+    - Periksa semua dependencies terinstall dengan benar
+    - Periksa tidak ada warning kritis
+    - _Requirements: Deployment requirements_
+  
+  - [ ] 29.2 Test integrasi frontend-backend
+    - Test semua API endpoint dari frontend
+    - Periksa response time API
+    - Periksa error handling di semua endpoint
+    - Periksa authentication flow lengkap
+    - Periksa authorization untuk setiap role
+    - _Requirements: 1.1, 1.2, 1.3, 1.4, 1.5_
+  
+  - [ ] 29.3 Test integrasi database
+    - Periksa semua query database berjalan dengan baik
+    - Test RLS policies untuk multi-tenant
+    - Periksa foreign key constraints
+    - Periksa trigger dan function database
+    - Test concurrent access dan race condition
+    - _Requirements: 7.1, 7.2, 7.3, 9.5_
+  
+  - [ ] 29.4 Test end-to-end user flow
+    - Test complete user journey dari login sampai logout
+    - Test create, read, update, delete untuk semua modul
+    - Test import dan export data
+    - Test generate dan download laporan
+    - Test filter dan search di semua halaman
+    - _Requirements: All requirements_
+  
+  - [ ] 29.5 Performance testing
+    - Test loading time setiap halaman
+    - Test dengan data dalam jumlah besar
+    - Periksa memory leak
+    - Periksa network request optimization
+    - Test concurrent users
+    - _Requirements: Performance requirements_
+  
+  - [ ] 29.6 Cross-browser testing
+    - Test di Chrome
+    - Test di Firefox
+    - Test di Edge
+    - Test di Safari (jika memungkinkan)
+    - Periksa compatibility issues
+    - _Requirements: Browser compatibility_
+  
+  - [ ] 29.7 Final verification
+    - Verifikasi semua tombol berfungsi normal
+    - Verifikasi tidak ada overflow di seluruh halaman
+    - Verifikasi semua data tampil dengan benar
+    - Verifikasi error handling berfungsi
+    - Verifikasi security measures aktif
+    - Buat dokumentasi hasil testing
+    - _Requirements: All requirements_

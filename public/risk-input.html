@@ -1,12 +1,13 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
+<!DOCTYPE html><html lang="id"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Input Data Risiko - PINTAR MR</title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/risk-input.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/action-buttons-icon-only-fix.css">
+    <link rel="stylesheet" href="/css/button-standardization-final.css">
+    <link rel="stylesheet" href="/css/action-buttons-standardized.css">
 </head>
 <body>
     <div class="app-container">
@@ -20,7 +21,7 @@
             <!-- Header -->
             <header class="page-header">
                 <div class="header-left">
-                    <button class="menu-toggle" id="menu-toggle">
+                    <button class="menu-toggle text-truncate" id="menu-toggle" aria-label="Tombol">
                         <i class="fas fa-bars"></i>
                     </button>
                     <h1>Input Data Risiko</h1>
@@ -37,19 +38,19 @@
                 <div class="content-wrapper">
                     <!-- Action Buttons -->
                     <div class="action-buttons" style="margin-bottom: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
-                        <button class="btn btn-tambah-risiko" id="btn-tambah-risiko">
+                        <button class="btn btn-tambah-risiko text-truncate" id="btn-tambah-risiko">
                             <i class="fas fa-plus"></i>
                             Tambah Risiko
                         </button>
-                        <button class="btn btn-secondary" id="btn-download-template">
+                        <button class="btn btn-secondary text-truncate" id="btn-download-template">
                             <i class="fas fa-download"></i>
                             Unduh Template
                         </button>
-                        <button class="btn btn-secondary" id="btn-import-risk">
+                        <button class="btn btn-secondary text-truncate" id="btn-import-risk">
                             <i class="fas fa-upload"></i>
                             Import Data
                         </button>
-                        <button class="btn btn-secondary" id="btn-download-report">
+                        <button class="btn btn-secondary text-truncate" id="btn-download-report">
                             <i class="fas fa-file-excel"></i>
                             Unduh Laporan
                         </button>
@@ -101,13 +102,13 @@
                                     <div class="form-row">
                                         <div class="form-group">
                                             <label for="nama-unit-kerja">Unit Kerja <span class="required">*</span></label>
-                                            <select id="nama-unit-kerja" class="form-control" required>
+                                            <select id="nama-unit-kerja" class="form-control" required="">
                                                 <option value="">Pilih Unit Kerja</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="kategori-risiko">Kategori Risiko <span class="required">*</span></label>
-                                            <select id="kategori-risiko" class="form-control" required>
+                                            <select id="kategori-risiko" class="form-control" required="">
                                                 <option value="">Pilih Kategori</option>
                                             </select>
                                         </div>
@@ -115,24 +116,24 @@
                                     <div class="form-row">
                                         <div class="form-group">
                                             <label for="kode-risiko">Kode Risiko</label>
-                                            <input type="text" id="kode-risiko" class="form-control" readonly>
+                                            <input type="text" id="kode-risiko" class="form-control" readonly="">
                                         </div>
                                         <div class="form-group">
                                             <label for="no-risiko">No. Risiko</label>
-                                            <input type="number" id="no-risiko" class="form-control" readonly>
+                                            <input type="number" id="no-risiko" class="form-control" readonly="">
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group">
                                             <label for="jenis-risiko">Jenis Risiko <span class="required">*</span></label>
-                                            <select id="jenis-risiko" class="form-control" required>
+                                            <select id="jenis-risiko" class="form-control" required="">
                                                 <option value="Threat">Threat (Ancaman)</option>
                                                 <option value="Opportunity">Opportunity (Peluang)</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="status-risiko">Status Risiko <span class="required">*</span></label>
-                                            <select id="status-risiko" class="form-control" required>
+                                            <select id="status-risiko" class="form-control" required="">
                                                 <option value="Active">Active</option>
                                                 <option value="Inactive">Inactive</option>
                                                 <option value="Closed">Closed</option>
@@ -158,7 +159,7 @@
                                     <h4>Deskripsi Risiko</h4>
                                     <div class="form-group">
                                         <label for="sasaran">Sasaran <span class="required">*</span></label>
-                                        <textarea id="sasaran" class="form-control" rows="3" required></textarea>
+                                        <textarea id="sasaran" class="form-control" rows="3" required=""></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="penyebab-risiko">Penyebab Risiko</label>
@@ -274,7 +275,7 @@
                                             <input type="number" id="inherent-financial" class="form-control" min="0">
                                         </div>
                                     </div>
-                                    <button type="button" class="btn btn-primary" id="btn-save-inherent">
+                                    <button type="button" class="btn btn-primary text-truncate" id="btn-save-inherent">
                                         <i class="fas fa-save"></i> Simpan Analisis Inherent
                                     </button>
                                 </div>
@@ -324,17 +325,17 @@
                                             <input type="date" id="residual-next-review" class="form-control">
                                         </div>
                                     </div>
-                                    <button type="button" class="btn btn-primary" id="btn-save-residual">
+                                    <button type="button" class="btn btn-primary text-truncate" id="btn-save-residual">
                                         <i class="fas fa-save"></i> Simpan Analisis Residual
                                     </button>
                                 </div>
 
                                 <!-- Form Actions -->
                                 <div class="form-actions" style="margin-top: 20px; display: flex; gap: 10px;">
-                                    <button type="submit" class="btn btn-primary">
+                                    <button type="submit" class="btn btn-primary text-truncate">
                                         <i class="fas fa-save"></i> Simpan Data Risiko
                                     </button>
-                                    <button type="button" class="btn btn-secondary" id="reset-form-btn">
+                                    <button type="button" class="btn btn-secondary text-truncate" id="reset-form-btn">
                                         <i class="fas fa-redo"></i> Reset Form
                                     </button>
                                 </div>
@@ -372,5 +373,71 @@
             }
         });
     </script>
-</body>
-</html>
+    <script src="/js/button-standardization-auto.js"></script>
+    <script src="/js/action-buttons-standardizer.js"></script>
+
+<!-- Button Event Delegation Script -->
+<script>
+(function() {
+    'use strict';
+    
+    // Event delegation untuk tombol dengan data-action
+    document.addEventListener('click', function(e) {
+        const button = e.target.closest('[data-action]');
+        if (!button) return;
+        
+        const action = button.dataset.action;
+        const handler = window['handle' + action.charAt(0).toUpperCase() + action.slice(1)];
+        
+        if (typeof handler === 'function') {
+            handler.call(button, e);
+        } else {
+            console.warn('Handler not found for action:', action);
+        }
+    });
+    
+    // Default handlers untuk common actions
+    window.handleAdd = function(e) {
+        console.log('Add button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleEdit = function(e) {
+        console.log('Edit button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleDelete = function(e) {
+        console.log('Delete button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleDownload = function(e) {
+        console.log('Download button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleImport = function(e) {
+        console.log('Import button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleExport = function(e) {
+        console.log('Export button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleSave = function(e) {
+        console.log('Save button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleCancel = function(e) {
+        console.log('Cancel button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+})();
+</script>
+
+
+</body></html>

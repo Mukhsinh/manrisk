@@ -1,0 +1,134 @@
+/**
+ * Analisis SWOT - Fix 3 Issues CSS
+ * 1. Hide loading indicators
+ * 2. Ensure cancel button works on single click
+ * 3. Bright solid color for add button
+ */
+
+/* Fix 1: Hide all loading indicators */
+#analisis-swot-content .spinner-border,
+#analisis-swot-content .loading-text,
+.analisis-swot-wrapper .spinner-border,
+.analisis-swot-wrapper .loading-text {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+/* Ensure content loads immediately without loading state */
+#analisis-swot-content {
+  min-height: auto !important;
+}
+
+/* Fix 2: Cancel button single click fix */
+.modal .btn-secondary,
+.modal-footer .btn-secondary,
+.modal .modal-close,
+.modal-header .modal-close {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  touch-action: manipulation !important;
+}
+
+/* Prevent double-click requirement */
+.modal .btn-secondary:active,
+.modal-close:active {
+  transform: scale(0.98) !important;
+}
+
+/* Fix 3: Bright solid green for Add/Tambah button */
+#analisis-swot-content .btn-primary,
+#analisis-swot-content button.btn-primary,
+.analisis-swot-wrapper .btn-primary,
+.action-buttons .btn-primary,
+body #analisis-swot-content .action-buttons .btn-primary {
+  background: #10b981 !important; /* Bright emerald green */
+  background-image: none !important; /* Remove any gradients */
+  border: none !important;
+  color: white !important;
+  font-weight: 600 !important;
+  box-shadow: 0 2px 4px rgba(16, 185, 129, 0.3) !important;
+  transition: all 0.2s ease !important;
+  padding: 8px 16px !important;
+  border-radius: 6px !important;
+}
+
+#analisis-swot-content .btn-primary:hover,
+#analisis-swot-content button.btn-primary:hover,
+.analisis-swot-wrapper .btn-primary:hover,
+.action-buttons .btn-primary:hover,
+body #analisis-swot-content .action-buttons .btn-primary:hover {
+  background: #059669 !important; /* Darker green on hover */
+  background-image: none !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 8px rgba(16, 185, 129, 0.4) !important;
+}
+
+#analisis-swot-content .btn-primary:active,
+.action-buttons .btn-primary:active {
+  transform: translateY(0) !important;
+  box-shadow: 0 1px 2px rgba(16, 185, 129, 0.3) !important;
+}
+
+/* Ensure icon in button is visible */
+#analisis-swot-content .btn-primary i,
+#analisis-swot-content .btn-primary svg,
+.action-buttons .btn-primary i,
+.action-buttons .btn-primary svg {
+  color: white !important;
+  margin-right: 6px !important;
+}
+
+/* Other action buttons - keep their original colors */
+#analisis-swot-content .btn-success {
+  background: #22c55e !important;
+  border: none !important;
+}
+
+#analisis-swot-content .btn-info {
+  background: #3b82f6 !important;
+  border: none !important;
+}
+
+#analisis-swot-content .btn-warning {
+  background: #f59e0b !important;
+  border: none !important;
+  color: white !important;
+}
+
+/* Modal buttons - keep primary green */
+.modal-footer .btn-primary,
+.modal-content .btn-primary {
+  background: #10b981 !important;
+  background-image: none !important;
+  border: none !important;
+  color: white !important;
+}
+
+.modal-footer .btn-primary:hover,
+.modal-content .btn-primary:hover {
+  background: #059669 !important;
+  background-image: none !important;
+}
+
+/* Ensure no loading overlay */
+#analisis-swot-content::before,
+#analisis-swot-content::after {
+  display: none !important;
+}
+
+/* Fast loading - no transition delays */
+#analisis-swot-content * {
+  transition-delay: 0s !important;
+}
+
+/* Remove any skeleton loaders */
+.skeleton,
+.skeleton-loader,
+.loading-skeleton {
+  display: none !important;
+}

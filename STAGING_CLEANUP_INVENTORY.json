@@ -1,0 +1,83 @@
+{
+  "timestamp": "2026-04-02T01:14:41.030Z",
+  "summary": {
+    "totalFiles": 11,
+    "totalDirectories": 4,
+    "totalSize": "3.64 MB",
+    "totalSizeBytes": 3813613
+  },
+  "inventory": {
+    "markdownDocs": [
+      {
+        "file": "DATABASE_SCHEMA.md",
+        "size": "8.91 KB"
+      },
+      {
+        "file": "DEPLOYMENT.md",
+        "size": "3.32 KB"
+      },
+      {
+        "file": "INTEGRASI_SUPABASE.md",
+        "size": "3.26 KB"
+      },
+      {
+        "file": "MCP_INTEGRATION.md",
+        "size": "2.26 KB"
+      },
+      {
+        "file": "PROJECT_RULES.md",
+        "size": "2.44 KB"
+      },
+      {
+        "file": "QUICK_START_GUIDE.md",
+        "size": "13.43 KB"
+      }
+    ],
+    "testFiles": [],
+    "verifyFiles": [],
+    "debugFiles": [],
+    "createDataFiles": [],
+    "utilityFiles": [],
+    "testConfigFiles": [],
+    "batchFiles": [
+      {
+        "file": "install-dependencies.bat",
+        "size": "744 Bytes"
+      },
+      {
+        "file": "start-dev-auto-port.bat",
+        "size": "265 Bytes"
+      },
+      {
+        "file": "start-dev-port-3001.bat",
+        "size": "176 Bytes"
+      },
+      {
+        "file": "start-dev-port-3033.bat",
+        "size": "37 Bytes"
+      },
+      {
+        "file": "start-dev.bat",
+        "size": "37 Bytes"
+      }
+    ],
+    "directories": [
+      {
+        "dir": "backup-button-fixes",
+        "size": "3.48 MB"
+      },
+      {
+        "dir": "backup-rencana-strategis",
+        "size": "49.04 KB"
+      },
+      {
+        "dir": "docs",
+        "size": "58.21 KB"
+      },
+      {
+        "dir": "test-results",
+        "size": "17.45 KB"
+      }
+    ]
+  }
+}

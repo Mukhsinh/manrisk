@@ -591,11 +591,11 @@
             <td style="width: 120px; min-width: 110px; padding: 12px 10px; vertical-align: middle; text-align: center;">
               ${badge}
             </td>
-            <td style="width: 130px; min-width: 120px; padding: 12px 10px; vertical-align: middle; text-align: center; white-space: nowrap;">
-              <div style="display: inline-flex; gap: 4px;">
-                <button type="button" class="btn rs-view-btn" data-id="${item.id}" title="Lihat Detail" style="${btnStyle('#0ea5e9')}"><i class="fas fa-eye" style="color: #ffffff !important;"></i></button>
-                <button type="button" class="btn rs-edit-btn" data-id="${item.id}" title="Edit" style="${btnStyle('#f59e0b')}"><i class="fas fa-edit" style="color: #ffffff !important;"></i></button>
-                <button type="button" class="btn rs-delete-btn" data-id="${item.id}" title="Hapus" style="${btnStyle('#ef4444')}"><i class="fas fa-trash" style="color: #ffffff !important;"></i></button>
+            <td style="width: 130px; min-width: 120px; padding: 8px 10px; vertical-align: middle; text-align: center; white-space: nowrap;">
+              <div style="display: inline-flex; gap: 4px; flex-wrap: nowrap;">
+                <button type="button" class="btn-action-view" data-id="${item.id}" title="Lihat Detail"><i data-lucide="eye"></i> Lihat</button>
+                <button type="button" class="btn-action-edit" data-id="${item.id}" title="Edit"><i data-lucide="pencil"></i> Edit</button>
+                <button type="button" class="btn-action-delete" data-id="${item.id}" title="Hapus"><i data-lucide="trash-2"></i> Hapus</button>
               </div>
             </td>
           </tr>
@@ -715,13 +715,13 @@
       return;
     }
     
-    if (target.classList.contains('rs-view-btn')) {
+    if (target.classList.contains('rs-view-btn') || target.classList.contains('btn-action-view')) {
       console.log('[RS v7.1] View action for:', record.nama_rencana);
       viewDetail(id);
-    } else if (target.classList.contains('rs-edit-btn')) {
+    } else if (target.classList.contains('rs-edit-btn') || target.classList.contains('btn-action-edit')) {
       console.log('[RS v7.1] Edit action for:', record.nama_rencana);
       edit(id);
-    } else if (target.classList.contains('rs-delete-btn')) {
+    } else if (target.classList.contains('rs-delete-btn') || target.classList.contains('btn-action-delete')) {
       console.log('[RS v7.1] Delete action for:', record.nama_rencana);
       deleteRecord(id);
     }

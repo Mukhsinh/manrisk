@@ -1,0 +1,306 @@
+/**
+ * Error Help System Styles
+ */
+
+.error-help-section {
+    margin-top: 16px;
+    padding: 16px;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    border-left: 3px solid #007bff;
+}
+
+.error-help-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 12px 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: #333;
+}
+
+.error-help-title svg {
+    width: 18px;
+    height: 18px;
+}
+
+.error-troubleshooting {
+    margin-bottom: 16px;
+}
+
+.troubleshooting-steps {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.troubleshooting-steps li {
+    margin-bottom: 8px;
+    line-height: 1.5;
+    color: #555;
+}
+
+.error-help-links {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.help-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #007bff;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+
+.help-link:hover {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.help-link svg {
+    width: 16px;
+    height: 16px;
+}
+
+.error-related-articles {
+    margin-top: 12px;
+}
+
+.error-related-articles h6 {
+    margin: 0 0 8px 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #666;
+}
+
+.error-related-articles ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.error-related-articles li {
+    margin-bottom: 6px;
+}
+
+.error-related-articles a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.error-related-articles a:hover {
+    text-decoration: underline;
+}
+
+/* Help Button */
+.btn-help {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background-color: #17a2b8;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 8px;
+    transition: background-color 0.2s;
+}
+
+.btn-help:hover {
+    background-color: #138496;
+}
+
+.btn-help svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* Help Modal */
+.error-help-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.error-help-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.2s ease-out;
+}
+
+.error-help-modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.3s ease-out;
+    display: flex;
+    flex-direction: column;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.error-help-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.error-help-modal-header h4 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.error-help-modal-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.error-help-modal-close:hover {
+    background-color: #f8f9fa;
+}
+
+.error-help-modal-close svg {
+    width: 20px;
+    height: 20px;
+}
+
+.error-help-modal-body {
+    padding: 20px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.error-description {
+    margin: 0 0 16px 0;
+    color: #666;
+    line-height: 1.6;
+}
+
+.error-help-modal-footer {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    padding: 16px 20px;
+    border-top: 1px solid #e9ecef;
+}
+
+.error-help-modal-footer .btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+}
+
+.error-help-modal-footer .btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.error-help-modal-footer .btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+.error-help-modal-footer .btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.error-help-modal-footer .btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* Quick Tips Tooltip */
+.error-quick-tips {
+    padding: 12px;
+    background-color: #fff3cd;
+    border: 1px solid #ffeaa7;
+    border-radius: 4px;
+    margin-top: 12px;
+    font-size: 13px;
+}
+
+.error-quick-tips strong {
+    display: block;
+    margin-bottom: 8px;
+    color: #856404;
+}
+
+.error-quick-tips ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.error-quick-tips li {
+    margin-bottom: 4px;
+    color: #856404;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .error-help-modal-content {
+        width: 95%;
+        max-height: 90vh;
+    }
+
+    .error-help-links {
+        flex-direction: column;
+    }
+
+    .help-link {
+        width: 100%;
+        justify-content: center;
+    }
+}

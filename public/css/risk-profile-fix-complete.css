@@ -1,0 +1,305 @@
+/**
+ * Risk Profile - CSS Fixes
+ * Perbaikan tampilan untuk kartu dan grafik
+ */
+
+/* Pastikan kartu statistik terlihat dengan baik */
+.stats-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.stats-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.15);
+}
+
+.stats-card .stats-value {
+  font-size: 2.5rem;
+  font-weight: bold;
+  line-height: 1;
+  margin: 0.5rem 0;
+}
+
+.stats-card .stats-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.7;
+}
+
+/* Perbaikan untuk pie charts */
+.pie-chart-container {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.pie-chart-container h5 {
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  color: #2c3e50;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pie-chart-container canvas {
+  max-height: 300px;
+  width: 100% !important;
+  height: auto !important;
+}
+
+/* Pastikan canvas terlihat */
+canvas {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Fix untuk container yang mungkin menyembunyikan grafik */
+#risk-profile-content {
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+/* Hapus judul "Detail Inherent Risk Analysis" */
+h4:has-text("Detail Inherent Risk Analysis"),
+h4:has-text("Detail Inherent Risk"),
+h5:has-text("Detail Inherent Risk Analysis"),
+h5:has-text("Detail Inherent Risk") {
+  display: none !important;
+}
+
+/* Alternative: Hide by content */
+[class*="card-title"]:contains("Detail Inherent Risk"),
+[class*="section-title"]:contains("Detail Inherent Risk") {
+  display: none !important;
+}
+
+/* Perbaikan untuk filter section */
+.filter-group {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-bottom: 1.5rem;
+}
+
+.filter-group select {
+  width: 100%;
+  padding: 0.625rem;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.filter-group select:focus {
+  border-color: #0066cc;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+}
+
+.filter-group label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  display: block;
+  color: #495057;
+}
+
+/* Perbaikan untuk tabel */
+.table-container {
+  overflow-x: auto;
+  max-width: 100%;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  margin-top: 1.5rem;
+}
+
+.table-container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-container th {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 1rem;
+  font-weight: 600;
+  text-align: left;
+  border: none;
+}
+
+.table-container td {
+  padding: 1rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.table-container tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.table-container tr:hover {
+  background-color: #e9ecef;
+}
+
+/* Badge styling */
+.badge-status {
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.badge-status.badge-kritis {
+  background-color: #dc3545 !important;
+  color: #ffffff !important;
+}
+
+.badge-status.badge-hati-hati {
+  background-color: #ffc107 !important;
+  color: #212529 !important;
+}
+
+.badge-status.badge-normal,
+.badge-status.badge-medium {
+  background-color: #17a2b8 !important;
+  color: #ffffff !important;
+}
+
+.badge-status.badge-aman,
+.badge-status.badge-low {
+  background-color: #28a745 !important;
+  color: #ffffff !important;
+}
+
+/* Loading indicator */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #0066cc;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .stats-card {
+    min-height: 120px;
+    padding: 1rem;
+  }
+
+  .stats-card .stats-value {
+    font-size: 2rem;
+  }
+
+  .pie-chart-container {
+    padding: 1rem;
+    min-height: 350px;
+  }
+
+  .filter-group {
+    padding: 1rem;
+  }
+}
+
+/* Ensure charts are visible and properly sized */
+.chart-wrapper {
+  position: relative;
+  height: 300px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.chart-wrapper canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Fix for grid layout */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Animation for cards */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stats-card,
+.pie-chart-container {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Fix untuk action buttons */
+.action-buttons-container {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  margin-top: 1.5rem;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.action-buttons-container h4 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+/* Hide specific text content */
+.hide-detail-inherent-text {
+  display: none !important;
+}

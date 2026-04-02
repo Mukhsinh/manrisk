@@ -157,11 +157,11 @@ const PeluangEnhanced = {
                                         </td>
                                         <td>
                                             <div class="action-btn-group">
-                                                <button class="btn-action btn-edit-action" onclick="PeluangEnhanced.editItem('${item.id}')" title="Edit">
-                                                    <i class="fas fa-edit"></i>
+                                                <button class="btn-action-edit" onclick="PeluangEnhanced.editItem('${item.id}')" title="Edit">
+                                                    <i data-lucide="pencil"></i>
                                                 </button>
-                                                <button class="btn-action btn-delete-action" onclick="PeluangEnhanced.deleteItem('${item.id}')" title="Hapus">
-                                                    <i class="fas fa-trash"></i>
+                                                <button class="btn-action-delete" onclick="PeluangEnhanced.deleteItem('${item.id}')" title="Hapus">
+                                                    <i data-lucide="trash-2"></i>
                                                 </button>
                                             </div>
                                         </td>

@@ -1,0 +1,110 @@
+/* Risk Profile - Layout Fix untuk Penataan yang Lebih Baik */
+
+/* ===== FILTER SECTION ===== */
+.filter-section {
+  background: white !important;
+  border-radius: 12px !important;
+  padding: 1rem !important;
+  margin-bottom: 1.5rem !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+/* ===== STATISTICS CARDS ===== */
+.stats-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 1rem !important;
+  margin-bottom: 1.5rem !important;
+}
+
+@media (max-width: 1024px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .stats-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ===== PIE CHARTS SECTION ===== */
+.pie-charts-container {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 1rem !important;
+  margin-bottom: 1.5rem !important;
+}
+
+@media (max-width: 1280px) {
+  .pie-charts-container {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .pie-charts-container {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ===== MAIN CONTENT GRID ===== */
+.main-content-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 400px !important;
+  gap: 1.5rem !important;
+  align-items: start !important;
+}
+
+@media (max-width: 1280px) {
+  .main-content-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ===== TABLE SECTION ===== */
+.table-section {
+  background: white !important;
+  border-radius: 16px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  border: 1px solid #e2e8f0 !important;
+  overflow: hidden !important;
+}
+
+/* ===== SIDEBAR SECTION ===== */
+.sidebar-section {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1.5rem !important;
+  position: sticky !important;
+  top: 1rem !important;
+}
+
+@media (max-width: 1280px) {
+  .sidebar-section {
+    position: static !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar-section {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ===== RESPONSIVE UTILITIES ===== */
+@media (max-width: 1280px) {
+  .main-content-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .table-section table {
+    min-width: 700px !important;
+  }
+}

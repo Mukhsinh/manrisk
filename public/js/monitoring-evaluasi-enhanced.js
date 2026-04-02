@@ -198,11 +198,11 @@ const MonitoringEvaluasiEnhanced = {
                 <td class="evaluasi-cell" title="${evaluasi}">${shortEvaluasi}</td>
                 <td>
                     <div class="action-btn-group">
-                        <button class="btn-action btn-edit" onclick="MonitoringEvaluasiEnhanced.edit('${item.id}')" title="Edit">
-                            <i class="fas fa-edit"></i>
+                        <button class="btn-action-edit" onclick="MonitoringEvaluasiEnhanced.edit('${item.id}')" title="Edit">
+                            <i data-lucide="pencil"></i>
                         </button>
-                        <button class="btn-action btn-delete" onclick="MonitoringEvaluasiEnhanced.confirmDelete('${item.id}')" title="Hapus">
-                            <i class="fas fa-trash"></i>
+                        <button class="btn-action-delete" onclick="MonitoringEvaluasiEnhanced.confirmDelete('${item.id}')" title="Hapus">
+                            <i data-lucide="trash-2"></i>
                         </button>
                     </div>
                 </td>

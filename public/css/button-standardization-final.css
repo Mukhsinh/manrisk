@@ -1,0 +1,614 @@
+/**
+ * STANDARDISASI TOMBOL - SELURUH APLIKASI
+ * Berdasarkan desain UI yang telah ditentukan
+ * Hanya mengubah tampilan, TIDAK mengubah fungsi
+ */
+
+/* ============================================
+   VARIABEL WARNA TOMBOL
+   ============================================ */
+:root {
+    /* Tombol Edit - Biru */
+    --btn-edit-bg: #3b82f6;
+    --btn-edit-hover: #2563eb;
+    --btn-edit-text: #ffffff;
+    
+    /* Tombol View/Lihat - Hijau */
+    --btn-view-bg: #10b981;
+    --btn-view-hover: #059669;
+    --btn-view-text: #ffffff;
+    
+    /* Tombol Delete/Hapus - Merah */
+    --btn-delete-bg: #ef4444;
+    --btn-delete-hover: #dc2626;
+    --btn-delete-text: #ffffff;
+    
+    /* Tombol Primary - Hijau */
+    --btn-primary-bg: #10b981;
+    --btn-primary-hover: #059669;
+    --btn-primary-text: #ffffff;
+    
+    /* Tombol Secondary - Biru */
+    --btn-secondary-bg: #3b82f6;
+    --btn-secondary-hover: #2563eb;
+    --btn-secondary-text: #ffffff;
+    
+    /* Tombol Warning - Kuning/Orange */
+    --btn-warning-bg: #f59e0b;
+    --btn-warning-hover: #d97706;
+    --btn-warning-text: #ffffff;
+    
+    /* Badge Status */
+    --badge-aktif-bg: #10b981;
+    --badge-aktif-text: #ffffff;
+    --badge-nonaktif-bg: #6b7280;
+    --badge-nonaktif-text: #ffffff;
+}
+
+/* ============================================
+   TOMBOL DI ATAS TABEL (Header Actions)
+   ============================================ */
+
+/* Container untuk tombol di atas tabel */
+.table-header-actions,
+.action-buttons-top,
+.header-actions,
+.top-actions {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+/* Tombol di atas tabel - Style umum */
+.btn-refresh,
+.btn-download,
+.btn-unduh,
+.btn-export,
+.btn-print,
+.btn-cetak,
+.btn-filter,
+.btn-tambah,
+.btn-add,
+.btn-new,
+button[onclick*="refresh"],
+button[onclick*="download"],
+button[onclick*="export"],
+button[onclick*="print"],
+button[onclick*="tambah"] {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    padding: 10px 20px !important;
+    border-radius: 8px !important;
+    border: none !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+    white-space: nowrap !important;
+}
+
+/* Tombol Refresh - Biru */
+.btn-refresh,
+button[onclick*="refresh"],
+button[onclick*="loadData"],
+button[title*="Refresh"],
+button[title*="refresh"] {
+    background-color: var(--btn-secondary-bg) !important;
+    color: var(--btn-secondary-text) !important;
+}
+
+.btn-refresh:hover,
+button[onclick*="refresh"]:hover {
+    background-color: var(--btn-secondary-hover) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3) !important;
+}
+
+/* Tombol Download/Unduh - Hijau */
+.btn-download,
+.btn-unduh,
+.btn-export,
+button[onclick*="download"],
+button[onclick*="export"],
+button[onclick*="unduh"],
+button[title*="Unduh"],
+button[title*="Download"],
+button[title*="Export"] {
+    background-color: var(--btn-primary-bg) !important;
+    color: var(--btn-primary-text) !important;
+}
+
+.btn-download:hover,
+.btn-unduh:hover,
+.btn-export:hover,
+button[onclick*="download"]:hover,
+button[onclick*="export"]:hover {
+    background-color: var(--btn-primary-hover) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 8px rgba(16, 185, 129, 0.3) !important;
+}
+
+/* Tombol Tambah - Hijau */
+.btn-tambah,
+.btn-add,
+.btn-new,
+button[onclick*="tambah"],
+button[onclick*="create"],
+button[onclick*="add"],
+button[title*="Tambah"],
+button[title*="Add"] {
+    background-color: var(--btn-primary-bg) !important;
+    color: var(--btn-primary-text) !important;
+}
+
+.btn-tambah:hover,
+.btn-add:hover,
+button[onclick*="tambah"]:hover {
+    background-color: var(--btn-primary-hover) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 8px rgba(16, 185, 129, 0.3) !important;
+}
+
+/* Tombol Print/Cetak - Biru */
+.btn-print,
+.btn-cetak,
+button[onclick*="print"],
+button[onclick*="cetak"],
+button[title*="Print"],
+button[title*="Cetak"] {
+    background-color: var(--btn-secondary-bg) !important;
+    color: var(--btn-secondary-text) !important;
+}
+
+.btn-print:hover,
+.btn-cetak:hover,
+button[onclick*="print"]:hover {
+    background-color: var(--btn-secondary-hover) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3) !important;
+}
+
+/* Tombol Filter - Biru */
+.btn-filter,
+button[onclick*="filter"],
+button[title*="Filter"] {
+    background-color: var(--btn-secondary-bg) !important;
+    color: var(--btn-secondary-text) !important;
+}
+
+.btn-filter:hover,
+button[onclick*="filter"]:hover {
+    background-color: var(--btn-secondary-hover) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3) !important;
+}
+
+/* ============================================
+   TOMBOL DI KOLOM AKSI (Action Column)
+   ============================================ */
+
+/* Container kolom aksi */
+td.aksi,
+td.action,
+td.actions,
+td[class*="aksi"],
+td[class*="action"] {
+    text-align: center !important;
+    vertical-align: middle !important;
+    white-space: nowrap !important;
+    padding: 8px !important;
+}
+
+/* Style umum untuk semua tombol aksi */
+.btn-edit,
+.btn-view,
+.btn-lihat,
+.btn-detail,
+.btn-delete,
+.btn-hapus,
+.btn-remove,
+.action-btn,
+.btn-action,
+td button[onclick*="edit"],
+td button[onclick*="view"],
+td button[onclick*="lihat"],
+td button[onclick*="detail"],
+td button[onclick*="delete"],
+td button[onclick*="hapus"],
+td button[onclick*="remove"],
+td a[onclick*="edit"],
+td a[onclick*="view"],
+td a[onclick*="delete"] {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 36px !important;
+    height: 36px !important;
+    padding: 0 !important;
+    margin: 0 4px !important;
+    border-radius: 8px !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+    text-decoration: none !important;
+}
+
+/* Tombol Edit - Biru */
+.btn-edit,
+.action-btn-edit,
+td button[onclick*="edit"],
+td button[onclick*="Edit"],
+td button[title*="Edit"],
+td a[onclick*="edit"],
+button[class*="edit"]:not([class*="delete"]):not([class*="view"]) {
+    background-color: var(--btn-edit-bg) !important;
+    color: var(--btn-edit-text) !important;
+}
+
+.btn-edit:hover,
+.action-btn-edit:hover,
+td button[onclick*="edit"]:hover,
+td a[onclick*="edit"]:hover {
+    background-color: var(--btn-edit-hover) !important;
+    transform: translateY(-2px) scale(1.05) !important;
+    box-shadow: 0 4px 8px rgba(59, 130, 246, 0.4) !important;
+}
+
+/* Tombol View/Lihat/Detail - Hijau */
+.btn-view,
+.btn-lihat,
+.btn-detail,
+.action-btn-view,
+td button[onclick*="view"],
+td button[onclick*="lihat"],
+td button[onclick*="detail"],
+td button[onclick*="View"],
+td button[onclick*="Lihat"],
+td button[onclick*="Detail"],
+td button[title*="View"],
+td button[title*="Lihat"],
+td button[title*="Detail"],
+td a[onclick*="view"],
+td a[onclick*="lihat"],
+td a[onclick*="detail"],
+button[class*="view"]:not([class*="delete"]):not([class*="edit"]),
+button[class*="lihat"]:not([class*="delete"]):not([class*="edit"]),
+button[class*="detail"]:not([class*="delete"]):not([class*="edit"]) {
+    background-color: var(--btn-view-bg) !important;
+    color: var(--btn-view-text) !important;
+}
+
+.btn-view:hover,
+.btn-lihat:hover,
+.btn-detail:hover,
+.action-btn-view:hover,
+td button[onclick*="view"]:hover,
+td button[onclick*="lihat"]:hover,
+td button[onclick*="detail"]:hover,
+td a[onclick*="view"]:hover {
+    background-color: var(--btn-view-hover) !important;
+    transform: translateY(-2px) scale(1.05) !important;
+    box-shadow: 0 4px 8px rgba(16, 185, 129, 0.4) !important;
+}
+
+/* Tombol Delete/Hapus - Merah */
+.btn-delete,
+.btn-hapus,
+.btn-remove,
+.action-btn-delete,
+td button[onclick*="delete"],
+td button[onclick*="hapus"],
+td button[onclick*="remove"],
+td button[onclick*="Delete"],
+td button[onclick*="Hapus"],
+td button[onclick*="Remove"],
+td button[title*="Delete"],
+td button[title*="Hapus"],
+td button[title*="Remove"],
+td a[onclick*="delete"],
+td a[onclick*="hapus"],
+button[class*="delete"]:not([class*="edit"]):not([class*="view"]),
+button[class*="hapus"]:not([class*="edit"]):not([class*="view"]) {
+    background-color: var(--btn-delete-bg) !important;
+    color: var(--btn-delete-text) !important;
+}
+
+.btn-delete:hover,
+.btn-hapus:hover,
+.btn-remove:hover,
+.action-btn-delete:hover,
+td button[onclick*="delete"]:hover,
+td button[onclick*="hapus"]:hover,
+td a[onclick*="delete"]:hover {
+    background-color: var(--btn-delete-hover) !important;
+    transform: translateY(-2px) scale(1.05) !important;
+    box-shadow: 0 4px 8px rgba(239, 68, 68, 0.4) !important;
+}
+
+/* ============================================
+   IKON DI DALAM TOMBOL
+   ============================================ */
+
+/* Ikon di tombol atas tabel */
+.btn-refresh i,
+.btn-download i,
+.btn-unduh i,
+.btn-export i,
+.btn-print i,
+.btn-cetak i,
+.btn-filter i,
+.btn-tambah i,
+.btn-add i,
+button[onclick*="refresh"] i,
+button[onclick*="download"] i,
+button[onclick*="export"] i,
+button[onclick*="print"] i,
+button[onclick*="tambah"] i {
+    font-size: 16px !important;
+    margin-right: 0 !important;
+}
+
+/* Ikon di tombol aksi kolom */
+.btn-edit i,
+.btn-view i,
+.btn-lihat i,
+.btn-detail i,
+.btn-delete i,
+.btn-hapus i,
+.action-btn i,
+td button i,
+td a i {
+    font-size: 16px !important;
+    color: inherit !important;
+    margin: 0 !important;
+}
+
+/* SVG icons */
+.btn-edit svg,
+.btn-view svg,
+.btn-delete svg,
+.action-btn svg,
+td button svg,
+td a svg {
+    width: 18px !important;
+    height: 18px !important;
+    fill: currentColor !important;
+    stroke: currentColor !important;
+}
+
+/* ============================================
+   BADGE STATUS
+   ============================================ */
+
+.badge,
+.status-badge,
+span[class*="badge"],
+td span.badge {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 6px 12px !important;
+    border-radius: 6px !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    margin-right: 8px !important;
+}
+
+/* Badge Aktif - Hijau */
+.badge-aktif,
+.badge-active,
+.badge-success,
+.status-aktif,
+span[class*="aktif"],
+span[class*="active"],
+td span:contains("AKTIF"),
+td span:contains("Aktif") {
+    background-color: var(--badge-aktif-bg) !important;
+    color: var(--badge-aktif-text) !important;
+}
+
+/* Badge Non-Aktif - Abu-abu */
+.badge-nonaktif,
+.badge-inactive,
+.badge-disabled,
+.status-nonaktif,
+span[class*="nonaktif"],
+span[class*="inactive"],
+td span:contains("NON-AKTIF"),
+td span:contains("Non-Aktif") {
+    background-color: var(--badge-nonaktif-bg) !important;
+    color: var(--badge-nonaktif-text) !important;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 768px) {
+    /* Tombol atas tabel di mobile */
+    .table-header-actions,
+    .action-buttons-top,
+    .header-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .btn-refresh,
+    .btn-download,
+    .btn-unduh,
+    .btn-export,
+    .btn-print,
+    .btn-tambah,
+    button[onclick*="refresh"],
+    button[onclick*="download"],
+    button[onclick*="tambah"] {
+        width: 100% !important;
+        justify-content: center !important;
+    }
+    
+    /* Tombol aksi tetap compact di mobile */
+    .btn-edit,
+    .btn-view,
+    .btn-delete,
+    .action-btn,
+    td button {
+        width: 32px !important;
+        height: 32px !important;
+        margin: 0 2px !important;
+    }
+    
+    .btn-edit i,
+    .btn-view i,
+    .btn-delete i,
+    td button i {
+        font-size: 14px !important;
+    }
+}
+
+/* ============================================
+   DISABLED STATE
+   ============================================ */
+
+button:disabled,
+button[disabled],
+.btn-disabled,
+button.disabled {
+    opacity: 0.5 !important;
+    cursor: not-allowed !important;
+    pointer-events: none !important;
+}
+
+/* ============================================
+   FOCUS STATE (Accessibility)
+   ============================================ */
+
+button:focus,
+.btn-edit:focus,
+.btn-view:focus,
+.btn-delete:focus,
+.btn-refresh:focus,
+.btn-download:focus {
+    outline: 2px solid rgba(59, 130, 246, 0.5) !important;
+    outline-offset: 2px !important;
+}
+
+/* ============================================
+   LOADING STATE
+   ============================================ */
+
+button.loading,
+button[data-loading="true"] {
+    position: relative !important;
+    pointer-events: none !important;
+}
+
+button.loading::after,
+button[data-loading="true"]::after {
+    content: "" !important;
+    position: absolute !important;
+    width: 16px !important;
+    height: 16px !important;
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    border-top-color: white !important;
+    border-radius: 50% !important;
+    animation: button-spin 0.6s linear infinite !important;
+}
+
+@keyframes button-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ============================================
+   OVERRIDE BOOTSTRAP & FRAMEWORK STYLES
+   ============================================ */
+
+/* Override Bootstrap button styles */
+.btn.btn-edit,
+.btn.btn-view,
+.btn.btn-delete,
+.btn.btn-refresh,
+.btn.btn-download {
+    padding: 0 !important;
+    line-height: 1 !important;
+}
+
+/* Override inline styles */
+td button[style],
+td a[style] {
+    width: 36px !important;
+    height: 36px !important;
+    padding: 0 !important;
+}
+
+/* ============================================
+   SPECIFIC PAGE OVERRIDES
+   ============================================ */
+
+/* Rencana Strategis */
+#rencana-strategis-table td button,
+.rencana-strategis-container td button {
+    width: 36px !important;
+    height: 36px !important;
+}
+
+/* Risk Management */
+#risk-register-table td button,
+#residual-risk-table td button,
+.risk-table td button {
+    width: 36px !important;
+    height: 36px !important;
+}
+
+/* SWOT Analysis */
+#swot-table td button,
+.swot-container td button {
+    width: 36px !important;
+    height: 36px !important;
+}
+
+/* Master Data */
+#master-data-table td button,
+.master-data-container td button {
+    width: 36px !important;
+    height: 36px !important;
+}
+
+/* Monitoring & Evaluasi */
+#monitoring-table td button,
+#evaluasi-table td button,
+.monitoring-container td button {
+    width: 36px !important;
+    height: 36px !important;
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+    .btn-refresh,
+    .btn-download,
+    .btn-unduh,
+    .btn-export,
+    .btn-print,
+    .btn-tambah,
+    .btn-filter {
+        display: none !important;
+    }
+    
+    .btn-edit,
+    .btn-view,
+    .btn-delete,
+    .action-btn {
+        display: none !important;
+    }
+}

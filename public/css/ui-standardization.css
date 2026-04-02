@@ -1,0 +1,1327 @@
+/**
+ * UI Standardization CSS - v1.0
+ * Standarisasi menyeluruh: tombol aksi, tipografi, ikon, overflow, mobile-first
+ * HARUS di-load PALING AKHIR untuk override semua CSS lain
+ */
+
+/* ============================================================
+   1. CSS VARIABLES & TYPOGRAPHY SYSTEM
+   ============================================================ */
+:root {
+  /* Font */
+  --font-primary: 'Inter', 'Plus Jakarta Sans', 'Segoe UI', Tahoma, sans-serif;
+
+  /* Font sizes */
+  --fs-page-title: 1.5rem;
+  --fs-section-title: 1.2rem;
+  --fs-body: 0.9rem;
+  --fs-small: 0.8rem;
+  --fs-table-header: 0.82rem;
+  --fs-table-body: 0.85rem;
+  --fs-btn: 0.8rem;
+  --fs-label: 0.875rem;
+
+  /* Font weights */
+  --fw-bold: 700;
+  --fw-semibold: 600;
+  --fw-medium: 500;
+  --fw-regular: 400;
+
+  /* Action Button Colors - Edit (Biru) */
+  --btn-edit-bg: #EFF6FF;
+  --btn-edit-border: #3B82F6;
+  --btn-edit-text: #1D4ED8;
+  --btn-edit-hover-bg: #DBEAFE;
+
+  /* Action Button Colors - Delete (Merah) */
+  --btn-delete-bg: #FEF2F2;
+  --btn-delete-border: #EF4444;
+  --btn-delete-text: #DC2626;
+  --btn-delete-hover-bg: #FEE2E2;
+
+  /* Action Button Colors - View (Hijau) */
+  --btn-view-bg: #F0FDF4;
+  --btn-view-border: #22C55E;
+  --btn-view-text: #16A34A;
+  --btn-view-hover-bg: #DCFCE7;
+
+  /* Action Button Colors - Warning (Kuning/Oranye) */
+  --btn-warning-bg: #FFFBEB;
+  --btn-warning-border: #F59E0B;
+  --btn-warning-text: #D97706;
+  --btn-warning-hover-bg: #FEF3C7;
+
+  /* Action Button Colors - Primary (Merah tema) */
+  --btn-primary-bg: #8B0000;
+  --btn-primary-border: #6B0000;
+  --btn-primary-text: #FFFFFF;
+  --btn-primary-hover-bg: #6B0000;
+
+  /* Action Button Sizing */
+  --btn-action-padding: 5px 10px;
+  --btn-action-radius: 6px;
+  --btn-action-font-size: 0.8rem;
+  --btn-action-icon-size: 14px;
+  --btn-action-gap: 4px;
+
+  /* Table */
+  --table-header-bg: #1a237e;
+  --table-header-text: #ffffff;
+  --table-border: #e2e8f0;
+  --table-row-hover: #f8fafc;
+  --table-row-stripe: #f9fafb;
+
+  /* Page title */
+  --page-title-color: #1e293b;
+  --page-title-icon-color: #8B0000;
+
+  /* Form */
+  --input-border: #cbd5e1;
+  --input-focus-border: #3B82F6;
+  --input-radius: 6px;
+  --input-padding: 0.5rem 0.75rem;
+}
+
+/* ============================================================
+   2. GLOBAL TYPOGRAPHY
+   ============================================================ */
+body,
+.main-content,
+.page-content,
+.app-screen {
+  font-family: var(--font-primary) !important;
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  color: #1e293b;
+}
+
+/* Judul halaman */
+.page-title,
+.page-title-text,
+h1.page-title {
+  font-family: var(--font-primary) !important;
+  font-size: var(--fs-page-title) !important;
+  font-weight: var(--fw-bold) !important;
+  color: var(--page-title-color) !important;
+  line-height: 1.3 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+}
+
+/* Section title */
+.section-title,
+.card-title,
+h2, h3 {
+  font-family: var(--font-primary) !important;
+  font-weight: var(--fw-semibold) !important;
+}
+
+h2 { font-size: 1.25rem !important; }
+h3 { font-size: 1.1rem !important; }
+
+/* Label form */
+label,
+.form-label,
+.login-label {
+  font-family: var(--font-primary) !important;
+  font-size: var(--fs-label) !important;
+  font-weight: var(--fw-semibold) !important;
+  color: #374151 !important;
+}
+
+/* ============================================================
+   3. PAGE HEADER & TITLE SYSTEM
+   ============================================================ */
+.page-header {
+  background: #ffffff !important;
+  border-radius: 10px !important;
+  border-left: 4px solid var(--btn-primary-bg) !important;
+  padding: 1rem 1.5rem !important;
+  margin-bottom: 1.5rem !important;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08) !important;
+  overflow: hidden !important;
+}
+
+.page-header .page-title,
+.page-header h1 {
+  font-size: var(--fs-page-title) !important;
+  font-weight: var(--fw-bold) !important;
+  color: var(--page-title-color) !important;
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+.page-title-icon,
+.page-header i,
+.page-header svg {
+  color: var(--page-title-icon-color) !important;
+  flex-shrink: 0 !important;
+  width: 22px !important;
+  height: 22px !important;
+}
+
+.page-subtitle {
+  font-size: var(--fs-small) !important;
+  color: #64748b !important;
+  margin: 0.25rem 0 0 0 !important;
+  font-style: italic !important;
+}
+
+/* ============================================================
+   4. ACTION BUTTONS - STANDAR SERAGAM
+   ============================================================ */
+
+/* Base action button */
+.btn-action-edit,
+.btn-action-delete,
+.btn-action-view,
+.btn-action-warning,
+.btn-action-primary,
+td .btn-edit,
+td .btn-delete,
+td .btn-view,
+td .btn-hapus,
+td .btn-lihat,
+td .btn-detail,
+td .ss-btn-edit,
+td .ss-btn-delete,
+td .action-btn-edit,
+td .action-btn-delete,
+td .action-btn-view {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: var(--btn-action-gap) !important;
+  padding: var(--btn-action-padding) !important;
+  border-radius: var(--btn-action-radius) !important;
+  font-size: var(--btn-action-font-size) !important;
+  font-weight: var(--fw-medium) !important;
+  font-family: var(--font-primary) !important;
+  border: 1px solid transparent !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  transition: all 0.15s ease !important;
+  line-height: 1 !important;
+  vertical-align: middle !important;
+}
+
+/* Edit - Biru */
+.btn-action-edit,
+td .btn-edit,
+td .ss-btn-edit,
+td .action-btn-edit {
+  background-color: var(--btn-edit-bg) !important;
+  border-color: var(--btn-edit-border) !important;
+  color: var(--btn-edit-text) !important;
+}
+.btn-action-edit:hover,
+td .btn-edit:hover,
+td .ss-btn-edit:hover,
+td .action-btn-edit:hover {
+  background-color: var(--btn-edit-hover-bg) !important;
+  color: #1e40af !important;
+}
+
+/* Delete - Merah */
+.btn-action-delete,
+td .btn-delete,
+td .btn-hapus,
+td .ss-btn-delete,
+td .action-btn-delete {
+  background-color: var(--btn-delete-bg) !important;
+  border-color: var(--btn-delete-border) !important;
+  color: var(--btn-delete-text) !important;
+}
+.btn-action-delete:hover,
+td .btn-delete:hover,
+td .btn-hapus:hover,
+td .ss-btn-delete:hover,
+td .action-btn-delete:hover {
+  background-color: var(--btn-delete-hover-bg) !important;
+  color: #b91c1c !important;
+}
+
+/* View - Hijau */
+.btn-action-view,
+td .btn-view,
+td .btn-lihat,
+td .btn-detail,
+td .action-btn-view {
+  background-color: var(--btn-view-bg) !important;
+  border-color: var(--btn-view-border) !important;
+  color: var(--btn-view-text) !important;
+}
+.btn-action-view:hover,
+td .btn-view:hover,
+td .btn-lihat:hover,
+td .btn-detail:hover,
+td .action-btn-view:hover {
+  background-color: var(--btn-view-hover-bg) !important;
+  color: #15803d !important;
+}
+
+/* Warning - Kuning */
+.btn-action-warning {
+  background-color: var(--btn-warning-bg) !important;
+  border-color: var(--btn-warning-border) !important;
+  color: var(--btn-warning-text) !important;
+}
+.btn-action-warning:hover {
+  background-color: var(--btn-warning-hover-bg) !important;
+}
+
+/* Icon di dalam tombol aksi */
+.btn-action-edit svg, .btn-action-edit i,
+td .btn-edit svg, td .btn-edit i,
+td .ss-btn-edit svg, td .ss-btn-edit i,
+td .action-btn-edit svg, td .action-btn-edit i {
+  color: var(--btn-edit-text) !important;
+  stroke: var(--btn-edit-text) !important;
+  width: var(--btn-action-icon-size) !important;
+  height: var(--btn-action-icon-size) !important;
+  flex-shrink: 0 !important;
+}
+
+.btn-action-delete svg, .btn-action-delete i,
+td .btn-delete svg, td .btn-delete i,
+td .btn-hapus svg, td .btn-hapus i,
+td .ss-btn-delete svg, td .ss-btn-delete i,
+td .action-btn-delete svg, td .action-btn-delete i {
+  color: var(--btn-delete-text) !important;
+  stroke: var(--btn-delete-text) !important;
+  width: var(--btn-action-icon-size) !important;
+  height: var(--btn-action-icon-size) !important;
+  flex-shrink: 0 !important;
+}
+
+.btn-action-view svg, .btn-action-view i,
+td .btn-view svg, td .btn-view i,
+td .btn-lihat svg, td .btn-lihat i,
+td .action-btn-view svg, td .action-btn-view i {
+  color: var(--btn-view-text) !important;
+  stroke: var(--btn-view-text) !important;
+  width: var(--btn-action-icon-size) !important;
+  height: var(--btn-action-icon-size) !important;
+  flex-shrink: 0 !important;
+}
+
+/* Kolom aksi tabel - pastikan tidak overflow */
+td.aksi,
+td.actions,
+td.action-column,
+td[class*="action"],
+th.aksi,
+th.actions,
+th.action-column {
+  white-space: nowrap !important;
+  min-width: 100px !important;
+}
+
+/* Wrapper tombol aksi */
+.action-buttons,
+.btn-group-action,
+.table-actions,
+.aksi-wrapper {
+  display: flex !important;
+  gap: 4px !important;
+  align-items: center !important;
+  flex-wrap: nowrap !important;
+}
+
+/* ============================================================
+   5. TABLE HEADER - BIRU NAVY, TEKS PUTIH
+   ============================================================ */
+table thead th,
+table thead td,
+.table thead th,
+.table thead td,
+.data-table thead th,
+.data-table thead td {
+  background-color: var(--table-header-bg) !important;
+  color: var(--table-header-text) !important;
+  font-family: var(--font-primary) !important;
+  font-size: var(--fs-table-header) !important;
+  font-weight: var(--fw-semibold) !important;
+  padding: 10px 12px !important;
+  border-color: #283593 !important;
+  white-space: nowrap !important;
+  vertical-align: middle !important;
+}
+
+table thead th *,
+table thead td *,
+.table thead th *,
+.table thead td * {
+  color: var(--table-header-text) !important;
+}
+
+table thead th svg,
+table thead td svg,
+.table thead th svg,
+.table thead td svg {
+  stroke: var(--table-header-text) !important;
+  color: var(--table-header-text) !important;
+}
+
+/* Table body */
+table tbody td,
+.table tbody td,
+.data-table tbody td {
+  font-family: var(--font-primary) !important;
+  font-size: var(--fs-table-body) !important;
+  padding: 8px 12px !important;
+  vertical-align: middle !important;
+  border-bottom: 1px solid var(--table-border) !important;
+}
+
+table tbody tr:hover,
+.table tbody tr:hover {
+  background-color: var(--table-row-hover) !important;
+}
+
+/* ============================================================
+   6. OVERFLOW PREVENTION
+   ============================================================ */
+
+/* Table container - horizontal scroll */
+.table-container,
+.table-responsive,
+.data-table-container,
+[class*="table-wrap"] {
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  max-width: 100% !important;
+}
+
+/* Teks di sel tabel - ellipsis */
+table td .text-truncate,
+table td .cell-text,
+.table td .text-truncate {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  max-width: 200px !important;
+  display: block !important;
+}
+
+/* Tombol tidak overflow */
+.btn,
+button {
+  max-width: 100% !important;
+  overflow: hidden !important;
+}
+
+/* Judul tidak overflow */
+.page-title,
+.card-title,
+h1, h2, h3, h4 {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  max-width: 100% !important;
+}
+
+/* ============================================================
+   7. FORM INPUT STANDAR
+   ============================================================ */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+input[type="search"],
+select,
+textarea,
+.form-control {
+  font-family: var(--font-primary) !important;
+  font-size: var(--fs-body) !important;
+  border: 1px solid var(--input-border) !important;
+  border-radius: var(--input-radius) !important;
+  padding: var(--input-padding) !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  transition: border-color 0.2s ease !important;
+  background-color: #ffffff !important;
+  color: #1e293b !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+.form-control:focus {
+  outline: none !important;
+  border-color: var(--input-focus-border) !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+}
+
+/* ============================================================
+   8. MODAL STANDAR
+   ============================================================ */
+.modal-content {
+  border-radius: 10px !important;
+  overflow: hidden !important;
+  max-width: 95vw !important;
+  max-height: 90vh !important;
+  overflow-y: auto !important;
+}
+
+.modal-header {
+  background-color: var(--table-header-bg) !important;
+  color: #ffffff !important;
+  padding: 1rem 1.25rem !important;
+  border-bottom: none !important;
+}
+
+.modal-header *,
+.modal-title {
+  color: #ffffff !important;
+  font-family: var(--font-primary) !important;
+  font-weight: var(--fw-semibold) !important;
+}
+
+.modal-body {
+  padding: 1.25rem !important;
+  font-family: var(--font-primary) !important;
+}
+
+.modal-footer {
+  padding: 0.75rem 1.25rem !important;
+  border-top: 1px solid #e2e8f0 !important;
+  display: flex !important;
+  gap: 0.5rem !important;
+  justify-content: flex-end !important;
+}
+
+/* ============================================================
+   9. CARD STANDAR
+   ============================================================ */
+.card {
+  border-radius: 10px !important;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08) !important;
+  overflow: hidden !important;
+  border: none !important;
+}
+
+.card-header {
+  background-color: var(--table-header-bg) !important;
+  color: #ffffff !important;
+  padding: 0.875rem 1.25rem !important;
+  font-family: var(--font-primary) !important;
+  font-weight: var(--fw-semibold) !important;
+  border-bottom: none !important;
+}
+
+.card-header *:not(.btn):not(.btn *) {
+  color: #ffffff !important;
+}
+
+.card-body {
+  padding: 1.25rem !important;
+  font-family: var(--font-primary) !important;
+}
+
+/* ============================================================
+   10. TOOLBAR BUTTONS (Tambah, Download, Export)
+   ============================================================ */
+.btn-tambah,
+.btn-add,
+.btn-download,
+.btn-export,
+.btn-import,
+.btn-template,
+.btn-unduh,
+.btn-cetak,
+.btn-print {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 7px 14px !important;
+  border-radius: 6px !important;
+  font-size: 0.85rem !important;
+  font-weight: var(--fw-medium) !important;
+  font-family: var(--font-primary) !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  transition: all 0.15s ease !important;
+}
+
+.btn-tambah,
+.btn-add {
+  background-color: #16a34a !important;
+  border: 1px solid #15803d !important;
+  color: #ffffff !important;
+}
+.btn-tambah:hover, .btn-add:hover {
+  background-color: #15803d !important;
+}
+
+.btn-download,
+.btn-export,
+.btn-unduh {
+  background-color: #0369a1 !important;
+  border: 1px solid #0284c7 !important;
+  color: #ffffff !important;
+}
+.btn-download:hover, .btn-export:hover, .btn-unduh:hover {
+  background-color: #0284c7 !important;
+}
+
+.btn-import,
+.btn-template {
+  background-color: #7c3aed !important;
+  border: 1px solid #6d28d9 !important;
+  color: #ffffff !important;
+}
+.btn-import:hover, .btn-template:hover {
+  background-color: #6d28d9 !important;
+}
+
+.btn-cetak,
+.btn-print {
+  background-color: #374151 !important;
+  border: 1px solid #1f2937 !important;
+  color: #ffffff !important;
+}
+
+/* ============================================================
+   11. LUCIDE ICON SIZES
+   ============================================================ */
+/* Ikon di judul halaman */
+.page-title-icon[data-lucide],
+.page-title [data-lucide] {
+  width: 22px !important;
+  height: 22px !important;
+  flex-shrink: 0 !important;
+}
+
+/* Ikon di tombol */
+button [data-lucide],
+.btn [data-lucide],
+a [data-lucide] {
+  width: 14px !important;
+  height: 14px !important;
+  flex-shrink: 0 !important;
+}
+
+/* Ikon di sidebar */
+.menu-item [data-lucide],
+.sidebar [data-lucide] {
+  width: 18px !important;
+  height: 18px !important;
+  flex-shrink: 0 !important;
+}
+
+/* Ikon di card header */
+.card-header [data-lucide] {
+  width: 18px !important;
+  height: 18px !important;
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+/* ============================================================
+   12. MOBILE-FIRST RESPONSIVE
+   ============================================================ */
+
+/* Mobile < 768px */
+@media (max-width: 767px) {
+  .page-title,
+  .page-title-text,
+  h1.page-title {
+    font-size: 1.2rem !important;
+  }
+
+  .page-header {
+    padding: 0.75rem 1rem !important;
+  }
+
+  /* Tabel scroll horizontal di mobile */
+  .table-container,
+  .table-responsive,
+  .data-table-container {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  /* Tombol aksi lebih kecil di mobile */
+  .btn-action-edit,
+  .btn-action-delete,
+  .btn-action-view,
+  .btn-action-warning,
+  td .btn-edit,
+  td .btn-delete,
+  td .btn-view,
+  td .btn-hapus {
+    padding: 4px 7px !important;
+    font-size: 0.75rem !important;
+  }
+
+  /* Form full width di mobile */
+  .form-grid,
+  .form-row {
+    grid-template-columns: 1fr !important;
+    flex-direction: column !important;
+  }
+
+  /* Modal full width di mobile */
+  .modal-content {
+    max-width: 100vw !important;
+    margin: 0 !important;
+    border-radius: 10px 10px 0 0 !important;
+  }
+
+  /* Card body padding lebih kecil */
+  .card-body {
+    padding: 0.875rem !important;
+  }
+
+  /* Toolbar buttons wrap di mobile */
+  .toolbar-buttons,
+  .page-actions,
+  .card-tools {
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+  }
+
+  /* Font lebih kecil di mobile */
+  body {
+    font-size: 0.85rem !important;
+  }
+
+  table tbody td,
+  .table tbody td {
+    font-size: 0.8rem !important;
+    padding: 6px 8px !important;
+  }
+
+  table thead th,
+  .table thead th {
+    font-size: 0.78rem !important;
+    padding: 8px !important;
+  }
+}
+
+/* Tablet 768px - 1024px */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .page-title,
+  h1.page-title {
+    font-size: 1.35rem !important;
+  }
+
+  .form-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .modal-content {
+    max-width: 90vw !important;
+  }
+}
+
+/* Desktop > 1024px */
+@media (min-width: 1025px) {
+  .page-title,
+  h1.page-title {
+    font-size: var(--fs-page-title) !important;
+  }
+}
+
+/* ============================================================
+   13. SIDEBAR NAVIGATION
+   ============================================================ */
+.sidebar .menu-item {
+  font-family: var(--font-primary) !important;
+  font-size: 0.875rem !important;
+  font-weight: var(--fw-medium) !important;
+}
+
+.sidebar .menu-item.active {
+  font-weight: var(--fw-semibold) !important;
+}
+
+/* ============================================================
+   14. BADGE / STATUS
+   ============================================================ */
+.badge,
+[class*="badge-"] {
+  font-family: var(--font-primary) !important;
+  font-size: 0.72rem !important;
+  font-weight: var(--fw-semibold) !important;
+  padding: 3px 8px !important;
+  border-radius: 20px !important;
+  white-space: nowrap !important;
+  display: inline-block !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+/* ============================================================
+   15. LOADING & EMPTY STATE
+   ============================================================ */
+.loading-state,
+.empty-state {
+  font-family: var(--font-primary) !important;
+  text-align: center !important;
+  padding: 2rem !important;
+  color: #64748b !important;
+}
+
+/* ============================================================
+   16. SCROLLBAR STYLING
+   ============================================================ */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* ============================================================
+   17. MODULE-SPECIFIC BUTTON OVERRIDES
+   Menstandarkan tombol custom dari setiap modul
+   ============================================================ */
+
+/* Visi Misi */
+.vm-btn-edit {
+  background-color: var(--btn-edit-bg) !important;
+  border: 1px solid var(--btn-edit-border) !important;
+  color: var(--btn-edit-text) !important;
+  border-radius: var(--btn-action-radius) !important;
+  padding: var(--btn-action-padding) !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.vm-btn-del, .vm-btn-delete {
+  background-color: var(--btn-delete-bg) !important;
+  border: 1px solid var(--btn-delete-border) !important;
+  color: var(--btn-delete-text) !important;
+  border-radius: var(--btn-action-radius) !important;
+  padding: var(--btn-action-padding) !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.vm-btn-add {
+  background-color: #16a34a !important;
+  border: 1px solid #15803d !important;
+  color: #ffffff !important;
+  border-radius: 6px !important;
+  padding: 7px 14px !important;
+  cursor: pointer !important;
+  font-weight: 500 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+/* Sasaran Strategi */
+.ss-btn-edit {
+  background-color: var(--btn-edit-bg) !important;
+  border: 1px solid var(--btn-edit-border) !important;
+  color: var(--btn-edit-text) !important;
+  border-radius: var(--btn-action-radius) !important;
+  padding: var(--btn-action-padding) !important;
+}
+.ss-btn-delete, .ss-btn-del {
+  background-color: var(--btn-delete-bg) !important;
+  border: 1px solid var(--btn-delete-border) !important;
+  color: var(--btn-delete-text) !important;
+  border-radius: var(--btn-action-radius) !important;
+  padding: var(--btn-action-padding) !important;
+}
+
+/* Rencana Strategis */
+.rs-btn-edit, .rs-btn-lihat, .rs-btn-detail {
+  background-color: var(--btn-edit-bg) !important;
+  border: 1px solid var(--btn-edit-border) !important;
+  color: var(--btn-edit-text) !important;
+  border-radius: var(--btn-action-radius) !important;
+  padding: var(--btn-action-padding) !important;
+}
+.rs-btn-delete, .rs-btn-hapus {
+  background-color: var(--btn-delete-bg) !important;
+  border: 1px solid var(--btn-delete-border) !important;
+  color: var(--btn-delete-text) !important;
+  border-radius: var(--btn-action-radius) !important;
+  padding: var(--btn-action-padding) !important;
+}
+
+/* Risk Input / Risk Register */
+.risk-btn-edit, .ri-btn-edit {
+  background-color: var(--btn-edit-bg) !important;
+  border: 1px solid var(--btn-edit-border) !important;
+  color: var(--btn-edit-text) !important;
+  border-radius: var(--btn-action-radius) !important;
+  padding: var(--btn-action-padding) !important;
+}
+.risk-btn-delete, .ri-btn-delete {
+  background-color: var(--btn-delete-bg) !important;
+  border: 1px solid var(--btn-delete-border) !important;
+  color: var(--btn-delete-text) !important;
+  border-radius: var(--btn-action-radius) !important;
+  padding: var(--btn-action-padding) !important;
+}
+.risk-btn-view, .ri-btn-view {
+  background-color: var(--btn-view-bg) !important;
+  border: 1px solid var(--btn-view-border) !important;
+  color: var(--btn-view-text) !important;
+  border-radius: var(--btn-action-radius) !important;
+  padding: var(--btn-action-padding) !important;
+}
+
+/* KRI */
+.kri-btn-edit {
+  background-color: var(--btn-edit-bg) !important;
+  border: 1px solid var(--btn-edit-border) !important;
+  color: var(--btn-edit-text) !important;
+  border-radius: var(--btn-action-radius) !important;
+  padding: var(--btn-action-padding) !important;
+}
+.kri-btn-delete {
+  background-color: var(--btn-delete-bg) !important;
+  border: 1px solid var(--btn-delete-border) !important;
+  color: var(--btn-delete-text) !important;
+  border-radius: var(--btn-action-radius) !important;
+  padding: var(--btn-action-padding) !important;
+}
+
+/* IKU */
+.iku-btn-edit {
+  background-color: var(--btn-edit-bg) !important;
+  border: 1px solid var(--btn-edit-border) !important;
+  color: var(--btn-edit-text) !important;
+  border-radius: var(--btn-action-radius) !important;
+  padding: var(--btn-action-padding) !important;
+}
+.iku-btn-delete {
+  background-color: var(--btn-delete-bg) !important;
+  border: 1px solid var(--btn-delete-border) !important;
+  color: var(--btn-delete-text) !important;
+  border-radius: var(--btn-action-radius) !important;
+  padding: var(--btn-action-padding) !important;
+}
+
+/* Monitoring Evaluasi */
+.me-btn-edit, .mon-btn-edit {
+  background-color: var(--btn-edit-bg) !important;
+  border: 1px solid var(--btn-edit-border) !important;
+  color: var(--btn-edit-text) !important;
+  border-radius: var(--btn-action-radius) !important;
+  padding: var(--btn-action-padding) !important;
+}
+.me-btn-delete, .mon-btn-delete {
+  background-color: var(--btn-delete-bg) !important;
+  border: 1px solid var(--btn-delete-border) !important;
+  color: var(--btn-delete-text) !important;
+  border-radius: var(--btn-action-radius) !important;
+  padding: var(--btn-action-padding) !important;
+}
+
+/* Peluang */
+.pel-btn-edit {
+  background-color: var(--btn-edit-bg) !important;
+  border: 1px solid var(--btn-edit-border) !important;
+  color: var(--btn-edit-text) !important;
+  border-radius: var(--btn-action-radius) !important;
+  padding: var(--btn-action-padding) !important;
+}
+.pel-btn-delete {
+  background-color: var(--btn-delete-bg) !important;
+  border: 1px solid var(--btn-delete-border) !important;
+  color: var(--btn-delete-text) !important;
+  border-radius: var(--btn-action-radius) !important;
+  padding: var(--btn-action-padding) !important;
+}
+
+/* Master Data */
+.md-btn-edit, .master-btn-edit {
+  background-color: var(--btn-edit-bg) !important;
+  border: 1px solid var(--btn-edit-border) !important;
+  color: var(--btn-edit-text) !important;
+  border-radius: var(--btn-action-radius) !important;
+  padding: var(--btn-action-padding) !important;
+}
+.md-btn-delete, .master-btn-delete {
+  background-color: var(--btn-delete-bg) !important;
+  border: 1px solid var(--btn-delete-border) !important;
+  color: var(--btn-delete-text) !important;
+  border-radius: var(--btn-action-radius) !important;
+  padding: var(--btn-action-padding) !important;
+}
+
+/* Override inline style btn-edit yang ada di beberapa modul */
+.btn-icon.btn-edit {
+  background-color: var(--btn-edit-bg) !important;
+  border: 1px solid var(--btn-edit-border) !important;
+  color: var(--btn-edit-text) !important;
+}
+.btn-icon.btn-delete {
+  background-color: var(--btn-delete-bg) !important;
+  border: 1px solid var(--btn-delete-border) !important;
+  color: var(--btn-delete-text) !important;
+}
+
+/* ============================================================
+   18. FONT IMPORT - Inter
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ============================================================
+   19. OVERRIDE btn-info dan btn-danger DI DALAM TD
+   (digunakan oleh IKU, Risk Register, dll)
+   ============================================================ */
+td .btn-info,
+td .btn-info.btn-sm {
+  background-color: var(--btn-edit-bg) !important;
+  border: 1px solid var(--btn-edit-border) !important;
+  color: var(--btn-edit-text) !important;
+  padding: var(--btn-action-padding) !important;
+  border-radius: var(--btn-action-radius) !important;
+  font-size: var(--btn-action-font-size) !important;
+}
+td .btn-info:hover,
+td .btn-info.btn-sm:hover {
+  background-color: var(--btn-edit-hover-bg) !important;
+  color: #1e40af !important;
+}
+
+td .btn-danger,
+td .btn-danger.btn-sm {
+  background-color: var(--btn-delete-bg) !important;
+  border: 1px solid var(--btn-delete-border) !important;
+  color: var(--btn-delete-text) !important;
+  padding: var(--btn-action-padding) !important;
+  border-radius: var(--btn-action-radius) !important;
+  font-size: var(--btn-action-font-size) !important;
+}
+td .btn-danger:hover,
+td .btn-danger.btn-sm:hover {
+  background-color: var(--btn-delete-hover-bg) !important;
+  color: #b91c1c !important;
+}
+
+td .btn-success,
+td .btn-success.btn-sm {
+  background-color: var(--btn-view-bg) !important;
+  border: 1px solid var(--btn-view-border) !important;
+  color: var(--btn-view-text) !important;
+  padding: var(--btn-action-padding) !important;
+  border-radius: var(--btn-action-radius) !important;
+  font-size: var(--btn-action-font-size) !important;
+}
+
+td .btn-warning,
+td .btn-warning.btn-sm {
+  background-color: var(--btn-warning-bg) !important;
+  border: 1px solid var(--btn-warning-border) !important;
+  color: var(--btn-warning-text) !important;
+  padding: var(--btn-action-padding) !important;
+  border-radius: var(--btn-action-radius) !important;
+  font-size: var(--btn-action-font-size) !important;
+}
+
+/* Icon di dalam td .btn-info dan td .btn-danger */
+td .btn-info i, td .btn-info svg {
+  color: var(--btn-edit-text) !important;
+}
+td .btn-danger i, td .btn-danger svg {
+  color: var(--btn-delete-text) !important;
+}
+td .btn-success i, td .btn-success svg {
+  color: var(--btn-view-text) !important;
+}
+
+/* ============================================================
+   20. OVERRIDE INLINE STYLES YANG UMUM
+   ============================================================ */
+
+/* Override background-color kuning pada btn-edit di beberapa modul */
+.ss-btn-edit,
+.vm-btn-edit,
+.btn-icon.btn-edit,
+td button.btn-edit {
+  background-color: var(--btn-edit-bg) !important;
+  border: 1px solid var(--btn-edit-border) !important;
+  color: var(--btn-edit-text) !important;
+}
+
+/* Override background-color merah solid pada btn-delete */
+.ss-btn-delete,
+.vm-btn-del,
+.btn-icon.btn-delete,
+td button.btn-delete {
+  background-color: var(--btn-delete-bg) !important;
+  border: 1px solid var(--btn-delete-border) !important;
+  color: var(--btn-delete-text) !important;
+}
+
+/* Pastikan icon di dalam tombol aksi berwarna sesuai */
+.ss-btn-edit i, .ss-btn-edit svg,
+.vm-btn-edit i, .vm-btn-edit svg,
+.btn-icon.btn-edit i, .btn-icon.btn-edit svg {
+  color: var(--btn-edit-text) !important;
+}
+
+.ss-btn-delete i, .ss-btn-delete svg,
+.vm-btn-del i, .vm-btn-del svg,
+.btn-icon.btn-delete i, .btn-icon.btn-delete svg {
+  color: var(--btn-delete-text) !important;
+}
+
+/* ============================================================
+   21. OVERRIDE STRATEGIC MAP DAN CSS LAIN YANG KONFLIK
+   ============================================================ */
+
+/* Override strategic-map-enhanced.css yang menggunakan warna berbeda */
+.btn-action-edit {
+  background-color: var(--btn-edit-bg) !important;
+  border: 1px solid var(--btn-edit-border) !important;
+  color: var(--btn-edit-text) !important;
+  transform: none !important;
+}
+.btn-action-edit:hover {
+  background-color: var(--btn-edit-hover-bg) !important;
+  transform: none !important;
+}
+.btn-action-delete {
+  background-color: var(--btn-delete-bg) !important;
+  border: 1px solid var(--btn-delete-border) !important;
+  color: var(--btn-delete-text) !important;
+  transform: none !important;
+}
+.btn-action-delete:hover {
+  background-color: var(--btn-delete-hover-bg) !important;
+  transform: none !important;
+}
+.btn-action-view {
+  background-color: var(--btn-view-bg) !important;
+  border: 1px solid var(--btn-view-border) !important;
+  color: var(--btn-view-text) !important;
+}
+
+/* Override action-icon dan action-icon-compact dari evaluasi-iku */
+.action-icon.edit,
+.action-icon-compact.edit,
+.action-btn.edit {
+  background-color: var(--btn-edit-bg) !important;
+  border: 1px solid var(--btn-edit-border) !important;
+  color: var(--btn-edit-text) !important;
+}
+.action-icon.delete,
+.action-icon-compact.delete,
+.action-btn.delete {
+  background-color: var(--btn-delete-bg) !important;
+  border: 1px solid var(--btn-delete-border) !important;
+  color: var(--btn-delete-text) !important;
+}
+.action-icon.view,
+.action-icon-compact.view,
+.action-btn.view {
+  background-color: var(--btn-view-bg) !important;
+  border: 1px solid var(--btn-view-border) !important;
+  color: var(--btn-view-text) !important;
+}
+
+/* Override btn-action dari KRI */
+.btn-action.btn-edit {
+  background-color: var(--btn-edit-bg) !important;
+  border: 1px solid var(--btn-edit-border) !important;
+  color: var(--btn-edit-text) !important;
+  width: auto !important;
+  height: auto !important;
+  padding: var(--btn-action-padding) !important;
+}
+.btn-action.btn-delete {
+  background-color: var(--btn-delete-bg) !important;
+  border: 1px solid var(--btn-delete-border) !important;
+  color: var(--btn-delete-text) !important;
+  width: auto !important;
+  height: auto !important;
+  padding: var(--btn-action-padding) !important;
+}
+
+/* Override btn-monitoring-edit dan btn-monitoring-delete */
+.btn-monitoring-edit,
+.btn-action-edit[data-id] {
+  background-color: var(--btn-edit-bg) !important;
+  border: 1px solid var(--btn-edit-border) !important;
+  color: var(--btn-edit-text) !important;
+  width: auto !important;
+  height: auto !important;
+  padding: var(--btn-action-padding) !important;
+}
+.btn-monitoring-delete,
+.btn-action-delete[data-id] {
+  background-color: var(--btn-delete-bg) !important;
+  border: 1px solid var(--btn-delete-border) !important;
+  color: var(--btn-delete-text) !important;
+  width: auto !important;
+  height: auto !important;
+  padding: var(--btn-action-padding) !important;
+}
+
+/* ============================================================
+   22. OVERRIDE KHUSUS HALAMAN RENCANA STRATEGIS
+   Memastikan tombol aksi RS menggunakan style standar
+   ============================================================ */
+
+/* Override semua CSS RS yang menggunakan warna solid pada tombol aksi */
+#rencana-strategis .btn-action-view,
+#rencana-strategis-content .btn-action-view,
+.rencana-strategis-wrapper .btn-action-view,
+.rs-v7-wrapper .btn-action-view {
+  background-color: var(--btn-view-bg) !important;
+  background: var(--btn-view-bg) !important;
+  border: 1px solid var(--btn-view-border) !important;
+  color: var(--btn-view-text) !important;
+  border-radius: var(--btn-action-radius) !important;
+  padding: var(--btn-action-padding) !important;
+  font-size: var(--btn-action-font-size) !important;
+  font-weight: var(--fw-medium) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  width: auto !important;
+  height: auto !important;
+  min-width: unset !important;
+  min-height: unset !important;
+  box-shadow: none !important;
+  transform: none !important;
+  transition: all 0.15s ease !important;
+}
+
+#rencana-strategis .btn-action-edit,
+#rencana-strategis-content .btn-action-edit,
+.rencana-strategis-wrapper .btn-action-edit,
+.rs-v7-wrapper .btn-action-edit {
+  background-color: var(--btn-edit-bg) !important;
+  background: var(--btn-edit-bg) !important;
+  border: 1px solid var(--btn-edit-border) !important;
+  color: var(--btn-edit-text) !important;
+  border-radius: var(--btn-action-radius) !important;
+  padding: var(--btn-action-padding) !important;
+  font-size: var(--btn-action-font-size) !important;
+  font-weight: var(--fw-medium) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  width: auto !important;
+  height: auto !important;
+  min-width: unset !important;
+  min-height: unset !important;
+  box-shadow: none !important;
+  transform: none !important;
+  transition: all 0.15s ease !important;
+}
+
+#rencana-strategis .btn-action-delete,
+#rencana-strategis-content .btn-action-delete,
+.rencana-strategis-wrapper .btn-action-delete,
+.rs-v7-wrapper .btn-action-delete {
+  background-color: var(--btn-delete-bg) !important;
+  background: var(--btn-delete-bg) !important;
+  border: 1px solid var(--btn-delete-border) !important;
+  color: var(--btn-delete-text) !important;
+  border-radius: var(--btn-action-radius) !important;
+  padding: var(--btn-action-padding) !important;
+  font-size: var(--btn-action-font-size) !important;
+  font-weight: var(--fw-medium) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  width: auto !important;
+  height: auto !important;
+  min-width: unset !important;
+  min-height: unset !important;
+  box-shadow: none !important;
+  transform: none !important;
+  transition: all 0.15s ease !important;
+}
+
+/* Hover states */
+#rencana-strategis .btn-action-view:hover,
+#rencana-strategis-content .btn-action-view:hover,
+.rencana-strategis-wrapper .btn-action-view:hover,
+.rs-v7-wrapper .btn-action-view:hover {
+  background-color: var(--btn-view-hover-bg) !important;
+  background: var(--btn-view-hover-bg) !important;
+  transform: none !important;
+}
+
+#rencana-strategis .btn-action-edit:hover,
+#rencana-strategis-content .btn-action-edit:hover,
+.rencana-strategis-wrapper .btn-action-edit:hover,
+.rs-v7-wrapper .btn-action-edit:hover {
+  background-color: var(--btn-edit-hover-bg) !important;
+  background: var(--btn-edit-hover-bg) !important;
+  transform: none !important;
+}
+
+#rencana-strategis .btn-action-delete:hover,
+#rencana-strategis-content .btn-action-delete:hover,
+.rencana-strategis-wrapper .btn-action-delete:hover,
+.rs-v7-wrapper .btn-action-delete:hover {
+  background-color: var(--btn-delete-hover-bg) !important;
+  background: var(--btn-delete-hover-bg) !important;
+  transform: none !important;
+}
+
+/* Icon di dalam tombol RS */
+#rencana-strategis .btn-action-view svg,
+#rencana-strategis .btn-action-view i,
+#rencana-strategis-content .btn-action-view svg,
+#rencana-strategis-content .btn-action-view i {
+  color: var(--btn-view-text) !important;
+  stroke: var(--btn-view-text) !important;
+  width: 14px !important;
+  height: 14px !important;
+}
+
+#rencana-strategis .btn-action-edit svg,
+#rencana-strategis .btn-action-edit i,
+#rencana-strategis-content .btn-action-edit svg,
+#rencana-strategis-content .btn-action-edit i {
+  color: var(--btn-edit-text) !important;
+  stroke: var(--btn-edit-text) !important;
+  width: 14px !important;
+  height: 14px !important;
+}
+
+#rencana-strategis .btn-action-delete svg,
+#rencana-strategis .btn-action-delete i,
+#rencana-strategis-content .btn-action-delete svg,
+#rencana-strategis-content .btn-action-delete i {
+  color: var(--btn-delete-text) !important;
+  stroke: var(--btn-delete-text) !important;
+  width: 14px !important;
+  height: 14px !important;
+}

@@ -29,19 +29,6 @@ const AnalisisSwotModule = (() => {
     
     state.isLoading = true;
     
-    // Get container - don't check if page is active, just load the data
-    const container = document.getElementById('analisis-swot-content');
-    if (container) {
-      container.innerHTML = `
-        <div style="padding: 40px; text-align: center;">
-          <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
-            <span class="visually-hidden">Loading...</span>
-          </div>
-          <p style="margin-top: 15px; color: #666;">Memuat data Analisis SWOT...</p>
-        </div>
-      `;
-    }
-    
     try {
       console.log('Fetching initial data...');
       await fetchInitialData();
@@ -285,6 +272,17 @@ const AnalisisSwotModule = (() => {
   }
 
   function initializeEnhancedFeatures() {
+    // Load button fix CSS
+    const buttonFixCssId = 'analisis-swot-button-fix-css';
+    if (!document.getElementById(buttonFixCssId)) {
+      const buttonFixLink = document.createElement('link');
+      buttonFixLink.id = buttonFixCssId;
+      buttonFixLink.rel = 'stylesheet';
+      buttonFixLink.href = '/css/analisis-swot-button-fix.css';
+      document.head.appendChild(buttonFixLink);
+      console.log('✓ Button fix CSS loaded for Analisis SWOT');
+    }
+    
     // Load enhanced fix CSS (badge colors, table scroll, button fix)
     const enhancedCssId = 'analisis-swot-enhanced-fix-css';
     if (!document.getElementById(enhancedCssId)) {
@@ -479,6 +477,11 @@ const AnalisisSwotModule = (() => {
       .container-fluid {
           padding: 16px !important;
           overflow-x: hidden !important;
+      }
+      
+      /* Hapus loading spinner yang tidak perlu */
+      .spinner-border {
+          display: none !important;
       }
     `;
     
@@ -745,11 +748,11 @@ const AnalisisSwotModule = (() => {
           <td class="score-column">${score}</td>
           <td class="tahun-column">${tahun}</td>
           <td class="aksi-column">
-            <button type="button" class="btn-icon btn-edit" data-id="${itemId}" title="Edit Data">
-              <i class="fas fa-edit"></i>
+            <button type="button" class="btn-action-edit" data-id="${itemId}" title="Edit Data">
+              <i data-lucide="pencil"></i>
             </button>
-            <button type="button" class="btn-icon btn-delete" data-id="${itemId}" title="Hapus Data">
-              <i class="fas fa-trash"></i>
+            <button type="button" class="btn-action-delete" data-id="${itemId}" title="Hapus Data">
+              <i data-lucide="trash-2"></i>
             </button>
           </td>
         </tr>
@@ -1057,7 +1060,7 @@ const AnalisisSwotModule = (() => {
       <div class="modal-content" style="max-width: 700px;">
         <div class="modal-header">
           <h3 class="modal-title">Tambah Data SWOT</h3>
-          <button class="modal-close" onclick="this.closest('.modal').remove()">&times;</button>
+          <button class="modal-close" onclick="event.stopPropagation(); this.closest('.modal').remove()">&times;</button>
         </div>
         <form onsubmit="AnalisisSwotModule.saveData(event)">
           <div style="padding: 1.5rem;">
@@ -1117,7 +1120,7 @@ const AnalisisSwotModule = (() => {
             </div>
           </div>
           <div class="modal-footer" style="padding: 1rem 1.5rem; border-top: 1px solid #e2e8f0;">
-            <button type="button" class="btn btn-secondary" onclick="this.closest('.modal').remove()">Batal</button>
+            <button type="button" class="btn btn-secondary" onclick="event.stopPropagation(); this.closest('.modal').remove()">Batal</button>
             <button type="submit" class="btn btn-primary">
               <i class="fas fa-save"></i> Simpan
             </button>
@@ -1126,6 +1129,13 @@ const AnalisisSwotModule = (() => {
       </div>
     `;
     document.body.appendChild(modal);
+    
+    // Prevent modal background click from closing
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) {
+        e.stopPropagation();
+      }
+    });
   }
 
   // Download report
@@ -1186,7 +1196,7 @@ const AnalisisSwotModule = (() => {
         <div class="modal-content" style="max-width: 700px;">
           <div class="modal-header">
             <h3 class="modal-title">Edit Data SWOT</h3>
-            <button class="modal-close" onclick="this.closest('.modal').remove()">&times;</button>
+            <button class="modal-close" onclick="event.stopPropagation(); this.closest('.modal').remove()">&times;</button>
           </div>
           <form onsubmit="AnalisisSwotModule.updateData(event, '${id}')">
             <div style="padding: 1.5rem;">
@@ -1246,7 +1256,7 @@ const AnalisisSwotModule = (() => {
               </div>
             </div>
             <div class="modal-footer" style="padding: 1rem 1.5rem; border-top: 1px solid #e2e8f0;">
-              <button type="button" class="btn btn-secondary" onclick="this.closest('.modal').remove()">Batal</button>
+              <button type="button" class="btn btn-secondary" onclick="event.stopPropagation(); this.closest('.modal').remove()">Batal</button>
               <button type="submit" class="btn btn-primary">
                 <i class="fas fa-save"></i> Update
               </button>
@@ -1255,6 +1265,13 @@ const AnalisisSwotModule = (() => {
         </div>
       `;
       document.body.appendChild(modal);
+      
+      // Prevent modal background click from closing
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+          e.stopPropagation();
+        }
+      });
     } catch (error) {
       alert('Error loading data: ' + error.message);
     }

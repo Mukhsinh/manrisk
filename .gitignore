@@ -5,3 +5,29 @@ node_modules/
 dist/
 build/
 
+# Test files - jangan commit file test ke repository
+test-*.html
+test-*.js
+*-test.html
+*-test.js
+debug-*.html
+debug-*.js
+*-debug.html
+*-debug.js
+diagnostic.html
+comprehensive-test.html
+simple-test.html
+final-test.html
+working-test.html
+token-debug.html
+auth-debug.html
+fix-auth-integration.html
+purple-to-white-verification.html
+
+# Backup folders
+backup-*/
+
+# Cleanup reports
+cleanup-*.json
+cleanup-*.js
+

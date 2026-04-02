@@ -1,15 +1,19 @@
 /**
- * Lucide Icon Integration System v2.0
- * Non-blocking icon loading with fallback support
- * Updated: 2026-01-10
+ * Lucide Icon Integration System v3.0
+ * Sistem icon yang konsisten dengan pencegahan multiple inisialisasi
+ * Updated: 2026-01-29
  */
 
 class LucideIconSystem {
     constructor() {
         this.iconMap = new Map();
         this.isInitialized = false;
+        this.isInitializing = false;
         this.loadAttempts = 0;
         this.maxLoadAttempts = 2;
+        this.initQueue = [];
+        this.lastInitTime = 0;
+        this.minInitInterval = 1000; // Minimum 1 detik antara inisialisasi
         
         // Initialize icon mappings
         this.initializeIconMappings();
@@ -134,15 +138,45 @@ class LucideIconSystem {
     
     /**
      * Create all icons in the document - SAFE
+     * @param {HTMLElement} container - Optional container to create icons in
      */
-    createAllIcons() {
+    createAllIcons(container = null) {
         if (window.lucide && typeof window.lucide.createIcons === 'function') {
             try {
-                window.lucide.createIcons();
+                if (container) {
+                    // Create icons only in specific container
+                    window.lucide.createIcons({ 
+                        icons: window.lucide,
+                        nameAttr: 'data-lucide',
+                        attrs: {
+                            'stroke-width': 2,
+                            'width': 20,
+                            'height': 20
+                        }
+                    });
+                } else {
+                    // Create all icons in document
+                    window.lucide.createIcons();
+                }
+                console.log('✅ Lucide icons created successfully');
             } catch (e) {
                 console.warn('⚠️ Error creating Lucide icons:', e.message);
             }
         }
+    }
+    
+    /**
+     * Refresh icons - force recreation
+     */
+    refreshIcons() {
+        console.log('🔄 Refreshing all icons...');
+        
+        // Remove existing SVG icons
+        const existingIcons = document.querySelectorAll('i[data-lucide] svg');
+        existingIcons.forEach(svg => svg.remove());
+        
+        // Recreate all icons
+        this.createAllIcons();
     }
     
     /**
@@ -163,14 +197,39 @@ class LucideIconSystem {
      * Initialize - NON-BLOCKING, won't prevent page render
      */
     async init() {
+        // Cegah multiple init
+        if (this.isInitialized || this.isInitializing) {
+            console.log('🔄 Icon system already initialized or initializing');
+            return;
+        }
+        
+        this.isInitializing = true;
+        
         // Don't block - load in background
-        this.loadLucide().then(success => {
+        try {
+            const success = await this.loadLucide();
             if (success) {
-                this.createAllIcons();
+                await this.safeCreateIcons();
+                this.isInitialized = true;
             }
-        }).catch(() => {
-            // Silently fail - icons are not critical
-        });
+        } catch (error) {
+            console.warn('⚠️ Icon initialization failed:', error);
+        } finally {
+            this.isInitializing = false;
+        }
+    }
+    
+    /**
+     * Reinitialize icons (untuk dynamic content)
+     */
+    reinitialize() {
+        // Reset timer untuk allow reinit
+        const now = Date.now();
+        if (now - this.lastInitTime >= this.minInitInterval) {
+            this.createAllIcons();
+        } else {
+            console.log('⏱️ Reinitialize debounced, too soon');
+        }
     }
 }
 

@@ -1,3 +1,5 @@
+
+/* Cache-busted: 2026-03-31T02:15:20.498Z */
 /**
  * RENCANA STRATEGIS MODULE v5.3-STABLE
  * 
@@ -218,9 +220,15 @@ const RencanaStrategisModule = (() => {
     html += '</div>';
 
     container.innerHTML = html;
-    bindEvents();
     
-    console.log('✅ Interface rendered: Cards + Form + Table displayed');
+    // Force browser to reflow/repaint before binding events
+    container.offsetHeight; // Trigger reflow
+    
+    // Use requestAnimationFrame to ensure DOM is fully rendered
+    requestAnimationFrame(() => {
+      bindEvents();
+      console.log('✅ Interface rendered: Cards + Form + Table displayed');
+    });
   }
 
   function renderStatCards() {
@@ -379,8 +387,8 @@ const RencanaStrategisModule = (() => {
           '<small style="color: #6b7280 !important;">Total: ' + state.data.length + ' data</small>' +
         '</div>' +
         '<div class="btn-group">' +
-          '<button class="btn btn-outline-primary" id="rs-refresh-btn" title="Refresh Data"><i class="fas fa-sync-alt me-1"></i>Refresh</button>' +
-          '<button class="btn btn-outline-success" id="rs-export-btn" title="Export ke Excel"><i class="fas fa-file-excel me-1"></i>Export</button>' +
+          '<button class="btn btn-primary" id="rs-refresh-btn" title="Refresh Data"><i class="fas fa-sync-alt"></i></button>' +
+          '<button class="btn btn-success" id="rs-export-btn" title="Unduh Laporan Excel"><i class="fas fa-file-download"></i></button>' +
         '</div>' +
       '</div>' +
       '<div class="card-body p-0">' +
@@ -388,12 +396,12 @@ const RencanaStrategisModule = (() => {
           '<table class="table table-hover mb-0">' +
             '<thead style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">' +
               '<tr>' +
-                '<th class="border-0 py-3" style="width: 120px;"><i class="fas fa-barcode me-1 text-muted"></i>Kode</th>' +
-                '<th class="border-0 py-3"><i class="fas fa-file-alt me-1 text-muted"></i>Nama Rencana</th>' +
-                '<th class="border-0 py-3" style="width: 150px;"><i class="fas fa-crosshairs me-1 text-muted"></i>Target</th>' +
-                '<th class="border-0 py-3" style="width: 180px;"><i class="fas fa-calendar me-1 text-muted"></i>Periode</th>' +
-                '<th class="border-0 py-3" style="width: 100px;"><i class="fas fa-flag me-1 text-muted"></i>Status</th>' +
-                '<th class="border-0 py-3 text-center" style="width: 140px;"><i class="fas fa-cogs me-1 text-muted"></i>Aksi</th>' +
+                '<th class="border-0 py-3" style="width: 120px;">KODE</th>' +
+                '<th class="border-0 py-3">NAMA RENCANA</th>' +
+                '<th class="border-0 py-3" style="width: 150px;">TARGET</th>' +
+                '<th class="border-0 py-3" style="width: 180px;">PERIODE</th>' +
+                '<th class="border-0 py-3" style="width: 100px;">STATUS</th>' +
+                '<th class="border-0 py-3 text-center" style="width: 140px;">AKSI</th>' +
               '</tr>' +
             '</thead>' +
             '<tbody>' + renderTableRows() + '</tbody>' +
@@ -433,25 +441,60 @@ const RencanaStrategisModule = (() => {
       var kodeDisplay = item.kode || generateFallbackKode(index);
       var itemId = item.id || '';
       
-      return '<tr ' + rowBg + ' data-id="' + itemId + '">' +
-        '<td class="align-middle" style="min-width: 100px; max-width: 130px;">' +
-          '<span class="badge bg-light text-dark border fw-normal" style="font-size: 0.75rem; padding: 0.35rem 0.5rem; white-space: nowrap; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis;">' + escapeHtml(kodeDisplay) + '</span>' +
-        '</td>' +
-        '<td class="align-middle" style="min-width: 200px;">' +
-          '<div class="fw-semibold text-dark" style="word-wrap: break-word;">' + escapeHtml(item.nama_rencana || '-') + '</div>' +
-          (item.deskripsi ? '<small class="text-muted d-block mt-1" style="line-height: 1.3; word-wrap: break-word;">' + escapeHtml(truncateText(item.deskripsi, 80)) + '</small>' : '') +
-        '</td>' +
-        '<td class="align-middle" style="min-width: 120px; max-width: 180px;"><small class="text-muted" style="word-wrap: break-word; display: block;">' + escapeHtml(truncateText(item.target || '-', 50)) + '</small></td>' +
-        '<td class="align-middle" style="min-width: 140px; white-space: nowrap;"><small class="text-muted"><i class="fas fa-calendar-alt me-1"></i>' + periode + '</small></td>' +
-        '<td class="align-middle" style="min-width: 90px; max-width: 110px;">' + statusBadge + '</td>' +
-        '<td class="align-middle text-center" style="min-width: 130px; white-space: nowrap;">' +
-          '<div class="btn-group btn-group-sm" role="group" style="gap: 4px;">' +
-            '<button type="button" class="btn rs-action-btn" data-action="view" data-id="' + itemId + '" title="Lihat Detail" style="background: #0ea5e9; color: white; border: none; border-radius: 6px; padding: 0.35rem 0.5rem;"><i class="fas fa-eye"></i></button>' +
-            '<button type="button" class="btn rs-action-btn" data-action="edit" data-id="' + itemId + '" title="Edit" style="background: #f59e0b; color: white; border: none; border-radius: 6px; padding: 0.35rem 0.5rem;"><i class="fas fa-edit"></i></button>' +
-            '<button type="button" class="btn rs-action-btn" data-action="delete" data-id="' + itemId + '" title="Hapus" style="background: #ef4444; color: white; border: none; border-radius: 6px; padding: 0.35rem 0.5rem;"><i class="fas fa-trash"></i></button>' +
-          '</div>' +
-        '</td>' +
-      '</tr>';
+      // Ensure all HTML is properly escaped and formatted
+      var row = '<tr ' + rowBg + ' data-id="' + itemId + '">';
+      
+      // Column 1: Kode
+      row += '<td class="align-middle" style="min-width: 100px; max-width: 130px;">';
+      row += '<span class="badge bg-light text-dark border fw-normal" style="font-size: 0.75rem; padding: 0.35rem 0.5rem; white-space: nowrap; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis;">' + escapeHtml(kodeDisplay) + '</span>';
+      row += '</td>';
+      
+      // Column 2: Nama Rencana
+      row += '<td class="align-middle" style="min-width: 200px; max-width: 350px;">';
+      row += '<div class="fw-semibold text-dark" style="word-wrap: break-word; overflow-wrap: break-word; white-space: normal; line-height: 1.5;">' + escapeHtml(item.nama_rencana || '-') + '</div>';
+      if (item.deskripsi) {
+        row += '<small class="text-muted d-block mt-1" style="line-height: 1.4; word-wrap: break-word; overflow-wrap: break-word; white-space: normal;">' + escapeHtml(truncateText(item.deskripsi, 80)) + '</small>';
+      }
+      row += '</td>';
+      
+      // Column 3: Target
+      row += '<td class="align-middle" style="min-width: 150px; max-width: 250px;">';
+      row += '<small class="text-muted" style="word-wrap: break-word; overflow-wrap: break-word; white-space: normal; display: block; line-height: 1.5;">' + escapeHtml(item.target || '-') + '</small>';
+      row += '</td>';
+      
+      // Column 4: Periode
+      row += '<td class="align-middle" style="min-width: 140px; white-space: nowrap;">';
+      row += '<small class="text-muted">' + periode + '</small>';
+      row += '</td>';
+      
+      // Column 5: Status - CRITICAL: Ensure badge is always rendered
+      row += '<td class="align-middle" style="min-width: 90px; max-width: 110px;">';
+      row += statusBadge; // Badge HTML is generated by getStatusBadgeFixed()
+      row += '</td>';
+      
+      // Column 6: Action Buttons - ICON ONLY (TANPA EDIT)
+      row += '<td class="align-middle text-center" style="min-width: 90px; white-space: nowrap; padding: 0.5rem 0.75rem;">';
+      row += '<div class="d-flex justify-content-center gap-2" role="group">';
+      
+      // View Button - ICON ONLY
+      row += '<button type="button" class="btn-action-view" ';
+      row += 'data-action="view" data-id="' + itemId + '" ';
+      row += 'title="Lihat Detail">';
+      row += '<i class="fas fa-eye"></i>'; // Icon only, no text
+      row += '</button>';
+      
+      // Delete Button - ICON ONLY
+      row += '<button type="button" class="btn-action-delete" ';
+      row += 'data-action="delete" data-id="' + itemId + '" ';
+      row += 'title="Hapus">';
+      row += '<i class="fas fa-trash-alt"></i>'; // Icon only, no text
+      row += '</button>';
+      
+      row += '</div>';
+      row += '</td>';
+      row += '</tr>';
+      
+      return row;
     }).join('');
   }
   
@@ -562,7 +605,7 @@ const RencanaStrategisModule = (() => {
   }
   
   function handleActionClick(e) {
-    var btn = e.target.closest('.rs-action-btn');
+    var btn = e.target.closest('.rs-action-btn, .btn-action-view, .btn-action-delete');
     if (!btn) return;
     
     e.preventDefault();
@@ -589,9 +632,6 @@ const RencanaStrategisModule = (() => {
     switch(action) {
       case 'view':
         viewDetail(id);
-        break;
-      case 'edit':
-        startEdit(id);
         break;
       case 'delete':
         deleteRencana(id);
@@ -705,8 +745,37 @@ const RencanaStrategisModule = (() => {
 
   async function refreshData() {
     console.log('🔄 Refreshing data...');
+    
+    // Show loading indicator
+    const container = getEl('rencana-strategis-content');
+    if (container) {
+      const loadingHtml = '<div class="text-center py-5"><div class="spinner-border text-primary" role="status"></div><p class="mt-3 text-muted">Memuat ulang data...</p></div>';
+      container.innerHTML = loadingHtml;
+    }
+    
+    // Fetch fresh data and wait for completion
     await fetchData();
+    
+    // Verify data is loaded
+    console.log('📊 Data after refresh:', { 
+      count: state.data.length,
+      hasData: state.data.length > 0,
+      firstItem: state.data[0] ? {
+        id: state.data[0].id,
+        kode: state.data[0].kode,
+        status: state.data[0].status
+      } : null
+    });
+    
+    // Small delay to ensure data is fully processed
+    await new Promise(resolve => setTimeout(resolve, 150));
+    
+    // Re-render interface with verified data
     renderInterface();
+    
+    console.log('✅ Data refreshed and interface re-rendered');
+  }
+    console.log('✅ Data refreshed successfully');
   }
 
   async function generateKode() {
@@ -831,7 +900,9 @@ const RencanaStrategisModule = (() => {
     }
     
     console.log('✏️ Starting edit for:', record.nama_rencana);
+    console.log('📋 Record data:', record);
     
+    // Set current ID and form values
     state.currentId = id;
     state.formValues = {
       kode: record.kode || '',
@@ -845,7 +916,12 @@ const RencanaStrategisModule = (() => {
     };
     state.showForm = true;
     
+    console.log('📝 Form values set:', state.formValues);
+    
+    // Re-render interface with form data
     renderInterface();
+    
+    // Wait for DOM to update, then ensure form is visible and populated
     setTimeout(function() {
       var formSection = getEl('rs-form-section');
       var formBody = getEl('rs-form-body');
@@ -857,14 +933,45 @@ const RencanaStrategisModule = (() => {
         if (toggleBtn) toggleBtn.innerHTML = '<i class="fas fa-chevron-up"></i>';
       }
       
+      // Verify form fields are populated
+      var kodeInput = getEl('rs-kode');
+      var namaInput = getEl('rs-nama');
+      var deskripsiInput = getEl('rs-deskripsi');
+      var targetInput = getEl('rs-target');
+      var statusSelect = getEl('rs-status');
+      var misiSelect = getEl('rs-misi');
+      var mulaiInput = getEl('rs-mulai');
+      var selesaiInput = getEl('rs-selesai');
+      
+      console.log('🔍 Checking form fields after render:');
+      console.log('  - Kode:', kodeInput ? kodeInput.value : 'NOT FOUND');
+      console.log('  - Nama:', namaInput ? namaInput.value : 'NOT FOUND');
+      console.log('  - Status:', statusSelect ? statusSelect.value : 'NOT FOUND');
+      
+      // If fields are empty, manually populate them
+      if (namaInput && !namaInput.value) {
+        console.warn('⚠️ Form fields empty after render, manually populating...');
+        if (kodeInput) kodeInput.value = state.formValues.kode;
+        if (namaInput) namaInput.value = state.formValues.nama_rencana;
+        if (deskripsiInput) deskripsiInput.value = state.formValues.deskripsi;
+        if (targetInput) targetInput.value = state.formValues.target;
+        if (statusSelect) statusSelect.value = state.formValues.status;
+        if (misiSelect) misiSelect.value = state.formValues.visi_misi_id;
+        if (mulaiInput) mulaiInput.value = state.formValues.periode_mulai;
+        if (selesaiInput) selesaiInput.value = state.formValues.periode_selesai;
+        console.log('✅ Form fields manually populated');
+      }
+      
+      // Scroll to form
       if (formSection) {
         formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
       
       // Focus on nama input
-      var namaInput = getEl('rs-nama');
       if (namaInput) namaInput.focus();
-    }, 100);
+      
+      console.log('✅ Edit form ready');
+    }, 150);
   }
 
   async function deleteRencana(id) {

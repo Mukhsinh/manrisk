@@ -265,9 +265,9 @@ const RiskInputModule = (() => {
         <td>${ownerName}</td>
         <td><span class="status-badge ${risk.status_risiko?.toLowerCase() || 'active'}">${risk.status_risiko || 'Active'}</span></td>
         <td class="table-actions">
-          <button class="btn btn-view btn-sm" onclick="RiskInputModule.view('${risk.id}')" title="Lihat Detail"><i class="fas fa-eye"></i></button>
-          <button class="btn btn-edit btn-sm" onclick="RiskInputModule.edit('${risk.id}')" title="Edit"><i class="fas fa-edit"></i></button>
-          <button class="btn btn-delete btn-sm" onclick="RiskInputModule.remove('${risk.id}')" title="Hapus"><i class="fas fa-trash"></i></button>
+          <button class="btn-action-view" onclick="RiskInputModule.view('${risk.id}')" title="Lihat Detail"><i data-lucide="eye"></i> Lihat</button>
+          <button class="btn-action-edit" onclick="RiskInputModule.edit('${risk.id}')" title="Edit"><i data-lucide="pencil"></i> Edit</button>
+          <button class="btn-action-delete" onclick="RiskInputModule.remove('${risk.id}')" title="Hapus"><i data-lucide="trash-2"></i> Hapus</button>
         </td>
       </tr>`;
       })

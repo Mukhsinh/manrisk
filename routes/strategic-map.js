@@ -454,7 +454,12 @@ router.get('/actions/export', authenticateUser, async (req, res) => {
       created_at: new Date(item.created_at).toLocaleDateString('id-ID')
     }));
 
-    const buffer = exportToExcel(formattedData, 'Strategic Map');
+    const buffer = exportToExcel(formattedData, 'Strategic Map', {
+      organizationName: 'PINTAR MR - Manajemen Risiko Terpadu',
+      reportTitle: 'Strategic Map Report',
+      reportType: 'Laporan Peta Strategis',
+      generatedBy: req.user?.email || 'System Administrator'
+    });
     
     // Set headers for file download
     const filename = `strategic-map-${rencana_strategis_id ? 'filtered' : 'all'}-${new Date().toISOString().split('T')[0]}.xlsx`;

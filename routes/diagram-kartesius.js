@@ -7,13 +7,13 @@ const { buildOrganizationFilter } = require('../utils/organization');
 // Calculate and generate diagram kartesius from SWOT analysis - AUTO MODE FOR ALL UNITS
 router.post('/calculate', authenticateUser, async (req, res) => {
   try {
-    const { unit_kerja_id, jenis, kategori, tahun } = req.body;
+    const { unit_kerja_id, jenis, tahun } = req.body;
 
     if (!tahun) {
       return res.status(400).json({ error: 'Tahun wajib diisi' });
     }
 
-    console.log('🔄 AUTO CALCULATION - Processing units for year:', tahun, 'filters:', { unit_kerja_id, jenis, kategori });
+    console.log('🔄 AUTO CALCULATION - Processing units for year:', tahun, 'filters:', { unit_kerja_id, jenis });
 
     const clientToUse = supabaseAdmin || supabase;
     
@@ -39,41 +39,34 @@ router.post('/calculate', authenticateUser, async (req, res) => {
       return res.status(400).json({ error: 'Tidak ada data analisis SWOT untuk dihitung. Pastikan data SWOT sudah diinput untuk tahun yang dipilih.' });
     }
 
-    // Filter by unit kerja, jenis, kategori (case-insensitive)
+    // Filter by unit kerja, jenis (case-insensitive)
     let filteredAnalisis = analisis;
     
     if (unit_kerja_id && unit_kerja_id !== 'AGGREGATE') {
       filteredAnalisis = filteredAnalisis.filter(item => item.unit_kerja_id === unit_kerja_id);
     }
     
-    if (jenis || kategori) {
+    if (jenis) {
       // Normalize filter values to lowercase for comparison
       const jenisLower = jenis ? jenis.toLowerCase().trim() : null;
-      const kategoriLower = kategori ? kategori.toLowerCase().trim() : null;
       
-      console.log('🔍 Filtering SWOT data by jenis:', jenisLower, 'kategori:', kategoriLower);
+      console.log('🔍 Filtering SWOT data by jenis:', jenisLower);
       
       filteredAnalisis = filteredAnalisis.filter(item => {
         const workUnit = item.master_work_units;
         if (!workUnit) return false;
         
         let matchJenis = true;
-        let matchKategori = true;
         
         if (jenisLower) {
           const itemJenis = (workUnit.jenis || '').toLowerCase().trim();
           matchJenis = itemJenis === jenisLower;
         }
         
-        if (kategoriLower) {
-          const itemKategori = (workUnit.kategori || '').toLowerCase().trim();
-          matchKategori = itemKategori === kategoriLower;
-        }
-        
-        return matchJenis && matchKategori;
+        return matchJenis;
       });
       
-      console.log('🔍 After jenis/kategori filter:', filteredAnalisis.length, 'items');
+      console.log('🔍 After jenis filter:', filteredAnalisis.length, 'items');
     }
 
     // Get unique units from the filtered data
@@ -266,9 +259,9 @@ router.post('/calculate', authenticateUser, async (req, res) => {
 // Get all diagram kartesius
 router.get('/', authenticateUser, async (req, res) => {
   try {
-    const { unit_kerja_id, jenis, kategori, tahun } = req.query;
+    const { unit_kerja_id, jenis, tahun } = req.query;
     
-    console.log('📊 GET /api/diagram-kartesius - Filters:', { unit_kerja_id, jenis, kategori, tahun });
+    console.log('📊 GET /api/diagram-kartesius - Filters:', { unit_kerja_id, jenis, tahun });
     
     const clientToUse = supabaseAdmin || supabase;
     let query = clientToUse
@@ -303,13 +296,12 @@ router.get('/', authenticateUser, async (req, res) => {
     
     console.log('📊 Raw data count:', filteredData.length);
     
-    // Apply jenis and kategori filters on the result (case-insensitive)
-    if (jenis || kategori) {
+    // Apply jenis filter on the result (case-insensitive)
+    if (jenis) {
       // Normalize filter values to lowercase for comparison
       const jenisLower = jenis ? jenis.toLowerCase().trim() : null;
-      const kategoriLower = kategori ? kategori.toLowerCase().trim() : null;
       
-      console.log('📊 Filtering by jenis:', jenisLower, 'kategori:', kategoriLower);
+      console.log('📊 Filtering by jenis:', jenisLower);
       
       filteredData = filteredData.filter(item => {
         const workUnit = item.master_work_units;
@@ -320,7 +312,6 @@ router.get('/', authenticateUser, async (req, res) => {
         }
         
         let matchJenis = true;
-        let matchKategori = true;
         
         if (jenisLower) {
           const itemJenis = (workUnit.jenis || '').toLowerCase().trim();
@@ -328,16 +319,10 @@ router.get('/', authenticateUser, async (req, res) => {
           console.log(`  - Unit ${workUnit.code}: jenis="${itemJenis}" vs filter="${jenisLower}" => ${matchJenis}`);
         }
         
-        if (kategoriLower) {
-          const itemKategori = (workUnit.kategori || '').toLowerCase().trim();
-          matchKategori = itemKategori === kategoriLower;
-          console.log(`  - Unit ${workUnit.code}: kategori="${itemKategori}" vs filter="${kategoriLower}" => ${matchKategori}`);
-        }
-        
-        return matchJenis && matchKategori;
+        return matchJenis;
       });
       
-      console.log('📊 After jenis/kategori filter:', filteredData.length);
+      console.log('📊 After jenis filter:', filteredData.length);
     }
     
     // Sort by unit kerja code (001, 002, etc.)

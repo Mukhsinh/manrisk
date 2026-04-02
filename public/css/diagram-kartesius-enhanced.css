@@ -1,311 +1,300 @@
-/* Diagram Kartesius Enhanced Styles */
+/* ===== DIAGRAM KARTESIUS - ENHANCED STYLING (NO ACTION BUTTONS) ===== */
 
-/* Badge Kuadran dengan warna solid cerah */
+/* ===== TOMBOL DI ATAS TABEL (SOLID & COLORFUL) ===== */
+#diagram-kartesius-content .card-header .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Tombol Hitung - Hijau Cerah */
+#diagram-kartesius-content .btn-success {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+}
+
+#diagram-kartesius-content .btn-success:hover {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+}
+
+#diagram-kartesius-content .btn-success:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Tombol Unduh - Biru Cerah */
+#diagram-kartesius-content .btn-primary {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: white;
+}
+
+#diagram-kartesius-content .btn-primary:hover {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+#diagram-kartesius-content .btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Tombol Reset - Abu-abu Cerah */
+#diagram-kartesius-content .btn-secondary {
+  background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+  color: white;
+}
+
+#diagram-kartesius-content .btn-secondary:hover {
+  background: linear-gradient(135deg, #4b5563 0%, #374151 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(107, 114, 128, 0.4);
+}
+
+#diagram-kartesius-content .btn-secondary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Icon di dalam tombol header */
+#diagram-kartesius-content .card-header .btn i,
+#diagram-kartesius-content .card-header .btn svg {
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+/* Tombol Filter */
+#diagram-kartesius-content .filter-group + div .btn {
+  margin-right: 8px;
+}
+
+/* ===== BADGE KUADRAN ===== */
 .badge-kuadran {
   display: inline-block;
-  padding: 6px 14px;
+  padding: 6px 12px;
   border-radius: 6px;
-  font-weight: 700;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  white-space: nowrap;
-  min-width: 110px;
+  font-weight: 600;
+  font-size: 12px;
   text-align: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  white-space: nowrap;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .badge-kuadran-i {
-  background-color: #22c55e !important;
-  color: #ffffff !important;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
 }
 
 .badge-kuadran-ii {
-  background-color: #3b82f6 !important;
-  color: #ffffff !important;
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: white;
 }
 
 .badge-kuadran-iii {
-  background-color: #ef4444 !important;
-  color: #ffffff !important;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: white;
 }
 
 .badge-kuadran-iv {
-  background-color: #f97316 !important;
-  color: #ffffff !important;
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: white;
 }
 
-/* Strategi badges dengan warna solid */
+/* ===== BADGE STRATEGI ===== */
 .badge-strategi {
   display: inline-block;
-  padding: 5px 12px;
-  border-radius: 5px;
-  font-weight: 700;
-  font-size: 11px;
-  text-transform: uppercase;
-  white-space: nowrap;
-  min-width: 100px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 12px;
   text-align: center;
+  white-space: nowrap;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .badge-strategi-growth {
-  background-color: #16a34a !important;
-  color: #ffffff !important;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
 }
 
 .badge-strategi-stability {
-  background-color: #2563eb !important;
-  color: #ffffff !important;
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: white;
 }
 
 .badge-strategi-survival {
-  background-color: #dc2626 !important;
-  color: #ffffff !important;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: white;
 }
 
 .badge-strategi-diversification {
-  background-color: #ea580c !important;
-  color: #ffffff !important;
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: white;
 }
 
-/* Table styling untuk diagram kartesius */
-#diagram-kartesius-content .table {
-  width: 100%;
-  table-layout: fixed;
-}
-
-#diagram-kartesius-content .table th,
-#diagram-kartesius-content .table td {
-  padding: 12px 8px;
-  vertical-align: middle;
-  overflow: visible;
-}
-
-/* Kolom widths untuk mencegah overflow */
-#diagram-kartesius-content .table th:nth-child(1),
-#diagram-kartesius-content .table td:nth-child(1) {
-  width: 70px; /* Tahun */
-}
-
-#diagram-kartesius-content .table th:nth-child(2),
-#diagram-kartesius-content .table td:nth-child(2) {
-  width: 80px; /* Kode */
-}
-
-#diagram-kartesius-content .table th:nth-child(3),
-#diagram-kartesius-content .table td:nth-child(3) {
-  width: 180px; /* Unit Kerja */
-}
-
-#diagram-kartesius-content .table th:nth-child(4),
-#diagram-kartesius-content .table td:nth-child(4) {
-  width: 100px; /* X-Axis */
-}
-
-#diagram-kartesius-content .table th:nth-child(5),
-#diagram-kartesius-content .table td:nth-child(5) {
-  width: 100px; /* Y-Axis */
-}
-
-#diagram-kartesius-content .table th:nth-child(6),
-#diagram-kartesius-content .table td:nth-child(6) {
-  width: 120px; /* Kuadran */
-  text-align: center;
-}
-
-#diagram-kartesius-content .table th:nth-child(7),
-#diagram-kartesius-content .table td:nth-child(7) {
-  width: 130px; /* Strategi */
-  text-align: center;
-}
-
-#diagram-kartesius-content .table th:nth-child(8),
-#diagram-kartesius-content .table td:nth-child(8) {
-  width: 100px; /* Aksi */
-  text-align: center;
-}
-
-/* Responsive table container */
+/* ===== TABEL STYLING - NO OVERFLOW ===== */
 #diagram-kartesius-content .table-container {
   overflow-x: auto;
   margin-top: 1rem;
-}
-
-/* Interpretasi kuadran styling */
-#diagram-kartesius-content .alert-success {
-  background-color: #f0fdf4;
-  border: 1px solid #86efac;
   border-radius: 8px;
-}
-
-#diagram-kartesius-content .alert-success h5 {
-  color: #166534;
-  margin-bottom: 0.5rem;
-}
-
-/* Badge status untuk interpretasi */
-.badge-status.badge-aman {
-  background-color: #10b981 !important;
-  color: #ffffff !important;
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-weight: 600;
-}
-
-.badge-status.badge-normal {
-  background-color: #3b82f6 !important;
-  color: #ffffff !important;
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-weight: 600;
-}
-
-.badge-status.badge-kritis {
-  background-color: #ef4444 !important;
-  color: #ffffff !important;
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-weight: 600;
-}
-
-.badge-status.badge-hati-hati {
-  background-color: #f59e0b !important;
-  color: #ffffff !important;
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-weight: 600;
-}
-
-/* Button styling */
-#diagram-kartesius-content .btn-edit,
-#diagram-kartesius-content .btn-delete {
-  padding: 6px 10px;
-  margin: 2px;
-  border-radius: 4px;
-  font-size: 12px;
-}
-
-#diagram-kartesius-content .btn-edit {
-  background-color: #3b82f6;
-  color: white;
-  border: none;
-}
-
-#diagram-kartesius-content .btn-edit:hover {
-  background-color: #2563eb;
-}
-
-#diagram-kartesius-content .btn-delete {
-  background-color: #ef4444;
-  color: white;
-  border: none;
-}
-
-#diagram-kartesius-content .btn-delete:hover {
-  background-color: #dc2626;
-}
-
-/* Filter group styling */
-#diagram-kartesius-content .filter-group {
-  background-color: #f8fafc;
-  padding: 1rem;
-  border-radius: 8px;
-  border: 1px solid #e2e8f0;
-}
-
-#diagram-kartesius-content .filter-group .form-group {
-  margin-bottom: 0;
-}
-
-#diagram-kartesius-content .filter-group label {
-  font-weight: 600;
-  color: #374151;
-  margin-bottom: 0.5rem;
-  display: block;
-}
-
-/* Chart container */
-#diagram-chart-container {
-  background-color: #ffffff;
-  border-radius: 8px;
-  padding: 1rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-/* Hide legend di bawah grafik */
-#diagram-kartesius-content .chart-legend-hidden {
-  display: none !important;
-}
-
-/* Modal styling */
-#diagram-kartesius-content .modal {
-  position: fixed;
-  top: 0;
-  left: 0;
+#diagram-kartesius-content .table {
   width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
+  border-collapse: collapse;
+  background: white;
+  table-layout: fixed;
+  margin-bottom: 0;
 }
 
-#diagram-kartesius-content .modal.active {
-  display: flex;
+#diagram-kartesius-content .table thead th {
+  background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+  color: white;
+  padding: 12px 8px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 13px;
+  white-space: nowrap;
+  border-bottom: 2px solid #1e3a8a;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-#diagram-kartesius-content .modal-content {
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-  max-width: 500px;
-  width: 90%;
-}
-
-#diagram-kartesius-content .modal-header {
-  padding: 1rem 1.5rem;
+#diagram-kartesius-content .table tbody td {
+  padding: 12px 8px;
   border-bottom: 1px solid #e5e7eb;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  font-size: 13px;
+  vertical-align: middle;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-#diagram-kartesius-content .modal-title {
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: #111827;
-  margin: 0;
+#diagram-kartesius-content .table tbody tr:hover {
+  background: #f9fafb;
 }
 
-#diagram-kartesius-content .modal-close {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  color: #6b7280;
-  cursor: pointer;
+#diagram-kartesius-content .table tbody tr:last-child td {
+  border-bottom: none;
 }
 
-#diagram-kartesius-content .modal-close:hover {
-  color: #111827;
+/* Pastikan semua konten di dalam tabel tidak overflow */
+#diagram-kartesius-content .table td {
+  max-width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
-/* Agregasi badge */
-.badge-primary {
-  background-color: #8b5cf6 !important;
-  color: white !important;
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-size: 10px;
-  font-weight: 600;
+/* ===== LOADING OPTIMIZATION ===== */
+#diagram-kartesius-content {
+  opacity: 0;
+  animation: fadeIn 0.3s ease forwards;
 }
 
-.badge-secondary {
-  background-color: #6b7280 !important;
-  color: white !important;
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-size: 10px;
-  font-weight: 600;
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Skeleton loading untuk tabel */
+#diagram-kartesius-content .table.loading tbody tr {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  /* Tombol header stack di mobile */
+  #diagram-kartesius-content .card-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  #diagram-kartesius-content .card-header > div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  #diagram-kartesius-content .card-header .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  /* Badge lebih kecil di mobile */
+  .badge-kuadran,
+  .badge-strategi {
+    padding: 4px 8px;
+    font-size: 11px;
+  }
+  
+  /* Tabel lebih kecil di mobile */
+  #diagram-kartesius-content .table {
+    font-size: 11px;
+  }
+  
+  #diagram-kartesius-content .table thead th,
+  #diagram-kartesius-content .table tbody td {
+    padding: 8px 4px;
+  }
+}
+
+/* ===== PREVENT OVERFLOW ===== */
+#diagram-kartesius-content * {
+  box-sizing: border-box;
+}
+
+#diagram-kartesius-content .btn {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Pastikan icon tidak overflow */
+#diagram-kartesius-content i,
+#diagram-kartesius-content svg {
+  flex-shrink: 0;
+  overflow: visible;
+}
+
+/* ===== ACCESSIBILITY ===== */
+#diagram-kartesius-content .btn:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+  #diagram-kartesius-content .btn {
+    display: none;
+  }
+  
+  #diagram-kartesius-content .filter-group {
+    display: none;
+  }
 }

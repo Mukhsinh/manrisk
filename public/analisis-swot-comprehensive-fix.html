@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
+<!DOCTYPE html><html lang="id"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Analisis SWOT - Comprehensive</title>
@@ -354,6 +352,8 @@
             margin-right: 10px;
         }
     </style>
+    <link rel="stylesheet" href="/css/button-standardization-final.css">
+    <link rel="stylesheet" href="/css/action-buttons-standardized.css">
 </head>
 <body>
     <div class="container-fluid py-4">
@@ -367,16 +367,16 @@
                     </div>
                     <div class="col-md-4 text-end">
                         <div class="action-buttons">
-                            <button class="btn btn-action btn-template" onclick="downloadTemplate()">
+                            <button class="btn btn-action btn-template text-truncate" onclick="downloadTemplate()" data-action="downloadTemplate">
                                 <i class="fas fa-download"></i> Template
                             </button>
-                            <button class="btn btn-action btn-import" onclick="showImportModal()">
+                            <button aria-label="Import" class="btn btn-action btn-import text-truncate" onclick="showImportModal()" data-action="showImportModal">
                                 <i class="fas fa-upload"></i> Import
                             </button>
-                            <button class="btn btn-action btn-add" onclick="showAddModal()">
+                            <button aria-label="Tambah Data" class="btn btn-action btn-add text-truncate" onclick="showAddModal()" data-action="showAddModal">
                                 <i class="fas fa-plus"></i> Tambah
                             </button>
-                            <button class="btn btn-action btn-report" onclick="downloadReport()">
+                            <button class="btn btn-action btn-report text-truncate" onclick="downloadReport()" data-action="downloadReport">
                                 <i class="fas fa-file-excel"></i> Laporan
                             </button>
                         </div>
@@ -466,7 +466,7 @@
         <div class="modal-content" style="max-width: 600px;">
             <div class="modal-header">
                 <h3 class="modal-title">Import Data SWOT</h3>
-                <button class="modal-close" onclick="closeModal('importModal')">&times;</button>
+                <button class="modal-close text-truncate" onclick="closeModal('importModal')" data-action="closeModal">×</button>
             </div>
             <div style="padding: 1.5rem;">
                 <div class="mb-3">
@@ -475,8 +475,8 @@
                     <small class="text-muted">Format: .xlsx atau .xls. Gunakan template yang telah disediakan.</small>
                 </div>
                 <div class="d-flex gap-2 justify-content-end">
-                    <button class="btn btn-secondary" onclick="closeModal('importModal')">Batal</button>
-                    <button class="btn btn-primary" onclick="processImport()" id="importBtn" disabled>
+                    <button class="btn btn-secondary text-truncate" onclick="closeModal('importModal')" data-action="closeModal">Batal</button>
+                    <button class="btn btn-primary text-truncate" onclick="processImport()" id="importBtn" disabled="" data-action="processImport">
                         <i class="fas fa-upload"></i> Import Data
                     </button>
                 </div>
@@ -489,7 +489,7 @@
         <div class="modal-content" style="max-width: 700px;">
             <div class="modal-header">
                 <h3 class="modal-title" id="modalTitle">Tambah Data SWOT</h3>
-                <button class="modal-close" onclick="closeModal('dataModal')">&times;</button>
+                <button class="modal-close text-truncate" onclick="closeModal('dataModal')" data-action="closeModal">×</button>
             </div>
             <form id="swotForm" onsubmit="saveData(event)">
                 <div style="padding: 1.5rem;">
@@ -497,7 +497,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">Unit Kerja *</label>
-                                <select class="form-control" id="unitKerja" required>
+                                <select class="form-control" id="unitKerja" required="">
                                     <option value="">Pilih Unit Kerja</option>
                                 </select>
                             </div>
@@ -505,7 +505,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">Kategori *</label>
-                                <select class="form-control" id="kategori" required>
+                                <select class="form-control" id="kategori" required="">
                                     <option value="">Pilih Kategori</option>
                                     <option value="Strength">Strength</option>
                                     <option value="Weakness">Weakness</option>
@@ -523,32 +523,32 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Objek Analisis *</label>
-                        <textarea class="form-control" id="objekAnalisis" required rows="3"></textarea>
+                        <textarea class="form-control" id="objekAnalisis" required="" rows="3"></textarea>
                     </div>
                     <div class="row">
                         <div class="col-md-4">
                             <div class="mb-3">
                                 <label class="form-label">Bobot (0-100) *</label>
-                                <input type="number" class="form-control" id="bobot" required min="0" max="100">
+                                <input type="number" class="form-control" id="bobot" required="" min="0" max="100">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="mb-3">
                                 <label class="form-label">Rank (1-5) *</label>
-                                <input type="number" class="form-control" id="rank" required min="1" max="5">
+                                <input type="number" class="form-control" id="rank" required="" min="1" max="5">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="mb-3">
                                 <label class="form-label">Tahun *</label>
-                                <input type="number" class="form-control" id="tahun" required value="2025">
+                                <input type="number" class="form-control" id="tahun" required="" value="2025">
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer" style="padding: 1rem 1.5rem; border-top: 1px solid #e2e8f0;">
-                    <button type="button" class="btn btn-secondary" onclick="closeModal('dataModal')">Batal</button>
-                    <button type="submit" class="btn btn-primary">
+                    <button type="button" class="btn btn-secondary text-truncate" onclick="closeModal('dataModal')" data-action="closeModal">Batal</button>
+                    <button type="submit" class="btn btn-primary text-truncate">
                         <i class="fas fa-save"></i> Simpan
                     </button>
                 </div>
@@ -806,10 +806,10 @@
                     <td class="score-column">${item.score}</td>
                     <td class="tahun-column">${item.tahun}</td>
                     <td class="aksi-column">
-                        <button class="btn-icon btn-edit" onclick="editData('${item.id}')" title="Edit">
+                        <button class="btn-icon btn-edit text-truncate" onclick="editData('${item.id}')" title="Edit">
                             <i class="fas fa-edit"></i>
                         </button>
-                        <button class="btn-icon btn-delete" onclick="deleteData('${item.id}')" title="Hapus">
+                        <button class="btn-icon btn-delete text-truncate" onclick="deleteData('${item.id}')" title="Hapus">
                             <i class="fas fa-trash"></i>
                         </button>
                     </td>
@@ -1062,5 +1062,70 @@
             loadInitialData();
         });
     </script>
-</body>
-</html>
+    <script src="/js/button-standardization-auto.js"></script>
+    <script src="/js/action-buttons-standardizer.js"></script>
+
+<!-- Button Event Delegation Script -->
+<script>
+(function() {
+    'use strict';
+    
+    // Event delegation untuk tombol dengan data-action
+    document.addEventListener('click', function(e) {
+        const button = e.target.closest('[data-action]');
+        if (!button) return;
+        
+        const action = button.dataset.action;
+        const handler = window['handle' + action.charAt(0).toUpperCase() + action.slice(1)];
+        
+        if (typeof handler === 'function') {
+            handler.call(button, e);
+        } else {
+            console.warn('Handler not found for action:', action);
+        }
+    });
+    
+    // Default handlers untuk common actions
+    window.handleAdd = function(e) {
+        console.log('Add button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleEdit = function(e) {
+        console.log('Edit button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleDelete = function(e) {
+        console.log('Delete button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleDownload = function(e) {
+        console.log('Download button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleImport = function(e) {
+        console.log('Import button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleExport = function(e) {
+        console.log('Export button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleSave = function(e) {
+        console.log('Save button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleCancel = function(e) {
+        console.log('Cancel button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+})();
+</script>
+
+</body></html>

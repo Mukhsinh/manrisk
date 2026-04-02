@@ -1,0 +1,103 @@
+/* Risk Profile Download Modal Styles */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* Modal overlay */
+#download-format-modal {
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+#download-format-modal.closing {
+  animation: fadeOut 0.2s ease-in-out;
+}
+
+/* Modal content */
+#download-format-modal > div {
+  animation: slideUp 0.3s ease-out;
+}
+
+/* Notification styles */
+.download-notification {
+  animation: slideInRight 0.3s ease-out;
+}
+
+.download-notification.closing {
+  animation: slideOutRight 0.3s ease-in;
+}
+
+/* Button hover effects */
+.download-btn {
+  transition: all 0.2s ease-in-out;
+}
+
+.download-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.download-btn:active {
+  transform: translateY(0);
+}
+
+/* Loading spinner */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.fa-spinner.fa-spin {
+  animation: spin 1s linear infinite;
+}

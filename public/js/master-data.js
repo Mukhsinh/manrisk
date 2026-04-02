@@ -142,8 +142,8 @@ function renderMasterSection(config, data) {
           ${config.fields.map((field) => `<td>${formatFieldValue(field, item)}</td>`).join('')}
           <td>
             <div class="table-actions">
-              <button class="btn btn-edit btn-sm" data-action="edit" data-endpoint="${config.endpoint}" data-id="${item.id}"><i class="fas fa-edit"></i></button>
-              <button class="btn btn-delete btn-sm" data-action="delete" data-endpoint="${config.endpoint}" data-id="${item.id}"><i class="fas fa-trash"></i></button>
+              <button class="btn-action-edit" data-action="edit" data-endpoint="${config.endpoint}" data-id="${item.id}"><i data-lucide="pencil"></i> Edit</button>
+              <button class="btn-action-delete" data-action="delete" data-endpoint="${config.endpoint}" data-id="${item.id}"><i data-lucide="trash-2"></i> Hapus</button>
             </div>
           </td>
         </tr>`
@@ -153,10 +153,10 @@ function renderMasterSection(config, data) {
   const html = `
     <div class="master-actions-bar">
       <div class="action-group">
-        <button class="btn btn-warning btn-sm" data-action="download-template" data-endpoint="${config.endpoint}"><i class="fas fa-download"></i> Unduh Template</button>
-        <button class="btn btn-success btn-sm" data-action="import" data-endpoint="${config.endpoint}"><i class="fas fa-upload"></i> Import Data</button>
-        <button class="btn btn-primary btn-sm" data-action="add" data-endpoint="${config.endpoint}"><i class="fas fa-plus"></i> Tambah Data</button>
-        <button class="btn btn-info btn-sm" data-action="download-report" data-endpoint="${config.endpoint}"><i class="fas fa-file-alt"></i> Unduh Laporan</button>
+        <button class="btn-download" data-action="download-template" data-endpoint="${config.endpoint}"><i data-lucide="download"></i> Unduh Template</button>
+        <button class="btn-import" data-action="import" data-endpoint="${config.endpoint}"><i data-lucide="upload"></i> Import Data</button>
+        <button class="btn-tambah" data-action="add" data-endpoint="${config.endpoint}"><i data-lucide="plus"></i> Tambah Data</button>
+        <button class="btn-download" data-action="download-report" data-endpoint="${config.endpoint}"><i data-lucide="file-text"></i> Unduh Laporan</button>
       </div>
     </div>
     <table class="data-table">

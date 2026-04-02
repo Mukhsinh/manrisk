@@ -460,3 +460,111 @@
 .btn-monitoring-delete i {
     pointer-events: none;
 }
+
+/* Action Button Styles - Icon Only */
+.btn-action-edit,
+.btn-action-delete {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    font-size: 14px;
+    pointer-events: auto !important;
+    user-select: none;
+    padding: 0;
+}
+
+.btn-action-edit {
+    background-color: #3B82F6 !important;
+    color: #fff !important;
+}
+
+.btn-action-edit:hover {
+    background-color: #2563EB !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+}
+
+.btn-action-delete {
+    background-color: #EF4444 !important;
+    color: #fff !important;
+}
+
+.btn-action-delete:hover {
+    background-color: #DC2626 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(239, 68, 68, 0.3);
+}
+
+/* Ensure icons inside buttons don't block clicks */
+.btn-action-edit i,
+.btn-action-delete i {
+    pointer-events: none;
+    width: 16px;
+    height: 16px;
+}
+
+/* Modal Form Overflow Fix */
+.modal.active {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.modal .modal-content {
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal .modal-header {
+    flex-shrink: 0;
+}
+
+.modal .modal-body {
+    overflow-y: auto;
+    flex: 1;
+    min-height: 0;
+}
+
+.modal .modal-footer {
+    flex-shrink: 0;
+}
+
+/* Form inside modal */
+.modal form {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+}
+
+.modal form > div:first-of-type {
+    overflow-y: auto;
+    flex: 1;
+}
+
+.modal form > div:last-of-type {
+    flex-shrink: 0;
+}
+
+/* Button hover effects */
+.btn-secondary:hover {
+    background: #d1d5db !important;
+}
+
+.btn-primary:hover {
+    background: #2563eb !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+}
+
+.modal-close:hover {
+    background: #ef4444 !important;
+    color: #fff !important;
+    transform: rotate(90deg);
+}

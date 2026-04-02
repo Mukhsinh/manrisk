@@ -1,0 +1,259 @@
+{
+  "timestamp": "2026-04-01T01:05:33.915Z",
+  "passed": 53,
+  "failed": 0,
+  "warnings": 6,
+  "tests": [
+    {
+      "name": "File exists: public/js/button-stubs.js",
+      "status": "PASSED"
+    },
+    {
+      "name": "File exists: public/js/button-error-handler.js",
+      "status": "PASSED"
+    },
+    {
+      "name": "File exists: public/js/async-button-handler.js",
+      "status": "PASSED"
+    },
+    {
+      "name": "File exists: public/js/button-system-integration.js",
+      "status": "PASSED"
+    },
+    {
+      "name": "File exists: public/css/button-loading-states.css",
+      "status": "PASSED"
+    },
+    {
+      "name": "File exists: public/test-button-system-complete.html",
+      "status": "PASSED"
+    },
+    {
+      "name": "File exists: scripts/button-stubs-summary.md",
+      "status": "PASSED"
+    },
+    {
+      "name": "File exists: BUTTON_SYSTEM_DOCUMENTATION.md",
+      "status": "PASSED"
+    },
+    {
+      "name": "File exists: BUTTON_FIX_IMPLEMENTATION_SUMMARY.md",
+      "status": "PASSED"
+    },
+    {
+      "name": "Helper function: showErrorMessage",
+      "status": "PASSED"
+    },
+    {
+      "name": "Helper function: showSuccessMessage",
+      "status": "PASSED"
+    },
+    {
+      "name": "Helper function: setButtonLoading",
+      "status": "PASSED"
+    },
+    {
+      "name": "Stub functions count",
+      "status": "PASSED",
+      "message": "36 functions generated"
+    },
+    {
+      "name": "Error handler class: ErrorLogger",
+      "status": "PASSED"
+    },
+    {
+      "name": "Error handler class: ErrorCategorizer",
+      "status": "PASSED"
+    },
+    {
+      "name": "Error handler class: ErrorDisplay",
+      "status": "PASSED"
+    },
+    {
+      "name": "Error handler class: ButtonStateManager",
+      "status": "PASSED"
+    },
+    {
+      "name": "Error handler class: ButtonErrorHandler",
+      "status": "PASSED"
+    },
+    {
+      "name": "Error type: HANDLER_NOT_FOUND",
+      "status": "PASSED"
+    },
+    {
+      "name": "Error type: API_ERROR",
+      "status": "PASSED"
+    },
+    {
+      "name": "Error type: VALIDATION_ERROR",
+      "status": "PASSED"
+    },
+    {
+      "name": "Error type: NETWORK_ERROR",
+      "status": "PASSED"
+    },
+    {
+      "name": "Error type: PERMISSION_ERROR",
+      "status": "PASSED"
+    },
+    {
+      "name": "Async handler class: AsyncOperationDetector",
+      "status": "PASSED"
+    },
+    {
+      "name": "Async handler class: AsyncButtonWrapper",
+      "status": "PASSED"
+    },
+    {
+      "name": "Async handler class: AsyncButtonManager",
+      "status": "PASSED"
+    },
+    {
+      "name": "Async feature: data-async",
+      "status": "PASSED"
+    },
+    {
+      "name": "Async feature: data-loading-text",
+      "status": "PASSED"
+    },
+    {
+      "name": "Async feature: classList.add('loading')",
+      "status": "WARNING",
+      "message": "Feature not found"
+    },
+    {
+      "name": "Async feature: disabled = true",
+      "status": "PASSED"
+    },
+    {
+      "name": "Integration feature: ButtonSystemIntegration",
+      "status": "PASSED"
+    },
+    {
+      "name": "Integration feature: wrapAllButtons",
+      "status": "PASSED"
+    },
+    {
+      "name": "Integration feature: setupGlobalDelegation",
+      "status": "PASSED"
+    },
+    {
+      "name": "Integration feature: registerCommonHandlers",
+      "status": "PASSED"
+    },
+    {
+      "name": "Integration feature: MutationObserver",
+      "status": "PASSED"
+    },
+    {
+      "name": "Common handler: closeModal",
+      "status": "WARNING",
+      "message": "Handler not found"
+    },
+    {
+      "name": "Common handler: showModal",
+      "status": "WARNING",
+      "message": "Handler not found"
+    },
+    {
+      "name": "Common handler: refreshData",
+      "status": "WARNING",
+      "message": "Handler not found"
+    },
+    {
+      "name": "Common handler: goBack",
+      "status": "WARNING",
+      "message": "Handler not found"
+    },
+    {
+      "name": "Common handler: resetForm",
+      "status": "WARNING",
+      "message": "Handler not found"
+    },
+    {
+      "name": "CSS style: .btn.loading",
+      "status": "PASSED"
+    },
+    {
+      "name": "CSS style: .btn:disabled",
+      "status": "PASSED"
+    },
+    {
+      "name": "CSS style: .btn:focus",
+      "status": "PASSED"
+    },
+    {
+      "name": "CSS style: @keyframes spin",
+      "status": "PASSED"
+    },
+    {
+      "name": "CSS style: .btn-primary",
+      "status": "PASSED"
+    },
+    {
+      "name": "CSS style: .btn-secondary",
+      "status": "PASSED"
+    },
+    {
+      "name": "Test section: Basic Buttons",
+      "status": "PASSED"
+    },
+    {
+      "name": "Test section: Async Buttons",
+      "status": "PASSED"
+    },
+    {
+      "name": "Test section: Data Action Pattern",
+      "status": "PASSED"
+    },
+    {
+      "name": "Test section: Modal Buttons",
+      "status": "PASSED"
+    },
+    {
+      "name": "Test section: Form Buttons",
+      "status": "PASSED"
+    },
+    {
+      "name": "Test section: Statistics",
+      "status": "PASSED"
+    },
+    {
+      "name": "Script include: button-stubs.js",
+      "status": "PASSED"
+    },
+    {
+      "name": "Script include: button-error-handler.js",
+      "status": "PASSED"
+    },
+    {
+      "name": "Script include: async-button-handler.js",
+      "status": "PASSED"
+    },
+    {
+      "name": "Script include: button-system-integration.js",
+      "status": "PASSED"
+    },
+    {
+      "name": "Documentation: BUTTON_SYSTEM_DOCUMENTATION.md",
+      "status": "PASSED",
+      "message": "Size: 11.51 KB"
+    },
+    {
+      "name": "Documentation: BUTTON_FIX_IMPLEMENTATION_SUMMARY.md",
+      "status": "PASSED",
+      "message": "Size: 11.62 KB"
+    },
+    {
+      "name": "Documentation: scripts/button-stubs-summary.md",
+      "status": "PASSED",
+      "message": "Size: 9.57 KB"
+    }
+  ],
+  "summary": {
+    "total": 59,
+    "passRate": "89.83%",
+    "overallStatus": "PASSED WITH WARNINGS"
+  }
+}

@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
+<!DOCTYPE html><html lang="id"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Residual Risk - Enhanced</title>
@@ -109,6 +107,8 @@
             padding: 0.5rem 1rem;
         }
     </style>
+    <link rel="stylesheet" href="/css/button-standardization-final.css">
+    <link rel="stylesheet" href="/css/action-buttons-standardized.css">
 </head>
 <body>
     <!-- Page Header -->
@@ -123,10 +123,10 @@
                     <p class="mb-0 mt-2">Analisis Risiko Sisa Setelah Pengendalian</p>
                 </div>
                 <div class="col-md-4 text-right">
-                    <button id="refreshBtn" class="btn btn-light">
+                    <button id="refreshBtn" class="btn btn-light text-truncate">
                         <i class="fas fa-sync-alt"></i> Refresh
                     </button>
-                    <button class="btn btn-success ml-2" onclick="window.location.href='/risk-input'">
+                    <button class="btn btn-success ml-2 text-truncate" onclick="window.location.href='/risk-input'">
                         <i class="fas fa-plus"></i> Input Risiko
                     </button>
                 </div>
@@ -180,10 +180,10 @@
                     <input type="text" id="searchInput" class="form-control" placeholder="Masukkan kata kunci...">
                 </div>
                 <div class="col-md-3">
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-primary text-truncate">
                         <i class="fas fa-search"></i> Filter
                     </button>
-                    <button type="button" class="btn btn-secondary ml-2" onclick="residualRiskManager.clearFilters()">
+                    <button type="button" class="btn btn-secondary ml-2 text-truncate" onclick="residualRiskManager.clearFilters()">
                         <i class="fas fa-times"></i> Clear
                     </button>
                 </div>
@@ -332,16 +332,16 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Detail Residual Risk</h5>
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span>&times;</span>
+                    <button type="button" class="close text-truncate" data-dismiss="modal">
+                        <span>×</span>
                     </button>
                 </div>
                 <div class="modal-body" id="riskDetailContent">
                     <!-- Content will be loaded by JavaScript -->
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button type="button" class="btn btn-primary" onclick="residualRiskManager.editRisk()">Edit Risiko</button>
+                    <button type="button" class="btn btn-secondary text-truncate" data-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-primary text-truncate" onclick="residualRiskManager.editRisk()">Edit Risiko</button>
                 </div>
             </div>
         </div>
@@ -381,5 +381,70 @@
             };
         });
     </script>
-</body>
-</html>
+    <script src="/js/button-standardization-auto.js"></script>
+    <script src="/js/action-buttons-standardizer.js"></script>
+
+<!-- Button Event Delegation Script -->
+<script>
+(function() {
+    'use strict';
+    
+    // Event delegation untuk tombol dengan data-action
+    document.addEventListener('click', function(e) {
+        const button = e.target.closest('[data-action]');
+        if (!button) return;
+        
+        const action = button.dataset.action;
+        const handler = window['handle' + action.charAt(0).toUpperCase() + action.slice(1)];
+        
+        if (typeof handler === 'function') {
+            handler.call(button, e);
+        } else {
+            console.warn('Handler not found for action:', action);
+        }
+    });
+    
+    // Default handlers untuk common actions
+    window.handleAdd = function(e) {
+        console.log('Add button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleEdit = function(e) {
+        console.log('Edit button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleDelete = function(e) {
+        console.log('Delete button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleDownload = function(e) {
+        console.log('Download button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleImport = function(e) {
+        console.log('Import button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleExport = function(e) {
+        console.log('Export button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleSave = function(e) {
+        console.log('Save button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleCancel = function(e) {
+        console.log('Cancel button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+})();
+</script>
+
+</body></html>

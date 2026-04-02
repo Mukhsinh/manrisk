@@ -134,11 +134,11 @@ const EWS = {
                                         </span>
                                     </td>
                                     <td>
-                                        <button class="btn btn-edit btn-sm" onclick="EWS.edit('${item.id}')">
-                                            <i class="fas fa-edit"></i> Edit
+                                        <button class="btn-action-edit" onclick="EWS.edit('${item.id}')">
+                                            <i data-lucide="pencil"></i> Edit
                                         </button>
-                                        <button class="btn btn-delete btn-sm" onclick="EWS.delete('${item.id}')">
-                                            <i class="fas fa-trash"></i> Hapus
+                                        <button class="btn-action-delete" onclick="EWS.delete('${item.id}')">
+                                            <i data-lucide="trash-2"></i> Hapus
                                         </button>
                                     </td>
                                 </tr>

@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
+<!DOCTYPE html><html lang="id"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Analisis SWOT - Enhanced</title>
@@ -81,6 +79,11 @@
             display: none;
         }
     </style>
+    <link href="/css/table-scroll-fix.css" rel="stylesheet">
+    <link href="/css/table-scroll-enhancer.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/table-horizontal-scroll-fix.css">
+    <link rel="stylesheet" href="/css/button-standardization-final.css">
+    <link rel="stylesheet" href="/css/action-buttons-standardized.css">
 </head>
 <body>
     <!-- Page Header -->
@@ -95,10 +98,10 @@
                     <p class="mb-0 mt-2">Analisis Strengths, Weaknesses, Opportunities, dan Threats</p>
                 </div>
                 <div class="col-md-4 text-right">
-                    <button id="refreshBtn" class="btn btn-light">
+                    <button id="refreshBtn" class="btn btn-light text-truncate">
                         <i class="fas fa-sync-alt"></i> Refresh
                     </button>
-                    <button id="addSwotBtn" class="btn btn-success ml-2">
+                    <button id="addSwotBtn" class="btn btn-success ml-2 text-truncate">
                         <i class="fas fa-plus"></i> Tambah Data
                     </button>
                 </div>
@@ -237,8 +240,8 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Tambah Data SWOT</h5>
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span>&times;</span>
+                    <button type="button" class="close text-truncate" data-dismiss="modal">
+                        <span>×</span>
                     </button>
                 </div>
                 <form id="swotForm">
@@ -247,13 +250,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="faktor">Faktor <span class="text-danger">*</span></label>
-                                    <textarea class="form-control" id="faktor" name="faktor" rows="3" required></textarea>
+                                    <textarea class="form-control" id="faktor" name="faktor" rows="3" required=""></textarea>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="jenis">Jenis <span class="text-danger">*</span></label>
-                                    <select class="form-control" id="jenis" name="jenis" required>
+                                    <select class="form-control" id="jenis" name="jenis" required="">
                                         <option value="">Pilih Jenis</option>
                                         <option value="Strength">Strength (Kekuatan)</option>
                                         <option value="Weakness">Weakness (Kelemahan)</option>
@@ -267,13 +270,13 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="bobot">Bobot (%) <span class="text-danger">*</span></label>
-                                    <input type="number" class="form-control" id="bobot" name="bobot" min="1" max="100" required>
+                                    <input type="number" class="form-control" id="bobot" name="bobot" min="1" max="100" required="">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="rating">Rating (1-5) <span class="text-danger">*</span></label>
-                                    <select class="form-control" id="rating" name="rating" required>
+                                    <select class="form-control" id="rating" name="rating" required="">
                                         <option value="">Pilih Rating</option>
                                         <option value="1">1 - Sangat Rendah</option>
                                         <option value="2">2 - Rendah</option>
@@ -286,14 +289,14 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="skor">Skor (Otomatis)</label>
-                                    <input type="text" class="form-control" id="skor" name="skor" readonly>
+                                    <input type="text" class="form-control" id="skor" name="skor" readonly="">
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <button type="button" class="btn btn-secondary text-truncate" data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary text-truncate">Simpan</button>
                     </div>
                 </form>
             </div>
@@ -325,5 +328,72 @@
             }
         });
     </script>
-</body>
-</html>
+    <script src="/js/table-scroll-enhancer.js"></script>
+    <script src="/js/table-scroll-handler.js"></script>
+    <script src="/js/button-standardization-auto.js"></script>
+    <script src="/js/action-buttons-standardizer.js"></script>
+
+<!-- Button Event Delegation Script -->
+<script>
+(function() {
+    'use strict';
+    
+    // Event delegation untuk tombol dengan data-action
+    document.addEventListener('click', function(e) {
+        const button = e.target.closest('[data-action]');
+        if (!button) return;
+        
+        const action = button.dataset.action;
+        const handler = window['handle' + action.charAt(0).toUpperCase() + action.slice(1)];
+        
+        if (typeof handler === 'function') {
+            handler.call(button, e);
+        } else {
+            console.warn('Handler not found for action:', action);
+        }
+    });
+    
+    // Default handlers untuk common actions
+    window.handleAdd = function(e) {
+        console.log('Add button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleEdit = function(e) {
+        console.log('Edit button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleDelete = function(e) {
+        console.log('Delete button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleDownload = function(e) {
+        console.log('Download button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleImport = function(e) {
+        console.log('Import button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleExport = function(e) {
+        console.log('Export button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleSave = function(e) {
+        console.log('Save button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+    
+    window.handleCancel = function(e) {
+        console.log('Cancel button clicked', this);
+        // Implementasi akan ditambahkan di module masing-masing
+    };
+})();
+</script>
+
+</body></html>

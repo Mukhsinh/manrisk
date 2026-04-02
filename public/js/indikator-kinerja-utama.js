@@ -73,6 +73,7 @@ const IndikatorKinerjaUtamaModule = (() => {
           vertical-align: middle; 
           font-size: 0.75rem;
           border: 1px solid #dee2e6;
+          white-space: nowrap;
         }
         .iku-table thead th {
           background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
@@ -92,6 +93,35 @@ const IndikatorKinerjaUtamaModule = (() => {
         }
         .target-cell { text-align: center; font-size: 0.7rem; }
         .target-cell .value { font-weight: 600; }
+        .action-cell {
+          min-width: 90px !important;
+          width: 90px !important;
+          text-align: center !important;
+          white-space: nowrap !important;
+          padding: 8px 4px !important;
+        }
+        .action-buttons-wrapper {
+          display: inline-flex !important;
+          gap: 4px !important;
+          align-items: center !important;
+          justify-content: center !important;
+        }
+        /* Fix kolom aksi agar tidak terpotong */
+        .iku-table td:last-child,
+        .iku-table th:last-child {
+          min-width: 110px !important;
+          width: 110px !important;
+          padding: 8px 10px !important;
+        }
+        .iku-table td:last-child > div {
+          display: flex !important;
+          gap: 6px !important;
+          justify-content: center !important;
+          flex-wrap: nowrap !important;
+        }
+        .iku-table td:last-child button {
+          flex-shrink: 0 !important;
+        }
       `;
       document.head.appendChild(style);
     }
@@ -129,7 +159,7 @@ const IndikatorKinerjaUtamaModule = (() => {
                   <th style="width: 200px;">Definisi Operasional</th>
                   <th style="width: 120px;">Sumber Data</th>
                   <th style="width: 100px;">PIC</th>
-                  <th style="width: 80px;">Aksi</th>
+                  <th style="width: 110px; min-width: 110px;">Aksi</th>
                 </tr>
               </thead>
               <tbody>
@@ -206,13 +236,13 @@ const IndikatorKinerjaUtamaModule = (() => {
           <div class="text-truncate-2">${item.sumber_data || '-'}</div>
         </td>
         <td style="text-align: center;">${item.pic || '-'}</td>
-        <td style="text-align: center;">
-          <div style="display: flex; gap: 4px; justify-content: center;">
-            <button class="btn btn-info btn-sm" onclick="IndikatorKinerjaUtamaModule.edit('${item.id}')" title="Edit" style="padding: 2px 6px;">
-              <i class="fas fa-edit"></i>
+        <td style="text-align: center; white-space: nowrap; padding: 8px 10px !important; min-width: 110px;">
+          <div style="display: flex; gap: 6px; align-items: center; justify-content: center; flex-wrap: nowrap;">
+            <button class="btn-action-edit" onclick="IndikatorKinerjaUtamaModule.edit('${item.id}')" title="Edit">
+              <i data-lucide="pencil"></i> Edit
             </button>
-            <button class="btn btn-danger btn-sm" onclick="IndikatorKinerjaUtamaModule.delete('${item.id}')" title="Hapus" style="padding: 2px 6px;">
-              <i class="fas fa-trash"></i>
+            <button class="btn-action-delete" onclick="IndikatorKinerjaUtamaModule.delete('${item.id}')" title="Hapus">
+              <i data-lucide="trash-2"></i> Hapus
             </button>
           </div>
         </td>

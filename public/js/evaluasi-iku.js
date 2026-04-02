@@ -268,14 +268,14 @@ const EvaluasiIKUModule = (function() {
           </td>
           <td>
             <div class="action-icons">
-              <button class="action-icon edit" onclick="EvaluasiIKUModule.openEditModal('${item.id}')" title="Edit Realisasi">
-                <i class="fas fa-edit"></i>
+              <button class="btn-action-edit" onclick="EvaluasiIKUModule.openEditModal('${item.id}')" title="Edit Realisasi">
+                <i data-lucide="pencil"></i>
               </button>
-              <button class="action-icon view" onclick="EvaluasiIKUModule.viewDetail('${item.id}')" title="Lihat Detail">
-                <i class="fas fa-eye"></i>
+              <button class="btn-action-view" onclick="EvaluasiIKUModule.viewDetail('${item.id}')" title="Lihat Detail">
+                <i data-lucide="eye"></i>
               </button>
-              <button class="action-icon delete" onclick="EvaluasiIKUModule.deleteData('${item.id}')" title="Hapus">
-                <i class="fas fa-trash"></i>
+              <button class="btn-action-delete" onclick="EvaluasiIKUModule.deleteData('${item.id}')" title="Hapus">
+                <i data-lucide="trash-2"></i>
               </button>
             </div>
           </td>
