@@ -21,7 +21,7 @@ const RencanaStrategisModule = (() => {
     formValues: {},
     isLoading: false,
     isInitialized: false,
-    showForm: true, // ALWAYS show form by default
+    showForm: false, // Form hidden by default, shown when "Tambah Data" clicked
     renderCount: 0,
     renderLocked: false,
     lastRenderTime: 0,
@@ -89,6 +89,145 @@ const RencanaStrategisModule = (() => {
     console.log(`🚀 Loading Rencana Strategis Module v${MODULE_VERSION}...`);
     console.log('📋 This module displays: Cards + Table + Form (NOT selection list)');
     
+    // Load CSS minimalis dengan cache-busting
+    if (!document.getElementById('rs-minimalis-css')) {
+      const link = document.createElement('link');
+      link.id = 'rs-minimalis-css';
+      link.rel = 'stylesheet';
+      link.href = '/css/rencana-strategis-minimalis.css?v=' + Date.now();
+      document.head.appendChild(link);
+      console.log('✅ CSS minimalis dimuat dengan cache-busting');
+    }
+    
+    // Load CSS critical fix dengan cache-busting
+    if (!document.getElementById('rs-critical-fix-css')) {
+      const link = document.createElement('link');
+      link.id = 'rs-critical-fix-css';
+      link.rel = 'stylesheet';
+      link.href = '/css/rencana-strategis-fix-critical.css?v=' + Date.now();
+      document.head.appendChild(link);
+      console.log('✅ CSS critical fix dimuat dengan cache-busting');
+    }
+    
+    // Load JS edit handler dengan cache-busting
+    if (!document.getElementById('rs-edit-handler-js')) {
+      const script = document.createElement('script');
+      script.id = 'rs-edit-handler-js';
+      script.src = '/js/rencana-strategis-edit-handler.js?v=' + Date.now();
+      document.head.appendChild(script);
+      console.log('✅ JS edit handler dimuat dengan cache-busting');
+    }
+    
+    // Load JS table fix dengan cache-busting
+    if (!document.getElementById('rs-table-fix-js')) {
+      const script = document.createElement('script');
+      script.id = 'rs-table-fix-js';
+      script.src = '/js/rencana-strategis-table-fix.js?v=' + Date.now();
+      document.head.appendChild(script);
+      console.log('✅ JS table fix dimuat dengan cache-busting');
+    }
+    
+    // Tambahkan inline style KUAT untuk memastikan kartu putih dan nilai terlihat
+    if (!document.getElementById('rs-inline-force-css')) {
+      const style = document.createElement('style');
+      style.id = 'rs-inline-force-css';
+      style.textContent = `
+        /* PAKSA KARTU PUTIH - SPECIFICITY MAKSIMAL */
+        body #rencana-strategis .rencana-strategis-wrapper .stat-card,
+        body #rencana-strategis .rencana-strategis-wrapper .stat-card.aktif,
+        body #rencana-strategis .rencana-strategis-wrapper .stat-card.draft,
+        body #rencana-strategis .rencana-strategis-wrapper .stat-card.selesai,
+        body #rencana-strategis .rencana-strategis-wrapper .stat-card.total { 
+          background: white !important; 
+          background-color: white !important;
+          border: 2px solid #e5e7eb !important;
+          display: flex !important;
+          flex-direction: row !important;
+        }
+        body #rencana-strategis .rencana-strategis-wrapper .stat-card-success { border-color: #10b981 !important; }
+        body #rencana-strategis .rencana-strategis-wrapper .stat-card-warning { border-color: #f59e0b !important; }
+        body #rencana-strategis .rencana-strategis-wrapper .stat-card-info { border-color: #3b82f6 !important; }
+        body #rencana-strategis .rencana-strategis-wrapper .stat-card-secondary { border-color: #64748b !important; }
+        
+        /* PAKSA NILAI DAN LABEL TERLIHAT - HITAM */
+        body #rencana-strategis .rencana-strategis-wrapper .stat-value,
+        body #rencana-strategis .rencana-strategis-wrapper .stat-card .stat-value,
+        body #rencana-strategis .rencana-strategis-wrapper .stat-card-value { 
+          color: #1f2937 !important; 
+          font-size: 1.875rem !important;
+          display: block !important;
+          visibility: visible !important;
+          opacity: 1 !important;
+        }
+        body #rencana-strategis .rencana-strategis-wrapper .stat-label,
+        body #rencana-strategis .rencana-strategis-wrapper .stat-card .stat-label,
+        body #rencana-strategis .rencana-strategis-wrapper .stat-card-label { 
+          color: #6b7280 !important;
+          display: block !important;
+          visibility: visible !important;
+          opacity: 1 !important;
+        }
+        
+        /* PAKSA KOLOM KODE TERLIHAT */
+        body #rencana-strategis .table td:nth-child(1),
+        body #rencana-strategis .table tbody td:nth-child(1) {
+          display: table-cell !important;
+          visibility: visible !important;
+          opacity: 1 !important;
+          min-width: 120px !important;
+        }
+        
+        /* PAKSA BADGE KODE TERLIHAT */
+        body #rencana-strategis .table td:nth-child(1) .badge {
+          display: inline-block !important;
+          visibility: visible !important;
+          opacity: 1 !important;
+          background: #f1f5f9 !important;
+          color: #1e293b !important;
+          font-weight: 700 !important;
+        }
+        
+        /* PAKSA BADGE STATUS DI DALAM TABEL */
+        body #rencana-strategis .table td:nth-child(5) {
+          display: table-cell !important;
+          visibility: visible !important;
+          opacity: 1 !important;
+          overflow: visible !important;
+          position: relative !important;
+        }
+        
+        body #rencana-strategis .table td:nth-child(5) .badge {
+          display: inline-block !important;
+          visibility: visible !important;
+          opacity: 1 !important;
+          position: relative !important;
+          z-index: 1 !important;
+          max-width: 100% !important;
+        }
+        
+        /* PAKSA TOMBOL EDIT BIRU TERLIHAT DAN BERFUNGSI */
+        body #rencana-strategis .btn-action-edit,
+        body #rencana-strategis .rs-action-btn[data-action="edit"] {
+          display: inline-flex !important;
+          visibility: visible !important;
+          opacity: 1 !important;
+          pointer-events: auto !important;
+          cursor: pointer !important;
+          background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%) !important;
+        }
+        
+        body #rencana-strategis .btn-action-edit i,
+        body #rencana-strategis .rs-action-btn[data-action="edit"] i {
+          color: white !important;
+          display: inline-block !important;
+          visibility: visible !important;
+          opacity: 1 !important;
+        }
+      `;
+      document.head.appendChild(style);
+      console.log('✅ Inline force CSS ditambahkan untuk kartu putih');
+    }
+    
     // Prevent concurrent loading
     if (state.isLoading) {
       console.log('⚠️ Module is already loading, skipping...');
@@ -97,6 +236,23 @@ const RencanaStrategisModule = (() => {
     
     // Check if already initialized with proper interface
     const container = getEl('rencana-strategis-content');
+    if (!container) {
+      console.error('❌ Container rencana-strategis-content not found!');
+      console.error('❌ Halaman tidak memiliki container yang diperlukan. Periksa struktur HTML.');
+      // Try to create container if parent exists
+      const parentPage = document.getElementById('rencana-strategis');
+      if (parentPage) {
+        console.log('🔧 Membuat container rencana-strategis-content...');
+        const newContainer = document.createElement('div');
+        newContainer.id = 'rencana-strategis-content';
+        newContainer.className = 'container-fluid p-4';
+        parentPage.appendChild(newContainer);
+        // Retry load after creating container
+        setTimeout(() => load(), 100);
+      }
+      return;
+    }
+    
     if (container && state.isInitialized && !state.isLoading) {
       const hasTable = container.querySelector('table');
       const hasCards = container.querySelector('.rencana-strategis-wrapper');
@@ -112,12 +268,6 @@ const RencanaStrategisModule = (() => {
     state.renderCount = 0;
 
     try {
-      if (!container) {
-        console.error('❌ Container rencana-strategis-content not found!');
-        state.isLoading = false;
-        return;
-      }
-
       // Show loading spinner
       container.innerHTML = '<div class="text-center py-5"><div class="spinner-border text-primary" role="status"></div><p class="mt-3 text-muted">Memuat data rencana strategis...</p></div>';
 
@@ -127,8 +277,21 @@ const RencanaStrategisModule = (() => {
       state.formValues = getDefaultForm();
       await generateKode();
 
-      // Render interface
+      // Render interface - FORCE RENDER
+      console.log('🎨 Memulai render interface...');
       renderInterface();
+      
+      // Verify render was successful
+      setTimeout(() => {
+        const hasTable = container.querySelector('table');
+        const hasCards = container.querySelector('.rencana-strategis-wrapper');
+        if (!hasTable || !hasCards) {
+          console.error('❌ Render gagal! Mencoba render ulang...');
+          renderInterface();
+        } else {
+          console.log('✅ Render berhasil diverifikasi');
+        }
+      }, 500);
 
       state.isInitialized = true;
       state.isLoading = false;
@@ -185,14 +348,23 @@ const RencanaStrategisModule = (() => {
       
       console.log('📊 Data loaded:', { rencana: state.data.length, visi: state.missions.length });
       
-      // Debug: Log first item to verify kode and status fields
+      // Debug: Log first 3 items to verify kode and status fields
       if (state.data.length > 0) {
-        console.log('📋 Sample data item:', {
-          id: state.data[0].id,
-          kode: state.data[0].kode,
-          nama: state.data[0].nama_rencana,
-          status: state.data[0].status
+        console.log('📋 Sample data (first 3 items):');
+        state.data.slice(0, 3).forEach(function(item, idx) {
+          console.log('  Item ' + (idx + 1) + ':', {
+            id: item.id,
+            kode: item.kode || 'TIDAK ADA',
+            nama: item.nama_rencana,
+            status: item.status || 'TIDAK ADA'
+          });
         });
+        
+        // Check if any item is missing kode
+        var missingKode = state.data.filter(function(item) { return !item.kode; });
+        if (missingKode.length > 0) {
+          console.warn('⚠️ Ada ' + missingKode.length + ' data tanpa kode!');
+        }
       }
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -238,67 +410,43 @@ const RencanaStrategisModule = (() => {
     const total = state.data.length;
 
     return '<div class="row g-3 mb-4">' +
-      // Card 1: Aktif - Hijau Cerah Solid
-      '<div class="col-xl-3 col-md-6 col-sm-6">' +
-        '<div class="card h-100 border-0 shadow-sm overflow-hidden" style="border-radius: 10px; background: #22c55e !important; max-height: 85px;">' +
-          '<div class="card-body p-0">' +
-            '<div class="d-flex align-items-center" style="height: 85px;">' +
-              '<div class="flex-shrink-0 d-flex align-items-center justify-content-center" style="width: 60px; height: 85px; background: rgba(255,255,255,0.15);">' +
-                '<i class="fas fa-check-circle fa-lg text-white"></i>' +
-              '</div>' +
-              '<div class="flex-grow-1 p-2">' +
-                '<h3 class="fw-bold text-white mb-0" style="font-size: 1.75rem;">' + aktif + '</h3>' +
-                '<p class="text-white mb-0" style="font-size: 0.85rem; font-weight: 600;">Rencana Aktif</p>' +
-              '</div>' +
-            '</div>' +
+      // Card 1: Aktif - Putih dengan border hijau
+      '<div class="col-xl-3 col-md-6 col-6">' +
+        '<div class="stat-card stat-card-success">' +
+          '<div class="stat-icon"><i class="fas fa-check-circle"></i></div>' +
+          '<div class="stat-content">' +
+            '<div class="stat-value">' + aktif + '</div>' +
+            '<div class="stat-label">Aktif</div>' +
           '</div>' +
         '</div>' +
       '</div>' +
-      // Card 2: Draft - Orange Cerah Solid
-      '<div class="col-xl-3 col-md-6 col-sm-6">' +
-        '<div class="card h-100 border-0 shadow-sm overflow-hidden" style="border-radius: 10px; background: #f59e0b !important; max-height: 85px;">' +
-          '<div class="card-body p-0">' +
-            '<div class="d-flex align-items-center" style="height: 85px;">' +
-              '<div class="flex-shrink-0 d-flex align-items-center justify-content-center" style="width: 60px; height: 85px; background: rgba(255,255,255,0.15);">' +
-                '<i class="fas fa-edit fa-lg text-white"></i>' +
-              '</div>' +
-              '<div class="flex-grow-1 p-2">' +
-                '<h3 class="fw-bold text-white mb-0" style="font-size: 1.75rem;">' + draft + '</h3>' +
-                '<p class="text-white mb-0" style="font-size: 0.85rem; font-weight: 600;">Draft</p>' +
-              '</div>' +
-            '</div>' +
+      // Card 2: Draft - Putih dengan border orange
+      '<div class="col-xl-3 col-md-6 col-6">' +
+        '<div class="stat-card stat-card-warning">' +
+          '<div class="stat-icon"><i class="fas fa-file-alt"></i></div>' +
+          '<div class="stat-content">' +
+            '<div class="stat-value">' + draft + '</div>' +
+            '<div class="stat-label">Draft</div>' +
           '</div>' +
         '</div>' +
       '</div>' +
-      // Card 3: Selesai - Biru Cerah Solid
-      '<div class="col-xl-3 col-md-6 col-sm-6">' +
-        '<div class="card h-100 border-0 shadow-sm overflow-hidden" style="border-radius: 10px; background: #3b82f6 !important; max-height: 85px;">' +
-          '<div class="card-body p-0">' +
-            '<div class="d-flex align-items-center" style="height: 85px;">' +
-              '<div class="flex-shrink-0 d-flex align-items-center justify-content-center" style="width: 60px; height: 85px; background: rgba(255,255,255,0.15);">' +
-                '<i class="fas fa-flag-checkered fa-lg text-white"></i>' +
-              '</div>' +
-              '<div class="flex-grow-1 p-2">' +
-                '<h3 class="fw-bold text-white mb-0" style="font-size: 1.75rem;">' + selesai + '</h3>' +
-                '<p class="text-white mb-0" style="font-size: 0.85rem; font-weight: 600;">Selesai</p>' +
-              '</div>' +
-            '</div>' +
+      // Card 3: Selesai - Putih dengan border biru
+      '<div class="col-xl-3 col-md-6 col-6">' +
+        '<div class="stat-card stat-card-info">' +
+          '<div class="stat-icon"><i class="fas fa-flag-checkered"></i></div>' +
+          '<div class="stat-content">' +
+            '<div class="stat-value">' + selesai + '</div>' +
+            '<div class="stat-label">Selesai</div>' +
           '</div>' +
         '</div>' +
       '</div>' +
-      // Card 4: Total - Ungu Cerah Solid
-      '<div class="col-xl-3 col-md-6 col-sm-6">' +
-        '<div class="card h-100 border-0 shadow-sm overflow-hidden" style="border-radius: 10px; background: #8b5cf6 !important; max-height: 85px;">' +
-          '<div class="card-body p-0">' +
-            '<div class="d-flex align-items-center" style="height: 85px;">' +
-              '<div class="flex-shrink-0 d-flex align-items-center justify-content-center" style="width: 60px; height: 85px; background: rgba(255,255,255,0.15);">' +
-                '<i class="fas fa-list-alt fa-lg text-white"></i>' +
-              '</div>' +
-              '<div class="flex-grow-1 p-2">' +
-                '<h3 class="fw-bold text-white mb-0" style="font-size: 1.75rem;">' + total + '</h3>' +
-                '<p class="text-white mb-0" style="font-size: 0.85rem; font-weight: 600;">Total Rencana</p>' +
-              '</div>' +
-            '</div>' +
+      // Card 4: Total - Putih dengan border abu
+      '<div class="col-xl-3 col-md-6 col-6">' +
+        '<div class="stat-card stat-card-secondary">' +
+          '<div class="stat-icon"><i class="fas fa-chart-line"></i></div>' +
+          '<div class="stat-content">' +
+            '<div class="stat-value">' + total + '</div>' +
+            '<div class="stat-label">Total</div>' +
           '</div>' +
         '</div>' +
       '</div>' +
@@ -308,16 +456,16 @@ const RencanaStrategisModule = (() => {
   function renderFormCard() {
     const f = state.formValues;
     const isEdit = !!state.currentId;
-    const isCollapsed = !state.showForm;
+    const isCollapsed = !state.showForm && !isEdit;
     
-    return '<div class="card mb-4 shadow-sm border-0" id="rs-form-section">' +
+    return '<div class="card mb-4 shadow-sm border-0" id="rs-form-section" style="' + (isCollapsed ? 'display: none;' : '') + '">' +
       '<div class="card-header bg-white d-flex justify-content-between align-items-center" style="border-left: 4px solid #3b82f6; border-bottom: 1px solid #e5e7eb;">' +
         '<h5 class="mb-0" style="color: #1a1a1a !important;"><i class="fas fa-' + (isEdit ? 'edit' : 'plus-circle') + ' me-2" style="color: #3b82f6;"></i>' + (isEdit ? 'Edit Rencana Strategis' : 'Form Input Rencana Strategis') + '</h5>' +
-        '<button type="button" class="btn btn-outline-secondary btn-sm" id="rs-toggle-form" title="' + (isCollapsed ? 'Tampilkan Form' : 'Sembunyikan Form') + '">' +
-          '<i class="fas fa-chevron-' + (isCollapsed ? 'down' : 'up') + '"></i>' +
+        '<button type="button" class="btn btn-outline-secondary btn-sm" id="rs-close-form" title="Tutup Form">' +
+          '<i class="fas fa-times"></i>' +
         '</button>' +
       '</div>' +
-      '<div class="card-body' + (isCollapsed ? ' d-none' : '') + '" id="rs-form-body">' +
+      '<div class="card-body" id="rs-form-body">' +
         '<form id="rs-form">' +
           '<div class="row g-3">' +
             // Row 1: Kode, Status, Misi
@@ -386,22 +534,32 @@ const RencanaStrategisModule = (() => {
           '<h5 class="mb-0" style="color: #1f2937 !important; font-weight: 700 !important; -webkit-text-fill-color: #1f2937 !important;"><i class="fas fa-table me-2" style="color: #3b82f6;"></i>Daftar Rencana Strategis</h5>' +
           '<small style="color: #6b7280 !important;">Total: ' + state.data.length + ' data</small>' +
         '</div>' +
-        '<div class="btn-group">' +
-          '<button class="btn btn-primary" id="rs-refresh-btn" title="Refresh Data"><i class="fas fa-sync-alt"></i></button>' +
-          '<button class="btn btn-success" id="rs-export-btn" title="Unduh Laporan Excel"><i class="fas fa-file-download"></i></button>' +
+        '<div class="d-flex gap-2">' +
+          '<button type="button" class="btn btn-primary d-flex align-items-center gap-2" id="rs-refresh-btn" title="Refresh Data" style="background: #3b82f6 !important; color: white !important; border: none !important; padding: 0.5rem 1rem; border-radius: 8px; font-weight: 600; min-width: 120px; box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2); transition: all 0.2s ease;">' +
+            '<i class="fas fa-sync-alt" style="color: white !important;"></i>' +
+            '<span style="color: white !important;">Refresh</span>' +
+          '</button>' +
+          '<button type="button" class="btn btn-primary d-flex align-items-center gap-2" id="rs-add-btn" title="Tambah Data Baru" style="background: #3b82f6 !important; color: white !important; border: none !important; padding: 0.5rem 1rem; border-radius: 8px; font-weight: 600; min-width: 140px; box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2); transition: all 0.2s ease;">' +
+            '<i class="fas fa-plus" style="color: white !important;"></i>' +
+            '<span style="color: white !important;">Tambah Data</span>' +
+          '</button>' +
+          '<button type="button" class="btn btn-success d-flex align-items-center gap-2" id="rs-export-btn" title="Unduh Laporan Excel" style="background: #10b981 !important; color: white !important; border: none !important; padding: 0.5rem 1rem; border-radius: 8px; font-weight: 600; min-width: 150px; box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2); transition: all 0.2s ease;">' +
+            '<i class="fas fa-file-download" style="color: white !important;"></i>' +
+            '<span style="color: white !important;">Unduh Laporan</span>' +
+          '</button>' +
         '</div>' +
       '</div>' +
       '<div class="card-body p-0">' +
         '<div class="table-responsive">' +
           '<table class="table table-hover mb-0">' +
-            '<thead style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">' +
+            '<thead style="background: #1e3a8a !important;">' +
               '<tr>' +
-                '<th class="border-0 py-3" style="width: 120px;">KODE</th>' +
-                '<th class="border-0 py-3">NAMA RENCANA</th>' +
-                '<th class="border-0 py-3" style="width: 150px;">TARGET</th>' +
-                '<th class="border-0 py-3" style="width: 180px;">PERIODE</th>' +
-                '<th class="border-0 py-3" style="width: 100px;">STATUS</th>' +
-                '<th class="border-0 py-3 text-center" style="width: 140px;">AKSI</th>' +
+                '<th class="border-0 py-3" style="width: 120px; color: white !important;"><i class="fas fa-barcode me-2" style="color: white !important;"></i>KODE</th>' +
+                '<th class="border-0 py-3" style="color: white !important;"><i class="fas fa-file-alt me-2" style="color: white !important;"></i>NAMA RENCANA</th>' +
+                '<th class="border-0 py-3" style="width: 150px; color: white !important;"><i class="fas fa-crosshairs me-2" style="color: white !important;"></i>TARGET</th>' +
+                '<th class="border-0 py-3" style="width: 180px; color: white !important;"><i class="fas fa-calendar me-2" style="color: white !important;"></i>PERIODE</th>' +
+                '<th class="border-0 py-3" style="width: 120px; color: white !important;"><i class="fas fa-flag me-2" style="color: white !important;"></i>STATUS</th>' +
+                '<th class="border-0 py-3 text-center" style="width: 140px; color: white !important;"><i class="fas fa-cog me-2" style="color: white !important;"></i>AKSI</th>' +
               '</tr>' +
             '</thead>' +
             '<tbody>' + renderTableRows() + '</tbody>' +
@@ -444,9 +602,9 @@ const RencanaStrategisModule = (() => {
       // Ensure all HTML is properly escaped and formatted
       var row = '<tr ' + rowBg + ' data-id="' + itemId + '">';
       
-      // Column 1: Kode
-      row += '<td class="align-middle" style="min-width: 100px; max-width: 130px;">';
-      row += '<span class="badge bg-light text-dark border fw-normal" style="font-size: 0.75rem; padding: 0.35rem 0.5rem; white-space: nowrap; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis;">' + escapeHtml(kodeDisplay) + '</span>';
+      // Column 1: Kode - TAMPILKAN KODE DENGAN JELAS
+      row += '<td class="align-middle" style="min-width: 120px; max-width: 150px; padding: 0.75rem 1rem; overflow: visible; position: relative; vertical-align: middle;">';
+      row += '<span class="badge bg-light text-dark border fw-semibold" style="font-size: 0.85rem; padding: 0.45rem 0.75rem; white-space: nowrap; display: inline-block; max-width: 100%; overflow: visible; text-overflow: clip; font-family: \'Courier New\', monospace; font-weight: 700; color: #1e293b !important; background: #f1f5f9 !important; border: 1px solid #cbd5e1 !important; visibility: visible; opacity: 1;">' + escapeHtml(kodeDisplay) + '</span>';
       row += '</td>';
       
       // Column 2: Nama Rencana
@@ -467,27 +625,37 @@ const RencanaStrategisModule = (() => {
       row += '<small class="text-muted">' + periode + '</small>';
       row += '</td>';
       
-      // Column 5: Status - CRITICAL: Ensure badge is always rendered
-      row += '<td class="align-middle" style="min-width: 90px; max-width: 110px;">';
-      row += statusBadge; // Badge HTML is generated by getStatusBadgeFixed()
+      // Column 5: Status - BADGE DI DALAM TABEL, TIDAK OVERFLOW
+      row += '<td class="align-middle" style="min-width: 110px; max-width: 130px; padding: 0.75rem 1rem; overflow: visible; position: relative; vertical-align: middle;">';
+      row += '<div style="display: inline-block; max-width: 100%; overflow: visible; position: relative; z-index: 1;">' + statusBadge + '</div>';
       row += '</td>';
       
-      // Column 6: Action Buttons - ICON ONLY (TANPA EDIT)
-      row += '<td class="align-middle text-center" style="min-width: 90px; white-space: nowrap; padding: 0.5rem 0.75rem;">';
+      // Column 6: Action Buttons - ICON ONLY (VIEW, EDIT, DELETE)
+      row += '<td class="align-middle text-center" style="min-width: 140px; white-space: nowrap; padding: 0.5rem 0.75rem;">';
       row += '<div class="d-flex justify-content-center gap-2" role="group">';
       
       // View Button - ICON ONLY
-      row += '<button type="button" class="btn-action-view" ';
+      row += '<button type="button" class="btn-action-view rs-action-btn" ';
       row += 'data-action="view" data-id="' + itemId + '" ';
-      row += 'title="Lihat Detail">';
-      row += '<i class="fas fa-eye"></i>'; // Icon only, no text
+      row += 'title="Lihat Detail" ';
+      row += 'style="display: inline-flex !important; align-items: center !important; justify-content: center !important;">';
+      row += '<i class="fas fa-eye"></i>';
+      row += '</button>';
+      
+      // Edit Button - ICON ONLY - BIRU
+      row += '<button type="button" class="btn-action-edit rs-action-btn" ';
+      row += 'data-action="edit" data-id="' + itemId + '" ';
+      row += 'title="Edit Data" ';
+      row += 'style="display: inline-flex !important; align-items: center !important; justify-content: center !important; background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%) !important;">';
+      row += '<i class="fas fa-edit" style="color: white !important;"></i>';
       row += '</button>';
       
       // Delete Button - ICON ONLY
-      row += '<button type="button" class="btn-action-delete" ';
+      row += '<button type="button" class="btn-action-delete rs-action-btn" ';
       row += 'data-action="delete" data-id="' + itemId + '" ';
-      row += 'title="Hapus">';
-      row += '<i class="fas fa-trash-alt"></i>'; // Icon only, no text
+      row += 'title="Hapus" ';
+      row += 'style="display: inline-flex !important; align-items: center !important; justify-content: center !important;">';
+      row += '<i class="fas fa-trash-alt"></i>';
       row += '</button>';
       
       row += '</div>';
@@ -512,21 +680,29 @@ const RencanaStrategisModule = (() => {
     return 'RS-' + year + '-' + String(index + 1).padStart(3, '0');
   }
   
-  // Fixed status badge with solid bright colors
+  // Fixed status badge with solid bright colors - CONTAINED IN TABLE
   function getStatusBadgeFixed(status) {
     var statusText = status || 'Draft';
-    var badgeStyle = 'display: inline-block; font-size: 0.75rem; padding: 0.4rem 0.75rem; border-radius: 6px; white-space: nowrap; max-width: 100%; overflow: hidden; text-overflow: ellipsis; font-weight: 600; box-shadow: 0 2px 4px rgba(0,0,0,0.15);';
+    console.log('🏷️ Creating badge for status:', statusText);
+    
+    var badgeClass = '';
+    var icon = '';
     
     if (statusText === 'Aktif') {
-      return '<span class="badge" style="' + badgeStyle + ' background: #22c55e; color: white;"><i class="fas fa-check-circle me-1"></i>Aktif</span>';
+      badgeClass = 'bg-success';
+      icon = '<i class="fas fa-check-circle me-1"></i>';
+    } else if (statusText === 'Draft') {
+      badgeClass = 'bg-warning';
+      icon = '<i class="fas fa-file-alt me-1"></i>';
+    } else if (statusText === 'Selesai') {
+      badgeClass = 'bg-secondary';
+      icon = '<i class="fas fa-flag-checkered me-1"></i>';
+    } else {
+      badgeClass = 'bg-secondary';
+      icon = '';
     }
-    if (statusText === 'Draft') {
-      return '<span class="badge" style="' + badgeStyle + ' background: #f59e0b; color: white;"><i class="fas fa-edit me-1"></i>Draft</span>';
-    }
-    if (statusText === 'Selesai') {
-      return '<span class="badge" style="' + badgeStyle + ' background: #3b82f6; color: white;"><i class="fas fa-flag-checkered me-1"></i>Selesai</span>';
-    }
-    return '<span class="badge" style="' + badgeStyle + ' background: #6b7280; color: white;">' + escapeHtml(statusText) + '</span>';
+    
+    return '<span class="badge ' + badgeClass + ' text-white" style="font-size: 0.8rem; padding: 0.45rem 0.85rem; border-radius: 8px; font-weight: 600; white-space: nowrap; display: inline-block; max-width: 100%; overflow: visible; box-shadow: 0 2px 6px rgba(0,0,0,0.15); visibility: visible; opacity: 1; position: relative; z-index: 1;">' + icon + escapeHtml(statusText) + '</span>';
   }
 
   function renderMissionOptions() {
@@ -566,11 +742,14 @@ const RencanaStrategisModule = (() => {
     var form = getEl('rs-form');
     if (form) form.addEventListener('submit', handleSubmit);
     
-    var addBtn = getEl('rs-add-new');
-    if (addBtn) addBtn.addEventListener('click', showAddForm);
-    
-    var toggleBtn = getEl('rs-toggle-form');
-    if (toggleBtn) toggleBtn.addEventListener('click', toggleForm);
+    var addBtn = getEl('rs-add-btn');
+    if (addBtn) {
+      addBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        console.log('➕ Tombol Tambah Data diklik');
+        showAddForm();
+      });
+    }
     
     var closeBtn = getEl('rs-close-form');
     if (closeBtn) closeBtn.addEventListener('click', closeForm);
@@ -605,7 +784,7 @@ const RencanaStrategisModule = (() => {
   }
   
   function handleActionClick(e) {
-    var btn = e.target.closest('.rs-action-btn, .btn-action-view, .btn-action-delete');
+    var btn = e.target.closest('.rs-action-btn, .btn-action-view, .btn-action-edit, .btn-action-delete');
     if (!btn) return;
     
     e.preventDefault();
@@ -614,30 +793,41 @@ const RencanaStrategisModule = (() => {
     var action = btn.getAttribute('data-action');
     var id = btn.getAttribute('data-id');
     
+    console.log('🔘 Tombol aksi diklik!');
+    console.log('  - Action:', action);
+    console.log('  - ID:', id);
+    console.log('  - Button class:', btn.className);
+    
     if (!id) {
-      console.error('❌ No ID found for action button');
+      console.error('❌ Tidak ada ID pada tombol aksi');
       return;
     }
-    
-    console.log('🔘 Action clicked:', action, 'ID:', id);
     
     // Find record to verify it exists
     var record = state.data.find(function(i) { return i.id === id; });
     if (!record) {
-      console.error('❌ Record not found for ID:', id);
+      console.error('❌ Record tidak ditemukan untuk ID:', id);
       alert('Data tidak ditemukan. Silakan refresh halaman.');
       return;
     }
     
+    console.log('✅ Record ditemukan:', record.nama_rencana);
+    
     switch(action) {
       case 'view':
+        console.log('👁️ Membuka detail view...');
         viewDetail(id);
         break;
+      case 'edit':
+        console.log('✏️ Memulai edit...');
+        startEdit(id);
+        break;
       case 'delete':
+        console.log('🗑️ Memulai delete...');
         deleteRencana(id);
         break;
       default:
-        console.warn('Unknown action:', action);
+        console.warn('⚠️ Action tidak dikenal:', action);
     }
   }
   
@@ -732,10 +922,18 @@ const RencanaStrategisModule = (() => {
   }
 
   function closeForm() {
+    console.log('❌ Menutup form...');
     state.showForm = false;
     state.currentId = null;
     state.formValues = getDefaultForm();
-    renderInterface();
+    
+    var formSection = getEl('rs-form-section');
+    if (formSection) {
+      formSection.style.display = 'none';
+    }
+    
+    generateKode();
+    console.log('✅ Form ditutup');
   }
 
   function resetForm() {
@@ -746,36 +944,52 @@ const RencanaStrategisModule = (() => {
   async function refreshData() {
     console.log('🔄 Refreshing data...');
     
-    // Show loading indicator
-    const container = getEl('rencana-strategis-content');
-    if (container) {
-      const loadingHtml = '<div class="text-center py-5"><div class="spinner-border text-primary" role="status"></div><p class="mt-3 text-muted">Memuat ulang data...</p></div>';
-      container.innerHTML = loadingHtml;
+    const refreshBtn = getEl('rs-refresh-btn');
+    const originalHtml = refreshBtn ? refreshBtn.innerHTML : '';
+    
+    try {
+      // Show loading indicator on button
+      if (refreshBtn) {
+        refreshBtn.disabled = true;
+        refreshBtn.innerHTML = '<i class="fas fa-spinner fa-spin" style="color: white !important;"></i>';
+      }
+      
+      // Fetch fresh data
+      await fetchData();
+      
+      // Verify data is loaded
+      console.log('📊 Data setelah refresh:', { 
+        jumlah: state.data.length,
+        adaData: state.data.length > 0
+      });
+      
+      // Re-render interface with verified data
+      renderInterface();
+      
+      // Show success notification (simple alert)
+      console.log('✅ Data berhasil di-refresh');
+      
+      // Optional: Show temporary success message
+      if (refreshBtn) {
+        const tempHtml = refreshBtn.innerHTML;
+        refreshBtn.innerHTML = '<i class="fas fa-check" style="color: white !important;"></i> <span style="color: white !important;">Berhasil!</span>';
+        setTimeout(function() {
+          refreshBtn.innerHTML = originalHtml;
+        }, 2000);
+      }
+      
+    } catch (error) {
+      console.error('❌ Error saat refresh data:', error);
+      alert('Gagal memperbarui data: ' + error.message);
+    } finally {
+      // Restore button state
+      if (refreshBtn) {
+        refreshBtn.disabled = false;
+        if (refreshBtn.innerHTML.includes('fa-spinner')) {
+          refreshBtn.innerHTML = originalHtml;
+        }
+      }
     }
-    
-    // Fetch fresh data and wait for completion
-    await fetchData();
-    
-    // Verify data is loaded
-    console.log('📊 Data after refresh:', { 
-      count: state.data.length,
-      hasData: state.data.length > 0,
-      firstItem: state.data[0] ? {
-        id: state.data[0].id,
-        kode: state.data[0].kode,
-        status: state.data[0].status
-      } : null
-    });
-    
-    // Small delay to ensure data is fully processed
-    await new Promise(resolve => setTimeout(resolve, 150));
-    
-    // Re-render interface with verified data
-    renderInterface();
-    
-    console.log('✅ Data refreshed and interface re-rendered');
-  }
-    console.log('✅ Data refreshed successfully');
   }
 
   async function generateKode() {
@@ -799,6 +1013,7 @@ const RencanaStrategisModule = (() => {
     }
     
     console.log('📋 Viewing detail for:', record.nama_rencana);
+    console.log('📋 Record ID:', id);
     
     // Create modal for detail view
     var modalHtml = '<div class="modal fade" id="rs-detail-modal" tabindex="-1">' +
@@ -841,8 +1056,8 @@ const RencanaStrategisModule = (() => {
             '</div>' +
           '</div>' +
           '<div class="modal-footer">' +
-            '<button type="button" class="btn btn-warning rs-modal-edit-btn" data-id="' + id + '"><i class="fas fa-edit me-1"></i>Edit</button>' +
-            '<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>' +
+            '<button type="button" class="btn btn-primary rs-modal-edit-btn" data-edit-id="' + id + '" title="Edit Data" style="background: #3b82f6 !important; border: none !important;"><i class="fas fa-edit me-2"></i>Edit Data</button>' +
+            '<button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-times me-2"></i>Tutup</button>' +
           '</div>' +
         '</div>' +
       '</div>' +
@@ -855,52 +1070,66 @@ const RencanaStrategisModule = (() => {
     // Add modal to body
     document.body.insertAdjacentHTML('beforeend', modalHtml);
     
-    // Bind edit button in modal
-    var editBtn = document.querySelector('.rs-modal-edit-btn');
-    if (editBtn) {
-      editBtn.addEventListener('click', function() {
-        var editId = this.getAttribute('data-id');
-        var modalEl = document.getElementById('rs-detail-modal');
-        if (modalEl) {
-          var bsModal = bootstrap.Modal.getInstance(modalEl);
-          if (bsModal) bsModal.hide();
-        }
-        startEdit(editId);
-      });
-    }
+    // Get modal element
+    var modalEl = document.getElementById('rs-detail-modal');
     
-    // Show modal
-    var modal = new bootstrap.Modal(document.getElementById('rs-detail-modal'));
+    // Show modal first
+    var modal = new bootstrap.Modal(modalEl);
     modal.show();
     
-    // Clean up modal after hidden
-    document.getElementById('rs-detail-modal').addEventListener('hidden.bs.modal', function() {
-      this.remove();
-    });
+    // Bind edit button AFTER modal is shown
+    setTimeout(function() {
+      var editBtn = modalEl.querySelector('.rs-modal-edit-btn');
+      if (editBtn) {
+        console.log('✅ Binding edit button in modal for ID:', id);
+        
+        // Remove any existing listeners by cloning
+        var newEditBtn = editBtn.cloneNode(true);
+        editBtn.parentNode.replaceChild(newEditBtn, editBtn);
+        
+        // Add new listener
+        newEditBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          var editId = this.getAttribute('data-edit-id');
+          console.log('🔘 Edit button clicked! ID:', editId);
+          
+          // Close modal
+          modal.hide();
+          
+          // Wait for modal animation, then start edit
+          setTimeout(function() {
+            console.log('🚀 Starting edit for ID:', editId);
+            startEdit(editId);
+          }, 400);
+        });
+        
+        console.log('✅ Edit button bound successfully');
+      } else {
+        console.error('❌ Edit button not found in modal');
+      }
+    }, 100);
     
-    // Add event listener for edit button in modal
-    var editBtn = document.querySelector('.rs-modal-edit-btn');
-    if (editBtn) {
-      editBtn.addEventListener('click', function() {
-        var editId = this.getAttribute('data-id');
-        modal.hide();
-        setTimeout(function() {
-          startEdit(editId);
-        }, 300);
-      });
-    }
+    // Clean up modal after hidden
+    modalEl.addEventListener('hidden.bs.modal', function() {
+      setTimeout(function() {
+        modalEl.remove();
+      }, 200);
+    });
   }
 
   function startEdit(id) {
+    console.log('🔥 startEdit() dipanggil dengan ID:', id);
+    
     var record = state.data.find(function(i) { return i.id === id; });
     if (!record) {
-      console.error('Record not found for edit, ID:', id);
+      console.error('❌ Record not found for edit, ID:', id);
       alert('Data tidak ditemukan');
       return;
     }
     
-    console.log('✏️ Starting edit for:', record.nama_rencana);
-    console.log('📋 Record data:', record);
+    console.log('✅ Record ditemukan:', record.nama_rencana);
+    console.log('📋 Record lengkap:', JSON.stringify(record, null, 2));
     
     // Set current ID and form values
     state.currentId = id;
@@ -916,24 +1145,26 @@ const RencanaStrategisModule = (() => {
     };
     state.showForm = true;
     
-    console.log('📝 Form values set:', state.formValues);
+    console.log('📝 Form values di-set:', JSON.stringify(state.formValues, null, 2));
     
     // Re-render interface with form data
+    console.log('🎨 Merender ulang interface dengan data edit...');
     renderInterface();
     
     // Wait for DOM to update, then ensure form is visible and populated
     setTimeout(function() {
+      console.log('🔍 Verifikasi form setelah render...');
+      
       var formSection = getEl('rs-form-section');
       var formBody = getEl('rs-form-body');
       
       // Make sure form is visible
-      if (formBody && formBody.classList.contains('d-none')) {
-        formBody.classList.remove('d-none');
-        var toggleBtn = getEl('rs-toggle-form');
-        if (toggleBtn) toggleBtn.innerHTML = '<i class="fas fa-chevron-up"></i>';
+      if (formSection) {
+        formSection.style.display = 'block';
+        console.log('📂 Form ditampilkan');
       }
       
-      // Verify form fields are populated
+      // Get form fields
       var kodeInput = getEl('rs-kode');
       var namaInput = getEl('rs-nama');
       var deskripsiInput = getEl('rs-deskripsi');
@@ -943,14 +1174,14 @@ const RencanaStrategisModule = (() => {
       var mulaiInput = getEl('rs-mulai');
       var selesaiInput = getEl('rs-selesai');
       
-      console.log('🔍 Checking form fields after render:');
-      console.log('  - Kode:', kodeInput ? kodeInput.value : 'NOT FOUND');
-      console.log('  - Nama:', namaInput ? namaInput.value : 'NOT FOUND');
-      console.log('  - Status:', statusSelect ? statusSelect.value : 'NOT FOUND');
+      console.log('🔍 Status form fields:');
+      console.log('  - Kode input:', kodeInput ? 'FOUND (value: ' + kodeInput.value + ')' : 'NOT FOUND');
+      console.log('  - Nama input:', namaInput ? 'FOUND (value: ' + namaInput.value + ')' : 'NOT FOUND');
+      console.log('  - Status select:', statusSelect ? 'FOUND (value: ' + statusSelect.value + ')' : 'NOT FOUND');
       
       // If fields are empty, manually populate them
       if (namaInput && !namaInput.value) {
-        console.warn('⚠️ Form fields empty after render, manually populating...');
+        console.warn('⚠️ Form fields kosong setelah render, mengisi manual...');
         if (kodeInput) kodeInput.value = state.formValues.kode;
         if (namaInput) namaInput.value = state.formValues.nama_rencana;
         if (deskripsiInput) deskripsiInput.value = state.formValues.deskripsi;
@@ -959,18 +1190,24 @@ const RencanaStrategisModule = (() => {
         if (misiSelect) misiSelect.value = state.formValues.visi_misi_id;
         if (mulaiInput) mulaiInput.value = state.formValues.periode_mulai;
         if (selesaiInput) selesaiInput.value = state.formValues.periode_selesai;
-        console.log('✅ Form fields manually populated');
+        console.log('✅ Form fields diisi manual');
+      } else {
+        console.log('✅ Form fields sudah terisi dari render');
       }
       
       // Scroll to form
       if (formSection) {
+        console.log('📜 Scroll ke form...');
         formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
       
       // Focus on nama input
-      if (namaInput) namaInput.focus();
+      if (namaInput) {
+        namaInput.focus();
+        console.log('🎯 Focus pada input nama');
+      }
       
-      console.log('✅ Edit form ready');
+      console.log('✅ Edit form siap digunakan!');
     }, 150);
   }
 
@@ -994,24 +1231,87 @@ const RencanaStrategisModule = (() => {
   }
 
   async function exportData() {
+    console.log('📥 Mengunduh laporan...');
+    
+    const exportBtn = getEl('rs-export-btn');
+    const originalHtml = exportBtn ? exportBtn.innerHTML : '';
+    
     try {
-      var token = localStorage.getItem('token');
-      var headers = token ? { 'Authorization': 'Bearer ' + token } : {};
-      var response = await fetch('/api/rencana-strategis/actions/export', { headers: headers });
+      // Show loading state on button
+      if (exportBtn) {
+        exportBtn.disabled = true;
+        exportBtn.innerHTML = '<i class="fas fa-spinner fa-spin" style="color: white !important;"></i> <span style="color: white !important;">Mengunduh...</span>';
+      }
       
-      if (!response.ok) throw new Error('Gagal export data');
+      // Get token
+      var token = localStorage.getItem('token') || (window.currentSession?.access_token);
+      var headers = {};
       
+      if (token) {
+        headers['Authorization'] = 'Bearer ' + token;
+      }
+      
+      console.log('📡 Fetching export from: /api/rencana-strategis/actions/export');
+      
+      // Fetch export data
+      var response = await fetch('/api/rencana-strategis/actions/export', { 
+        method: 'GET',
+        headers: headers 
+      });
+      
+      if (!response.ok) {
+        throw new Error('Gagal mengunduh laporan (HTTP ' + response.status + ')');
+      }
+      
+      // Get blob and create download
       var blob = await response.blob();
+      
+      if (blob.size === 0) {
+        throw new Error('File laporan kosong');
+      }
+      
+      console.log('📦 Blob size:', blob.size, 'bytes');
+      
+      // Create download link
       var url = window.URL.createObjectURL(blob);
       var link = document.createElement('a');
       link.href = url;
-      link.download = 'rencana-strategis-' + new Date().toISOString().split('T')[0] + '.xlsx';
+      
+      // Generate filename with date
+      var tanggal = new Date().toISOString().split('T')[0];
+      link.download = 'laporan-rencana-strategis-' + tanggal + '.xlsx';
+      
+      // Trigger download
       document.body.appendChild(link);
       link.click();
-      link.remove();
-      window.URL.revokeObjectURL(url);
+      
+      // Cleanup
+      setTimeout(function() {
+        link.remove();
+        window.URL.revokeObjectURL(url);
+      }, 100);
+      
+      console.log('✅ Laporan berhasil diunduh');
+      
+      // Show success message on button
+      if (exportBtn) {
+        exportBtn.innerHTML = '<i class="fas fa-check" style="color: white !important;"></i> <span style="color: white !important;">Berhasil!</span>';
+        setTimeout(function() {
+          exportBtn.innerHTML = originalHtml;
+        }, 2000);
+      }
+      
     } catch (error) {
-      alert('Gagal export: ' + error.message);
+      console.error('❌ Error saat mengunduh laporan:', error);
+      alert('Gagal mengunduh laporan: ' + error.message);
+    } finally {
+      // Restore button state
+      if (exportBtn) {
+        exportBtn.disabled = false;
+        if (exportBtn.innerHTML.includes('fa-spinner')) {
+          exportBtn.innerHTML = originalHtml;
+        }
+      }
     }
   }
 
@@ -1024,6 +1324,45 @@ const RencanaStrategisModule = (() => {
         '<button onclick="RencanaStrategisModule.load()" class="btn btn-primary"><i class="fas fa-sync me-1"></i> Coba Lagi</button>' +
       '</div>';
     }
+  }
+
+  /**
+   * Show toast notification
+   */
+  function showToast(message, type = 'info') {
+    // Remove existing toast if any
+    var existingToast = document.getElementById('rs-toast');
+    if (existingToast) existingToast.remove();
+    
+    // Create toast element
+    var bgColor = type === 'success' ? '#22c55e' : type === 'error' ? '#ef4444' : '#3b82f6';
+    var icon = type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle';
+    
+    var toastHtml = '<div id="rs-toast" style="position: fixed; top: 20px; right: 20px; z-index: 9999; min-width: 300px; max-width: 500px; background: ' + bgColor + '; color: white; padding: 1rem 1.5rem; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); display: flex; align-items: center; gap: 0.75rem; animation: slideInRight 0.3s ease-out;">' +
+      '<i class="fas fa-' + icon + ' fa-lg"></i>' +
+      '<span style="flex: 1; font-weight: 500;">' + escapeHtml(message) + '</span>' +
+      '<button onclick="this.parentElement.remove()" style="background: none; border: none; color: white; font-size: 1.25rem; cursor: pointer; padding: 0; line-height: 1; opacity: 0.8;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.8">&times;</button>' +
+    '</div>';
+    
+    // Add CSS animation if not exists
+    if (!document.getElementById('rs-toast-style')) {
+      var style = document.createElement('style');
+      style.id = 'rs-toast-style';
+      style.textContent = '@keyframes slideInRight { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }';
+      document.head.appendChild(style);
+    }
+    
+    // Add toast to body
+    document.body.insertAdjacentHTML('beforeend', toastHtml);
+    
+    // Auto remove after 4 seconds
+    setTimeout(function() {
+      var toast = document.getElementById('rs-toast');
+      if (toast) {
+        toast.style.animation = 'slideInRight 0.3s ease-out reverse';
+        setTimeout(function() { toast.remove(); }, 300);
+      }
+    }, 4000);
   }
 
   /**
@@ -1047,6 +1386,10 @@ const RencanaStrategisModule = (() => {
     deleteRencana: deleteRencana,
     showAddForm: showAddForm,
     refreshData: refreshData,
+    exportData: exportData,
+    toggleForm: toggleForm,
+    resetForm: resetForm,
+    cancelEdit: cancelEdit,
     cleanup: cleanup,
     state: state,
     version: MODULE_VERSION

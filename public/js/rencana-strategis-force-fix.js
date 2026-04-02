@@ -1,5 +1,5 @@
 
-/* Cache-busted: 2026-03-31T02:15:20.498Z */
+/* Cache-busted: 2026-04-02T10:03:16.854Z */
 /**
  * FORCE FIX - Rencana Strategis
  * Memaksa perubahan diterapkan dengan menghapus cache dan re-render
@@ -32,7 +32,10 @@
     // Fix 3: Fix action column width
     fixActionColumn();
     
-    // Fix 4: Monitor for dynamic content changes
+    // Fix 4: Ensure event listeners are working
+    ensureEventListeners();
+    
+    // Fix 5: Monitor for dynamic content changes
     observeChanges();
     
     console.log('✅ FORCE FIX: All fixes applied');
@@ -56,100 +59,102 @@
   }
   
   function fixHeaderButtons() {
-    // Fix Refresh button - BIRU CERAH SOLID
-    const refreshBtn = document.querySelector('#rs-refresh-btn, .btn-primary[title*="Refresh"]');
+    // Fix Refresh button - BIRU CERAH SOLID dengan icon dan teks
+    const refreshBtn = document.querySelector('#rs-refresh-btn');
     if (refreshBtn) {
+      // HANYA perbaiki styling, JANGAN sentuh event listener!
+      
       refreshBtn.style.cssText = `
         background: #3b82f6 !important;
         border: none !important;
         color: white !important;
-        min-width: 48px !important;
-        min-height: 48px !important;
-        max-width: 48px !important;
-        max-height: 48px !important;
-        border-radius: 12px !important;
-        padding: 0 !important;
-        font-size: 0 !important;
+        min-width: 120px !important;
+        height: 40px !important;
+        border-radius: 8px !important;
+        padding: 0.5rem 1rem !important;
         display: inline-flex !important;
         align-items: center !important;
         justify-content: center !important;
-        box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4) !important;
-        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        gap: 0.5rem !important;
+        box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2) !important;
         cursor: pointer !important;
+        font-size: 14px !important;
+        font-weight: 600 !important;
+        pointer-events: auto !important;
       `;
       
       // Ensure icon is visible
       const icon = refreshBtn.querySelector('i');
       if (icon) {
         icon.style.cssText = `
-          font-size: 1.3rem !important;
+          font-size: 14px !important;
           color: white !important;
           margin: 0 !important;
+          pointer-events: none !important;
         `;
       }
       
-      // Add hover effect
-      refreshBtn.addEventListener('mouseenter', function() {
-        this.style.background = '#2563eb !important';
-        this.style.transform = 'translateY(-3px) scale(1.08) !important';
-        this.style.boxShadow = '0 8px 20px rgba(59, 130, 246, 0.5) !important';
-      });
+      // Ensure text is visible
+      const span = refreshBtn.querySelector('span');
+      if (span) {
+        span.style.cssText = `
+          color: white !important;
+          font-size: 14px !important;
+          font-weight: 600 !important;
+          pointer-events: none !important;
+        `;
+      }
       
-      refreshBtn.addEventListener('mouseleave', function() {
-        this.style.background = '#3b82f6 !important';
-        this.style.transform = 'translateY(0) scale(1) !important';
-        this.style.boxShadow = '0 6px 16px rgba(59, 130, 246, 0.4) !important';
-      });
-      
-      console.log('✅ Fixed Refresh button - BIRU CERAH SOLID');
+      console.log('✅ Fixed Refresh button styling');
     }
     
-    // Fix Export button - HIJAU CERAH SOLID
-    const exportBtn = document.querySelector('#rs-export-btn, .btn-success[title*="Unduh"]');
+    // Fix Export button - HIJAU CERAH SOLID dengan icon dan teks
+    const exportBtn = document.querySelector('#rs-export-btn');
     if (exportBtn) {
+      // HANYA perbaiki styling, JANGAN sentuh event listener!
+      
       exportBtn.style.cssText = `
-        background: #10b981 !important;
+        background: #22c55e !important;
         border: none !important;
         color: white !important;
-        min-width: 48px !important;
-        min-height: 48px !important;
-        max-width: 48px !important;
-        max-height: 48px !important;
-        border-radius: 12px !important;
-        padding: 0 !important;
-        font-size: 0 !important;
+        min-width: 150px !important;
+        height: 40px !important;
+        border-radius: 8px !important;
+        padding: 0.5rem 1rem !important;
         display: inline-flex !important;
         align-items: center !important;
         justify-content: center !important;
-        box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4) !important;
-        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        gap: 0.5rem !important;
+        box-shadow: 0 2px 4px rgba(34, 197, 94, 0.2) !important;
         cursor: pointer !important;
+        font-size: 14px !important;
+        font-weight: 600 !important;
+        pointer-events: auto !important;
       `;
       
       // Ensure icon is visible
       const icon = exportBtn.querySelector('i');
       if (icon) {
         icon.style.cssText = `
-          font-size: 1.3rem !important;
+          font-size: 14px !important;
           color: white !important;
           margin: 0 !important;
+          pointer-events: none !important;
         `;
       }
       
-      // Add hover effect
-      exportBtn.addEventListener('mouseenter', function() {
-        this.style.background = '#059669 !important';
-        this.style.transform = 'translateY(-3px) scale(1.08) !important';
-        this.style.boxShadow = '0 8px 20px rgba(16, 185, 129, 0.5) !important';
-      });
+      // Ensure text is visible
+      const span = exportBtn.querySelector('span');
+      if (span) {
+        span.style.cssText = `
+          color: white !important;
+          font-size: 14px !important;
+          font-weight: 600 !important;
+          pointer-events: none !important;
+        `;
+      }
       
-      exportBtn.addEventListener('mouseleave', function() {
-        this.style.background = '#10b981 !important';
-        this.style.transform = 'translateY(0) scale(1) !important';
-        this.style.boxShadow = '0 6px 16px rgba(16, 185, 129, 0.4) !important';
-      });
-      
-      console.log('✅ Fixed Export button - HIJAU CERAH SOLID');
+      console.log('✅ Fixed Export button styling');
     }
   }
   
@@ -232,6 +237,58 @@
     });
     
     console.log(`✅ Fixed ${actionCells.length} action columns and ${actionButtons.length} action buttons`);
+  }
+  
+  function ensureEventListeners() {
+    console.log('🔗 Ensuring event listeners are working...');
+    
+    // Tunggu sebentar untuk memastikan module sudah loaded
+    setTimeout(() => {
+      const refreshBtn = document.getElementById('rs-refresh-btn');
+      const exportBtn = document.getElementById('rs-export-btn');
+      
+      if (refreshBtn && !refreshBtn.getAttribute('data-listener-verified')) {
+        console.log('⚠️ Adding backup listener for refresh button');
+        
+        refreshBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          console.log('🔄 Refresh button clicked (backup listener)');
+          
+          const module = window.RencanaStrategisModule || window.RSCore;
+          if (module && (module.refresh || module.refreshData)) {
+            (module.refresh || module.refreshData)();
+          } else {
+            console.error('❌ Module refresh function not found, reloading page...');
+            location.reload();
+          }
+        }, { capture: true });
+        
+        refreshBtn.setAttribute('data-listener-verified', 'true');
+        console.log('✅ Refresh button listener verified');
+      }
+      
+      if (exportBtn && !exportBtn.getAttribute('data-listener-verified')) {
+        console.log('⚠️ Adding backup listener for export button');
+        
+        exportBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          console.log('📥 Export button clicked (backup listener)');
+          
+          const module = window.RencanaStrategisModule || window.RSCore;
+          if (module && module.exportData) {
+            module.exportData();
+          } else {
+            console.error('❌ Module exportData function not found');
+            alert('Fungsi export tidak tersedia. Silakan reload halaman.');
+          }
+        }, { capture: true });
+        
+        exportBtn.setAttribute('data-listener-verified', 'true');
+        console.log('✅ Export button listener verified');
+      }
+    }, 800);
   }
   
   function observeChanges() {

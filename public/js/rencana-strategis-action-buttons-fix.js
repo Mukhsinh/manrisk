@@ -1,7 +1,7 @@
 /**
  * RENCANA STRATEGIS - ACTION BUTTONS FIX
  * Perbaikan untuk tombol aksi yang tidak berfungsi
- * Updated: 2026-03-31
+ * Updated: 2026-04-02
  */
 
 (function() {
@@ -31,13 +31,8 @@
       return;
     }
     
-    // Remove existing listeners
-    const oldContainer = container.cloneNode(false);
-    container.parentNode.replaceChild(oldContainer, container);
-    
-    // Add new listener with event delegation
-    oldContainer.addEventListener('click', function(e) {
-      // Cari tombol yang diklik (bisa icon atau button)
+    // Add event delegation untuk action buttons di tabel
+    container.addEventListener('click', function(e) {
       const btn = e.target.closest('.btn-action-view, .btn-action-edit, .btn-action-delete');
       
       if (!btn) return;
@@ -60,21 +55,22 @@
       btn.disabled = true;
       
       // Panggil fungsi dari module
-      if (window.RencanaStrategisModule) {
+      const module = window.RencanaStrategisModule || window.RSCore;
+      if (module) {
         switch(action) {
           case 'view':
-            if (typeof window.RencanaStrategisModule.viewDetail === 'function') {
-              window.RencanaStrategisModule.viewDetail(id);
+            if (typeof module.viewDetail === 'function') {
+              module.viewDetail(id);
             }
             break;
           case 'edit':
-            if (typeof window.RencanaStrategisModule.startEdit === 'function') {
-              window.RencanaStrategisModule.startEdit(id);
+            if (typeof module.edit === 'function') {
+              module.edit(id);
             }
             break;
           case 'delete':
-            if (typeof window.RencanaStrategisModule.deleteRencana === 'function') {
-              window.RencanaStrategisModule.deleteRencana(id);
+            if (typeof module.delete === 'function') {
+              module.delete(id);
             }
             break;
         }
@@ -90,66 +86,22 @@
     console.log('✅ Event delegation setup complete');
   }
   
-  // Setup tombol di header
+  // Setup tombol di header - TIDAK menambahkan listener baru
+  // Hanya verifikasi bahwa tombol ada
   function setupHeaderButtons() {
     const refreshBtn = document.getElementById('rs-refresh-btn');
     const exportBtn = document.getElementById('rs-export-btn');
     
     if (refreshBtn) {
-      refreshBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        console.log('🔄 Refresh button clicked');
-        if (window.RencanaStrategisModule && typeof window.RencanaStrategisModule.refreshData === 'function') {
-          window.RencanaStrategisModule.refreshData();
-        }
-      });
+      console.log('✅ Refresh button ditemukan');
+    } else {
+      console.warn('⚠️ Refresh button tidak ditemukan');
     }
     
     if (exportBtn) {
-      exportBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        console.log('📥 Export button clicked');
-        if (window.RencanaStrategisModule && typeof window.RencanaStrategisModule.exportData === 'function') {
-          window.RencanaStrategisModule.exportData();
-        }
-      });
-    }
-  }
-  
-  // Setup tombol di form
-  function setupFormButtons() {
-    const toggleBtn = document.getElementById('rs-toggle-form');
-    const resetBtn = document.getElementById('rs-reset-btn');
-    const cancelBtn = document.getElementById('rs-cancel-edit');
-    
-    if (toggleBtn) {
-      toggleBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        console.log('🔽 Toggle form clicked');
-        if (window.RencanaStrategisModule && typeof window.RencanaStrategisModule.toggleForm === 'function') {
-          window.RencanaStrategisModule.toggleForm();
-        }
-      });
-    }
-    
-    if (resetBtn) {
-      resetBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        console.log('🔄 Reset form clicked');
-        if (window.RencanaStrategisModule && typeof window.RencanaStrategisModule.resetForm === 'function') {
-          window.RencanaStrategisModule.resetForm();
-        }
-      });
-    }
-    
-    if (cancelBtn) {
-      cancelBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        console.log('❌ Cancel edit clicked');
-        if (window.RencanaStrategisModule && typeof window.RencanaStrategisModule.cancelEdit === 'function') {
-          window.RencanaStrategisModule.cancelEdit();
-        }
-      });
+      console.log('✅ Export button ditemukan');
+    } else {
+      console.warn('⚠️ Export button tidak ditemukan');
     }
   }
   
@@ -164,7 +116,6 @@
           // Re-setup buttons setelah DOM berubah
           setTimeout(() => {
             setupHeaderButtons();
-            setupFormButtons();
           }, 100);
         }
       });
@@ -190,7 +141,6 @@
         setTimeout(() => {
           setupEventDelegation();
           setupHeaderButtons();
-          setupFormButtons();
           setupMutationObserver();
         }, 500);
       });
@@ -198,7 +148,6 @@
       setTimeout(() => {
         setupEventDelegation();
         setupHeaderButtons();
-        setupFormButtons();
         setupMutationObserver();
       }, 500);
     }
@@ -211,8 +160,7 @@
   window.RencanaStrategisActionButtonsFix = {
     reinit: init,
     setupEventDelegation: setupEventDelegation,
-    setupHeaderButtons: setupHeaderButtons,
-    setupFormButtons: setupFormButtons
+    setupHeaderButtons: setupHeaderButtons
   };
   
   console.log('✅ Rencana Strategis Action Buttons Fix loaded');

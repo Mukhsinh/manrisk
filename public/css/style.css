@@ -5251,3 +5251,77 @@ ced Green Button for Visi Misi */
     background-image: none !important;
     color: #495057 !important;
 }
+
+/* ========================================
+   RENCANA STRATEGIS - BUTTON FIX
+   Memperbaiki tampilan dan fungsi tombol Refresh dan Unduh Laporan
+   ======================================== */
+
+/* Tombol Refresh dan Export */
+#rs-refresh-btn,
+#rs-export-btn {
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#rs-refresh-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+}
+
+#rs-export-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(34, 197, 94, 0.3);
+}
+
+#rs-refresh-btn:active,
+#rs-export-btn:active {
+  transform: translateY(0);
+}
+
+#rs-refresh-btn:disabled,
+#rs-export-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Spinner animation untuk loading state */
+#rs-refresh-btn .fa-spinner,
+#rs-export-btn .fa-spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive - Mobile */
+@media (max-width: 768px) {
+  #rs-refresh-btn,
+  #rs-export-btn {
+    min-width: auto !important;
+    padding: 0.5rem 0.75rem;
+  }
+  
+  #rs-refresh-btn span,
+  #rs-export-btn span {
+    display: none;
+  }
+}
+
+/* Toast notification styling */
+#rs-toast {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+#rs-toast button:hover {
+  opacity: 1 !important;
+}

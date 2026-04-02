@@ -51,49 +51,58 @@
   font-size: 0.9rem;
 }
 
-/* Stat Cards - Modern Horizontal Design */
+/* Stat Cards - Modern Minimalis Fresh Design */
 .rencana-strategis-wrapper .row.g-3.mb-4 > div > .card {
   border: none !important;
-  border-radius: 12px !important;
+  border-radius: 16px !important;
   overflow: hidden;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  background: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08) !important;
 }
 
 .rencana-strategis-wrapper .row.g-3.mb-4 > div > .card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(0,0,0,0.12) !important;
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.15) !important;
 }
 
 .rencana-strategis-wrapper .row.g-3.mb-4 .card-body {
-  padding: 0 !important;
+  padding: 1.5rem !important;
 }
 
-.rencana-strategis-wrapper .row.g-3.mb-4 .card-body h3 {
-  font-size: 1.75rem !important;
+.rencana-strategis-wrapper .row.g-3.mb-4 .card-body h2 {
+  font-size: 2.5rem !important;
   font-weight: 700 !important;
-  margin-bottom: 0 !important;
-  line-height: 1.2 !important;
+  margin-bottom: 0.25rem !important;
+  line-height: 1 !important;
+  color: white !important;
 }
 
 .rencana-strategis-wrapper .row.g-3.mb-4 .card-body p {
-  font-size: 0.85rem !important;
+  font-size: 0.9rem !important;
   font-weight: 500 !important;
-  margin-bottom: 0.25rem !important;
+  margin-bottom: 0 !important;
+  color: white !important;
+  opacity: 0.9 !important;
 }
 
-.rencana-strategis-wrapper .row.g-3.mb-4 .card-body small {
-  font-size: 0.75rem !important;
-  opacity: 0.8;
+.rencana-strategis-wrapper .row.g-3.mb-4 .card-body .badge {
+  font-size: 0.7rem !important;
+  font-weight: 600 !important;
+  padding: 0.25rem 0.5rem !important;
 }
 
-/* Stat Card Icon Container */
-.rencana-strategis-wrapper .row.g-3.mb-4 .flex-shrink-0 {
-  min-width: 80px !important;
+/* Icon container dalam kartu */
+.rencana-strategis-wrapper .row.g-3.mb-4 .p-2.rounded-3 {
+  width: 48px !important;
+  height: 48px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
-.rencana-strategis-wrapper .row.g-3.mb-4 .flex-grow-1 {
-  padding: 1rem !important;
+.rencana-strategis-wrapper .row.g-3.mb-4 .p-2.rounded-3 i {
+  font-size: 1.5rem !important;
+  color: white !important;
 }
 
 /* Main Table Card */
@@ -130,77 +139,77 @@
   display: inline-flex !important;
 }
 
-/* Tombol Header - ICON ONLY (TANPA TEKS) - WARNA SOLID CERAH */
+/* Tombol Header - DENGAN TEKS DAN ICON - WARNA SOLID CERAH DARI AWAL */
 .rencana-strategis-wrapper .card-header .btn {
-  border-radius: 12px !important;
-  font-weight: 700 !important;
-  padding: 0 !important;
-  min-width: 48px !important;
-  min-height: 48px !important;
-  max-width: 48px !important;
-  max-height: 48px !important;
-  font-size: 0 !important; /* HIDE TEXT */
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+  padding: 0.6rem 1.25rem !important;
+  font-size: 0.9rem !important;
+  transition: all 0.2s ease !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
+  gap: 0.5rem !important;
   border: none !important;
-  overflow: hidden !important;
   white-space: nowrap !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
   cursor: pointer !important;
 }
 
-/* Icon di tombol header - HANYA ICON TERLIHAT */
+/* Icon di tombol header */
 .rencana-strategis-wrapper .card-header .btn i {
-  font-size: 1.3rem !important;
+  font-size: 1rem !important;
   font-weight: 900 !important;
   display: inline-block !important;
-  vertical-align: middle !important;
   line-height: 1 !important;
   margin: 0 !important;
   color: white !important;
 }
 
-/* Tombol Refresh - BIRU CERAH SOLID (LEBIH TERANG) */
+/* Tombol Refresh - BIRU CERAH SOLID DARI AWAL */
 .rencana-strategis-wrapper .card-header #rs-refresh-btn,
 .rencana-strategis-wrapper .card-header .btn-outline-primary,
 .rencana-strategis-wrapper .card-header .btn-primary {
   background: #3b82f6 !important;
   border: none !important;
   color: white !important;
-  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4) !important;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3) !important;
 }
 
 .rencana-strategis-wrapper .card-header #rs-refresh-btn:hover,
 .rencana-strategis-wrapper .card-header .btn-outline-primary:hover,
 .rencana-strategis-wrapper .card-header .btn-primary:hover {
   background: #2563eb !important;
-  transform: translateY(-3px) scale(1.08) !important;
-  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.5) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4) !important;
 }
 
-/* Tombol Unduh Laporan - HIJAU CERAH SOLID (LEBIH TERANG) */
+/* Tombol Unduh Laporan - HIJAU CERAH SOLID DARI AWAL */
 .rencana-strategis-wrapper .card-header #rs-export-btn,
 .rencana-strategis-wrapper .card-header .btn-outline-success,
 .rencana-strategis-wrapper .card-header .btn-success {
   background: #10b981 !important;
   border: none !important;
   color: white !important;
-  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4) !important;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3) !important;
 }
 
 .rencana-strategis-wrapper .card-header #rs-export-btn:hover,
 .rencana-strategis-wrapper .card-header .btn-outline-success:hover,
 .rencana-strategis-wrapper .card-header .btn-success:hover {
   background: #059669 !important;
-  transform: translateY(-3px) scale(1.08) !important;
-  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.5) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4) !important;
 }
 
 .rencana-strategis-wrapper .card-header .btn:active {
-  transform: scale(0.95) translateY(0) !important;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2) !important;
+  transform: scale(0.98) translateY(0) !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Pastikan teks terlihat */
+.rencana-strategis-wrapper .card-header .btn span {
+  color: white !important;
+  font-weight: 600 !important;
 }
 
 /* Table Styles */
@@ -209,7 +218,7 @@
 }
 
 .rencana-strategis-wrapper .table thead {
-  background: #f8fafc !important;
+  background: #1e3a8a !important;
 }
 
 .rencana-strategis-wrapper .table th {
@@ -217,16 +226,16 @@
   font-size: 0.85rem !important;
   text-transform: uppercase !important;
   letter-spacing: 0.5px !important;
-  color: #1f2937 !important;
+  color: white !important;
   padding: 1rem !important;
-  border-bottom: 2px solid #e2e8f0 !important;
+  border-bottom: 2px solid #1e40af !important;
   white-space: nowrap;
 }
 
-/* ENHANCED: Icon di header tabel - lebih jelas dan terlihat */
+/* ENHANCED: Icon di header tabel - putih dan terlihat jelas */
 .rencana-strategis-wrapper .table th i {
   font-size: 1.1rem !important;
-  color: #3b82f6 !important;
+  color: white !important;
   margin-right: 0.6rem !important;
   font-weight: 900 !important;
   display: inline-block !important;
@@ -251,64 +260,71 @@
   background-color: #f8fafc !important;
 }
 
-/* Kode Badge */
-.rencana-strategis-wrapper .badge.bg-light.text-dark {
+/* Kode Badge - TAMPIL JELAS DAN TERLIHAT */
+.rencana-strategis-wrapper .badge.bg-light.text-dark,
+.rencana-strategis-wrapper table .badge.bg-light.text-dark {
   background: #f1f5f9 !important;
-  color: #475569 !important;
-  font-weight: 600 !important;
-  font-size: 0.8rem !important;
-  padding: 0.4rem 0.75rem !important;
+  color: #1e293b !important;
+  font-weight: 700 !important;
+  font-size: 0.85rem !important;
+  padding: 0.45rem 0.75rem !important;
   border-radius: 6px !important;
-  border: 1px solid #e2e8f0 !important;
-}
-
-/* Status Badges - Fixed overflow */
-.rencana-strategis-wrapper .badge.bg-success,
-.rencana-strategis-wrapper .badge.bg-warning,
-.rencana-strategis-wrapper .badge.bg-secondary,
-.rencana-strategis-wrapper .badge {
+  border: 1px solid #cbd5e1 !important;
   display: inline-block !important;
   max-width: 100% !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
+  overflow: visible !important;
   white-space: nowrap !important;
-  font-weight: 500 !important;
-  padding: 0.3rem 0.5rem !important;
-  border-radius: 12px !important;
-  font-size: 0.7rem !important;
+  font-family: 'Courier New', monospace !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Status Badges - TIDAK OVERFLOW, SOLID COLORS, DI DALAM TABEL */
+.rencana-strategis-wrapper table .badge,
+.rencana-strategis-wrapper .table .badge {
+  display: inline-block !important;
+  overflow: visible !important;
+  white-space: nowrap !important;
+  font-weight: 600 !important;
+  padding: 0.45rem 0.85rem !important;
+  border-radius: 8px !important;
+  font-size: 0.8rem !important;
   vertical-align: middle !important;
-  box-sizing: border-box !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15) !important;
+  border: none !important;
+  max-width: 100% !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 .rencana-strategis-wrapper .badge.bg-success {
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  background: #10b981 !important;
   color: white !important;
 }
 
 .rencana-strategis-wrapper .badge.bg-warning {
-  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+  background: #f59e0b !important;
   color: white !important;
 }
 
 .rencana-strategis-wrapper .badge.bg-secondary {
-  background: linear-gradient(135deg, #64748b 0%, #475569 100%) !important;
+  background: #6b7280 !important;
   color: white !important;
 }
 
-/* Kode Badge - Fixed overflow */
+/* Kode Badge - TAMPIL PENUH, TIDAK OVERFLOW */
 .rencana-strategis-wrapper .badge.bg-light.text-dark {
   background: #f1f5f9 !important;
-  color: #475569 !important;
+  color: #1e293b !important;
   font-weight: 600 !important;
-  font-size: 0.75rem !important;
-  padding: 0.35rem 0.5rem !important;
+  font-size: 0.8rem !important;
+  padding: 0.4rem 0.65rem !important;
   border-radius: 6px !important;
-  border: 1px solid #e2e8f0 !important;
+  border: 1px solid #cbd5e1 !important;
   display: inline-block !important;
-  max-width: 100% !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
+  overflow: visible !important;
   white-space: nowrap !important;
+  font-family: 'Courier New', monospace !important;
 }
 
 /* Table cell constraints to prevent overflow */
@@ -323,18 +339,24 @@
   max-width: 300px !important;
 }
 
-/* Status column specific */
-.rencana-strategis-wrapper .table td:nth-child(5) {
-  max-width: 110px !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
+/* Status column specific - TIDAK OVERFLOW, TAMPIL DI DALAM TABEL */
+.rencana-strategis-wrapper .table td:nth-child(5),
+.rencana-strategis-wrapper table td:nth-child(5) {
+  min-width: 110px !important;
+  max-width: 130px !important;
+  overflow: visible !important;
+  padding: 0.75rem 1rem !important;
+  vertical-align: middle !important;
 }
 
-/* Kode column specific */
-.rencana-strategis-wrapper .table td:nth-child(1) {
-  max-width: 130px !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
+/* Kode column specific - TAMPIL PENUH DAN JELAS */
+.rencana-strategis-wrapper .table td:nth-child(1),
+.rencana-strategis-wrapper table td:nth-child(1) {
+  min-width: 120px !important;
+  max-width: 150px !important;
+  overflow: visible !important;
+  padding: 0.75rem 1rem !important;
+  vertical-align: middle !important;
 }
 
 /* Nama Rencana column - FIXED OVERFLOW */
@@ -364,10 +386,10 @@
   line-height: 1.4 !important;
 }
 
-/* Action column - ensure buttons stay in line (TANPA EDIT) */
+/* Action column - ensure buttons stay in line (DENGAN EDIT) */
 .rencana-strategis-wrapper .table td:nth-child(6) {
-  min-width: 100px !important;
-  max-width: 120px !important;
+  min-width: 140px !important;
+  max-width: 160px !important;
   white-space: nowrap !important;
   padding: 0.75rem 1rem !important;
 }
@@ -396,11 +418,13 @@
   justify-content: center !important;
 }
 
-/* Reset semua tombol aksi - ICON ONLY (HANYA VIEW & DELETE) */
+/* Reset semua tombol aksi - ICON ONLY (VIEW, EDIT, DELETE) */
 .rencana-strategis-wrapper .btn-action-view,
+.rencana-strategis-wrapper .btn-action-edit,
 .rencana-strategis-wrapper .btn-action-delete,
 .rencana-strategis-wrapper .rs-action-btn,
 .rencana-strategis-wrapper table .btn-action-view,
+.rencana-strategis-wrapper table .btn-action-edit,
 .rencana-strategis-wrapper table .btn-action-delete {
   padding: 0.5rem !important;
   border-radius: 8px !important;
@@ -418,10 +442,13 @@
   font-size: 0 !important; /* HIDE TEXT */
   overflow: hidden !important;
   white-space: nowrap !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 /* Icon di tombol aksi - HANYA ICON TERLIHAT */
 .rencana-strategis-wrapper .btn-action-view i,
+.rencana-strategis-wrapper .btn-action-edit i,
 .rencana-strategis-wrapper .btn-action-delete i,
 .rencana-strategis-wrapper .rs-action-btn i {
   font-size: 1.1rem !important;
@@ -430,6 +457,8 @@
   color: white !important;
   margin: 0 !important;
   display: inline-block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 /* Tombol View - BIRU */
@@ -447,6 +476,19 @@
 
 /* Tombol Edit - DIHAPUS (TIDAK DIGUNAKAN LAGI) */
 
+/* Tombol Edit - BIRU */
+.rencana-strategis-wrapper .btn-action-edit,
+.rencana-strategis-wrapper .rs-action-btn[data-action="edit"] {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%) !important;
+}
+
+.rencana-strategis-wrapper .btn-action-edit:hover,
+.rencana-strategis-wrapper .rs-action-btn[data-action="edit"]:hover {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4) !important;
+}
+
 /* Tombol Delete - MERAH */
 .rencana-strategis-wrapper .btn-action-delete,
 .rencana-strategis-wrapper .rs-action-btn[data-action="delete"] {
@@ -462,6 +504,7 @@
 
 /* Active state */
 .rencana-strategis-wrapper .btn-action-view:active,
+.rencana-strategis-wrapper .btn-action-edit:active,
 .rencana-strategis-wrapper .btn-action-delete:active,
 .rencana-strategis-wrapper .rs-action-btn:active {
   transform: scale(0.95) translateY(0) !important;
@@ -868,38 +911,48 @@
    BADGE OVERFLOW FIX - CRITICAL
    ============================================ */
 
-/* Ensure all badges in table don't overflow */
-.rencana-strategis-wrapper table .badge {
+/* Ensure all badges in table don't overflow and stay inside */
+.rencana-strategis-wrapper table .badge,
+.rencana-strategis-wrapper .table tbody .badge {
   display: inline-block !important;
   max-width: 100% !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
   white-space: nowrap !important;
+  vertical-align: middle !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Status column cell - PASTIKAN BADGE DI DALAM */
+.rencana-strategis-wrapper table td:nth-child(5),
+.rencana-strategis-wrapper .table tbody td:nth-child(5) {
+  min-width: 110px !important;
+  max-width: 130px !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  position: relative !important;
   vertical-align: middle !important;
 }
 
-/* Status column cell */
-.rencana-strategis-wrapper table td:nth-child(5) {
-  min-width: 80px !important;
-  max-width: 110px !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
+/* Kode column cell - PASTIKAN BADGE TERLIHAT */
+.rencana-strategis-wrapper table td:nth-child(1),
+.rencana-strategis-wrapper .table tbody td:nth-child(1) {
+  min-width: 120px !important;
+  max-width: 150px !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  position: relative !important;
+  vertical-align: middle !important;
 }
 
-/* Kode column cell */
-.rencana-strategis-wrapper table td:nth-child(1) {
-  min-width: 90px !important;
-  max-width: 130px !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-}
-
-/* Action column - HANYA 2 TOMBOL (VIEW & DELETE) */
+/* Action column - HANYA 3 TOMBOL (VIEW, EDIT, DELETE) */
 .rencana-strategis-wrapper table td:nth-child(6) {
-  min-width: 100px !important;
-  max-width: 120px !important;
+  min-width: 140px !important;
+  max-width: 160px !important;
   white-space: nowrap !important;
   padding: 0.5rem 0.75rem !important;
+  vertical-align: middle !important;
 }
 
 /* Table wrapper for horizontal scroll on small screens */

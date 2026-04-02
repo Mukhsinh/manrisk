@@ -1,0 +1,78 @@
+/**
+ * RENCANA STRATEGIS - BUTTON FIXES
+ * Perbaikan styling untuk tombol Refresh dan Unduh Laporan
+ */
+
+/* Tombol Refresh dan Export di header tabel */
+#rs-refresh-btn,
+#rs-export-btn {
+  font-weight: 600;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+#rs-refresh-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+}
+
+#rs-export-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(34, 197, 94, 0.3);
+}
+
+#rs-refresh-btn:active,
+#rs-export-btn:active {
+  transform: translateY(0);
+}
+
+#rs-refresh-btn:disabled,
+#rs-export-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Animasi spinner untuk loading state */
+#rs-refresh-btn .fa-spinner,
+#rs-export-btn .fa-spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive: Hide text on small screens, show icon only */
+@media (max-width: 768px) {
+  #rs-refresh-btn span,
+  #rs-export-btn span {
+    display: none;
+  }
+  
+  #rs-refresh-btn,
+  #rs-export-btn {
+    min-width: 45px !important;
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+/* Ensure buttons are visible and clickable */
+#rs-refresh-btn,
+#rs-export-btn {
+  pointer-events: auto;
+  cursor: pointer;
+  z-index: 1;
+}
+
+/* Button group spacing */
+.card-header .d-flex.gap-2 {
+  gap: 0.5rem !important;
+}

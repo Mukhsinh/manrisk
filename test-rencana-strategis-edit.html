@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Tombol Edit & Kartu Skor - Rencana Strategis</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/rencana-strategis-minimalis.css">
+  <style>
+    body { background: #f3f4f6; }
+    .test-info {
+      background: white;
+      border-left: 4px solid #3b82f6;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container py-4">
+    <div class="test-info">
+      <h4><i class="fas fa-flask me-2 text-primary"></i>Test Rencana Strategis</h4>
+      <p class="mb-0">Test fungsi tombol edit dan tampilan kartu skor putih minimalis</p>
+    </div>
+    
+    <div id="rencana-strategis-content"></div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/rencana-strategis.js"></script>
+  <script src="/js/rencana-strategis-debug.js"></script>
+  <script src="/js/rencana-strategis-edit-fix-final.js"></script>
+  
+  <script>
+    // Mock data untuk testing
+    window.apiCall = async function(endpoint, options = {}) {
+      console.log('📡 Mock API call:', endpoint);
+      
+      if (endpoint === '/api/rencana-strategis') {
+        return [
+          {
+            id: 'test-1',
+            kode: 'RS-2026-001',
+            nama_rencana: 'Peningkatan Kualitas Layanan Publik',
+            deskripsi: 'Meningkatkan kualitas layanan publik melalui digitalisasi dan pelatihan SDM',
+            target: 'Mencapai indeks kepuasan masyarakat 85%',
+            status: 'Aktif',
+            periode_mulai: '2026-01-01',
+            periode_selesai: '2026-12-31',
+            visi_misi_id: 'misi-1|0|Misi Test 1'
+          },
+          {
+            id: 'test-2',
+            kode: 'RS-2026-002',
+            nama_rencana: 'Optimalisasi Anggaran Daerah',
+            deskripsi: 'Mengoptimalkan penggunaan anggaran untuk program prioritas',
+            target: 'Efisiensi anggaran 20%',
+            status: 'Draft',
+            periode_mulai: '2026-02-01',
+            periode_selesai: '2026-11-30',
+            visi_misi_id: 'misi-1|1|Misi Test 2'
+          },
+          {
+            id: 'test-3',
+            kode: 'RS-2025-003',
+            nama_rencana: 'Pembangunan Infrastruktur Digital',
+            deskripsi: 'Membangun infrastruktur digital untuk smart city',
+            target: 'Coverage 90% wilayah',
+            status: 'Selesai',
+            periode_mulai: '2025-01-01',
+            periode_selesai: '2025-12-31',
+            visi_misi_id: ''
+          }
+        ];
+      }
+      
+      if (endpoint === '/api/visi-misi') {
+        return [
+          {
+            id: 'misi-1',
+            misi: '1. Misi Test 1\n2. Misi Test 2\n3. Misi Test 3'
+          }
+        ];
+      }
+      
+      if (endpoint.includes('/api/rencana-strategis/') && options.method === 'PUT') {
+        console.log('✅ Mock UPDATE berhasil');
+        return { success: true, message: 'Data berhasil diupdate' };
+      }
+      
+      return [];
+    };
+    
+    // Load module
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('🚀 Starting test...');
+      console.log('📋 Instruksi test:');
+      console.log('1. Cek kartu skor - harus PUTIH dengan border warna dan NILAI TERLIHAT');
+      console.log('2. Klik tombol Edit (orange) di tabel');
+      console.log('3. Form harus terisi dengan data yang dipilih');
+      console.log('4. Edit data dan klik Update Data');
+      console.log('5. Cek console untuk log detail');
+      RencanaStrategisModule.load();
+    });
+  </script>
+</body>
+</html>

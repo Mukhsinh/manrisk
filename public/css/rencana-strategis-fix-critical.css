@@ -1,0 +1,340 @@
+/**
+ * RENCANA STRATEGIS - CRITICAL FIXES
+ * Perbaikan untuk kolom kode, badge status, dan tombol edit
+ * Version: 1.0
+ */
+
+/* ============================================
+   FIX 1: KOLOM KODE - PASTIKAN TERLIHAT
+   ============================================ */
+
+/* Kolom kode harus terlihat dengan jelas */
+#rencana-strategis .table td:nth-child(1),
+#rencana-strategis .table tbody td:nth-child(1),
+.rencana-strategis-wrapper .table td:nth-child(1),
+.rencana-strategis-wrapper .table tbody td:nth-child(1) {
+  min-width: 120px !important;
+  max-width: 150px !important;
+  padding: 0.75rem 1rem !important;
+  overflow: visible !important;
+  position: relative !important;
+  vertical-align: middle !important;
+  display: table-cell !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Badge kode harus terlihat */
+#rencana-strategis .table td:nth-child(1) .badge,
+#rencana-strategis .table tbody td:nth-child(1) .badge,
+.rencana-strategis-wrapper .table td:nth-child(1) .badge,
+.rencana-strategis-wrapper .table tbody td:nth-child(1) .badge {
+  display: inline-block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  background: #f1f5f9 !important;
+  color: #1e293b !important;
+  font-weight: 700 !important;
+  font-size: 0.85rem !important;
+  padding: 0.45rem 0.75rem !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 6px !important;
+  font-family: 'Courier New', monospace !important;
+  white-space: nowrap !important;
+  overflow: visible !important;
+  max-width: 100% !important;
+}
+
+/* ============================================
+   FIX 2: BADGE STATUS - DI DALAM TABEL
+   ============================================ */
+
+/* Kolom status harus contain badge dengan baik */
+#rencana-strategis .table td:nth-child(5),
+#rencana-strategis .table tbody td:nth-child(5),
+.rencana-strategis-wrapper .table td:nth-child(5),
+.rencana-strategis-wrapper .table tbody td:nth-child(5) {
+  min-width: 110px !important;
+  max-width: 130px !important;
+  padding: 0.75rem 1rem !important;
+  overflow: visible !important;
+  position: relative !important;
+  vertical-align: middle !important;
+  display: table-cell !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Badge status harus di dalam tabel */
+#rencana-strategis .table td:nth-child(5) .badge,
+#rencana-strategis .table tbody td:nth-child(5) .badge,
+.rencana-strategis-wrapper .table td:nth-child(5) .badge,
+.rencana-strategis-wrapper .table tbody td:nth-child(5) .badge {
+  display: inline-block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  white-space: nowrap !important;
+  overflow: visible !important;
+  max-width: 100% !important;
+  position: relative !important;
+  z-index: 1 !important;
+  font-size: 0.8rem !important;
+  padding: 0.45rem 0.85rem !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15) !important;
+}
+
+/* Wrapper untuk badge status */
+#rencana-strategis .table td:nth-child(5) > div,
+.rencana-strategis-wrapper .table td:nth-child(5) > div {
+  display: inline-block !important;
+  max-width: 100% !important;
+  overflow: visible !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* ============================================
+   FIX 3: TOMBOL EDIT - PASTIKAN BERFUNGSI
+   ============================================ */
+
+/* Kolom aksi dengan 3 tombol (View, Edit, Delete) */
+#rencana-strategis .table td:nth-child(6),
+#rencana-strategis .table tbody td:nth-child(6),
+.rencana-strategis-wrapper .table td:nth-child(6),
+.rencana-strategis-wrapper .table tbody td:nth-child(6) {
+  min-width: 140px !important;
+  max-width: 160px !important;
+  padding: 0.5rem 0.75rem !important;
+  white-space: nowrap !important;
+  vertical-align: middle !important;
+  text-align: center !important;
+  display: table-cell !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Semua tombol aksi harus terlihat dan berfungsi */
+#rencana-strategis .btn-action-view,
+#rencana-strategis .btn-action-edit,
+#rencana-strategis .btn-action-delete,
+#rencana-strategis .rs-action-btn,
+.rencana-strategis-wrapper .btn-action-view,
+.rencana-strategis-wrapper .btn-action-edit,
+.rencana-strategis-wrapper .btn-action-delete,
+.rencana-strategis-wrapper .rs-action-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  min-width: 36px !important;
+  min-height: 36px !important;
+  max-width: 36px !important;
+  max-height: 36px !important;
+  padding: 0.5rem !important;
+  border-radius: 8px !important;
+  border: none !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
+  font-size: 0 !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  pointer-events: auto !important;
+}
+
+/* Icon di tombol aksi */
+#rencana-strategis .btn-action-view i,
+#rencana-strategis .btn-action-edit i,
+#rencana-strategis .btn-action-delete i,
+#rencana-strategis .rs-action-btn i,
+.rencana-strategis-wrapper .btn-action-view i,
+.rencana-strategis-wrapper .btn-action-edit i,
+.rencana-strategis-wrapper .btn-action-delete i,
+.rencana-strategis-wrapper .rs-action-btn i {
+  font-size: 1.1rem !important;
+  line-height: 1 !important;
+  font-weight: 900 !important;
+  color: white !important;
+  margin: 0 !important;
+  display: inline-block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Tombol View - Biru */
+#rencana-strategis .btn-action-view,
+#rencana-strategis .rs-action-btn[data-action="view"],
+.rencana-strategis-wrapper .btn-action-view,
+.rencana-strategis-wrapper .rs-action-btn[data-action="view"] {
+  background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%) !important;
+}
+
+#rencana-strategis .btn-action-view:hover,
+#rencana-strategis .rs-action-btn[data-action="view"]:hover,
+.rencana-strategis-wrapper .btn-action-view:hover,
+.rencana-strategis-wrapper .rs-action-btn[data-action="view"]:hover {
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%) !important;
+  transform: translateY(-2px) scale(1.05) !important;
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.4) !important;
+}
+
+/* Tombol Edit - Kuning/Orange */
+#rencana-strategis .btn-action-edit,
+#rencana-strategis .rs-action-btn[data-action="edit"],
+.rencana-strategis-wrapper .btn-action-edit,
+.rencana-strategis-wrapper .rs-action-btn[data-action="edit"] {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+#rencana-strategis .btn-action-edit:hover,
+#rencana-strategis .rs-action-btn[data-action="edit"]:hover,
+.rencana-strategis-wrapper .btn-action-edit:hover,
+.rencana-strategis-wrapper .rs-action-btn[data-action="edit"]:hover {
+  background: linear-gradient(135deg, #d97706 0%, #b45309 100%) !important;
+  transform: translateY(-2px) scale(1.05) !important;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4) !important;
+}
+
+/* Tombol Delete - Merah */
+#rencana-strategis .btn-action-delete,
+#rencana-strategis .rs-action-btn[data-action="delete"],
+.rencana-strategis-wrapper .btn-action-delete,
+.rencana-strategis-wrapper .rs-action-btn[data-action="delete"] {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important;
+}
+
+#rencana-strategis .btn-action-delete:hover,
+#rencana-strategis .rs-action-btn[data-action="delete"]:hover,
+.rencana-strategis-wrapper .btn-action-delete:hover,
+.rencana-strategis-wrapper .rs-action-btn[data-action="delete"]:hover {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%) !important;
+  transform: translateY(-2px) scale(1.05) !important;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4) !important;
+}
+
+/* Active state */
+#rencana-strategis .btn-action-view:active,
+#rencana-strategis .btn-action-edit:active,
+#rencana-strategis .btn-action-delete:active,
+#rencana-strategis .rs-action-btn:active,
+.rencana-strategis-wrapper .btn-action-view:active,
+.rencana-strategis-wrapper .btn-action-edit:active,
+.rencana-strategis-wrapper .btn-action-delete:active,
+.rencana-strategis-wrapper .rs-action-btn:active {
+  transform: scale(0.95) translateY(0) !important;
+}
+
+/* Container tombol aksi */
+#rencana-strategis .table td:nth-child(6) .d-flex,
+#rencana-strategis .table td:nth-child(6) [role="group"],
+.rencana-strategis-wrapper .table td:nth-child(6) .d-flex,
+.rencana-strategis-wrapper .table td:nth-child(6) [role="group"] {
+  display: inline-flex !important;
+  flex-wrap: nowrap !important;
+  gap: 0.5rem !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+/* ============================================
+   FIX 4: HEADER TABEL
+   ============================================ */
+
+/* Pastikan header tabel terlihat dengan baik */
+#rencana-strategis .table thead th,
+.rencana-strategis-wrapper .table thead th {
+  font-weight: 600 !important;
+  font-size: 0.85rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  color: #1f2937 !important;
+  padding: 1rem !important;
+  border-bottom: 2px solid #e2e8f0 !important;
+  white-space: nowrap !important;
+  background: #f8fafc !important;
+  vertical-align: middle !important;
+}
+
+/* Icon di header tabel */
+#rencana-strategis .table thead th i,
+.rencana-strategis-wrapper .table thead th i {
+  font-size: 1.1rem !important;
+  color: #3b82f6 !important;
+  margin-right: 0.6rem !important;
+  font-weight: 900 !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+}
+
+/* ============================================
+   FIX 5: TABLE RESPONSIVE
+   ============================================ */
+
+/* Pastikan tabel tidak overflow container */
+#rencana-strategis .table-responsive,
+.rencana-strategis-wrapper .table-responsive {
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  width: 100% !important;
+}
+
+#rencana-strategis .table,
+.rencana-strategis-wrapper .table {
+  width: 100% !important;
+  margin-bottom: 0 !important;
+  border-collapse: collapse !important;
+}
+
+/* Semua cell tabel */
+#rencana-strategis .table td,
+.rencana-strategis-wrapper .table td {
+  vertical-align: middle !important;
+  padding: 0.75rem !important;
+  font-size: 0.85rem !important;
+  color: #334155 !important;
+  border-bottom: 1px solid #f1f5f9 !important;
+}
+
+/* Hover effect pada row */
+#rencana-strategis .table tbody tr:hover,
+.rencana-strategis-wrapper .table tbody tr:hover {
+  background-color: #f8fafc !important;
+}
+
+/* ============================================
+   FIX 6: FORM EDIT - PASTIKAN TERLIHAT
+   ============================================ */
+
+/* Form section harus terlihat saat edit */
+#rencana-strategis #rs-form-section,
+.rencana-strategis-wrapper #rs-form-section {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Form body tidak boleh hidden saat edit */
+#rencana-strategis #rs-form-body:not(.d-none),
+.rencana-strategis-wrapper #rs-form-body:not(.d-none) {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Tombol edit di modal */
+#rs-detail-modal .rs-modal-edit-btn,
+#rs-detail-modal .btn-warning {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}

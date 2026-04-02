@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Edit & Kartu - Rencana Strategis</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body { background: #f3f4f6; padding: 2rem; }
+    
+    /* KARTU PUTIH MINIMALIS */
+    .stat-card {
+      background: white !important;
+      border: 2px solid #e5e7eb !important;
+      border-radius: 10px;
+      padding: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+    .stat-card-success { border-color: #10b981 !important; }
+    .stat-card-warning { border-color: #f59e0b !important; }
+    .stat-card-info { border-color: #3b82f6 !important; }
+    .stat-card-secondary { border-color: #64748b !important; }
+    
+    .stat-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .stat-card-success .stat-icon { background: #10b981; }
+    .stat-card-warning .stat-icon { background: #f59e0b; }
+    .stat-card-info .stat-icon { background: #3b82f6; }
+    .stat-card-secondary .stat-icon { background: #64748b; }
+    .stat-icon i { color: white; font-size: 1.5rem; }
+    
+    .stat-value {
+      font-size: 1.875rem !important;
+      font-weight: 700 !important;
+      color: #1f2937 !important;
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.875rem !important;
+      color: #6b7280 !important;
+      font-weight: 500;
+    }
+    
+    /* TOMBOL AKSI */
+    .btn-action-view, .btn-action-edit, .btn-action-delete {
+      width: 32px;
+      height: 32px;
+      padding: 0;
+      border: none;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: white;
+    }
+    .btn-action-view { background: #3b82f6; }
+    .btn-action-edit { background: #f59e0b; }
+    .btn-action-delete { background: #ef4444; }
+    .btn-action-view:hover { background: #2563eb; }
+    .btn-action-edit:hover { background: #d97706; }
+    .btn-action-delete:hover { background: #dc2626; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="alert alert-info">
+      <h5><i class="fas fa-info-circle me-2"></i>Panduan Test</h5>
+      <ol class="mb-0">
+        <li>Cek kartu skor: harus PUTIH dengan border warna dan NILAI TERLIHAT (bukan ungu)</li>
+        <li>Klik tombol Edit (orange) di tabel</li>
+        <li>Form harus terisi otomatis dengan data yang dipilih</li>
+        <li>Edit data dan klik "Update Data"</li>
+        <li>Buka Console (F12) untuk melihat log detail</li>
+      </ol>
+    </div>
+    
+    <div id="rencana-strategis">
+      <div id="rencana-strategis-content"></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/rencana-strategis.js"></script>
+  
+  <script>
+    // Mock API dengan data lengkap
+    window.apiCall = async function(endpoint, options = {}) {
+      console.log('📡 API:', endpoint, options.method || 'GET');
+      
+      if (endpoint === '/api/rencana-strategis') {
+        return [
+          {
+            id: 'rs-001',
+            kode: 'RS-2026-001',
+            nama_rencana: 'Peningkatan Kualitas Layanan Publik',
+            deskripsi: 'Meningkatkan kualitas layanan publik melalui digitalisasi',
+            target: 'Indeks kepuasan 85%',
+            status: 'Aktif',
+            periode_mulai: '2026-01-01',
+            periode_selesai: '2026-12-31',
+            visi_misi_id: 'misi-1|0'
+          },
+          {
+            id: 'rs-002',
+            kode: 'RS-2026-002',
+            nama_rencana: 'Optimalisasi Anggaran',
+            deskripsi: 'Mengoptimalkan penggunaan anggaran',
+            target: 'Efisiensi 20%',
+            status: 'Draft',
+            periode_mulai: '2026-02-01',
+            periode_selesai: '2026-11-30',
+            visi_misi_id: ''
+          },
+          {
+            id: 'rs-003',
+            kode: 'RS-2025-003',
+            nama_rencana: 'Infrastruktur Digital',
+            deskripsi: 'Membangun infrastruktur digital',
+            target: 'Coverage 90%',
+            status: 'Selesai',
+            periode_mulai: '2025-01-01',
+            periode_selesai: '2025-12-31',
+            visi_misi_id: ''
+          }
+        ];
+      }
+      
+      if (endpoint === '/api/visi-misi') {
+        return [{ id: 'misi-1', misi: '1. Misi Test 1\n2. Misi Test 2' }];
+      }
+      
+      if (endpoint.includes('/rencana-strategis/') && options.method === 'PUT') {
+        console.log('✅ UPDATE berhasil!');
+        alert('Data berhasil diupdate!');
+        return { success: true };
+      }
+      
+      return [];
+    };
+    
+    // Load
+    RencanaStrategisModule.load();
+  </script>
+</body>
+</html>

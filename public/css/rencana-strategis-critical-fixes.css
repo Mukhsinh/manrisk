@@ -1,0 +1,267 @@
+/**
+ * RENCANA STRATEGIS - PERBAIKAN KRITIS
+ * Memperbaiki 4 masalah utama
+ */
+
+/* ============================================
+   FIX 1: KARTU SKOR - MODERN MINIMALIS
+   ============================================ */
+
+.rencana-strategis-wrapper .row.g-3.mb-4 > div > .card {
+  border: none !important;
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.12) !important;
+}
+
+.rencana-strategis-wrapper .row.g-3.mb-4 > div > .card:hover {
+  transform: translateY(-6px) !important;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.18) !important;
+}
+
+.rencana-strategis-wrapper .row.g-3.mb-4 .card-body {
+  padding: 1.5rem !important;
+}
+
+.rencana-strategis-wrapper .row.g-3.mb-4 .card-body h2 {
+  font-size: 2.5rem !important;
+  font-weight: 700 !important;
+  margin-bottom: 0.25rem !important;
+  line-height: 1 !important;
+  color: white !important;
+}
+
+.rencana-strategis-wrapper .row.g-3.mb-4 .card-body p {
+  font-size: 0.9rem !important;
+  font-weight: 500 !important;
+  margin-bottom: 0 !important;
+  opacity: 0.95 !important;
+  color: white !important;
+}
+
+.rencana-strategis-wrapper .row.g-3.mb-4 .card-body .badge {
+  font-size: 0.7rem !important;
+  font-weight: 600 !important;
+  padding: 0.25rem 0.5rem !important;
+  background: rgba(255,255,255,0.25) !important;
+  color: white !important;
+}
+
+.rencana-strategis-wrapper .row.g-3.mb-4 .card-body .rounded-3 {
+  background: rgba(255,255,255,0.2) !important;
+  padding: 0.5rem !important;
+  border-radius: 12px !important;
+}
+
+.rencana-strategis-wrapper .row.g-3.mb-4 .card-body i {
+  color: white !important;
+  font-size: 1.5rem !important;
+}
+
+/* ============================================
+   FIX 2: TOMBOL REFRESH & UNDUH - WARNA SOLID
+   ============================================ */
+
+/* Tombol Refresh - BIRU SOLID DARI AWAL */
+#rs-refresh-btn,
+.rencana-strategis-wrapper .card-header #rs-refresh-btn {
+  background: #3b82f6 !important;
+  color: white !important;
+  border: none !important;
+  padding: 0.5rem 1rem !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  min-width: 120px !important;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.25) !important;
+  transition: all 0.2s ease !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+}
+
+#rs-refresh-btn:hover,
+.rencana-strategis-wrapper .card-header #rs-refresh-btn:hover {
+  background: #2563eb !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.35) !important;
+}
+
+#rs-refresh-btn i,
+.rencana-strategis-wrapper .card-header #rs-refresh-btn i {
+  color: white !important;
+  font-size: 1rem !important;
+}
+
+#rs-refresh-btn span,
+.rencana-strategis-wrapper .card-header #rs-refresh-btn span {
+  color: white !important;
+  font-weight: 600 !important;
+}
+
+/* Tombol Unduh Laporan - HIJAU SOLID DARI AWAL */
+#rs-export-btn,
+.rencana-strategis-wrapper .card-header #rs-export-btn {
+  background: #10b981 !important;
+  color: white !important;
+  border: none !important;
+  padding: 0.5rem 1rem !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  min-width: 150px !important;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.25) !important;
+  transition: all 0.2s ease !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+}
+
+#rs-export-btn:hover,
+.rencana-strategis-wrapper .card-header #rs-export-btn:hover {
+  background: #059669 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35) !important;
+}
+
+#rs-export-btn i,
+.rencana-strategis-wrapper .card-header #rs-export-btn i {
+  color: white !important;
+  font-size: 1rem !important;
+}
+
+#rs-export-btn span,
+.rencana-strategis-wrapper .card-header #rs-export-btn span {
+  color: white !important;
+  font-weight: 600 !important;
+}
+
+/* ============================================
+   FIX 3: TOMBOL EDIT DI MODAL - STYLING
+   ============================================ */
+
+.rs-modal-edit-btn {
+  background: #f59e0b !important;
+  color: white !important;
+  border: none !important;
+  padding: 0.5rem 1.25rem !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  transition: all 0.2s ease !important;
+}
+
+.rs-modal-edit-btn:hover {
+  background: #d97706 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3) !important;
+}
+
+.rs-modal-edit-btn i {
+  color: white !important;
+}
+
+/* ============================================
+   FIX 4: TABEL - KODE TAMPIL & BADGE TIDAK OVERFLOW
+   ============================================ */
+
+/* Kolom Kode - TAMPIL JELAS */
+.rencana-strategis-wrapper table td:nth-child(1) {
+  min-width: 110px !important;
+  max-width: 140px !important;
+  padding: 0.75rem 1rem !important;
+  overflow: visible !important;
+}
+
+.rencana-strategis-wrapper table td:nth-child(1) .badge {
+  display: inline-block !important;
+  max-width: 100% !important;
+  overflow: visible !important;
+  white-space: nowrap !important;
+  font-family: monospace !important;
+  font-size: 0.8rem !important;
+  padding: 0.4rem 0.65rem !important;
+  font-weight: 600 !important;
+}
+
+/* Kolom Status - BADGE TIDAK OVERFLOW */
+.rencana-strategis-wrapper table td:nth-child(5) {
+  min-width: 100px !important;
+  max-width: 120px !important;
+  padding: 0.75rem 1rem !important;
+  overflow: hidden !important;
+}
+
+.rencana-strategis-wrapper table td:nth-child(5) .badge {
+  display: inline-block !important;
+  max-width: 100px !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  font-size: 0.75rem !important;
+  padding: 0.4rem 0.7rem !important;
+  font-weight: 600 !important;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15) !important;
+}
+
+.rencana-strategis-wrapper table td:nth-child(5) div {
+  display: inline-block !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+}
+
+/* Status Badge Colors - SOLID */
+.rencana-strategis-wrapper table .badge[style*="background: #10b981"] {
+  background: #10b981 !important;
+  color: white !important;
+}
+
+.rencana-strategis-wrapper table .badge[style*="background: #f59e0b"] {
+  background: #f59e0b !important;
+  color: white !important;
+}
+
+.rencana-strategis-wrapper table .badge[style*="background: #3b82f6"] {
+  background: #3b82f6 !important;
+  color: white !important;
+}
+
+/* Ensure table doesn't overflow */
+.rencana-strategis-wrapper .table-responsive {
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+.rencana-strategis-wrapper .table {
+  table-layout: fixed !important;
+  width: 100% !important;
+  min-width: 900px !important;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+  .rencana-strategis-wrapper .row.g-3.mb-4 > div {
+    flex: 0 0 50% !important;
+    max-width: 50% !important;
+  }
+  
+  .rencana-strategis-wrapper .row.g-3.mb-4 .card-body h2 {
+    font-size: 2rem !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .rencana-strategis-wrapper .row.g-3.mb-4 > div {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
+  
+  #rs-refresh-btn,
+  #rs-export-btn {
+    min-width: 100px !important;
+    font-size: 0.85rem !important;
+  }
+}

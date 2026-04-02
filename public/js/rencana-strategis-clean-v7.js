@@ -320,15 +320,25 @@
   
   function render() {
     const container = $('rencana-strategis-content');
-    if (!container) return;
+    if (!container) {
+      console.error('[RS v7.1] Container tidak ditemukan saat render!');
+      return;
+    }
+    
+    console.log('[RS v7.1] 🎨 Memulai render interface...');
     
     // Set background
     container.style.backgroundColor = '#f8f9fa';
     const parent = $('rencana-strategis');
-    if (parent) parent.style.backgroundColor = '#f8f9fa';
+    if (parent) {
+      parent.style.backgroundColor = '#f8f9fa';
+      parent.style.display = 'block';
+      parent.style.visibility = 'visible';
+      parent.style.opacity = '1';
+    }
     
     // CRITICAL: Use rs-v7-wrapper class for identification
-    container.innerHTML = `
+    const html = `
       <div class="rs-v7-wrapper p-3" style="background: #f8f9fa; min-height: 100%;">
         ${renderStatCards()}
         ${renderForm()}
@@ -336,7 +346,29 @@
       </div>
     `;
     
-    console.log('[RS v7.1] Rendered: Cards + Form + Table');
+    container.innerHTML = html;
+    
+    // Force reflow
+    container.offsetHeight;
+    
+    console.log('[RS v7.1] ✅ Rendered: Cards + Form + Table');
+    
+    // Verify render
+    setTimeout(() => {
+      const hasWrapper = container.querySelector('.rs-v7-wrapper');
+      const hasTable = container.querySelector('table');
+      const hasCards = container.querySelector('.row.g-3.mb-4');
+      
+      if (!hasWrapper || !hasTable || !hasCards) {
+        console.error('[RS v7.1] ❌ Render tidak sempurna!', {
+          hasWrapper: !!hasWrapper,
+          hasTable: !!hasTable,
+          hasCards: !!hasCards
+        });
+      } else {
+        console.log('[RS v7.1] ✅ Render verified successfully');
+      }
+    }, 100);
   }
   
   function renderStatCards() {
@@ -787,13 +819,160 @@
     resetForm();
   }
   
-  async function refresh() {
-    console.log('[RS v7] Refreshing...');
-    state.isInitialized = false;
-    await load();
+  function showToast(message, type = 'info') {
+    // Remove existing toast
+    const existingToast = document.getElementById('rs-toast');
+    if (existingToast) existingToast.remove();
+    
+    // Create toast
+    const bgColor = type === 'success' ? '#22c55e' : type === 'error' ? '#ef4444' : '#3b82f6';
+    const icon = type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle';
+    
+    const toast = document.createElement('div');
+    toast.id = 'rs-toast';
+    toast.style.cssText = `
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 9999;
+      min-width: 300px;
+      max-width: 500px;
+      background: ${bgColor};
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      animation: slideInRight 0.3s ease-out;
+    `;
+    
+    toast.innerHTML = `
+      <i class="fas fa-${icon} fa-lg"></i>
+      <span style="flex: 1; font-weight: 500;">${escapeHtml(message)}</span>
+      <button onclick="this.parentElement.remove()" style="background: none; border: none; color: white; font-size: 1.25rem; cursor: pointer; padding: 0; line-height: 1; opacity: 0.8;">&times;</button>
+    `;
+    
+    // Add animation CSS if not exists
+    if (!document.getElementById('rs-toast-style')) {
+      const style = document.createElement('style');
+      style.id = 'rs-toast-style';
+      style.textContent = '@keyframes slideInRight { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }';
+      document.head.appendChild(style);
+    }
+    
+    document.body.appendChild(toast);
+    
+    // Auto remove after 4 seconds
+    setTimeout(() => {
+      if (toast.parentElement) {
+        toast.style.animation = 'slideInRight 0.3s ease-out reverse';
+        setTimeout(() => toast.remove(), 300);
+      }
+    }, 4000);
   }
   
-  function edit(id) {
+  async function refresh() {
+    console.log('[RS v7] Refreshing...');
+    
+    const refreshBtn = $('rs-refresh-btn');
+    const originalHtml = refreshBtn ? refreshBtn.innerHTML : '';
+    
+    try {
+      // Show loading state
+      if (refreshBtn) {
+        refreshBtn.disabled = true;
+        refreshBtn.innerHTML = '<i class="fas fa-spinner fa-spin" style="color: white !important;"></i>';
+      }
+      
+      // Fetch fresh data
+      await fetchData();
+      
+      console.log('[RS v7] Data refreshed:', state.data.length, 'records');
+      
+      // Re-render
+      render();
+      bindEvents();
+      
+      // Show success notification
+      showToast('Data berhasil diperbarui!', 'success');
+      
+    } catch (error) {
+      console.error('[RS v7] Refresh error:', error);
+      showToast('Gagal memperbarui data: ' + error.message, 'error');
+    } finally {
+      // Restore button
+      if (refreshBtn) {
+        refreshBtn.disabled = false;
+        refreshBtn.innerHTML = originalHtml;
+      }
+    }
+  }
+  
+  async function exportData() {
+    console.log('[RS v7] Exporting data...');
+    
+    const exportBtn = $('rs-export-btn');
+    const originalHtml = exportBtn ? exportBtn.innerHTML : '';
+    
+    try {
+      // Show loading state
+      if (exportBtn) {
+        exportBtn.disabled = true;
+        exportBtn.innerHTML = '<i class="fas fa-spinner fa-spin" style="color: white !important;"></i>';
+      }
+      
+      // Get token
+      const token = localStorage.getItem('token') || window.currentSession?.access_token;
+      
+      // Fetch export
+      const response = await fetch('/api/rencana-strategis/actions/export', {
+        method: 'GET',
+        headers: token ? { 'Authorization': `Bearer ${token}` } : {}
+      });
+      
+      if (!response.ok) {
+        throw new Error('Gagal mengunduh laporan (HTTP ' + response.status + ')');
+      }
+      
+      // Get blob
+      const blob = await response.blob();
+      
+      if (blob.size === 0) {
+        throw new Error('File laporan kosong');
+      }
+      
+      // Create download
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'laporan-rencana-strategis-' + new Date().toISOString().split('T')[0] + '.xlsx';
+      document.body.appendChild(link);
+      link.click();
+      
+      // Cleanup
+      setTimeout(() => {
+        link.remove();
+        window.URL.revokeObjectURL(url);
+      }, 100);
+      
+      // Show success
+      showToast('Laporan berhasil diunduh!', 'success');
+      
+      console.log('[RS v7] Export successful');
+      
+    } catch (error) {
+      console.error('[RS v7] Export error:', error);
+      showToast('Gagal mengunduh laporan: ' + error.message, 'error');
+    } finally {
+      // Restore button
+      if (exportBtn) {
+        exportBtn.disabled = false;
+        exportBtn.innerHTML = originalHtml;
+      }
+    }
+  }
     console.log('[RS v7.1] Starting edit for ID:', id);
     
     const record = state.data.find(i => i.id === id);
@@ -920,10 +1099,6 @@
     modal.onclick = (e) => { if (e.target === modal) closeModal(); };
   }
   
-  function exportData() {
-    window.open('/api/rencana-strategis/actions/export', '_blank');
-  }
-  
   // ============================================
   // SECTION 12: NAVIGATION HANDLING
   // ============================================
@@ -959,9 +1134,14 @@
   const moduleExport = {
     load,
     refresh,
+    refreshData: refresh,
+    exportData,
     edit,
     delete: deleteRecord,
     viewDetail,
+    toggleForm,
+    resetForm,
+    cancelEdit,
     cleanup,
     version: MODULE_VERSION,
     get state() { return { ...state }; }

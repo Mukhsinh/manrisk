@@ -1,0 +1,201 @@
+/**
+ * RENCANA STRATEGIS - PERBAIKAN TAMPILAN
+ * Memastikan semua elemen terlihat dengan sempurna
+ */
+
+/* Pastikan halaman dan container terlihat */
+#rencana-strategis {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  min-height: 100vh !important;
+  background: #f8f9fa !important;
+}
+
+#rencana-strategis.active {
+  display: block !important;
+}
+
+#rencana-strategis-content {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  min-height: 400px !important;
+  width: 100% !important;
+}
+
+/* Wrapper utama */
+.rencana-strategis-wrapper,
+.rs-v7-wrapper {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 100% !important;
+  padding: 1rem !important;
+}
+
+/* Page header */
+#rencana-strategis .page-header {
+  display: block !important;
+  visibility: visible !important;
+  margin-bottom: 1.5rem !important;
+  padding: 1rem !important;
+}
+
+#rencana-strategis .page-title {
+  display: block !important;
+  visibility: visible !important;
+  color: #1f2937 !important;
+  font-size: 1.75rem !important;
+  font-weight: 700 !important;
+  margin-bottom: 0.5rem !important;
+}
+
+#rencana-strategis .page-subtitle {
+  display: block !important;
+  visibility: visible !important;
+  color: #6b7280 !important;
+  font-size: 1rem !important;
+}
+
+/* Stat cards - pastikan terlihat */
+.rencana-strategis-wrapper .row.g-3.mb-4,
+.rs-v7-wrapper .row.g-3.mb-4 {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  margin-bottom: 1.5rem !important;
+}
+
+.rencana-strategis-wrapper .row.g-3.mb-4 > div,
+.rs-v7-wrapper .row.g-3.mb-4 > div {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.rencana-strategis-wrapper .card,
+.rs-v7-wrapper .card {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  background: white !important;
+  border-radius: 12px !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+}
+
+/* Form card */
+#rs-form-section {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  margin-bottom: 1.5rem !important;
+}
+
+#rs-form-section .card-header {
+  display: flex !important;
+  visibility: visible !important;
+  background: white !important;
+  border-bottom: 1px solid #e5e7eb !important;
+  padding: 1rem 1.5rem !important;
+}
+
+#rs-form-section .card-body {
+  display: block !important;
+  visibility: visible !important;
+  background: white !important;
+  padding: 1.5rem !important;
+}
+
+#rs-form-body {
+  display: block !important;
+  visibility: visible !important;
+}
+
+#rs-form-body.d-none {
+  display: none !important;
+}
+
+/* Table card */
+.rencana-strategis-wrapper > .card.shadow-sm,
+.rs-v7-wrapper > .card.shadow-sm {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.table-responsive {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  overflow-x: auto !important;
+}
+
+.table {
+  display: table !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 100% !important;
+}
+
+.table thead {
+  display: table-header-group !important;
+  visibility: visible !important;
+}
+
+.table tbody {
+  display: table-row-group !important;
+  visibility: visible !important;
+}
+
+.table tr {
+  display: table-row !important;
+  visibility: visible !important;
+}
+
+.table th,
+.table td {
+  display: table-cell !important;
+  visibility: visible !important;
+}
+
+/* Loading spinner */
+.spinner-border {
+  display: inline-block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Form controls */
+.form-control,
+.form-select {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 100% !important;
+}
+
+/* Pastikan tidak ada elemen yang tersembunyi secara tidak sengaja */
+.rencana-strategis-wrapper *,
+.rs-v7-wrapper * {
+  visibility: visible !important;
+}
+
+/* Override any hiding styles */
+#rencana-strategis-content > * {
+  display: block !important;
+}
+
+#rencana-strategis-content > .rencana-strategis-wrapper,
+#rencana-strategis-content > .rs-v7-wrapper {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
