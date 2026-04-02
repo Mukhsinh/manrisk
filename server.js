@@ -90,50 +90,76 @@ app.get('/api/health', (req, res) => {
 });
 
 // Routes
-app.use('/api/config', require('./routes/config'));
-app.use('/api/test', require('./routes/test'));
-app.use('/api/test-data', require('./routes/test-data'));
-app.use('/api/simple', require('./routes/simple-data'));
-app.use('/api/debug-data', require('./routes/debug-data'));
-app.use('/api/debug-monitoring', require('./routes/debug-monitoring'));
-app.use('/api/debug-risk-profile', require('./routes/debug-risk-profile'));
-app.use('/api/risk-profile-simple', require('./routes/risk-profile-simple'));
+const routesToLoad = [
+  ['/api/config', './routes/config'],
+  ['/api/test', './routes/test'],
+  ['/api/test-data', './routes/test-data'],
+  ['/api/simple', './routes/simple-data'],
+  ['/api/debug-data', './routes/debug-data'],
+  ['/api/debug-monitoring', './routes/debug-monitoring'],
+  ['/api/debug-risk-profile', './routes/debug-risk-profile'],
+  ['/api/risk-profile-simple', './routes/risk-profile-simple'],
+  ['/api/auth', './routes/auth'],
+  ['/api/users', './routes/users'],
+  ['/api/user-management', './routes/user-management'],
+  ['/api/risks', './routes/risks'],
+  ['/api/risk-profile', './routes/risk-profile'],
+  ['/api/risk-profile/export', './routes/risk-profile-export'],
+  ['/api/master-data', './routes/master-data'],
+  ['/api/reports/residual-risk', './routes/residual-risk-reports'],
+  ['/api/reports', './routes/reports'],
+  ['/api/dashboard', './routes/dashboard'],
+  ['/api/visi-misi', './routes/visi-misi'],
+  ['/api/rencana-strategis', './routes/rencana-strategis'],
+  ['/api/renstra', './routes/renstra'],
+  ['/api/monitoring-evaluasi', './routes/monitoring-evaluasi'],
+  ['/api/peluang', './routes/peluang'],
+  ['/api/kri', './routes/kri'],
+  ['/api/ews', './routes/ews'],
+  ['/api/organizations', './routes/organizations'],
+  ['/api/pengaturan', './routes/pengaturan'],
+  ['/api/ai-assistant', './routes/ai-assistant-direct'],
+  ['/api/analisis-swot', './routes/analisis-swot'],
+  ['/api/diagram-kartesius', './routes/diagram-kartesius'],
+  ['/api/matriks-tows', './routes/matriks-tows'],
+  ['/api/sasaran-strategi', './routes/sasaran-strategi'],
+  ['/api/strategic-map', './routes/strategic-map'],
+  ['/api/indikator-kinerja-utama', './routes/indikator-kinerja-utama'],
+  ['/api/evaluasi-iku', './routes/evaluasi-iku'],
+  ['/api/evaluasi-iku-bulanan', './routes/evaluasi-iku-bulanan'],
+  ['/api/notifications', './routes/notifications'],
+  ['/api/test-org-filter', './routes/test-org-filter'],
+  ['/api/buku-pedoman', './routes/buku-pedoman']
+];
 
-// Export endpoints moved to routes/risk-profile-export.js for better organization
-app.use('/api/auth', require('./routes/auth'));
-app.use('/api/users', require('./routes/users'));
-app.use('/api/user-management', require('./routes/user-management'));
-app.use('/api/risks', require('./routes/risks'));
-app.use('/api/risk-profile', require('./routes/risk-profile'));
-app.use('/api/risk-profile/export', require('./routes/risk-profile-export'));
-app.use('/api/master-data', require('./routes/master-data'));
-// Residual risk reports endpoint
-app.use('/api/reports/residual-risk', require('./routes/residual-risk-reports'));
-app.use('/api/reports', require('./routes/reports'));
-app.use('/api/dashboard', require('./routes/dashboard'));
-app.use('/api/visi-misi', require('./routes/visi-misi'));
-app.use('/api/rencana-strategis', require('./routes/rencana-strategis'));
-app.use('/api/renstra', require('./routes/renstra'));
-app.use('/api/monitoring-evaluasi', require('./routes/monitoring-evaluasi'));
-app.use('/api/peluang', require('./routes/peluang'));
-app.use('/api/kri', require('./routes/kri'));
-// app.use('/api/loss-event', require('./routes/loss-event'));
-app.use('/api/ews', require('./routes/ews'));
-app.use('/api/organizations', require('./routes/organizations'));
-app.use('/api/pengaturan', require('./routes/pengaturan'));
-// app.use('/api/chat', require('./routes/chat'));
-app.use('/api/ai-assistant', require('./routes/ai-assistant-direct'));
-app.use('/api/analisis-swot', require('./routes/analisis-swot'));
-app.use('/api/diagram-kartesius', require('./routes/diagram-kartesius'));
-app.use('/api/matriks-tows', require('./routes/matriks-tows'));
-app.use('/api/sasaran-strategi', require('./routes/sasaran-strategi'));
-app.use('/api/strategic-map', require('./routes/strategic-map'));
-app.use('/api/indikator-kinerja-utama', require('./routes/indikator-kinerja-utama'));
-app.use('/api/evaluasi-iku', require('./routes/evaluasi-iku'));
-app.use('/api/evaluasi-iku-bulanan', require('./routes/evaluasi-iku-bulanan'));
-app.use('/api/notifications', require('./routes/notifications'));
-app.use('/api/test-org-filter', require('./routes/test-org-filter'));
-app.use('/api/buku-pedoman', require('./routes/buku-pedoman'));
+let loadedCount = 0;
+let failedRoutes = [];
+
+routesToLoad.forEach(([path, modulePath]) => {
+  try {
+    const route = require(modulePath);
+    app.use(path, route);
+    loadedCount++;
+  } catch (error) {
+    logger.error(`❌ Failed to load route ${path}:`, error.message);
+    failedRoutes.push({ path, error: error.message });
+    
+    // Buat fallback route untuk route yang gagal
+    app.use(path, (req, res) => {
+      res.status(503).json({
+        error: 'Route temporarily unavailable',
+        path: path,
+        message: 'This route failed to load in serverless environment',
+        hint: 'Some features may not be available'
+      });
+    });
+  }
+});
+
+logger.info(`✅ Loaded ${loadedCount}/${routesToLoad.length} routes successfully`);
+if (failedRoutes.length > 0) {
+  logger.warn(`⚠️ Failed routes:`, failedRoutes.map(r => r.path).join(', '));
+}
 
 // SPA routes
 const spaRoutes = ['/rencana-strategis', '/renstra', '/residual-risk', '/risk-residual'];
@@ -154,7 +180,7 @@ app.get('*', (req, res) => {
 app.use(errorHandler);
 
 // Start server (only if not running in serverless environment)
-if (require.main === module && !process.env.VERCEL) {
+if (require.main === module && process.env.VERCEL !== '1') {
   const { findAvailablePort, getPort } = require('./config/port');
   
   (async () => {
@@ -186,7 +212,7 @@ if (require.main === module && !process.env.VERCEL) {
 }
 
 // Error handling (only in non-serverless environment)
-if (require.main === module && !process.env.VERCEL) {
+if (require.main === module && process.env.VERCEL !== '1') {
   process.on('uncaughtException', (err) => {
     logger.error('Uncaught Exception:', err);
     if (process.env.NODE_ENV === 'production') {

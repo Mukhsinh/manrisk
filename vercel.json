@@ -2,6 +2,10 @@
   "version": 2,
   "rewrites": [
     {
+      "source": "/api/test-simple",
+      "destination": "/api/test-simple.js"
+    },
+    {
       "source": "/api/(.*)",
       "destination": "/api/index.js"
     },
@@ -14,10 +18,34 @@
     "api/index.js": {
       "memory": 1024,
       "maxDuration": 30
+    },
+    "api/test-simple.js": {
+      "memory": 512,
+      "maxDuration": 10
     }
   },
   "regions": ["sin1"],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        }
+      ]
+    }
+  ],
   "env": {
-    "DISABLE_PUPPETEER": "true"
+    "DISABLE_PUPPETEER": "true",
+    "NODE_ENV": "production"
   }
 }
