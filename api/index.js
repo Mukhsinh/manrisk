@@ -5,6 +5,7 @@ process.env.DISABLE_PUPPETEER = 'true';
 process.env.NODE_ENV = process.env.NODE_ENV || 'production';
 
 console.log('🚀 [Vercel] Initializing serverless function...');
+console.log('🔍 [Vercel] Request URL:', process.env.VERCEL_URL);
 
 // Load dotenv dengan error handling
 try {
@@ -22,17 +23,22 @@ console.log('🔍 [Vercel] Environment check:', {
   hasSupabaseUrl: !!supabaseUrl,
   hasSupabaseKey: !!supabaseKey,
   urlLength: supabaseUrl?.length || 0,
-  keyLength: supabaseKey?.length || 0
+  keyLength: supabaseKey?.length || 0,
+  nodeEnv: process.env.NODE_ENV,
+  vercelEnv: process.env.VERCEL_ENV
 });
 
 if (!supabaseUrl || !supabaseKey) {
   console.error('❌ [Vercel] Missing Supabase credentials');
+  console.error('❌ [Vercel] Available env vars:', Object.keys(process.env).filter(k => k.includes('SUPABASE')));
   
   module.exports = (req, res) => {
+    console.error('❌ [Vercel] Request blocked - missing credentials:', req.url);
     res.status(500).json({
       error: 'Server configuration error',
       message: 'Missing Supabase credentials',
       hint: 'Set SUPABASE_URL dan SUPABASE_ANON_KEY di Vercel Environment Variables',
+      path: req.url,
       timestamp: new Date().toISOString()
     });
   };
@@ -47,6 +53,8 @@ if (!supabaseUrl || !supabaseKey) {
     
     // Export dengan error wrapper
     module.exports = (req, res) => {
+      console.log(`📥 [Vercel] Request: ${req.method} ${req.url}`);
+      
       // Set timeout untuk prevent hanging
       const timeout = setTimeout(() => {
         if (!res.headersSent) {
@@ -99,11 +107,13 @@ if (!supabaseUrl || !supabaseKey) {
     
     // Export fallback handler
     module.exports = (req, res) => {
+      console.error('❌ [Vercel] Fallback handler:', req.url);
       res.status(500).json({
         error: 'Server initialization failed',
         message: error.message,
         code: error.code || 'INIT_ERROR',
         details: error.stack?.split('\n').slice(0, 5),
+        path: req.url,
         timestamp: new Date().toISOString()
       });
     };

@@ -5,16 +5,29 @@ const router = express.Router();
 // Get public configuration
 router.get('/', (req, res) => {
   try {
+    console.log('📡 [Config] Request received from:', req.get('host'));
+    console.log('📡 [Config] Environment check:', {
+      hasSupabaseUrl: !!process.env.SUPABASE_URL,
+      hasSupabaseKey: !!process.env.SUPABASE_ANON_KEY,
+      nodeEnv: process.env.NODE_ENV,
+      isVercel: process.env.VERCEL
+    });
+    
     // Get environment variables
     const supabaseUrl = process.env.SUPABASE_URL || '';
     const supabaseAnonKey = process.env.SUPABASE_ANON_KEY || '';
     
     // Validate that required config is present
     if (!supabaseUrl || !supabaseAnonKey) {
-      console.error('❌ Missing Supabase configuration in environment variables');
+      console.error('❌ [Config] Missing Supabase configuration in environment variables');
+      console.error('❌ [Config] Available env vars:', Object.keys(process.env).filter(k => k.includes('SUPABASE')));
+      
       return res.status(500).json({
-        error: 'Server configuration incomplete. Missing SUPABASE_URL or SUPABASE_ANON_KEY.',
-        code: 'CONFIG_ERROR'
+        error: 'Server configuration incomplete',
+        message: 'Missing SUPABASE_URL or SUPABASE_ANON_KEY',
+        code: 'CONFIG_ERROR',
+        hint: 'Please set environment variables in Vercel dashboard',
+        timestamp: new Date().toISOString()
       });
     }
     
@@ -24,12 +37,15 @@ router.get('/', (req, res) => {
       if (!url.hostname || !url.protocol.startsWith('http')) {
         throw new Error('Invalid URL format');
       }
-      console.log('✅ Supabase URL validated:', url.hostname);
+      console.log('✅ [Config] Supabase URL validated:', url.hostname);
     } catch (urlError) {
-      console.error('❌ Invalid Supabase URL format:', supabaseUrl);
+      console.error('❌ [Config] Invalid Supabase URL format:', supabaseUrl);
       return res.status(500).json({
-        error: `Invalid Supabase URL format: ${supabaseUrl}. Please check your .env file.`,
-        code: 'INVALID_URL'
+        error: 'Invalid Supabase URL format',
+        message: `URL: ${supabaseUrl}`,
+        code: 'INVALID_URL',
+        hint: 'Check SUPABASE_URL format in environment variables',
+        timestamp: new Date().toISOString()
       });
     }
     
@@ -40,15 +56,17 @@ router.get('/', (req, res) => {
       apiBaseUrl: process.env.API_BASE_URL || req.protocol + '://' + req.get('host')
     };
 
+    console.log('✅ [Config] Configuration sent successfully');
     res.json(config);
   } catch (error) {
-    console.error('Config endpoint error:', error);
+    console.error('❌ [Config] Endpoint error:', error);
     res.status(500).json({
       error: 'Failed to load configuration',
-      code: 'CONFIG_ERROR'
+      message: error.message,
+      code: 'CONFIG_ERROR',
+      timestamp: new Date().toISOString()
     });
   }
 });
 
 module.exports = router;
-

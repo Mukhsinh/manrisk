@@ -2,6 +2,10 @@
   "version": 2,
   "rewrites": [
     {
+      "source": "/api/test-env",
+      "destination": "/api/test-env.js"
+    },
+    {
       "source": "/api/test-simple",
       "destination": "/api/test-simple.js"
     },
@@ -20,6 +24,10 @@
       "maxDuration": 30
     },
     "api/test-simple.js": {
+      "memory": 512,
+      "maxDuration": 10
+    },
+    "api/test-env.js": {
       "memory": 512,
       "maxDuration": 10
     }

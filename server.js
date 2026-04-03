@@ -89,9 +89,37 @@ app.get('/api/health', (req, res) => {
   });
 });
 
+// CRITICAL: Load config route FIRST with special handling
+// This route MUST work for authentication to function
+try {
+  const configRoute = require('./routes/config');
+  app.use('/api/config', configRoute);
+  logger.info('✅ CRITICAL: /api/config route loaded successfully');
+} catch (error) {
+  logger.error('❌ CRITICAL: Failed to load /api/config route:', error);
+  // Fallback inline config route if file fails to load
+  app.get('/api/config', (req, res) => {
+    const supabaseUrl = process.env.SUPABASE_URL || '';
+    const supabaseAnonKey = process.env.SUPABASE_ANON_KEY || '';
+    
+    if (!supabaseUrl || !supabaseAnonKey) {
+      return res.status(500).json({
+        error: 'Missing Supabase credentials',
+        hint: 'Set SUPABASE_URL and SUPABASE_ANON_KEY in Vercel Environment Variables'
+      });
+    }
+    
+    res.json({
+      supabaseUrl,
+      supabaseAnonKey,
+      apiBaseUrl: process.env.API_BASE_URL || req.protocol + '://' + req.get('host')
+    });
+  });
+  logger.info('✅ FALLBACK: Inline /api/config route created');
+}
+
 // Routes
 const routesToLoad = [
-  ['/api/config', './routes/config'],
   ['/api/test', './routes/test'],
   ['/api/test-data', './routes/test-data'],
   ['/api/simple', './routes/simple-data'],
