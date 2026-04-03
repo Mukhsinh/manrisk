@@ -1128,6 +1128,27 @@
   }
   
   // ============================================
+  // SECTION 11: EXPORT FUNCTION
+  // ============================================
+  
+  async function exportData() {
+    console.log('[RS v7] Exporting data...');
+    try {
+      const response = await api('/api/rencana-strategis/export');
+      const blob = new Blob([JSON.stringify(response, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `rencana-strategis-${new Date().toISOString().split('T')[0]}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('[RS v7] Export error:', error);
+      alert('Gagal export: ' + error.message);
+    }
+  }
+  
+  // ============================================
   // SECTION 13: MODULE EXPORT
   // ============================================
   

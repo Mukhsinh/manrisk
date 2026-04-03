@@ -1,26 +1,26 @@
-// Test endpoint untuk verifikasi environment variables di Vercel
+// Simple test endpoint untuk verifikasi environment variables
 module.exports = (req, res) => {
-  console.log('🔍 [Test-Env] Checking environment variables...');
-  
   const envCheck = {
-    hasSupabaseUrl: !!process.env.SUPABASE_URL,
-    hasSupabaseKey: !!process.env.SUPABASE_ANON_KEY,
-    nodeEnv: process.env.NODE_ENV,
-    isVercel: !!process.env.VERCEL,
-    vercelEnv: process.env.VERCEL_ENV,
-    availableEnvVars: Object.keys(process.env).filter(k => 
-      k.includes('SUPABASE') || k.includes('VERCEL') || k.includes('NODE')
-    )
+    supabaseUrl: !!process.env.SUPABASE_URL,
+    supabaseAnonKey: !!process.env.SUPABASE_ANON_KEY,
+    supabaseServiceKey: !!process.env.SUPABASE_SERVICE_ROLE_KEY,
+    nodeEnv: process.env.NODE_ENV || 'development',
+    isVercel: process.env.VERCEL === '1',
+    disablePuppeteer: process.env.DISABLE_PUPPETEER === 'true'
   };
   
-  console.log('🔍 [Test-Env] Environment check:', envCheck);
+  const allGood = envCheck.supabaseUrl && envCheck.supabaseAnonKey;
   
-  res.json({
-    status: 'ok',
+  res.status(allGood ? 200 : 500).json({
+    status: allGood ? 'ok' : 'error',
+    message: allGood ? 'Environment variables configured correctly' : 'Missing required environment variables',
     timestamp: new Date().toISOString(),
-    environment: envCheck,
-    message: envCheck.hasSupabaseUrl && envCheck.hasSupabaseKey 
-      ? 'Environment variables configured correctly' 
-      : 'Missing required environment variables'
+    environment: envCheck.nodeEnv,
+    platform: envCheck.isVercel ? 'vercel' : 'local',
+    checks: envCheck,
+    missing: [
+      !envCheck.supabaseUrl && 'SUPABASE_URL',
+      !envCheck.supabaseAnonKey && 'SUPABASE_ANON_KEY'
+    ].filter(Boolean)
   });
 };

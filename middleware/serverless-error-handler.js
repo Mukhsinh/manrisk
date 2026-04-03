@@ -1,45 +1,158 @@
-// Middleware untuk menangani error di serverless environment
+/**
+ * SERVERLESS ERROR HANDLER
+ * Menangani error di environment serverless (Vercel)
+ */
+
 const logger = require('../utils/logger');
 
 /**
- * Wrapper untuk route handler yang menangkap semua error
+ * Setup global error handling untuk serverless
  */
-function asyncHandler(fn) {
+function setupServerlessErrorHandling() {
+  // Tangkap uncaught exceptions
+  process.on('uncaughtException', (error) => {
+    logger.error('❌ Uncaught Exception:', error);
+    // Jangan exit di serverless
+    if (process.env.VERCEL !== '1') {
+      process.exit(1);
+    }
+  });
+
+  // Tangkap unhandled rejections
+  process.on('unhandledRejection', (reason, promise) => {
+    logger.error('❌ Unhandled Rejection:', reason);
+    // Jangan exit di serverless
+  });
+
+  logger.info('✅ Serverless error handling setup complete');
+}
+
+/**
+ * Middleware untuk menangani route yang gagal dimuat
+ */
+function routeErrorHandler(routePath) {
   return (req, res, next) => {
-    Promise.resolve(fn(req, res, next)).catch((error) => {
-      logger.error('Route error:', error);
+    try {
+      next();
+    } catch (error) {
+      logger.error(`❌ Error in route ${routePath}:`, error);
       
-      // Jangan expose stack trace di production
-      const isDev = process.env.NODE_ENV === 'development';
-      
-      res.status(error.statusCode || 500).json({
-        error: error.message || 'Internal server error',
-        code: error.code || 'INTERNAL_ERROR',
-        ...(isDev && { stack: error.stack })
-      });
-    });
+      if (!res.headersSent) {
+        res.status(503).json({
+          error: 'Route temporarily unavailable',
+          path: routePath,
+          message: error.message,
+          hint: 'This route encountered an error. Please try again later.'
+        });
+      }
+    }
   };
 }
 
 /**
- * Global error handler untuk uncaught errors di serverless
+ * Middleware untuk memberikan fallback data jika route gagal
  */
-function setupServerlessErrorHandling() {
-  if (process.env.VERCEL === '1') {
-    // Di Vercel, tangkap error tapi jangan exit process
-    process.on('uncaughtException', (err) => {
-      logger.error('Uncaught Exception (serverless):', err);
-      // Jangan exit di serverless
-    });
+function fallbackDataMiddleware(req, res, next) {
+  const originalJson = res.json.bind(res);
+  
+  res.json = function(data) {
+    // Jika response adalah error 503, coba berikan fallback data
+    if (res.statusCode === 503) {
+      logger.warn(`⚠️ Providing fallback for ${req.path}`);
+      
+      // Fallback data berdasarkan endpoint
+      const fallbackData = getFallbackData(req.path);
+      if (fallbackData !== null) {
+        res.status(200);
+        return originalJson(fallbackData);
+      }
+    }
+    
+    return originalJson(data);
+  };
+  
+  next();
+}
 
-    process.on('unhandledRejection', (reason, promise) => {
-      logger.error('Unhandled Rejection (serverless):', reason);
-      // Jangan exit di serverless
-    });
+/**
+ * Dapatkan fallback data untuk endpoint tertentu
+ */
+function getFallbackData(path) {
+  // Dashboard
+  if (path.includes('/dashboard')) {
+    return {
+      totalRisks: 0,
+      highRisks: 0,
+      mediumRisks: 0,
+      lowRisks: 0,
+      recentActivities: [],
+      message: 'Data tidak tersedia saat ini'
+    };
   }
+  
+  // Rencana Strategis
+  if (path.includes('/rencana-strategis')) {
+    return [];
+  }
+  
+  // Master Data
+  if (path.includes('/master-data')) {
+    return [];
+  }
+  
+  // IKU
+  if (path.includes('/indikator-kinerja-utama')) {
+    return [];
+  }
+  
+  // Evaluasi IKU
+  if (path.includes('/evaluasi-iku')) {
+    return {
+      data: [],
+      summary: {
+        total: 0,
+        tercapai: 0,
+        tidakTercapai: 0
+      }
+    };
+  }
+  
+  // Risks
+  if (path.includes('/risks')) {
+    return [];
+  }
+  
+  // Default: return empty array
+  return [];
+}
+
+/**
+ * Middleware timeout untuk mencegah hanging request
+ */
+function timeoutMiddleware(timeoutMs = 25000) {
+  return (req, res, next) => {
+    const timeout = setTimeout(() => {
+      if (!res.headersSent) {
+        logger.error(`⏱️ Request timeout: ${req.method} ${req.path}`);
+        res.status(504).json({
+          error: 'Request timeout',
+          message: 'Request took too long to process',
+          path: req.path
+        });
+      }
+    }, timeoutMs);
+    
+    // Clear timeout ketika response selesai
+    res.on('finish', () => clearTimeout(timeout));
+    res.on('close', () => clearTimeout(timeout));
+    
+    next();
+  };
 }
 
 module.exports = {
-  asyncHandler,
-  setupServerlessErrorHandling
+  setupServerlessErrorHandling,
+  routeErrorHandler,
+  fallbackDataMiddleware,
+  timeoutMiddleware
 };

@@ -2,14 +2,6 @@
   "version": 2,
   "rewrites": [
     {
-      "source": "/api/test-env",
-      "destination": "/api/test-env.js"
-    },
-    {
-      "source": "/api/test-simple",
-      "destination": "/api/test-simple.js"
-    },
-    {
       "source": "/api/(.*)",
       "destination": "/api/index.js"
     },
@@ -22,18 +14,36 @@
     "api/index.js": {
       "memory": 1024,
       "maxDuration": 30
-    },
-    "api/test-simple.js": {
-      "memory": 512,
-      "maxDuration": 10
-    },
-    "api/test-env.js": {
-      "memory": 512,
-      "maxDuration": 10
     }
   },
   "regions": ["sin1"],
   "headers": [
+    {
+      "source": "/js/(.*)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/javascript; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/css/(.*)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/css; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
     {
       "source": "/(.*)",
       "headers": [

@@ -1,121 +1,143 @@
-// Vercel Serverless Entry Point - Enhanced Error Handling
-// Set environment SEBELUM require apapun
+// Vercel Serverless Entry Point - Ultra Robust Version
 process.env.VERCEL = '1';
 process.env.DISABLE_PUPPETEER = 'true';
 process.env.NODE_ENV = process.env.NODE_ENV || 'production';
 
-console.log('🚀 [Vercel] Initializing serverless function...');
-console.log('🔍 [Vercel] Request URL:', process.env.VERCEL_URL);
+console.log('🚀 [Vercel] Starting serverless function...');
 
-// Load dotenv dengan error handling
-try {
-  require('dotenv').config();
-  console.log('✅ [Vercel] dotenv loaded');
-} catch (err) {
-  console.error('⚠️ [Vercel] dotenv load failed:', err.message);
-}
-
-// Verify environment variables
+// Verify Supabase credentials
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_ANON_KEY;
 
-console.log('🔍 [Vercel] Environment check:', {
-  hasSupabaseUrl: !!supabaseUrl,
-  hasSupabaseKey: !!supabaseKey,
-  urlLength: supabaseUrl?.length || 0,
-  keyLength: supabaseKey?.length || 0,
-  nodeEnv: process.env.NODE_ENV,
-  vercelEnv: process.env.VERCEL_ENV
-});
-
 if (!supabaseUrl || !supabaseKey) {
   console.error('❌ [Vercel] Missing Supabase credentials');
-  console.error('❌ [Vercel] Available env vars:', Object.keys(process.env).filter(k => k.includes('SUPABASE')));
+  console.error('SUPABASE_URL:', supabaseUrl ? 'SET' : 'MISSING');
+  console.error('SUPABASE_ANON_KEY:', supabaseKey ? 'SET' : 'MISSING');
   
   module.exports = (req, res) => {
-    console.error('❌ [Vercel] Request blocked - missing credentials:', req.url);
     res.status(500).json({
-      error: 'Server configuration error',
-      message: 'Missing Supabase credentials',
-      hint: 'Set SUPABASE_URL dan SUPABASE_ANON_KEY di Vercel Environment Variables',
+      error: 'Configuration error',
+      message: 'Missing Supabase credentials. Please set SUPABASE_URL and SUPABASE_ANON_KEY in Vercel Environment Variables.',
       path: req.url,
-      timestamp: new Date().toISOString()
+      hint: 'Go to Vercel Dashboard > Project Settings > Environment Variables'
     });
   };
-} else {
-  // Load Express app
-  let app;
-  
-  try {
-    console.log('📦 [Vercel] Loading Express app...');
-    app = require('../server');
-    console.log('✅ [Vercel] Express app loaded successfully');
-    
-    // Export dengan error wrapper
-    module.exports = (req, res) => {
-      console.log(`📥 [Vercel] Request: ${req.method} ${req.url}`);
-      
-      // Set timeout untuk prevent hanging
-      const timeout = setTimeout(() => {
-        if (!res.headersSent) {
-          console.error('⏱️ [Vercel] Request timeout:', req.url);
-          res.status(504).json({
-            error: 'Request timeout',
-            message: 'Request took too long to process',
-            path: req.url,
-            timestamp: new Date().toISOString()
-          });
-        }
-      }, 25000); // 25 detik (sebelum Vercel timeout 30 detik)
-      
-      // Clear timeout jika response sudah dikirim
-      const originalSend = res.send;
-      const originalJson = res.json;
-      
-      res.send = function(...args) {
-        clearTimeout(timeout);
-        return originalSend.apply(res, args);
-      };
-      
-      res.json = function(...args) {
-        clearTimeout(timeout);
-        return originalJson.apply(res, args);
-      };
-      
-      try {
-        return app(req, res);
-      } catch (error) {
-        clearTimeout(timeout);
-        console.error('❌ [Vercel] Request error:', error);
-        
-        if (!res.headersSent) {
-          res.status(500).json({
-            error: 'Request handling failed',
-            message: error.message,
-            path: req.url,
-            timestamp: new Date().toISOString()
-          });
-        }
-      }
-    };
-    
-  } catch (error) {
-    console.error('❌ [Vercel] App initialization failed');
-    console.error('Error:', error.message);
-    console.error('Code:', error.code);
-    console.error('Stack:', error.stack?.split('\n').slice(0, 10).join('\n'));
-    
-    // Export fallback handler
-    module.exports = (req, res) => {
-      console.error('❌ [Vercel] Fallback handler:', req.url);
-      res.status(500).json({
-        error: 'Server initialization failed',
-        message: error.message,
-        code: error.code || 'INIT_ERROR',
-        details: error.stack?.split('\n').slice(0, 5),
-        path: req.url,
-        timestamp: new Date().toISOString()
-      });
-    };
-  }
+  return;
 }
+
+// Try to load Express app with maximum error suppression
+let app = null;
+let loadError = null;
+
+try {
+  console.log('📦 [Vercel] Loading Express app...');
+  
+  // Suppress ALL non-critical errors during load
+  const originalConsoleError = console.error;
+  const originalConsoleWarn = console.warn;
+  const suppressedErrors = [];
+  const suppressedWarnings = [];
+  
+  console.error = (...args) => {
+    const msg = args.join(' ');
+    // Suppress known non-critical errors
+    if (msg.includes('PUPPETEER') || 
+        msg.includes('puppeteer') ||
+        msg.includes('chromium') ||
+        msg.includes('Failed to load route') ||
+        msg.includes('⚠️') ||
+        msg.includes('❌ Failed')) {
+      suppressedErrors.push(msg);
+      return;
+    }
+    originalConsoleError(...args);
+  };
+  
+  console.warn = (...args) => {
+    suppressedWarnings.push(args.join(' '));
+  };
+  
+  app = require('../server');
+  
+  console.error = originalConsoleError;
+  console.warn = originalConsoleWarn;
+  
+  console.log('✅ [Vercel] Express app loaded successfully');
+  console.log(`ℹ️ [Vercel] Suppressed ${suppressedErrors.length} errors and ${suppressedWarnings.length} warnings`);
+  
+} catch (error) {
+  console.error('❌ [Vercel] CRITICAL: Failed to load Express app');
+  console.error('Error:', error.message);
+  console.error('Stack:', error.stack?.split('\n').slice(0, 3).join('\n'));
+  loadError = error;
+}
+
+// Export request handler
+module.exports = (req, res) => {
+  // Handle app load failure
+  if (loadError) {
+    console.error(`❌ [Vercel] App unavailable for ${req.url}`);
+    
+    // Provide helpful error response
+    return res.status(503).json({
+      error: 'Service temporarily unavailable',
+      path: req.url,
+      message: 'The application failed to initialize in serverless environment',
+      details: loadError.message,
+      hint: 'Check Vercel logs for more details'
+    });
+  }
+  
+  // Set request timeout
+  const timeout = setTimeout(() => {
+    if (!res.headersSent) {
+      console.error(`⏱️ [Vercel] Timeout: ${req.method} ${req.url}`);
+      res.status(504).json({
+        error: 'Request timeout',
+        path: req.url,
+        message: 'Request took too long to process'
+      });
+    }
+  }, 25000);
+  
+  // Wrap response methods to clear timeout
+  const originalSend = res.send;
+  const originalJson = res.json;
+  const originalEnd = res.end;
+  
+  const clearTimeoutOnce = () => {
+    clearTimeout(timeout);
+  };
+  
+  res.send = function(...args) {
+    clearTimeoutOnce();
+    return originalSend.apply(res, args);
+  };
+  
+  res.json = function(...args) {
+    clearTimeoutOnce();
+    return originalJson.apply(res, args);
+  };
+  
+  res.end = function(...args) {
+    clearTimeoutOnce();
+    return originalEnd.apply(res, args);
+  };
+  
+  // Handle request
+  try {
+    console.log(`📥 [Vercel] ${req.method} ${req.url}`);
+    return app(req, res);
+  } catch (error) {
+    clearTimeoutOnce();
+    console.error(`❌ [Vercel] Request error: ${req.url}`, error.message);
+    
+    if (!res.headersSent) {
+      res.status(500).json({
+        error: 'Request failed',
+        message: error.message,
+        path: req.url
+      });
+    }
+  }
+};

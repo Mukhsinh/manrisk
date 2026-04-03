@@ -1,61 +1,59 @@
+# Dependencies
 node_modules
+
+# Git
 .git
-.env
-.env.*
-!.env.example
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.DS_Store
-.vscode
-.idea
-*.swp
-*.swo
-*~
-.cache
-dist
-build
-coverage
-.nyc_output
-test-results
+.gitignore
+
+# Environment files
+.env.local
+.env.*.local
+.env.port3001
+
+# Tests
 tests
+test-results
 *.test.js
 *.spec.js
-jest.config.js
-.kiro
+
+# Backups and cleanup scripts
 backup-*
 cleanup-*.js
+inventarisasi-dokumentasi.js
 clear-*.js
-inventarisasi-*.js
+
+# Documentation (except critical ones)
 *.md
 !README.md
-*.bat
-*.backup
+!DEPLOYMENT.md
+
+# IDE and editor files
+.cursor
+.vscode
+.kiro
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+
+# Media files
 *.xlsx
 *.png
-!public/**/*.png
-!public/**/*.jpg
-!public/**/*.jpeg
-!public/**/*.gif
-!public/**/*.svg
-STAGING_CLEANUP_INVENTORY.json
-cleanup-test-files-report.json
-start-auto-port.js
-start-dev*.bat
-install-dependencies.bat
-scripts/button-*.md
-scripts/button-scanner.js
-scripts/generate-button-stubs.js
-docs/MANUAL_TESTING_GUIDE.md
-docs/BUTTON_*.md
-public/BUTTON_FIX_GUIDE.txt
-public/*-fixed*.html
-public/*-enhanced*.html
-public/*-modern.html
-public/test.html
-public/residual-risk-backup.html
-public/residual-risk-original.html
-routes/test*.js
-routes/debug-*.js
-routes/dashboard-fixed.js
+*.jpg
+*.jpeg
+*.gif
+*.svg
+*.pdf
+
+# HTML test files
+test-*.html
+*-test.html
+*-fixed*.html
+*-enhanced*.html
+
+# Batch files
+*.bat
+
+# Vercel specific
+.vercel

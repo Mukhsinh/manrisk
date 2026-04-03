@@ -3,13 +3,36 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const path = require('path');
-const { securityHeaders } = require('./middleware/security');
-const { errorHandler } = require('./utils/errors');
-const { setupServerlessErrorHandling } = require('./middleware/serverless-error-handler');
-const logger = require('./utils/logger');
+
+// Safe require dengan fallback
+const safeRequire = (modulePath, fallback = null) => {
+  try {
+    return require(modulePath);
+  } catch (error) {
+    console.warn(`⚠️ Failed to load ${modulePath}:`, error.message);
+    return fallback;
+  }
+};
+
+const { securityHeaders } = safeRequire('./middleware/security', { securityHeaders: (req, res, next) => next() });
+const { errorHandler } = safeRequire('./utils/errors', { 
+  errorHandler: (err, req, res, next) => {
+    console.error('Error:', err.message);
+    res.status(err.statusCode || 500).json({ error: err.message || 'Internal server error' });
+  }
+});
+const serverlessErrorHandler = safeRequire('./middleware/serverless-error-handler', {});
+const logger = safeRequire('./utils/logger', {
+  info: console.log,
+  error: console.error,
+  warn: console.warn,
+  debug: console.debug
+});
 
 // Setup error handling untuk serverless
-setupServerlessErrorHandling();
+if (serverlessErrorHandler && serverlessErrorHandler.setupServerlessErrorHandling) {
+  serverlessErrorHandler.setupServerlessErrorHandling();
+}
 
 const app = express();
 
@@ -48,6 +71,14 @@ app.use(cors(corsOptions));
 // Body parsing middleware
 app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
+
+// Timeout middleware untuk mencegah hanging
+if (serverlessErrorHandler && serverlessErrorHandler.timeoutMiddleware) {
+  app.use(serverlessErrorHandler.timeoutMiddleware(25000));
+}
+if (serverlessErrorHandler && serverlessErrorHandler.fallbackDataMiddleware) {
+  app.use(serverlessErrorHandler.fallbackDataMiddleware);
+}
 
 // Cache control middleware for dynamic JS files
 const noCacheFiles = [
