@@ -910,35 +910,33 @@
     }
   }
   
-  async function exportData() {
+  function exportData() {
     console.log('[RS v7] Exporting data...');
     
     const exportBtn = $('rs-export-btn');
     const originalHtml = exportBtn ? exportBtn.innerHTML : '';
     
-    try {
-      // Show loading state
-      if (exportBtn) {
-        exportBtn.disabled = true;
-        exportBtn.innerHTML = '<i class="fas fa-spinner fa-spin" style="color: white !important;"></i>';
-      }
-      
-      // Get token
-      const token = localStorage.getItem('token') || window.currentSession?.access_token;
-      
-      // Fetch export
-      const response = await fetch('/api/rencana-strategis/actions/export', {
-        method: 'GET',
-        headers: token ? { 'Authorization': `Bearer ${token}` } : {}
-      });
-      
+    // Show loading state
+    if (exportBtn) {
+      exportBtn.disabled = true;
+      exportBtn.innerHTML = '<i class="fas fa-spinner fa-spin" style="color: white !important;"></i>';
+    }
+    
+    // Get token
+    const token = localStorage.getItem('token') || window.currentSession?.access_token;
+    
+    // Fetch export
+    fetch('/api/rencana-strategis/actions/export', {
+      method: 'GET',
+      headers: token ? { 'Authorization': `Bearer ${token}` } : {}
+    })
+    .then(response => {
       if (!response.ok) {
         throw new Error('Gagal mengunduh laporan (HTTP ' + response.status + ')');
       }
-      
-      // Get blob
-      const blob = await response.blob();
-      
+      return response.blob();
+    })
+    .then(blob => {
       if (blob.size === 0) {
         throw new Error('File laporan kosong');
       }
@@ -957,22 +955,22 @@
         window.URL.revokeObjectURL(url);
       }, 100);
       
-      // Show success
-      showToast('Laporan berhasil diunduh!', 'success');
-      
       console.log('[RS v7] Export successful');
-      
-    } catch (error) {
+    })
+    .catch(error => {
       console.error('[RS v7] Export error:', error);
-      showToast('Gagal mengunduh laporan: ' + error.message, 'error');
-    } finally {
+      alert('Gagal mengunduh laporan: ' + error.message);
+    })
+    .finally(() => {
       // Restore button
       if (exportBtn) {
         exportBtn.disabled = false;
         exportBtn.innerHTML = originalHtml;
       }
-    }
+    });
   }
+  
+  function edit(id) {
     console.log('[RS v7.1] Starting edit for ID:', id);
     
     const record = state.data.find(i => i.id === id);
@@ -1020,7 +1018,7 @@
     }, 100);
   }
   
-  async function deleteRecord(id) {
+  function deleteRecord(id) {
     console.log('[RS v7.1] Starting delete for ID:', id);
     
     const record = state.data.find(i => i.id === id);
@@ -1032,14 +1030,15 @@
     
     if (!confirm(`Yakin ingin menghapus "${record.nama_rencana || 'data ini'}"?`)) return;
     
-    try {
-      await api(`/api/rencana-strategis/${id}`, { method: 'DELETE' });
-      alert('Data berhasil dihapus!');
-      await refresh();
-    } catch (error) {
-      console.error('[RS v7.1] Delete error:', error);
-      alert('Gagal menghapus: ' + error.message);
-    }
+    api(`/api/rencana-strategis/${id}`, { method: 'DELETE' })
+      .then(() => {
+        alert('Data berhasil dihapus!');
+        return refresh();
+      })
+      .catch(error => {
+        console.error('[RS v7.1] Delete error:', error);
+        alert('Gagal menghapus: ' + error.message);
+      });
   }
   
   function viewDetail(id) {
@@ -1131,21 +1130,58 @@
   // SECTION 11: EXPORT FUNCTION
   // ============================================
   
-  async function exportData() {
+  function exportData() {
     console.log('[RS v7] Exporting data...');
-    try {
-      const response = await api('/api/rencana-strategis/export');
-      const blob = new Blob([JSON.stringify(response, null, 2)], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `rencana-strategis-${new Date().toISOString().split('T')[0]}.json`;
-      a.click();
-      URL.revokeObjectURL(url);
-    } catch (error) {
+    
+    const exportBtn = $('rs-export-btn');
+    const originalHtml = exportBtn ? exportBtn.innerHTML : '';
+    
+    // Show loading state
+    if (exportBtn) {
+      exportBtn.disabled = true;
+      exportBtn.innerHTML = '<i class="fas fa-spinner fa-spin" style="color: white !important;"></i>';
+    }
+    
+    // Get token
+    const token = localStorage.getItem('token') || window.currentSession?.access_token;
+    
+    // Fetch export
+    fetch('/api/rencana-strategis/actions/export', {
+      method: 'GET',
+      headers: token ? { 'Authorization': `Bearer ${token}` } : {}
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Gagal mengunduh laporan (HTTP ' + response.status + ')');
+      }
+      return response.blob();
+    })
+    .then(blob => {
+      if (blob.size === 0) {
+        throw new Error('File laporan kosong');
+      }
+      
+      // Create download
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'laporan-rencana-strategis-' + new Date().toISOString().split('T')[0] + '.xlsx';
+      link.click();
+      window.URL.revokeObjectURL(url);
+      
+      console.log('[RS v7] Export successful');
+    })
+    .catch(error => {
       console.error('[RS v7] Export error:', error);
       alert('Gagal export: ' + error.message);
-    }
+    })
+    .finally(() => {
+      // Restore button
+      if (exportBtn) {
+        exportBtn.disabled = false;
+        exportBtn.innerHTML = originalHtml;
+      }
+    });
   }
   
   // ============================================

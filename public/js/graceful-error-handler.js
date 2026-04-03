@@ -106,8 +106,11 @@
   document.head.appendChild(style);
   
   /**
-   * Intercept fetch untuk menangani error
+   * Intercept fetch untuk menangani error - FIXED untuk mencegah notifikasi berulang
    */
+  let notificationShown = false;
+  let notificationTimeout = null;
+  
   const originalFetch = window.fetch;
   window.fetch = async function(...args) {
     const url = args[0];
@@ -115,23 +118,30 @@
     try {
       const response = await originalFetch.apply(this, args);
       
-      // Jika error 503, track dan show notification
+      // Jika error 503, track
       if (response.status === 503) {
         const requestKey = `${url}`;
         const failCount = (failedRequests.get(requestKey) || 0) + 1;
         failedRequests.set(requestKey, failCount);
         
-        // Hanya show notification untuk request pertama kali gagal
-        if (failCount === 1) {
+        // Hanya show notification SEKALI untuk semua 503 errors
+        if (!notificationShown && failCount === 1) {
           console.warn(`⚠️ Service unavailable: ${url}`);
           
           // Jangan show notification untuk setiap request, hanya yang penting
           const importantEndpoints = ['/api/dashboard', '/api/rencana-strategis', '/api/auth/me'];
           if (importantEndpoints.some(endpoint => url.includes(endpoint))) {
+            notificationShown = true;
             showErrorNotification(
-              'Beberapa data sedang tidak tersedia. Aplikasi akan mencoba memuat ulang secara otomatis.',
+              'Server sedang sibuk. Mohon tunggu beberapa saat...',
               'warning'
             );
+            
+            // Reset flag setelah 30 detik
+            if (notificationTimeout) clearTimeout(notificationTimeout);
+            notificationTimeout = setTimeout(() => {
+              notificationShown = false;
+            }, 30000);
           }
         }
       } else if (response.ok) {
@@ -144,16 +154,23 @@
     } catch (error) {
       console.error(`❌ Network error: ${url}`, error);
       
-      // Show notification untuk network error
+      // Show notification untuk network error - hanya sekali
       const requestKey = `${url}`;
       const failCount = (failedRequests.get(requestKey) || 0) + 1;
       failedRequests.set(requestKey, failCount);
       
-      if (failCount === 1) {
+      if (!notificationShown && failCount === 1) {
+        notificationShown = true;
         showErrorNotification(
           'Koneksi ke server terputus. Mohon periksa koneksi internet Anda.',
           'error'
         );
+        
+        // Reset flag setelah 30 detik
+        if (notificationTimeout) clearTimeout(notificationTimeout);
+        notificationTimeout = setTimeout(() => {
+          notificationShown = false;
+        }, 30000);
       }
       
       throw error;
@@ -161,27 +178,56 @@
   };
   
   /**
-   * Handle global errors
+   * Handle global errors - FIXED untuk mencegah reload loop
    */
+  let errorCount = 0;
+  let lastErrorTime = 0;
+  const ERROR_THRESHOLD = 3;
+  const ERROR_WINDOW = 10000; // 10 detik
+  
   window.addEventListener('error', (event) => {
     // Jangan handle error dari script eksternal
     if (event.filename && !event.filename.includes(window.location.origin)) {
       return;
     }
     
+    // Ignore error yang tidak penting
+    if (event.error && event.error.message) {
+      const msg = event.error.message;
+      if (msg.includes('ResizeObserver') || 
+          msg.includes('Script error') ||
+          msg.includes('Loading chunk')) {
+        return;
+      }
+    }
+    
     console.error('❌ Global error:', event.error);
     
-    // Hanya show notification untuk error yang benar-benar mengganggu
-    if (event.error && event.error.message && !event.error.message.includes('ResizeObserver')) {
+    // Track error frequency untuk mencegah reload loop
+    const now = Date.now();
+    if (now - lastErrorTime > ERROR_WINDOW) {
+      errorCount = 0; // Reset jika sudah lewat window
+    }
+    lastErrorTime = now;
+    errorCount++;
+    
+    // Hanya reload jika error tidak terlalu sering
+    if (errorCount <= ERROR_THRESHOLD) {
       showErrorNotification(
         'Terjadi kesalahan pada aplikasi. Halaman akan dimuat ulang otomatis.',
         'error'
       );
       
-      // Auto reload setelah 3 detik
+      // Auto reload setelah 5 detik (diperpanjang dari 3 detik)
       setTimeout(() => {
         window.location.reload();
-      }, 3000);
+      }, 5000);
+    } else {
+      // Jika terlalu banyak error, jangan reload lagi
+      showErrorNotification(
+        'Aplikasi mengalami masalah berulang. Silakan refresh manual atau hubungi administrator.',
+        'error'
+      );
     }
   });
   
